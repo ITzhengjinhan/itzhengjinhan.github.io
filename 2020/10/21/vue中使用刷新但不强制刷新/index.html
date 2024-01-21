@@ -478,7 +478,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>介绍：试过用 vue-router 重新路由到当前页面，会发现页面是不进行刷新的，根本没有任何作用。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="第一种：（不推荐）"><a href="#第一种：（不推荐）" class="headerlink" title="第一种：（不推荐）"></a>第一种：（不推荐）</h3>  <img alt="logo" src="https://s1.ax1x.com/2020/03/30/GnTqrn.png" style="margin-bottom:10px;width:800px;height:500px">
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="第一种：（不推荐）"><a href="#第一种：（不推荐）" class="headerlink" title="第一种：（不推荐）"></a>第一种：（不推荐）</h3>  <img alt="logo" src="https://s1.ax1x.com/2020/03/30/GnTqrn.png"  >
 <p>
 
 <pre><code>这两种都可以刷新当前页面的，缺点就是相当于按ctrl+F5 强制刷新那种，整个页面重新加载，会出现一个瞬间的空白页面，体验不好</code></pre></p>
@@ -486,21 +486,21 @@
 <h3 id="第二种：（推荐）"><a href="#第二种：（推荐）" class="headerlink" title="第二种：（推荐）"></a>第二种：（推荐）</h3><p>
 
 <pre><code>新建一个空白页面supplierAllBack.vue，点击确定的时候先跳转到这个空白页，然后再立马跳转回来</code></pre></p>
-   <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7mGD.png"  style="margin-bottom:10px;width:800px;height:500px">
+   <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7mGD.png"   >
 <p>
 
 <pre><code>空白页supplierAllBack.vue里面的内容：</code></pre></p>
-    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7QsA.png" style="margin-bottom:10px;width:800px;height:500px">
+    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7QsA.png"  >
 
 <h3 id="第三种：（推荐）"><a href="#第三种：（推荐）" class="headerlink" title="第三种：（推荐）"></a>第三种：（推荐）</h3><p>
 
 <pre><code>provide / inject 组合 方式是我试过最实用的，首先，要修改下你的app.vue</code></pre></p>
-    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn78dP.png" style="margin-bottom:10px;width:800px;height:500px">
+    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn78dP.png"  >
 <p>
 
 <pre><code>通过声明reload方法，控制router-view的显示或隐藏，从而控制页面的再次加载，这边定义了isRouterAlive //true or false 来控制
 然后在需要当前页面刷新的页面中注入App.vue组件提供（provide）的 reload 依赖，然后直接用this.reload来调用就</code></pre></p>
-    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7DZq.png" style="margin-bottom:10px;width:800px;height:500px">
+    <img alt="logo" src="https://s1.ax1x.com/2020/03/30/Gn7DZq.png"  >
 
             </div>
             <hr/>
