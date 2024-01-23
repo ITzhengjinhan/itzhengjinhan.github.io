@@ -533,9 +533,10 @@ export default &#123;
 </ul>
 </li>
 </ul>
-<h3 id="3、创建响应式数据-ref-与-reactive"><a href="#3、创建响应式数据-ref-与-reactive" class="headerlink" title="3、创建响应式数据 ref 与 reactive"></a>3、创建响应式数据 ref 与 reactive</h3><h4 id="ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据"><a href="#ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据" class="headerlink" title="ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据"></a>ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据</h4><pre><code>&lt;template&gt;
+<h3 id="3、创建响应式数据-ref-与-reactive"><a href="#3、创建响应式数据-ref-与-reactive" class="headerlink" title="3、创建响应式数据 ref 与 reactive"></a>3、创建响应式数据 ref 与 reactive</h3><h4 id="ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"><a href="#ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据" class="headerlink" title="ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"></a>ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据</h4><pre><code>&lt;template&gt;
   &lt;div&gt;
       &#123;&#123;num&#125;&#125;
+      &#123;&#123;obj.a&#125;&#125;
   &lt;/div&gt;
 &lt;/template&gt;
 &lt;script&gt;
@@ -543,13 +544,15 @@ import &#123; ref &#125; from &quot;vue&quot;;
 export default &#123;
   setup() &#123;
     const num = ref(1);
-    return &#123; num &#125;;
+    const obj = ref(&#123;a:1&#125;)
+    return &#123; num, obj &#125;;
   &#125;,
 &#125;;
 &lt;/script&gt;</code></pre><p>也即和 vue2.x 中的这种写法是一样的</p>
 <pre><code>data()&#123;
     return &#123;
         num:1
+        obj:&#123;a:1&#125;
     &#125;
 &#125;</code></pre><p>值得注意的是：ref 返回的是一个对象，需要通过它的 value 属性拿到它的值，即 num.value。</p>
 <p>不过在模板中使用时他会自动解。也就是上面例子中模板直接使用 num</p>
