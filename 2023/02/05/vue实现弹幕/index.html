@@ -626,12 +626,12 @@ export default &#123;
       dmStyles: [&quot;color&quot;, &quot;fontSize&quot;],
     &#125;;
   &#125;,
-  computed: &#123;&#125;,
-  created() &#123;&#125;,
   mounted() &#123;
     this.barrageMainDm = this.$refs.barrageMainDm;
     // 缓存容器宽度
     this.barMainWidth = this.barrageMainDm.clientWidth;
+    // 初始化弹幕位置
+    this.$refs.barrageMainDm.style.left = -(this.barMainWidth / 2) + &quot;px&quot;;
     // 初始化弹幕dom组
     this.init();
     // 开始播放弹幕
