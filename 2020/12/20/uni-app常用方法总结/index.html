@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="uni-app常用方法总结以及常见问题汇总, IT默小涵的个人博客">
+    <meta name="keywords" content="uni-app常用方法总结以及开发中遇到的问题汇总, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>uni-app常用方法总结以及常见问题汇总 | IT默小涵的个人博客</title>
+    <title>uni-app常用方法总结以及开发中遇到的问题汇总 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/44.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/40.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">uni-app常用方法总结以及常见问题汇总</h1>
+                    <h1 class="description center-align post-title">uni-app常用方法总结以及开发中遇到的问题汇总</h1>
                 </div>
             </div>
         </div>
@@ -481,7 +481,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="响应式样式单位"><a href="#响应式样式单位" class="headerlink" title="响应式样式单位"></a>响应式样式单位</h3><p>uni-app 支持的通用 css 单位包括 px、rpx</p>
+                <h3 id="开发要用响应式样式单位-rpx"><a href="#开发要用响应式样式单位-rpx" class="headerlink" title="开发要用响应式样式单位 rpx"></a>开发要用响应式样式单位 rpx</h3><p>uni-app 支持的通用 css 单位包括 px、rpx</p>
 <p>rpx 即响应式 px，一种根据屏幕宽度自适应的动态单位。以 750 宽的屏幕为基准，750rpx 恰好为屏幕宽度。屏幕变宽，rpx 实际显示效果会等比放大</p>
 <h3 id="uni-app-中的跳转"><a href="#uni-app-中的跳转" class="headerlink" title="uni-app 中的跳转"></a>uni-app 中的跳转</h3><p>路由的跳转方式，同样参照了小程序 有<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/navigator.html#">navigator 标签</a> 和 <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/router.html#navigateto">API 两种</a></p>
 <p>二者区别：</p>
@@ -531,7 +531,7 @@
         return &#123;
             navCity: &quot;全国&quot;
         &#125;
-    &#125;</code></pre><h3 id="获取当前页面路由及参数"><a href="#获取当前页面路由及参数" class="headerlink" title="获取当前页面路由及参数"></a>获取当前页面路由及参数</h3><pre><code>方法一：在onLoad生命周期里获取
+    &#125;</code></pre><h3 id="获取当前页面路由及参数的方法"><a href="#获取当前页面路由及参数的方法" class="headerlink" title="获取当前页面路由及参数的方法"></a>获取当前页面路由及参数的方法</h3><pre><code>方法一：在onLoad生命周期里获取
 onLoad(param)&#123;
     console.log(param);
 &#125;</code></pre><pre><code>方法二： 通过getCurrentPages获取
@@ -542,7 +542,7 @@ let curParam = routes[routes.length - 1].options; //获取路由参数
 let param = &#39;&#39;
 for (let key in curParam) &#123;
     param += &#39;&amp;&#39; + key + &#39;=&#39; + curParam[key]
-&#125;</code></pre><h3 id="组件引入简化"><a href="#组件引入简化" class="headerlink" title="组件引入简化"></a>组件引入简化</h3><p>对于在 components 目录下，并符合 components/组件名称/组件名称.vue 目录结构，就可以不用引入、注册，直接在页面中使用即可</p>
+&#125;</code></pre><h3 id="组件引入简化小技巧"><a href="#组件引入简化小技巧" class="headerlink" title="组件引入简化小技巧"></a>组件引入简化小技巧</h3><p>对于在 components 目录下，并符合 components/组件名称/组件名称.vue 目录结构，就可以不用引入、注册，直接在页面中使用即可</p>
 <h3 id="在-H5-中使用绝对定位会被头部导航栏覆盖，小程序却可正常显示"><a href="#在-H5-中使用绝对定位会被头部导航栏覆盖，小程序却可正常显示" class="headerlink" title="在 H5 中使用绝对定位会被头部导航栏覆盖，小程序却可正常显示"></a>在 H5 中使用绝对定位会被头部导航栏覆盖，小程序却可正常显示</h3><p>使用–window-top 变量</p>
 <pre><code>.nav&#123;
     position:absolute;
@@ -575,8 +575,7 @@ module.exports = &#123;
       &#125;
     &#125;
   &#125;
-&#125;;</code></pre><h3 id="图片下方会有-3px-的空隙"><a href="#图片下方会有-3px-的空隙" class="headerlink" title="图片下方会有 3px 的空隙"></a>图片下方会有 3px 的空隙</h3><p>图片设置 display:block</p>
-<h3 id="图片太大，占用太多内存"><a href="#图片太大，占用太多内存" class="headerlink" title="图片太大，占用太多内存"></a>图片太大，占用太多内存</h3><pre><code>方案一：由后端存储，前端通过链接访问
+&#125;;</code></pre><h3 id="图片太大，占用太多内存"><a href="#图片太大，占用太多内存" class="headerlink" title="图片太大，占用太多内存"></a>图片太大，占用太多内存</h3><pre><code>方案一：由后端存储，前端通过链接访问
 
 方案二： 使用图片压缩工具
 
@@ -681,7 +680,7 @@ this.$refs.btn.$el.parentNode.style.position = ‘fixed’
 this.$refs.btn.$el.getBoundingClientRect()
 
 更多文档参考：
-https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect</code></pre><h3 id="修改-UI-组件中的样式"><a href="#修改-UI-组件中的样式" class="headerlink" title="修改 UI 组件中的样式"></a>修改 UI 组件中的样式</h3><p>使用::v-deep</p>
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect</code></pre><h3 id="如何修改-UI-组件中的样式"><a href="#如何修改-UI-组件中的样式" class="headerlink" title="如何修改 UI 组件中的样式"></a>如何修改 UI 组件中的样式</h3><p>使用::v-deep</p>
 <pre><code>::v-deep .element_input_focus&#123;
     ...
 &#125;</code></pre><h3 id="刷新页面后使用-uni-navigateBack-无法返回上个页面"><a href="#刷新页面后使用-uni-navigateBack-无法返回上个页面" class="headerlink" title="刷新页面后使用 uni.navigateBack()无法返回上个页面"></a>刷新页面后使用 uni.navigateBack()无法返回上个页面</h3><pre><code>clickNavLeft()&#123;
@@ -691,7 +690,76 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect</
     &#125; else &#123;
         history.back();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre><h3 id="如何做路由拦截"><a href="#如何做路由拦截" class="headerlink" title="如何做路由拦截"></a>如何做路由拦截</h3><ol>
+<li>安装插件 uni-simple-router</li>
+</ol>
+<pre><code>npm install uni-simple-router</code></pre><ol start="2">
+<li>由于 uniapp 使用的是 page.json 配置路由，因此要使用 uni-read-pages 读取 json 文件的路由</li>
+</ol>
+<pre><code>npm install uni-read-pages</code></pre><ol start="3">
+<li>配置 vue.config.js</li>
+</ol>
+<pre><code>//vue.config.js
+const TransformPages = require(&#39;uni-read-pages&#39;)
+const &#123;webpack&#125; = new TransformPages()
+module.exports = &#123;
+    configureWebpack: &#123;
+        plugins: [
+            new webpack.DefinePlugin(&#123;
+                ROUTES: webpack.DefinePlugin.runtimeValue(() =&gt; &#123;
+                    const tfPages = new TransformPages(&#123;
+                        includes: [&#39;path&#39;, &#39;name&#39;, &#39;aliasPath&#39;]
+                    &#125;);
+                    return JSON.stringify(tfPages.routes)
+                &#125;, true )
+            &#125;)
+        ]
+    &#125;
+&#125;</code></pre><ol start="4">
+<li>新建并写入 router.js</li>
+</ol>
+<pre><code>// router.js
+import &#123;RouterMount,createRouter&#125; from &#39;uni-simple-router&#39;;
+
+const router = createRouter(&#123;
+    platform: process.env.VUE_APP_PLATFORM,
+    routes: [...ROUTES]
+&#125;);
+//全局路由前置守卫
+router.beforeEach((to, from, next) =&gt; &#123;
+    next();
+&#125;);
+// 全局路由后置守卫
+router.afterEach((to, from) =&gt; &#123;
+    console.log(&#39;跳转结束&#39;)
+&#125;)
+
+export &#123;
+    router,
+    RouterMount
+&#125;</code></pre><ol start="5">
+<li>在 main.js 引入 router.js</li>
+</ol>
+<pre><code>// main.js
+
+import Vue from &#39;vue&#39;
+import App from &#39;./App&#39;
+import &#123;router,RouterMount&#125; from &#39;./router.js&#39;  //路径换成自己的
+Vue.use(router)
+
+App.mpType = &#39;app&#39;
+const app = new Vue(&#123;
+    ...App
+&#125;)
+
+//v1.3.5起 H5端 你应该去除原有的app.$mount();使用路由自带的渲染方式
+// #ifdef H5
+    RouterMount(app,router,&#39;#app&#39;)
+// #endif
+
+// #ifndef H5
+    app.$mount(); //为了兼容小程序及app端必须这样写才有效果
+// #endif</code></pre>
             </div>
             <hr/>
 

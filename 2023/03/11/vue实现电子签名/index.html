@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue实现弹幕, IT默小涵的个人博客">
+    <meta name="keywords" content="vue实现电子签名, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue实现弹幕 | IT默小涵的个人博客</title>
+    <title>vue实现电子签名 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue实现弹幕</h1>
+                    <h1 class="description center-align post-title">vue实现电子签名</h1>
                 </div>
             </div>
         </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-02-05
+                    2023-03-11
                 </div>
                 
 
@@ -473,627 +473,107 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>vue-danmak 库以及自定义 vue-baberrage 组件实现</p>
-<h3 id="方案一、vue-danmak"><a href="#方案一、vue-danmak" class="headerlink" title="方案一、vue-danmak"></a>方案一、vue-danmak</h3><p>vue-danmaku 是一个基于 vue 的弹幕交互组件库，易上手，还可自定义修改弹幕的样式。</p>
-<h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><pre><code>npm install vue-danmaku --save</code></pre><h4 id="2-基础使用"><a href="#2-基础使用" class="headerlink" title="2.基础使用"></a>2.基础使用</h4><pre><code>&lt;template&gt;
-  &lt;-- 使用 --&gt;
-  &lt;vue-danmaku :danmus=&quot;danmus&quot;
-    loop
-    style=&quot;height:200px; width:100%;&quot;
-    ref=&quot;danmaku&quot;
-    @play-end=&quot;end&quot;&gt;
-  &lt;/vue-danmaku&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-// 1. 引入
-import vueDanmaku from &#39;vue-danmaku&#39;
-
-export default &#123;
-  name: &quot;barrage&quot;,
-  components: &#123;
-  // 2. 注册
-    vueDanmaku
-  &#125;,
-  data() &#123;
-    return &#123;
-      danmus: [&#39;这也太强了&#39;, &#39;666&#39;, &#39;万能的人才&#39;, &#39;叹为观止&#39;, &#39;优秀&#39;]
-    &#125;
-  &#125;,
-  methods: &#123;
-    end() &#123;
-      console.log(this.$refs.danmaku);
-    &#125;
-  &#125;
-&#125;
-&lt;/script&gt;
-</code></pre><h4 id="3-自定义样式"><a href="#3-自定义样式" class="headerlink" title="3.自定义样式"></a>3.自定义样式</h4><p>需要通过插槽来修改自定义的内容，从而修改弹幕的样式</p>
-<pre><code>&lt;template&gt;
-  &lt;div style=&quot;background: black;&quot;&gt;
-    &lt;input v-model=&quot;input&quot; /&gt;&lt;button @click=&quot;send&quot;&gt;发送&lt;/button&gt;
-    &lt;button @click=&quot;showDanmu&quot;&gt;显示&lt;/button&gt;
-    &lt;button @click=&quot;hideDanmu&quot;&gt;隐藏&lt;/button&gt;
-    &lt;vue-danmaku
-      :danmus=&quot;danmus&quot;
-      isSuspend
-      loop
-      useSlot
-      style=&quot;height:200px; width:100%;&quot;
-      ref=&quot;danmaku&quot;
-      @play-end=&quot;end&quot;
-    &gt;
-      &lt;template v-slot:dm=&quot;&#123; danmu &#125;&quot;&gt;
-        &lt;span :style=&quot;&#123; color: danmu.color &#125;&quot;
-          &gt;&#123;&#123; danmu.name &#125;&#125;：&#123;&#123; danmu.text &#125;&#125;&lt;/span
-        &gt;
-      &lt;/template&gt;
-    &lt;/vue-danmaku&gt;
+                <p>两个方案：vue-signature-pad 和 vue-esign</p>
+<p>二者的区别在于画笔是否具有笔锋效果</p>
+<p>如图所示：</p>
+<p><img src="https://pic.imgdb.cn/item/65b907f4871b83018aa0aa32.jpg" alt=""></p>
+<h3 id="方案一、vue-esign"><a href="#方案一、vue-esign" class="headerlink" title="方案一、vue-esign"></a>方案一、vue-esign</h3><h4 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h4><pre><code>npm install vue-esign --save</code></pre><h4 id="2-基础使用"><a href="#2-基础使用" class="headerlink" title="2.基础使用"></a>2.基础使用</h4><pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;div style=&quot;width: 80vw; margin: 0 auto; border: 1px solid red;&quot;&gt;
+      &lt;vue-esign
+        ref=&quot;esign&quot;
+        :width=&quot;800&quot;
+        :height=&quot;300&quot;
+        :isCrop=&quot;isCrop&quot;
+        :lineWidth=&quot;lineWidth&quot;
+        :lineColor=&quot;lineColor&quot;
+        :bgColor.sync=&quot;bgColor&quot;
+      /&gt;
+    &lt;/div&gt;
+    &lt;button @click=&quot;handleReset&quot;&gt;清空画板&lt;/button&gt;
+    &lt;button @click=&quot;handleGenerate&quot;&gt;生成图片&lt;/button&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
-import vueDanmaku from &quot;vue-danmaku&quot;;
+import vueEsign from &quot;vue-esign&quot;;
+
 export default &#123;
-  name: &quot;DingCertHome&quot;,
-  components: &#123; vueDanmaku &#125;,
+  name: &quot;home&quot;,
+  components: &#123; vueEsign &#125;,
   data() &#123;
     return &#123;
-      danmus: [
-        &#123; name: &quot;a&quot;, text: &quot;aaa&quot;, color: &quot;red&quot; &#125;,
-        &#123; name: &quot;b&quot;, text: &quot;bbb&quot; &#125;,
-      ],
+      lineWidth: 6,
+      lineColor: &quot;#000000&quot;,
+      bgColor: &quot;&quot;,
+      resultImg: &quot;&quot;,
+      isCrop: false,
     &#125;;
   &#125;,
+  mounted() &#123;&#125;,
   methods: &#123;
-    send() &#123;
-      this.danmus.push(&#123; name: &quot;你&quot;, text: this.input &#125;);
+    handleReset() &#123;
+      this.$refs.esign.reset();
     &#125;,
-    end() &#123;
-      console.log(this.$refs.danmaku);
-    &#125;,
-    showDanmu() &#123;
-      this.$refs.danmaku.show();
-    &#125;,
-    hideDanmu() &#123;
-      this.$refs.danmaku.hide();
+    handleGenerate() &#123;
+      this.$refs.esign
+        .generate()
+        .then((res) =&gt; &#123;
+          this.resultImg = res; // 转换为图片 base64
+        &#125;)
+        .catch((err) =&gt; &#123;
+          alert(err); // 画布没有签字时会执行这里 &#39;Not Signned&#39;
+        &#125;);
     &#125;,
   &#125;,
 &#125;;
 &lt;/script&gt;
-
-&lt;style lang=&quot;scss&quot; scoped&gt;&lt;/style&gt;
-</code></pre><h4 id="4-更多-API"><a href="#4-更多-API" class="headerlink" title="4.更多 API"></a>4.更多 API</h4><p><a target="_blank" rel="noopener" href="https://github.com/hellodigua/vue-danmaku/tree/master">官网</a></p>
-<h3 id="方案二、自封装-vue-baberrage-组件"><a href="#方案二、自封装-vue-baberrage-组件" class="headerlink" title="方案二、自封装 vue-baberrage 组件"></a>方案二、自封装 vue-baberrage 组件</h3><h4 id="1-组件源码："><a href="#1-组件源码：" class="headerlink" title="1.组件源码："></a>1.组件源码：</h4><p>在 components/VBarrage/index.vue 创建组件：</p>
-<pre><code>&lt;template&gt;
-  &lt;section
-    class=&quot;barrage-wrapper&quot;
-    ref=&quot;barrageWrapper&quot;
-    :style=&quot;&#123; height: percent + &#39;%&#39; &#125;&quot;
-  &gt;
-    &lt;div class=&quot;barrage-main&quot;&gt;
-      &lt;div
-        class=&quot;barrage-main-dm&quot;
-        :class=&quot;&#123; &#39;ani-pause&#39;: isPause, &#39;ani-running&#39;: !isPause &#125;&quot;
-        ref=&quot;barrageMainDm&quot;
-      &gt;&lt;/div&gt;
+&lt;style lang=&quot;less&quot; scoped&gt;&lt;/style&gt;</code></pre><h4 id="3-效果"><a href="#3-效果" class="headerlink" title="3.效果"></a>3.效果</h4><p><a target="_blank" rel="noopener" href="https://jaimecheng.github.io/vue-esign/demo/">电子签名展示</a></p>
+<h4 id="4-更多-API"><a href="#4-更多-API" class="headerlink" title="4.更多 API"></a>4.更多 API</h4><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue-esign?activeTab=readme">官网</a></p>
+<h3 id="方案二、vue-signature-pad"><a href="#方案二、vue-signature-pad" class="headerlink" title="方案二、vue-signature-pad"></a>方案二、vue-signature-pad</h3><h4 id="1-安装-1"><a href="#1-安装-1" class="headerlink" title="1.安装"></a>1.安装</h4><pre><code>npm install --save vue-signature-pad</code></pre><h4 id="2-基础使用-1"><a href="#2-基础使用-1" class="headerlink" title="2.基础使用"></a>2.基础使用</h4><pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;div style=&quot;width: 80vw; margin: 0 auto; border: 1px solid red;&quot;&gt;
+      &lt;VueSignaturePad class=&quot;signature&quot; width=&quot;95%&quot; height=&quot;300px&quot; ref=&quot;signaturePad&quot; /&gt;
     &lt;/div&gt;
-  &lt;/section&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default &#123;
-  props: &#123;
-    // 弹幕源数组
-    arr: &#123;
-      type: Array,
-      default: function() &#123;
-        return [];
-      &#125;,
-    &#125;,
-    // 弹幕是否暂停状态
-    isPause: &#123;
-      type: Boolean,
-    &#125;,
-    // 弹幕占比
-    percent: &#123;
-      type: Number,
-      default: 80,
-    &#125;,
-  &#125;,
-  data() &#123;
-    return &#123;
-      // 每行弹幕数最大值
-      MAX_DM_COUNT: 5,
-      // 行数
-      CHANNEL_COUNT: 8,
-      // 弹幕数组
-      barrages: [],
-      // dom池
-      domPool: [],
-      // intervalDM
-      intervalDM: null,
-      // 取弹幕时间间隔
-      interValTime: 500,
-      // 滚动弹幕的通道
-      hasPosition: [],
-      // 顶部弹幕的通道
-      hasTopPosition: [],
-      // 弹幕容器
-      barrageMainDm: null,
-      // 弹幕容器宽度
-      barMainWidth: 500,
-      // 自定义弹幕样式属性列表
-      dmStyles: [&quot;color&quot;, &quot;fontSize&quot;],
-    &#125;;
-  &#125;,
-  mounted() &#123;
-    this.barrageMainDm = this.$refs.barrageMainDm;
-    // 缓存容器宽度
-    this.barMainWidth = this.barrageMainDm.clientWidth;
-    // 初始化弹幕位置
-    this.$refs.barrageMainDm.style.left = -(this.barMainWidth / 2) + &quot;px&quot;;
-    // 初始化弹幕dom组
-    this.init();
-    // 开始播放弹幕
-    this.playDm();
-    // 注册页面监听器
-    document.addEventListener(&quot;visibilitychange&quot;, this.visibilitychangeFn);
-  &#125;,
-  watch: &#123;
-    arr(list) &#123;
-      this.barrages = list;
-    &#125;,
-    isPause(val) &#123;
-      if (val) &#123;
-        this.pauseDm();
-      &#125; else &#123;
-        this.playDm();
-      &#125;
-    &#125;,
-    percent(val) &#123;
-      this.CHANNEL_COUNT = val / 10;
-    &#125;,
-  &#125;,
-  methods: &#123;
-    visibilitychangeFn() &#123;
-      if (!document.hidden) &#123;
-        //处于当前页面
-        this.playDm();
-        console.log(&quot;进入页面&quot;);
-      &#125; else &#123;
-        console.log(&quot;离开页面&quot;);
-        clearInterval(this.intervalDM);
-        this.intervalDM = null;
-      &#125;
-    &#125;,
-    init() &#123;
-      let wrapper = this.$refs.barrageMainDm;
-      // 先new一些div 重复利用这些DOM
-      for (let j = 0; j &lt; this.CHANNEL_COUNT; j++) &#123;
-        let doms = [];
-        for (let i = 0; i &lt; this.MAX_DM_COUNT; i++) &#123;
-          // 初始化dom
-          let dom = document.createElement(&quot;div&quot;);
-          // 初始化dom的位置 通过设置className
-          dom.className = &quot;barrage-item&quot;;
-          dom.style.transform = `translate3d($&#123;this.barMainWidth&#125;px,0,0)`;
-          // DOM的通道是固定的 所以设置好top就不需要再改变了
-          dom.style.top =
-            j * (this.barrageMainDm.clientHeight / this.CHANNEL_COUNT) + &quot;px&quot;;
-          console.log(dom.style.top);
-          // 每次到animationend结束的时候 就是弹幕划出屏幕了 将DOM位置重置 再放回DOM池
-          dom.addEventListener(&quot;animationend&quot;, (e) =&gt; &#123;
-            // 初始化dom样式
-            dom.className = &quot;barrage-item&quot;;
-            dom.style.transform = `translate3d($&#123;this.barMainWidth&#125;px,0,0)`;
-            dom.style.animation = null;
-            // 清空自定义样式
-            this.dmStyles.forEach((key) =&gt; &#123;
-              dom.style[key] = null;
-            &#125;);
-            // this.domPool[j].push(&#123; el: dom &#125;);
-            // 动画结束后设置当前dom为空闲状态
-            // console.log(i, j)
-            if (this.domPool[i][j]) &#123;
-              this.domPool[i][j].isFree = false;
-            &#125;
-            // console.log(dom)
-          &#125;);
-          // 放入该通道的DOM池
-          doms.push(&#123;
-            row: j,
-            col: i,
-            el: dom,
-            isUse: false,
-            isFree: false,
-          &#125;);
-        &#125;
-        this.domPool.push(doms);
-      &#125;
-      // hasPosition 标记每个通道目前是否有位置
-      for (let i = 0; i &lt; this.CHANNEL_COUNT; i++) &#123;
-        this.hasPosition[i] = true;
-        this.hasTopPosition[i] = true;
-      &#125;
-    &#125;,
-    /**
-     * 获取一个可以发射弹幕的通道 没有则返回-1
-     */
-    getChannel() &#123;
-      for (let i = 0; i &lt; this.CHANNEL_COUNT; i++) &#123;
-        if (this.hasPosition[i] &amp;&amp; this.domPool[i].length) return i;
-      &#125;
-      return -1;
-    &#125;,
-    /**
-     * 获取一个可以发射顶部弹幕的通道 没有则返回-1
-     */
-    getTopChannel() &#123;
-      for (let i = 0; i &lt; this.CHANNEL_COUNT; i++) &#123;
-        if (this.hasTopPosition[i]) return i;
-      &#125;
-      return -1;
-    &#125;,
-    /**
-     * 根据DOM和弹幕信息 发射弹幕
-     */
-    shootDanmu(domItem, dmItem, channel) &#123;
-      // 设置当前通道为false
-      this.hasPosition[channel] = false;
-      //获取dom
-      let dom = domItem.el;
-      // 是否已经使用的dom
-      if (!domItem.isUse &amp;&amp; this.barrageMainDm) &#123;
-        domItem.isUse = true;
-        this.barrageMainDm.appendChild(domItem.el);
-      &#125;
-      // 判断是否有自定义样式
-      if (dmItem.style) &#123;
-        let keys = Object.keys(dmItem.style);
-        let self = this;
-        keys.forEach((key) =&gt; &#123;
-          // 检查样式属性是否合法
-          let isStyle = self.dmStyles.includes(key);
-          if (isStyle) &#123;
-            dom.style[key] = dmItem.style[key];
-          &#125;
-        &#125;);
-      &#125;
-      domItem.isFree = true;
-      // console.log(&#39;biu~ [&#39; + dmItem.content + &#39;]&#39;);
-      // dom.innerText = dmItem.content;
-      // 判断是否是js弹幕
-      if (dmItem.isJs) &#123;
-        dom.innerHTML = dmItem.content;
-      &#125; else &#123;
-        dom.innerText = dmItem.content;
-      &#125;
-      // 设置弹幕的位置信息 性能优化 left -&gt; transform
-      // dom.style.transform = `translateX($&#123;-dom.clientWidth&#125;px)`;
-      // dom.style.transform = `translate3d($&#123;-dom.clientWidth&#125;px,0,0)`; // css硬件加速
-      dom.className = dmItem.isSelf ? &quot;barrage-item self-dm&quot; : &quot;barrage-item&quot;;
-      dom.style.animation = &quot;barrage-run 5s linear&quot;;
-      // 弹幕全部显示之后 才能开始下一条弹幕
-      // 大概 dom.clientWidth * 10 的时间 该条弹幕就从右边全部划出到可见区域 再加1秒保证弹幕之间距离
-      setTimeout(() =&gt; &#123;
-        this.hasPosition[channel] = true;
-      &#125;, dom.clientWidth * 10 + 1000);
-    &#125;,
-    shootTopDanmu(dmItem, channel) &#123;
-      // 设置当前通道为false
-      this.hasTopPosition[channel] = false;
-      //获取dom
-      let dom = document.createElement(&quot;div&quot;);
-      dom.className = dmItem.isSelf
-        ? &quot;barrage-item top-item self-dm&quot;
-        : &quot;barrage-item top-item&quot;;
-      // 判断是否有自定义样式
-      if (dmItem.style) &#123;
-        let keys = Object.keys(dmItem.style);
-        let self = this;
-        keys.forEach((key) =&gt; &#123;
-          // 检查样式属性是否合法
-          let isStyle = self.dmStyles.includes(key);
-          if (isStyle) &#123;
-            dom.style[key] = dmItem.style[key];
-          &#125;
-        &#125;);
-      &#125;
-      // 判断是否是js弹幕
-      if (dmItem.isJs) &#123;
-        dom.innerHTML = dmItem.content;
-      &#125; else &#123;
-        dom.innerText = dmItem.content;
-      &#125;
-      dom.addEventListener(&quot;animationend&quot;, () =&gt; &#123;
-        this.barrageMainDm.removeChild(dom);
-        this.hasTopPosition[channel] = true;
-      &#125;);
-      this.barrageMainDm.appendChild(dom); // 一定要在获取宽度和执行动画之前渲染dom
-      dom.style.transform = `translate3d($&#123;this.barMainWidth / 2 -
-        dom.clientWidth / 2&#125;px,$&#123;channel * dom.clientHeight&#125;px,0)`;
-      dom.style.animation = &quot;barrage-fade 3s&quot;;
-    &#125;,
-    // 获取空闲通道中空闲的dom
-    getFreeChannelDom(channel) &#123;
-      let item;
-      item = this.domPool[channel].find((it) =&gt; !it.isFree);
-      return item;
-    &#125;,
-    // 暂停弹幕
-    pauseDm() &#123;
-      if (this.intervalDM) &#123;
-        clearInterval(this.intervalDM);
-        this.intervalDM = null;
-      &#125;
-    &#125;,
-    // 播放弹幕
-    playDm() &#123;
-      // 每隔1ms从弹幕池里获取弹幕（如果有的话）并发射
-      let self = this; // 这里取一个self this 为了方便调试的时候看到this具体内容
-      self.intervalDM = setInterval(() =&gt; &#123;
-        // let channel;
-        // if (self.barrages.length &amp;&amp; (channel = self.getChannel()) != -1) &#123;
-        //   let domItem = self.getFreeChannelDom(channel);
-        //   // let domItem = self.domPool[channel].shift();
-        //   if (domItem) &#123;
-        //     let danmu = self.barrages.shift();
-        //     self.shootDanmu(domItem, danmu, channel);
-        //   &#125;
-        // &#125;
-        // 更新逻辑
-        if (self.barrages.length &gt; 0) &#123;
-          let channel;
-          let topChannel;
-          let barrage = self.barrages.shift();
-          if (
-            barrage.direction == &quot;top&quot; &amp;&amp;
-            (topChannel = self.getTopChannel()) != -1
-          ) &#123;
-            // top....
-            self.shootTopDanmu(barrage, topChannel);
-          &#125;
-          if (
-            barrage.direction == &quot;default&quot; &amp;&amp;
-            (channel = self.getChannel()) != -1
-          ) &#123;
-            // default....
-            let domItem = self.getFreeChannelDom(channel);
-            if (domItem) &#123;
-              // let danmu = self.barrages.shift();
-              self.shootDanmu(domItem, barrage, channel);
-            &#125;
-          &#125;
-        &#125;
-      &#125;, self.interValTime);
-    &#125;,
-  &#125;,
-  components: &#123;&#125;,
-&#125;;
-&lt;/script&gt;
-&lt;style lang=&quot;scss&quot;&gt;
-.barrage-wrapper &#123;
-  * &#123;
-    margin: 0px;
-    padding: 0px;
-  &#125;
-  z-index: 1;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  .barrage-item &#123;
-    z-index: 99;
-    position: absolute;
-    // left: 0px;
-    // top: 0px;
-    // transform: translateX(-100%);
-    // padding: 5px 0px;
-    user-select: none; // 禁用选择文字
-    position: absolute;
-    white-space: pre;
-    cursor: pointer;
-    // pointer-events: none;
-    // perspective: 500px;
-    display: inline-block;
-    will-change: transform;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    font-family: SimHei, &quot;Microsoft JhengHei&quot;, Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    line-height: 1.125;
-    opacity: 1;
-    text-shadow: rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) 0px 1px 1px,
-      rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) -1px 0px 1px;
-    &amp;:hover &#123;
-      color: red;
-      animation-play-state: paused !important;
-      z-index: 150;
-    &#125;
-  &#125;
-  .top-item &#123;
-    z-index: 100;
-  &#125;
-  .barrage-main &#123;
-    /* border: 2px solid blue; */
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    // background: #000;
-  &#125;
-  .barrage-main-dm &#123;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-  &#125;
-&#125;
-.self-dm &#123;
-  border: 2px solid #87ceeb;
-  box-sizing: border-box;
-&#125;
-@keyframes barrage-run &#123;
-  0% &#123;
-    // transform: translate3d(500px, 0, 0);
-  &#125;
-
-  100% &#123;
-    transform: translate3d(-100%, 0, 0);
-  &#125;
-&#125;
-@keyframes barrage-fade &#123;
-  0% &#123;
-    visibility: visible;
-    // opacity: 1;
-  &#125;
-  100% &#123;
-    visibility: hidden;
-    // opacity: 0;
-  &#125;
-&#125;
-.ani-pause &#123;
-  &amp; div &#123;
-    animation-play-state: paused !important;
-  &#125;
-&#125;
-.ani-running &#123;
-  &amp; div &#123;
-    animation-play-state: running !important;
-  &#125;
-&#125;
-&lt;/style&gt;
-</code></pre><h4 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h4><pre><code>&lt;template&gt;
-  &lt;div class=&quot;home&quot;&gt;
-    &lt;h2 style=&quot; text-align: center;&quot;&gt;Vue-barrage 基于vue的弹幕组件&lt;/h2&gt;
-    &lt;div style=&quot;height:400px;width:800px; position: relative;margin:0px auto;background:#000;&quot;&gt;
-      &lt;!-- &lt;video controls
-             src=&quot;@/assets/1.mp4&quot;
-             autoplay
-             style=&quot;width:100%;height:100%;z-index:2;&quot; /&gt; --&gt;
-      &lt;!-- 确保父元素是相对定位，弹幕容器是绝对定位 --&gt;
-      &lt;v-barrage :arr=&quot;arr&quot;
-                 :isPause=&quot;isPause&quot;
-                 :percent=&quot;100&quot;&gt;
-      &lt;/v-barrage&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;barrage-control&quot;&gt;
-      &lt;input type=&quot;text&quot;
-             v-model=&quot;sendContent&quot;
-             placeholder=&quot;回车发送&quot;
-             id=&quot;sendContent&quot;
-             @keyup.enter=&quot;sendBarrage&quot; /&gt;
-      方向:
-      &lt;select style=&quot;margin:0px 12px;&quot;
-              v-model=&quot;direction&quot;&gt;
-        &lt;option value=&quot;default&quot;&gt;默认&lt;/option&gt;
-        &lt;option value=&quot;top&quot;&gt;顶部&lt;/option&gt;
-      &lt;/select&gt;
-      &lt;input type=&quot;checkbox&quot;
-             v-model=&quot;isJs&quot; /&gt; js弹幕(直接写代码)
-      &lt;button id=&quot;sendBarrageBtn&quot;
-              style=&quot;margin-left:25px;&quot;
-              @click=&quot;sendBarrage&quot;&gt;发送&lt;/button&gt;
-      &lt;button id=&quot;pauseBtn&quot;
-              @click=&quot;isPause=true&quot;&gt;暂停&lt;/button&gt;
-      &lt;button id=&quot;startBtn&quot;
-              @click=&quot;isPause=false&quot;&gt;开始&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;button @click=&quot;undoOperation&quot;&gt;撤销&lt;/button&gt;
+    &lt;button @click=&quot;reset&quot;&gt;重置&lt;/button&gt;
+    &lt;button @click=&quot;confirm&quot;&gt;确认&lt;/button&gt;
   &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
-import VBarrage from &#39;@/components/VBarrage/index.vue&#39;
+import VueSignaturePad from &quot;vue-signature-pad&quot;;
 
 export default &#123;
-  name: &#39;home&#39;,
-  components: &#123;
-    VBarrage
-  &#125;,
-  data () &#123;
+  name: &quot;home&quot;,
+  components: &#123; VueSignaturePad &#125;,
+  data() &#123;
     return &#123;
-      arr: [],
-      isPause: false,
-      sendContent: null,
-      isJs: false,
-      direction: &#39;default&#39;
-    &#125;
+
+    &#125;;
   &#125;,
-  mounted () &#123;
-    this.initTestData();
-  &#125;,
+  mounted() &#123;&#125;,
   methods: &#123;
-    // 初始化模拟弹幕数据
-    initTestData () &#123;
-      let arr = [
-        &#39;这是一条有弹幕&#39;,
-        &#39;今天去打LOL&#39;,
-        &#39;可以吗？&#39;,
-        &#39;一起嗨！！！&#39;
-      ]
-      for (let i = 0; i &lt; 6; i++) &#123;
-        for (let index = 0; index &lt; 1000; index++) &#123;
-          if (index % 2 == 0) &#123;
-            this.arr.push(&#123;
-              direction: &#39;top&#39;,
-              content: arr[parseInt(Math.random() * arr.length)]
-            &#125;)
-          &#125; else &#123;
-            this.arr.push(&#123;
-              direction: &#39;default&#39;,
-              content: arr[parseInt(Math.random() * arr.length)]
-            &#125;)
-          &#125;
-        &#125;
-      &#125;
+    // 撤销
+    undoOperation() &#123;
+      this.$refs.signaturePad.undoSignature();
     &#125;,
-    // 发送弹幕
-    sendBarrage () &#123;
-      if (this.arr.length &gt; 1 &amp;&amp; this.sendContent != &#39;&#39; &amp;&amp; this.sendContent != null) &#123;
-        this.arr.unshift(&#123;
-          content: this.sendContent,
-          direction: this.direction,
-          isSelf: true,
-          style: &#123;
-            color: &#39;red&#39;,
-            fontSize: &#39;25px&#39;
-          &#125;,
-          isJs: this.isJs
-        &#125;);
-      &#125; else &#123;
-        this.arr.push(&#123;
-          content: this.sendContent,
-          direction: this.direction,
-          isSelf: true,
-          style: &#123;
-            color: &#39;red&#39;
-          &#125;,
-          isJs: this.isJs
-        &#125;);
-      &#125;
-      this.sendContent = null;
+
+    // 重置
+    reset() &#123;
+      this.$refs.signaturePad.clearSignature();
     &#125;,
-  &#125;
-&#125;
+
+    // 确定按纽
+    confirm() &#123;
+      let &#123; isEmpty, base64 &#125; = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty); // 签名是否为空
+      console.log(base64); // 签名的base64
+    &#125;,
+  &#125;,
+&#125;;
 &lt;/script&gt;
-&lt;style lang=&quot;scss&quot; scoped&gt;
-.barrage-control &#123;
-  text-align: center;
-  margin: 10px 0px;
-&#125;
-&lt;/style&gt;</code></pre><p>参数说明</p>
-<pre><code>// 弹幕对象
-&#123;
-   content: this.sendContent, // 弹幕内容
-   direction: this.direction, // 方向  default | top
-   isSelf: true, // 是否是自己发的弹幕
-   style: &#123;
-           color: &#39;red&#39; // 弹幕颜色
-   &#125;,
-   isJs: false  // 是否解析html
-&#125;</code></pre><h4 id="3-效果预览"><a href="#3-效果预览" class="headerlink" title="3.效果预览"></a>3.效果预览</h4><p><a target="_blank" rel="noopener" href="https://null_639_5368.gitee.io/vue-barrage/#/">效果预览</a></p>
+&lt;style lang=&quot;less&quot; scoped&gt;&lt;/style&gt;</code></pre><h3 id="3-更多-API"><a href="#3-更多-API" class="headerlink" title="3.更多 API"></a>3.更多 API</h3><p><a target="_blank" rel="noopener" href="https://github.com/neighborhood999/vue-signature-pad?tab=readme-ov-file">官网</a></p>
 
             </div>
             <hr/>
@@ -1119,7 +599,7 @@ export default &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/02/05/vue%E5%AE%9E%E7%8E%B0%E5%BC%B9%E5%B9%95/">http://itzhengjinhan.github.io/2023/02/05/vue%E5%AE%9E%E7%8E%B0%E5%BC%B9%E5%B9%95/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/03/11/vue%E5%AE%9E%E7%8E%B0%E7%94%B5%E5%AD%90%E7%AD%BE%E5%90%8D/">http://itzhengjinhan.github.io/2023/03/11/vue%E5%AE%9E%E7%8E%B0%E7%94%B5%E5%AD%90%E7%AD%BE%E5%90%8D/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1330,6 +810,55 @@ export default &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2023/03/25/vue%E5%AE%9E%E7%8E%B0%E5%BC%B9%E5%B9%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vue实现弹幕">
+                        
+                        <span class="card-title">vue实现弹幕</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2023/02/15/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A2%9C%E8%89%B2%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/">
                     <div class="card-image">
                         
@@ -1346,9 +875,9 @@ export default &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1370,55 +899,6 @@ export default &#123;
                     
                     <a href="/tags/ColorPicker/">
                         <span class="chip bg-color">ColorPicker</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/12/21/%E5%88%B7leetCode%E9%A2%98%E5%BA%93%E9%81%87%E5%88%B0%E4%B8%80%E4%BA%9B%E2%80%9C%E5%A5%87%E7%89%B9%E2%80%9D%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="刷 leetCode 题库遇到一些“奇特”解题方法以及常见场景的方法汇总">
-                        
-                        <span class="card-title">刷 leetCode 题库遇到一些“奇特”解题方法以及常见场景的方法汇总</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-21
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/leetCode/" class="post-category">
-                                    leetCode
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/leetCode/">
-                        <span class="chip bg-color">leetCode</span>
                     </a>
                     
                 </div>
