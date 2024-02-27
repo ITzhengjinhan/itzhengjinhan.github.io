@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程, IT默小涵的个人博客">
+    <meta name="keywords" content="VueUse：vue的hooks库, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程 | IT默小涵的个人博客</title>
+    <title>VueUse：vue的hooks库 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/32.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程</h1>
+                    <h1 class="description center-align post-title">VueUse：vue的hooks库</h1>
                 </div>
             </div>
         </div>
@@ -432,24 +432,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ts/">
-                                <span class="chip bg-color">ts</span>
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
                             </a>
                         
-                            <a href="/tags/vue3/">
-                                <span class="chip bg-color">vue3</span>
-                            </a>
-                        
-                            <a href="/tags/Vite/">
-                                <span class="chip bg-color">Vite</span>
-                            </a>
-                        
-                            <a href="/tags/Pinia/">
-                                <span class="chip bg-color">Pinia</span>
-                            </a>
-                        
-                            <a href="/tags/VueUse/">
-                                <span class="chip bg-color">VueUse</span>
+                            <a href="/tags/vueUse/">
+                                <span class="chip bg-color">vueUse</span>
                             </a>
                         
                     </div>
@@ -473,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-09
+                    2023-11-12
                 </div>
                 
 
@@ -489,489 +477,117 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1、搭建前准备"><a href="#1、搭建前准备" class="headerlink" title="1、搭建前准备"></a>1、搭建前准备</h2><ul>
-<li>Vscode: 前端人必备写码神器</li>
-<li>Nodejs&amp;npm：配置本地开发环境，安装 Node 后会发现 npm 也会一起安装下来，注意 Vite 兼容性需要 Node.js 版本 &gt;= 12.0.0。</li>
-<li>Vue.js devtools：浏览器调试插件</li>
-<li>Vue Language Features (Volar)：Vscode 开发 vue3 必备插件，提供语法高亮提示，非常好用</li>
-<li>Vue 3 Snippets：vue3 快捷输入</li>
-</ul>
-<h2 id="2、使用-vite-快速创建脚手架"><a href="#2、使用-vite-快速创建脚手架" class="headerlink" title="2、使用 vite 快速创建脚手架"></a>2、使用 vite 快速创建脚手架</h2><pre><code># npm 6.x
-npm init @vitejs/app vite_vue3_ts --template
+                <p>VueUse 可以算是 vue 版的 hooks 库</p>
+<h3 id="什么是-VueUse"><a href="#什么是-VueUse" class="headerlink" title="什么是 VueUse"></a>什么是 VueUse</h3><p>VueUse 是一个基于 Composition API 的实用函数集合。通俗的来说，这就是一个工具函数包，它可以帮助你快速实现一些常见的功能，免得你自己去写，解决重复的工作内容。以及进行了基于 Composition API 的封装。让你在 vue3 中更加得心应手。</p>
+<h3 id="简单上手"><a href="#简单上手" class="headerlink" title="简单上手"></a>简单上手</h3><h4 id="安装-VueUse"><a href="#安装-VueUse" class="headerlink" title="安装 VueUse"></a>安装 VueUse</h4><pre><code>npm i @vueuse/core</code></pre><h4 id="使用-VueUse"><a href="#使用-VueUse" class="headerlink" title="使用 VueUse"></a>使用 VueUse</h4><pre><code>// 导入
+import &#123; useMouse, usePreferredDark, useLocalStorage &#125; from &#39;@vueuse/core&#39;
+export default &#123;
+  setup() &#123;
+    // tracks mouse position
+    const &#123; x, y &#125; = useMouse()
 
-# npm 7+, 需要额外的双横线：
-npm init @vitejs/app vite_vue3_ts -- --template
+    // is user prefers dark theme
+    const isDark = usePreferredDark()
 
-# yarn
-yarn create @vitejs/app vite_vue3_ts --template
-</code></pre><p>第一步：这里采用 yarn 来安装</p>
-<p><img src="https://pic.imgdb.cn/item/652e344ac458853aeff5dee4.webp" alt=""></p>
-<p>第二步: 选择 vue 回车 =&gt; vue-ts 回车</p>
-<p><img src="https://pic.imgdb.cn/item/652e35d2c458853aeff9dbb4.webp" alt=""></p>
-<p><img src="https://pic.imgdb.cn/item/652e35eec458853aeffa25c2.webp" alt=""></p>
-<p>第三步: 根据上图提示,安装依赖,启动项目</p>
-<pre><code># 进入项目文件夹
-cd vite_vue3_ts
-# 安装依赖
-yarn
-# 启动
-yarn dev
-</code></pre><p>搭建成功：</p>
-<p><img src="https://pic.imgdb.cn/item/652e3604c458853aeffa60b1.webp" alt=""></p>
-<h2 id="3、约束代码风格"><a href="#3、约束代码风格" class="headerlink" title="3、约束代码风格"></a>3、约束代码风格</h2><h3 id="3-1-Eslint-支持"><a href="#3-1-Eslint-支持" class="headerlink" title="3.1 Eslint 支持"></a>3.1 Eslint 支持</h3><pre><code># eslint 安装
-yarn add eslint --dev
-# eslint 插件安装
-yarn add eslint-plugin-vue --dev
-
-yarn add @typescript-eslint/eslint-plugin --dev
-
-yarn add eslint-plugin-prettier --dev
-
-# typescript parser
-yarn add @typescript-eslint/parser --dev
-</code></pre><p>如果 eslint 安装报错,可以尝试运行以下命令:</p>
-<pre><code>yarn config set ignore-engines true
-</code></pre><p>运行成功后再次执行 eslint 安装命令</p>
-<h3 id="3-2-项目下新建-eslintrc-js"><a href="#3-2-项目下新建-eslintrc-js" class="headerlink" title="3.2 项目下新建 .eslintrc.js"></a>3.2 项目下新建 .eslintrc.js</h3><pre><code>module.exports = &#123;
-  root: true,
-  env: &#123;
-    browser: true,
-    node: true,
-    es2021: true,
-  &#125;,
-  parser: &#39;vue-eslint-parser&#39;,
-  extends: [
-    &#39;eslint:recommended&#39;,
-    &#39;plugin:vue/vue3-recommended&#39;,
-    &#39;plugin:@typescript-eslint/recommended&#39;,
-    &#39;plugin:prettier/recommended&#39;,
-    // eslint-config-prettier 的缩写
-    &#39;prettier&#39;,
-  ],
-  parserOptions: &#123;
-    ecmaVersion: 12,
-    parser: &#39;@typescript-eslint/parser&#39;,
-    sourceType: &#39;module&#39;,
-    ecmaFeatures: &#123;
-      jsx: true,
-    &#125;,
-  &#125;,
-  // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
-  plugins: [&#39;vue&#39;, &#39;@typescript-eslint&#39;, &#39;prettier&#39;],
-  rules: &#123;
-    &#39;@typescript-eslint/ban-ts-ignore&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-unused-vars&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/explicit-function-return-type&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-explicit-any&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-var-requires&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-empty-function&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-use-before-define&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/ban-ts-comment&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/ban-types&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/no-non-null-assertion&#39;: &#39;off&#39;,
-    &#39;@typescript-eslint/explicit-module-boundary-types&#39;: &#39;off&#39;,
-    &#39;no-var&#39;: &#39;error&#39;,
-    &#39;prettier/prettier&#39;: &#39;error&#39;,
-    // 禁止出现console
-    &#39;no-console&#39;: &#39;warn&#39;,
-    // 禁用debugger
-    &#39;no-debugger&#39;: &#39;warn&#39;,
-    // 禁止出现重复的 case 标签
-    &#39;no-duplicate-case&#39;: &#39;warn&#39;,
-    // 禁止出现空语句块
-    &#39;no-empty&#39;: &#39;warn&#39;,
-    // 禁止不必要的括号
-    &#39;no-extra-parens&#39;: &#39;off&#39;,
-    // 禁止对 function 声明重新赋值
-    &#39;no-func-assign&#39;: &#39;warn&#39;,
-    // 禁止在 return、throw、continue 和 break 语句之后出现不可达代码
-    &#39;no-unreachable&#39;: &#39;warn&#39;,
-    // 强制所有控制语句使用一致的括号风格
-    curly: &#39;warn&#39;,
-    // 要求 switch 语句中有 default 分支
-    &#39;default-case&#39;: &#39;warn&#39;,
-    // 强制尽可能地使用点号
-    &#39;dot-notation&#39;: &#39;warn&#39;,
-    // 要求使用 === 和 !==
-    eqeqeq: &#39;warn&#39;,
-    // 禁止 if 语句中 return 语句之后有 else 块
-    &#39;no-else-return&#39;: &#39;warn&#39;,
-    // 禁止出现空函数
-    &#39;no-empty-function&#39;: &#39;warn&#39;,
-    // 禁用不必要的嵌套块
-    &#39;no-lone-blocks&#39;: &#39;warn&#39;,
-    // 禁止使用多个空格
-    &#39;no-multi-spaces&#39;: &#39;warn&#39;,
-    // 禁止多次声明同一变量
-    &#39;no-redeclare&#39;: &#39;warn&#39;,
-    // 禁止在 return 语句中使用赋值语句
-    &#39;no-return-assign&#39;: &#39;warn&#39;,
-    // 禁用不必要的 return await
-    &#39;no-return-await&#39;: &#39;warn&#39;,
-    // 禁止自我赋值
-    &#39;no-self-assign&#39;: &#39;warn&#39;,
-    // 禁止自身比较
-    &#39;no-self-compare&#39;: &#39;warn&#39;,
-    // 禁止不必要的 catch 子句
-    &#39;no-useless-catch&#39;: &#39;warn&#39;,
-    // 禁止多余的 return 语句
-    &#39;no-useless-return&#39;: &#39;warn&#39;,
-    // 禁止变量声明与外层作用域的变量同名
-    &#39;no-shadow&#39;: &#39;off&#39;,
-    // 允许delete变量
-    &#39;no-delete-var&#39;: &#39;off&#39;,
-    // 强制数组方括号中使用一致的空格
-    &#39;array-bracket-spacing&#39;: &#39;warn&#39;,
-    // 强制在代码块中使用一致的大括号风格
-    &#39;brace-style&#39;: &#39;warn&#39;,
-    // 强制使用骆驼拼写法命名约定
-    camelcase: &#39;warn&#39;,
-    // 强制使用一致的缩进
-    indent: &#39;off&#39;,
-    // 强制在 JSX 属性中一致地使用双引号或单引号
-    // &#39;jsx-quotes&#39;: &#39;warn&#39;,
-    // 强制可嵌套的块的最大深度4
-    &#39;max-depth&#39;: &#39;warn&#39;,
-    // 强制最大行数 300
-    // &quot;max-lines&quot;: [&quot;warn&quot;, &#123; &quot;max&quot;: 1200 &#125;],
-    // 强制函数最大代码行数 50
-    // &#39;max-lines-per-function&#39;: [&#39;warn&#39;, &#123; max: 70 &#125;],
-    // 强制函数块最多允许的的语句数量20
-    &#39;max-statements&#39;: [&#39;warn&#39;, 100],
-    // 强制回调函数最大嵌套深度
-    &#39;max-nested-callbacks&#39;: [&#39;warn&#39;, 3],
-    // 强制函数定义中最多允许的参数数量
-    &#39;max-params&#39;: [&#39;warn&#39;, 3],
-    // 强制每一行中所允许的最大语句数量
-    &#39;max-statements-per-line&#39;: [&#39;warn&#39;, &#123; max: 1 &#125;],
-    // 要求方法链中每个调用都有一个换行符
-    &#39;newline-per-chained-call&#39;: [&#39;warn&#39;, &#123; ignoreChainWithDepth: 3 &#125;],
-    // 禁止 if 作为唯一的语句出现在 else 语句中
-    &#39;no-lonely-if&#39;: &#39;warn&#39;,
-    // 禁止空格和 tab 的混合缩进
-    &#39;no-mixed-spaces-and-tabs&#39;: &#39;warn&#39;,
-    // 禁止出现多行空行
-    &#39;no-multiple-empty-lines&#39;: &#39;warn&#39;,
-    // 禁止出现;
-    semi: [&#39;warn&#39;, &#39;never&#39;],
-    // 强制在块之前使用一致的空格
-    &#39;space-before-blocks&#39;: &#39;warn&#39;,
-    // 强制在 function的左括号之前使用一致的空格
-    // &#39;space-before-function-paren&#39;: [&#39;warn&#39;, &#39;never&#39;],
-    // 强制在圆括号内使用一致的空格
-    &#39;space-in-parens&#39;: &#39;warn&#39;,
-    // 要求操作符周围有空格
-    &#39;space-infix-ops&#39;: &#39;warn&#39;,
-    // 强制在一元操作符前后使用一致的空格
-    &#39;space-unary-ops&#39;: &#39;warn&#39;,
-    // 强制在注释中 // 或 /* 使用一致的空格
-    // &quot;spaced-comment&quot;: &quot;warn&quot;,
-    // 强制在 switch 的冒号左右有空格
-    &#39;switch-colon-spacing&#39;: &#39;warn&#39;,
-    // 强制箭头函数的箭头前后使用一致的空格
-    &#39;arrow-spacing&#39;: &#39;warn&#39;,
-    &#39;no-var&#39;: &#39;warn&#39;,
-    &#39;prefer-const&#39;: &#39;warn&#39;,
-    &#39;prefer-rest-params&#39;: &#39;warn&#39;,
-    &#39;no-useless-escape&#39;: &#39;warn&#39;,
-    &#39;no-irregular-whitespace&#39;: &#39;warn&#39;,
-    &#39;no-prototype-builtins&#39;: &#39;warn&#39;,
-    &#39;no-fallthrough&#39;: &#39;warn&#39;,
-    &#39;no-extra-boolean-cast&#39;: &#39;warn&#39;,
-    &#39;no-case-declarations&#39;: &#39;warn&#39;,
-    &#39;no-async-promise-executor&#39;: &#39;warn&#39;,
-  &#125;,
-  globals: &#123;
-    defineProps: &#39;readonly&#39;,
-    defineEmits: &#39;readonly&#39;,
-    defineExpose: &#39;readonly&#39;,
-    withDefaults: &#39;readonly&#39;,
-  &#125;,
-&#125;</code></pre><h3 id="3-3-项目下新建-eslintignore"><a href="#3-3-项目下新建-eslintignore" class="headerlink" title="3.3 项目下新建 .eslintignore"></a>3.3 项目下新建 .eslintignore</h3><pre><code># eslint 忽略检查 (根据项目需要自行添加)
-node_modules
-dist
-</code></pre><h3 id="3-4-prettier-支持"><a href="#3-4-prettier-支持" class="headerlink" title="3.4 prettier 支持"></a>3.4 prettier 支持</h3><pre><code># 安装 prettier
-yarn add prettier --dev</code></pre><p>解决 eslint 和 prettier 冲突</p>
-<p>解决 ESLint 中的样式规范和 prettier 中样式规范的冲突，以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效</p>
-<pre><code># 安装插件 eslint-config-prettier
-yarn add eslint-config-prettier --dev</code></pre><h3 id="3-5-项目下新建-prettier-js"><a href="#3-5-项目下新建-prettier-js" class="headerlink" title="3.5 项目下新建 .prettier.js"></a>3.5 项目下新建 .prettier.js</h3><pre><code>module.exports = &#123;
-  tabWidth: 2,
-  jsxSingleQuote: true,
-  jsxBracketSameLine: true,
-  printWidth: 100,
-  singleQuote: true,
-  semi: false,
-  overrides: [
-    &#123;
-      files: &#39;*.json&#39;,
-      options: &#123;
-        printWidth: 200,
+    // persist state in localStorage
+    const store = useLocalStorage(
+      &#39;my-storage&#39;,
+      &#123;
+        name: &#39;Apple&#39;,
+        color: &#39;red&#39;,
       &#125;,
-    &#125;,
-  ],
-  arrowParens: &#39;always&#39;,
-&#125;</code></pre><h3 id="3-6-项目下新建-prettierignore"><a href="#3-6-项目下新建-prettierignore" class="headerlink" title="3.6 项目下新建 .prettierignore"></a>3.6 项目下新建 .prettierignore</h3><pre><code># 忽略格式化文件 (根据项目需要自行添加)
-node_modules
-dist</code></pre><h3 id="3-7-package-json-配置"><a href="#3-7-package-json-配置" class="headerlink" title="3.7 package.json 配置"></a>3.7 package.json 配置</h3><pre><code>&#123;
-  &quot;script&quot;: &#123;
-    &quot;lint&quot;: &quot;eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx&quot;,
-    &quot;prettier&quot;: &quot;prettier --write .&quot;
+    )
+
+    return &#123; x, y, isDark, store &#125;
   &#125;
+&#125;</code></pre><p>上面从 VueUse 当中导入了三个函数， useMouse， usePreferredDark， useLocalStorage。useMouse 是一个监听当前鼠标坐标的一个方法，他会实时的获取鼠标的当前的位置。usePreferredDark 是一个判断用户是否喜欢深色的方法，他会实时的判断用户是否喜欢深色的主题。useLocalStorage 是一个用来持久化数据的方法，他会把数据持久化到本地存储中。</p>
+<h4 id="还有我们熟悉的-「防抖」-和-「节流」"><a href="#还有我们熟悉的-「防抖」-和-「节流」" class="headerlink" title="还有我们熟悉的 「防抖」 和 「节流」"></a>还有我们熟悉的 「防抖」 和 「节流」</h4><pre><code>import &#123; throttleFilter, debounceFilter, useLocalStorage, useMouse &#125; from &#39;@vueuse/core&#39;
+
+// 以节流的方式去改变 localStorage 的值
+const storage = useLocalStorage(&#39;my-key&#39;, &#123; foo: &#39;bar&#39; &#125;, &#123; eventFilter: throttleFilter(1000) &#125;)
+
+// 100ms后更新鼠标的位置
+const &#123; x, y &#125; = useMouse(&#123; eventFilter: debounceFilter(100) &#125;)</code></pre><p>还有在 component 中使用的函数</p>
+<pre><code>&lt;script setup&gt;
+import &#123; ref &#125; from &#39;vue&#39;
+import &#123; onClickOutside &#125; from &#39;@vueuse/core&#39;
+
+const el = ref()
+
+function close () &#123;
+  /* ... */
 &#125;
-</code></pre><p>上面配置完成后,可以运行以下命令测试下代码检查个格式化效果</p>
-<pre><code># eslint 检查
-yarn lint
-# prettier 自动格式化
-yarn prettier
-</code></pre><h3 id="3-8-配置文件引用别名-alias"><a href="#3-8-配置文件引用别名-alias" class="headerlink" title="3.8 配置文件引用别名 alias"></a>3.8 配置文件引用别名 alias</h3><p>直接修改 vite.config.ts 文件配置:</p>
-<pre><code>import &#123; defineConfig &#125; from &#39;vite&#39;
-import vue from &#39;@vitejs/plugin-vue&#39;
-import path from &#39;path&#39;
 
-// https://vitejs.dev/config/
-export default defineConfig(&#123;
-  plugins: [vue()],
-  resolve: &#123;
-    alias: &#123;
-      &#39;@&#39;: path.resolve(__dirname, &#39;src&#39;),
-    &#125;,
+onClickOutside(el, close)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;section ref=&quot;el&quot;&gt;
+    Click Outside of Me
+  &lt;/section&gt;
+&lt;/template&gt;</code></pre><p>上面例子中，使用了 onClickOutside 函数，这个函数会在点击元素外部时触发一个回调函数。也就是这里的 close 函数。在 component 中就是这么使用</p>
+<pre><code>&lt;script setup&gt;
+import &#123; OnClickOutside &#125; from &#39;@vueuse/components&#39;
+
+function close () &#123;
+  /* ... */
+&#125;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;OnClickOutside @trigger=&quot;close&quot;&gt;
+    &lt;section&gt;
+      Click Outside of Me
+    &lt;/section&gt;
+  &lt;/OnClickOutside&gt;
+&lt;/template&gt;
+注意⚠️ 这里的 OnClickOutside 函数是一个组件，不是一个函数。需要package.json 中安装了 @vueuse/components。</code></pre><h4 id="还有全局状态共享的函数"><a href="#还有全局状态共享的函数" class="headerlink" title="还有全局状态共享的函数"></a>还有全局状态共享的函数</h4><pre><code>// store.js
+import &#123; createGlobalState, useStorage &#125; from &#39;@vueuse/core&#39;
+
+export const useGlobalState = createGlobalState(
+  () =&gt; useStorage(&#39;vue-use-local-storage&#39;),
+)</code></pre><pre><code>// component.js
+import &#123; useGlobalState &#125; from &#39;./store&#39;
+
+export default defineComponent(&#123;
+  setup() &#123;
+    const state = useGlobalState()
+    return &#123; state &#125;
   &#125;,
-&#125;)
-</code></pre><p>修改 tsconfig.json</p>
-<pre><code>&#123;
-  &quot;compilerOptions&quot;: &#123;
-    &quot;target&quot;: &quot;esnext&quot;,
-    &quot;module&quot;: &quot;esnext&quot;,
-    &quot;moduleResolution&quot;: &quot;node&quot;,
-    &quot;strict&quot;: true,
-    &quot;jsx&quot;: &quot;preserve&quot;,
-    &quot;sourceMap&quot;: true,
-    &quot;resolveJsonModule&quot;: true,
-    &quot;esModuleInterop&quot;: true,
-    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;],
-    &quot;baseUrl&quot;: &quot;.&quot;,
-    &quot;paths&quot;: &#123;
-      &quot;@/*&quot;:[&quot;src/*&quot;]
+&#125;)</code></pre><p>这样子就是一个简单的状态共享了。扩展一下。传一个参数，就能改变 store 的值了。</p>
+<h4 id="还有关于-fetch-下面就是一个简单的请求了。"><a href="#还有关于-fetch-下面就是一个简单的请求了。" class="headerlink" title="还有关于 fetch, 下面就是一个简单的请求了。"></a>还有关于 fetch, 下面就是一个简单的请求了。</h4><pre><code>import &#123; useFetch &#125; from &#39;@vueuse/core&#39;
+const &#123; isFetching, error, data &#125; = useFetch(url)</code></pre><p>它还有很多的 option 参数，可以自定义。</p>
+<pre><code>// 100ms超时
+const &#123; data &#125; = useFetch(url, &#123; timeout: 100 &#125;)
+
+// 请求拦截
+const &#123; data &#125; = useFetch(url, &#123;
+  async beforeFetch(&#123; url, options, cancel &#125;) &#123;
+    const myToken = await getMyToken()
+
+    if (!myToken)
+      cancel()
+
+    options.headers = &#123;
+      ...options.headers,
+      Authorization: `Bearer $&#123;myToken&#125;`,
     &#125;
-  &#125;,
-  &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.d.ts&quot;, &quot;src/**/*.tsx&quot;, &quot;src/**/*.vue&quot;]
-&#125;</code></pre><h2 id="4、路由"><a href="#4、路由" class="headerlink" title="4、路由"></a>4、路由</h2><pre><code># 安装路由
-yarn add vue-router@4</code></pre><p>在 src 文件下新增 router 文件夹 =&gt; router.ts 文件,内容如下:</p>
-<pre><code>import &#123; createRouter, createWebHistory, RouteRecordRaw &#125; from &#39;vue-router&#39;
 
-const routes: RouteRecordRaw[] = [
-  &#123;
-    path: &#39;/&#39;,
-    name: &#39;Login&#39;,
-    component: () =&gt; import(&#39;@/pages/login/Login.vue&#39;), // 注意这里要带上 文件后缀.vue
-  &#125;,
-]
-
-const router = createRouter(&#123;
-  history: createWebHistory(),
-  routes,
-&#125;)
-
-export default router
-</code></pre><p>修改入口文件 main.ts :</p>
-<pre><code>import &#123; createApp &#125; from &#39;vue&#39;
-import App from &#39;./App.vue&#39;
-import router from &#39;./router/index&#39;
-
-const app = createApp(App)
-
-app.use(router)
-
-app.mount(&#39;#app&#39;)
-</code></pre><h2 id="5、统一请求封装"><a href="#5、统一请求封装" class="headerlink" title="5、统一请求封装"></a>5、统一请求封装</h2><pre><code># 安装 axios
-yarn add axios
-# 安装 nprogress 用于请求 loading
-# 也可以根据项目需求自定义其它 loading
-yarn add nprogress
-# 类型声明，或者添加一个包含 `declare module &#39;nprogress&#39;
-yarn add @types/nprogress --dev</code></pre><p>新增 service 文件夹，service 下新增 http.ts 文件以及 api 文件夹:</p>
-<p><img src="https://pic.imgdb.cn/item/652e361fc458853aeffaac48.webp" alt=""></p>
-<p>http.ts : 用于 axios 封装</p>
-<pre><code>//http.ts
-import axios, &#123; AxiosRequestConfig &#125; from &#39;axios&#39;
-import NProgress from &#39;nprogress&#39;
-
-// 设置请求头和请求路径
-axios.defaults.baseURL = &#39;/api&#39;
-axios.defaults.timeout = 10000
-axios.defaults.headers.post[&#39;Content-Type&#39;] = &#39;application/json;charset=UTF-8&#39;
-axios.interceptors.request.use(
-  (config): AxiosRequestConfig&lt;any&gt; =&gt; &#123;
-    const token = window.sessionStorage.getItem(&#39;token&#39;)
-    if (token) &#123;
-      //@ts-ignore
-      config.headers.token = token
+    return &#123;
+      options
     &#125;
-    return config
-  &#125;,
-  (error) =&gt; &#123;
-    return error
   &#125;
-)
+&#125;)
+
 // 响应拦截
-axios.interceptors.response.use((res) =&gt; &#123;
-  if (res.data.code === 111) &#123;
-    sessionStorage.setItem(&#39;token&#39;, &#39;&#39;)
-    // token过期操作
-  &#125;
-  return res
-&#125;)
+const &#123; data &#125; = useFetch(url, &#123;
+  afterFetch(ctx) &#123;
+    if (ctx.data.title === &#39;HxH&#39;)
+      ctx.data.title = &#39;Hunter x Hunter&#39; // Modifies the resposne data
 
-interface ResType&lt;T&gt; &#123;
-  code: number
-  data?: T
-  msg: string
-  err?: string
-&#125;
-interface Http &#123;
-  get&lt;T&gt;(url: string, params?: unknown): Promise&lt;ResType&lt;T&gt;&gt;
-  post&lt;T&gt;(url: string, params?: unknown): Promise&lt;ResType&lt;T&gt;&gt;
-  upload&lt;T&gt;(url: string, params: unknown): Promise&lt;ResType&lt;T&gt;&gt;
-  download(url: string): void
-&#125;
-
-const http: Http = &#123;
-  get(url, params) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-      NProgress.start()
-      axios
-        .get(url, &#123; params &#125;)
-        .then((res) =&gt; &#123;
-          NProgress.done()
-          resolve(res.data)
-        &#125;)
-        .catch((err) =&gt; &#123;
-          NProgress.done()
-          reject(err.data)
-        &#125;)
-    &#125;)
+    return ctx
   &#125;,
-  post(url, params) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-      NProgress.start()
-      axios
-        .post(url, JSON.stringify(params))
-        .then((res) =&gt; &#123;
-          NProgress.done()
-          resolve(res.data)
-        &#125;)
-        .catch((err) =&gt; &#123;
-          NProgress.done()
-          reject(err.data)
-        &#125;)
-    &#125;)
-  &#125;,
-  upload(url, file) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-      NProgress.start()
-      axios
-        .post(url, file, &#123;
-          headers: &#123; &#39;Content-Type&#39;: &#39;multipart/form-data&#39; &#125;,
-        &#125;)
-        .then((res) =&gt; &#123;
-          NProgress.done()
-          resolve(res.data)
-        &#125;)
-        .catch((err) =&gt; &#123;
-          NProgress.done()
-          reject(err.data)
-        &#125;)
-    &#125;)
-  &#125;,
-  download(url) &#123;
-    const iframe = document.createElement(&#39;iframe&#39;)
-    iframe.style.display = &#39;none&#39;
-    iframe.src = url
-    iframe.onload = function () &#123;
-      document.body.removeChild(iframe)
-    &#125;
-    document.body.appendChild(iframe)
-  &#125;,
-&#125;
-export default http</code></pre><p>api : 项目中接口做统一管理，按照模块来划分</p>
-<p>在 api 文件下新增 login 文件夹,用于存放登录模块的请求接口,login 文件夹下分别新增 login.ts 和 types.ts :</p>
-<p>login.ts:</p>
-<pre><code>import http from &#39;@/service/http&#39;
-import * as T from &#39;./types&#39;
-
-const loginApi: T.ILoginApi = &#123;
-    login(params)&#123;
-        return http.post(&#39;/login&#39;, params)
-    &#125;
-
-&#125;
-export default loginApi
-</code></pre><p>types.ts:</p>
-<pre><code>export interface ILoginParams &#123;
-    userName: string
-    passWord: string | number
-&#125;
-export interface ILoginApi &#123;
-    login: (params: ILoginParams)=&gt; Promise&lt;any&gt;
-&#125;
-</code></pre><h2 id="6、状态管理-pinia"><a href="#6、状态管理-pinia" class="headerlink" title="6、状态管理 pinia"></a>6、状态管理 pinia</h2><p>可参考我之前的博客<br><a href="https://itzhengjinhan.github.io/2022/01/15/pinia%E4%BB%8B%E7%BB%8D/">pinia 使用</a></p>
-<h3 id="6-1-安装并引用"><a href="#6-1-安装并引用" class="headerlink" title="6.1 安装并引用"></a>6.1 安装并引用</h3><pre><code># 安装
-yarn add pinia@next</code></pre><p>main.ts 中增加</p>
-<pre><code># 引入
-import &#123; createPinia &#125; from &quot;pinia&quot;
-# 创建根存储库并将其传递给应用程序
-app.use(createPinia())
-</code></pre><h3 id="6-2-在-src-文件夹下新增-store-文件夹-接在在-store-中新增-main-ts"><a href="#6-2-在-src-文件夹下新增-store-文件夹-接在在-store-中新增-main-ts" class="headerlink" title="6.2 在 src 文件夹下新增 store 文件夹,接在在 store 中新增 main.ts"></a>6.2 在 src 文件夹下新增 store 文件夹,接在在 store 中新增 main.ts</h3><p>创建 store, main.ts :</p>
-<pre><code>import &#123; defineStore &#125; from &#39;pinia&#39;
-
-export const useMainStore = defineStore(&#123;
-  id: &#39;main&#39;,
-  state: () =&gt;(&#123;
-    name: &#39;超级管理员&#39;
-  &#125;)
-&#125;)
-</code></pre><h3 id="6-3-组建中获取-store"><a href="#6-3-组建中获取-store" class="headerlink" title="6.3 组建中获取 store :"></a>6.3 组建中获取 store :</h3><pre><code>&lt;template&gt;
-  &lt;div&gt;&#123;&#123;mainStore.name&#125;&#125;&lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script setup lang=&quot;ts&quot;&gt;
-import &#123; useMainStore &#125; from &quot;@/store/mian&quot;
-
-const mainStore = useMainStore()
-
-&lt;/script&gt;
-</code></pre><h3 id="6-4-getters-用法介绍"><a href="#6-4-getters-用法介绍" class="headerlink" title="6.4 getters 用法介绍"></a>6.4 getters 用法介绍</h3><pre><code>import &#123; defineStore &#125; from &#39;pinia&#39;
-
-export const useMainStore = defineStore(&#123;
-  id: &#39;main&#39;,
-  state: () =&gt; (&#123;
-    name: &#39;超级管理员&#39;,
-  &#125;),
-  // getters
-  getters: &#123;
-    nameLength: (state) =&gt; state.name.length,
-  &#125;
-&#125;)
-</code></pre><h3 id="6-5-组件中使用"><a href="#6-5-组件中使用" class="headerlink" title="6.5 组件中使用"></a>6.5 组件中使用</h3><pre><code>&lt;template&gt;
-  &lt;div&gt;用户名:&#123;&#123; mainStore.name &#125;&#125;&lt;br /&gt;长度:&#123;&#123; mainStore.nameLength &#125;&#125;&lt;/div&gt;
-  &lt;hr/&gt;
-  &lt;button @click=&quot;updateName&quot;&gt;修改store中的name&lt;/button&gt;
-&lt;/template&gt;
-
-&lt;script setup lang=&quot;ts&quot;&gt;
-import &#123; useMainStore &#125; from &#39;@/store/mian&#39;
-
-const mainStore = useMainStore()
-
-const updateName = ()=&gt;&#123;
-  // $patch 修改 store 中的数据
-  mainStore.$patch(&#123;
-    name: &#39;名称被修改了,nameLength也随之改变了&#39;
-  &#125;)
-&#125;
-&lt;/script&gt;
-</code></pre><p><img src="https://pic.imgdb.cn/item/652e3638c458853aeffaebdf.webp" alt=""></p>
-<h2 id="7、VueUse"><a href="#7、VueUse" class="headerlink" title="7、VueUse"></a>7、VueUse</h2><p>可以参考：<br><a href="https://itzhengjinhan.github.io/2022/01/28/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/">VueUse 的使用</a></p>
+&#125;)</code></pre><h4 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h4><p><a target="_blank" rel="noopener" href="https://vueuse.org/guide.html">https://vueuse.org/guide.html</a></p>
 
             </div>
             <hr/>
@@ -997,7 +613,7 @@ const updateName = ()=&gt;&#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/10/09/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/">http://itzhengjinhan.github.io/2023/10/09/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/11/12/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/">http://itzhengjinhan.github.io/2023/11/12/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1035,24 +651,12 @@ const updateName = ()=&gt;&#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ts/">
-                                    <span class="chip bg-color">ts</span>
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
-                                <a href="/tags/vue3/">
-                                    <span class="chip bg-color">vue3</span>
-                                </a>
-                            
-                                <a href="/tags/Vite/">
-                                    <span class="chip bg-color">Vite</span>
-                                </a>
-                            
-                                <a href="/tags/Pinia/">
-                                    <span class="chip bg-color">Pinia</span>
-                                </a>
-                            
-                                <a href="/tags/VueUse/">
-                                    <span class="chip bg-color">VueUse</span>
+                                <a href="/tags/vueUse/">
+                                    <span class="chip bg-color">vueUse</span>
                                 </a>
                             
                         </div>
@@ -1220,12 +824,11 @@ const updateName = ()=&gt;&#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/09/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/">
+                <a href="/2023/12/19/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/">
                     <div class="card-image">
                         
                         
@@ -1241,9 +844,9 @@ const updateName = ()=&gt;&#123;
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1256,7 +859,6 @@ const updateName = ()=&gt;&#123;
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1291,13 +893,13 @@ const updateName = ()=&gt;&#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/08/12/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/">
+                <a href="/2023/11/02/pinia%E4%BB%8B%E7%BB%8D/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="VueUse：vue的hooks库">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="新一代状态管理工具Pinia.js总结">
                         
-                        <span class="card-title">VueUse：vue的hooks库</span>
+                        <span class="card-title">新一代状态管理工具Pinia.js总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1308,7 +910,7 @@ const updateName = ()=&gt;&#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-02
                             </span>
                         <span class="publish-author">
                             
@@ -1329,8 +931,8 @@ const updateName = ()=&gt;&#123;
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="/tags/vueUse/">
-                        <span class="chip bg-color">vueUse</span>
+                    <a href="/tags/pinia/">
+                        <span class="chip bg-color">pinia</span>
                     </a>
                     
                 </div>
