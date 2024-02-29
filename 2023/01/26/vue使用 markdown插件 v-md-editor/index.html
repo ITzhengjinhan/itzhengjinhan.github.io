@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue移动端树形选择组件, IT默小涵的个人博客">
+    <meta name="keywords" content="vue使用 markdown插件 v-md-editor, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue移动端树形选择组件 | IT默小涵的个人博客</title>
+    <title>vue使用 markdown插件 v-md-editor | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/41.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue移动端树形选择组件</h1>
+                    <h1 class="description center-align post-title">vue使用 markdown插件 v-md-editor</h1>
                 </div>
             </div>
         </div>
@@ -436,10 +436,6 @@
                                 <span class="chip bg-color">vue</span>
                             </a>
                         
-                            <a href="/tags/TreeSelect/">
-                                <span class="chip bg-color">TreeSelect</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -461,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-02-08
+                    2023-01-26
                 </div>
                 
 
@@ -477,166 +473,88 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Vue 树形选择器（ Vue tree select ）组件在搭建 Vue 的 app 中特别常用,除了简单的树形结构外，还有非常多样的功能来配合不同场景的使用</p>
-<h2 id="一、Liquor-Tree"><a href="#一、Liquor-Tree" class="headerlink" title="一、Liquor Tree"></a>一、Liquor Tree</h2><p>Liquor Tree 是一款轻量级树形选择器，对移动端友好，可拖放，支持键盘快捷键，每个操作动作都有事件记录，与 Vue 高度整合。Liquor Tree 代码简洁，扩展性强，可根据你的应用场景按需定制。</p>
-<p><a target="_blank" rel="noopener" href="https://amsik.github.io/liquor-tree/#Installation">Liquor Tree 官方地址</a></p>
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><pre><code>npm install liquor-tree</code></pre><h3 id="2-引入"><a href="#2-引入" class="headerlink" title="2.引入"></a>2.引入</h3><p>main.js</p>
-<pre><code>import Vue from &#39;vue&#39;
-import LiquorTree from &#39;liquor-tree&#39;
+                <h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><pre><code>npm i @kangc/v-md-editor -S</code></pre><h3 id="2-引入"><a href="#2-引入" class="headerlink" title="2.引入"></a>2.引入</h3><p>main.js 全局引入插件</p>
+<pre><code>/* v-md-editor 编辑器 start  */
+/* 1、v-md-editor 基础引用  */
+import VueMarkdownEditor from &#39;@kangc/v-md-editor&#39;;
+import &#39;@kangc/v-md-editor/lib/style/base-editor.css&#39;;
+import vuepressTheme from &#39;@kangc/v-md-editor/lib/theme/vuepress.js&#39;;
+import &#39;@kangc/v-md-editor/lib/theme/style/vuepress.css&#39;;
+import Prism from &#39;prismjs&#39;;
+VueMarkdownEditor.use(vuepressTheme, &#123;
+  Prism,
+&#125;);
 
-// global registration
-Vue.use(LiquorTree) // 第一种
+/* 2、v-md-editor 代码块关键字高亮  */
+import githubTheme from &#39;@kangc/v-md-editor/lib/theme/github.js&#39;;
+import &#39;@kangc/v-md-editor/lib/theme/style/github.css&#39;;
 
-// or
-Vue.component(LiquorTree.name, LiquorTree) // 第二种</code></pre><h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h3><pre><code>  &lt;!-- Vue Component --&gt;
-  &lt;template&gt;
-    &lt;tree
-        :data=&quot;items&quot;
-        :options=&quot;options&quot;
-        @node:checked=&quot;onNodeSelected&quot;
-    /&gt;
-  &lt;/template&gt;
+// 引入所有语言包
+import hljs from &#39;highlight.js&#39;;
+VueMarkdownEditor.use(githubTheme, &#123;
+  Hljs: hljs,
+&#125;);
+Vue.use(VueMarkdownEditor);
 
-  &lt;script&gt;
-    export default &#123;
-      ...
-      data() &#123;
-        return &#123;
-          items: [
-            &#123;text: &#39;Item 1&#39;&#125;,
-            &#123;text: &#39;Item 2&#39;&#125;,
-            &#123;text: &#39;Item 3&#39;, children: [
-              &#123;text: &#39;Item 3.1&#39;&#125;,
-              &#123;text: &#39;Item 3.2&#39;&#125;
-            ]&#125;,
-      &#123;
-        text: &#39;园区其他机构&#39;,
-        children: [
-          &#123;
-            text: &#39;园区其他机构1&#39;,
-            children: [
-              &#123; text: &#39;园区其他机构1.1.1&#39; &#125;,
-              &#123; text: &#39;园区其他机构1.1.2&#39; &#125;,
-              &#123; text: &#39;园区其他机构1.1.3&#39; &#125;,
-            ],
-          &#125;,
-          &#123;
-            text: &#39;园区其他机构2&#39;,
-            children: [
-              &#123; text: &#39;园区其他机构2.1.1&#39; &#125;,
-              &#123; text: &#39;园区其他机构2.1.2&#39; &#125;,
-              &#123; text: &#39;园区其他机构2.1.3&#39; &#125;,
-            ],
-          &#125;,
-        ],
-      &#125;,
-          ],
-          options: &#123;
-            checkbox: true, //多选
-            checkOnSelect:true, //点击行选中
-          &#125;
-        &#125;
-      &#125;
-      methods:&#123;
-        onNodeSelected(node) &#123;
-            console.log(node.text)
-        &#125;
-      &#125;
-    &#125;
-  &lt;/script&gt;</code></pre><h3 id="4-效果"><a href="#4-效果" class="headerlink" title="4.效果"></a>4.效果</h3><p><img src="https://pic.imgdb.cn/item/657b18acc458853aefdcc8d9.gif" alt=""></p>
-<h3 id="5-开发中遇到的问题"><a href="#5-开发中遇到的问题" class="headerlink" title="5.开发中遇到的问题"></a>5.开发中遇到的问题</h3><h4 id="多选模式下，父级如何关闭全选"><a href="#多选模式下，父级如何关闭全选" class="headerlink" title="多选模式下，父级如何关闭全选"></a>多选模式下，父级如何关闭全选</h4><p><img src="https://pic.imgdb.cn/item/657b1b9cc458853aefeafce2.jpg" alt=""></p>
-<p>我们发现选中父级 item3，父级底下所有子级都被勾选了，如何取消呢？</p>
-<ol>
-<li>在数据中添加一个字段 state:{ indeterminate: true }</li>
-</ol>
-<pre><code>  &lt;script&gt;
-    export default &#123;
-      data() &#123;
-        return &#123;
-          items: [
-            &#123;text: &#39;Item 1&#39;&#125;,
-            &#123;text: &#39;Item 2&#39;&#125;,
-            &#123;text: &#39;Item 3&#39;,
-             state:&#123; indeterminate: true &#125;,
-             children: [
-              &#123;text: &#39;Item 3.1&#39;&#125;,
-              &#123;text: &#39;Item 3.2&#39;&#125;
-            ]&#125;,
-          ],
-          options: &#123;
-            checkbox: true, //多选
-            checkOnSelect:true, //点击行选中
-            autoCheckChildren: false
-          &#125;
-        &#125;
-      &#125;
-      methods:&#123;
-        onNodeSelected(node) &#123;
-            console.log(node.text)
-        &#125;
-      &#125;
-    &#125;
-  &lt;/script&gt;
-</code></pre><ol start="2">
-<li>设置隐藏全选前面的方框</li>
-</ol>
-<pre><code>&lt;style&gt;
-::v-deep .tree-checkbox.indeterminate&#123;
-  display:none
-&#125;
-&lt;/style&gt;</code></pre><ol start="3">
-<li>效果</li>
-</ol>
-<p><img src="https://pic.imgdb.cn/item/657b1b1fc458853aefe89b4f.jpg" alt=""></p>
-<h2 id="二、vue-treeselect"><a href="#二、vue-treeselect" class="headerlink" title="二、vue-treeselect"></a>二、vue-treeselect</h2><p>一个支持 Vue.js 的嵌套选项的多选组件,包含搜索，排序等功能</p>
-<p><a target="_blank" rel="noopener" href="https://vue-treeselect.js.org/">vue-treeselect 官方地址</a></p>
-<h3 id="1-安装-1"><a href="#1-安装-1" class="headerlink" title="1.安装"></a>1.安装</h3><pre><code>npm install --save @riophae/vue-treeselect</code></pre><h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2.使用"></a>2.使用</h3><pre><code>&lt;template&gt;
-    &lt;div id=&quot;app&quot;&gt;
-         &lt;treeselect v-model=&quot;value&quot; :multiple=&quot;true&quot; :options=&quot;options&quot; /&gt;
-    &lt;/div&gt;
+/* 3、v-md-editor 二次封装  */
+import mdEditor from &#39;@/components/v-md-editor/index&#39;;
+Vue.component(&#39;MdEditor&#39;, mdEditor);
+/* v-md-editor 编辑器 end  */
+</code></pre><h3 id="3-二次封装，处理好本地图片上传等逻辑"><a href="#3-二次封装，处理好本地图片上传等逻辑" class="headerlink" title="3.二次封装，处理好本地图片上传等逻辑"></a>3.二次封装，处理好本地图片上传等逻辑</h3><p>/components/v-md-editor:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;v-md-editor
+    v-model=&quot;editorValue&quot;
+    :disabled-menus=&quot;[]&quot;
+    @upload-image=&quot;handleUploadImage&quot;
+    height=&quot;calc(100vh - 150px)&quot;&gt;&lt;/v-md-editor&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
-import Treeselect from &#39;@riophae/vue-treeselect&#39;;
-import &#39;@riophae/vue-treeselect/dist/vue-treeselect.css&#39;;
-
-export default &#123;
-    // register the component
-    components: &#123; Treeselect &#125;,
+  export default &#123;
+    name: &#39;mdEditor&#39;,
     data() &#123;
         return &#123;
-            value: null,
-            // define options
-            options: [
-                &#123;
-                id: &quot;a&quot;,
-                label: &quot;a&quot;,
-                children: [
-                    &#123;
-                        id: &quot;aa&quot;,
-                        label: &quot;aa&quot;,
-                    &#125;,
-                    &#123;
-                        id: &quot;ab&quot;,
-                        label: &quot;ab&quot;,
-                    &#125;],
-                &#125;,
-                &#123;
-                    id: &quot;b&quot;,
-                    label: &quot;b&quot;,
-                &#125;,
-                &#123;
-                    id: &quot;c&quot;,
-                    label: &quot;c&quot;,
-                &#125;,
-            ],
+            editorValue: this.content != null ? this.content : &quot;&quot;,
         &#125;
     &#125;,
-    methods: &#123;
-
+    props: &#123;
+        // 接收值父组件传递值
+        content: String
     &#125;,
-&#125;;
-&lt;/script&gt;</code></pre><h3 id="3-效果"><a href="#3-效果" class="headerlink" title="3.效果"></a>3.效果</h3><p><img src="https://pic.imgdb.cn/item/657f0229c458853aef1d2a32.jpg" alt=""></p>
+    methods: &#123;
+      // v-md-editor 文件上传
+      handleUploadImage(event, insertImage, files) &#123;
+        // console.log(files);
+        // 上传
+        for (let i = 0; i &lt; files.length; i++) &#123;
+          this.crud.upload(files[i], &quot;image/vMdEditor/&quot;).then(res =&gt; &#123;
+            // 获取返回数据
+            let data = res.data;
+            // 添加图片到内容
+            insertImage(&#123;
+              url: data.url,
+              desc: data.name
+            &#125;);
+          &#125;);
+        &#125;
+      &#125;,
+    &#125;,
+    watch: &#123;
+      editorValue: function (newNum, oldNum) &#123;
+        // 修改调用者传入的值
+        this.$emit(&#39;update:content&#39;, newNum)
+      &#125;
+    &#125;,
+  &#125;
+&lt;/script&gt;
+
+&lt;style&gt;
+&lt;/style&gt;
+</code></pre><h3 id="4-使用"><a href="#4-使用" class="headerlink" title="4.使用"></a>4.使用</h3><pre><code>&lt;MdEditor :content.sync=&quot;obj.content&quot;&gt;&lt;/MdEditor&gt;</code></pre><h3 id="5-效果"><a href="#5-效果" class="headerlink" title="5.效果"></a>5.效果</h3><p><img src="https://pic.imgdb.cn/item/65dff7a89f345e8d030ac8ef.png" alt=""></p>
+<h3 id="6-遇到的问题"><a href="#6-遇到的问题" class="headerlink" title="6.遇到的问题"></a>6.遇到的问题</h3><h4 id="编辑无法回显"><a href="#编辑无法回显" class="headerlink" title="编辑无法回显"></a>编辑无法回显</h4><p>初始化 MdEditor 编辑器过早, 可能导致数据无法正常回显<br>通过 v-if 控制 MdEditor 加载时间 (如：在调用接口获取数据完成之后修改 v-if = true)</p>
+<h3 id="7-官网"><a href="#7-官网" class="headerlink" title="7.官网"></a>7.官网</h3><p><a target="_blank" rel="noopener" href="https://code-farmer-i.github.io/vue-markdown-editor/zh/#%E8%BD%BB%E9%87%8F%E7%89%88%E7%BC%96%E8%BE%91%E5%99%A8">v-md-editor 官网</a></p>
 
             </div>
             <hr/>
@@ -662,7 +580,7 @@ export default &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/02/08/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%A0%91%E5%BD%A2%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2023/02/08/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%A0%91%E5%BD%A2%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/01/26/vue%E4%BD%BF%E7%94%A8%20markdown%E6%8F%92%E4%BB%B6%20v-md-editor/">http://itzhengjinhan.github.io/2023/01/26/vue%E4%BD%BF%E7%94%A8%20markdown%E6%8F%92%E4%BB%B6%20v-md-editor/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -702,10 +620,6 @@ export default &#123;
                             
                                 <a href="/tags/vue/">
                                     <span class="chip bg-color">vue</span>
-                                </a>
-                            
-                                <a href="/tags/TreeSelect/">
-                                    <span class="chip bg-color">TreeSelect</span>
                                 </a>
                             
                         </div>
@@ -877,13 +791,13 @@ export default &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/02/15/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A2%9C%E8%89%B2%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/">
+                <a href="/2023/02/08/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%A0%91%E5%BD%A2%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/42.jpg" class="responsive-img" alt="vue移动端颜色选择组件">
+                        <img src="/medias/featureimages/41.jpg" class="responsive-img" alt="vue移动端树形选择组件">
                         
-                        <span class="card-title">vue移动端颜色选择组件</span>
+                        <span class="card-title">vue移动端树形选择组件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -894,7 +808,7 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-08
                         </span>
                         <span class="publish-author">
                             
@@ -915,8 +829,8 @@ export default &#123;
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="/tags/ColorPicker/">
-                        <span class="chip bg-color">ColorPicker</span>
+                    <a href="/tags/TreeSelect/">
+                        <span class="chip bg-color">TreeSelect</span>
                     </a>
                     
                 </div>
@@ -930,13 +844,13 @@ export default &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/01/26/vue%E4%BD%BF%E7%94%A8%20markdown%E6%8F%92%E4%BB%B6%20v-md-editor/">
+                <a href="/2022/12/21/%E5%88%B7leetCode%E9%A2%98%E5%BA%93%E9%81%87%E5%88%B0%E4%B8%80%E4%BA%9B%E2%80%9C%E5%A5%87%E7%89%B9%E2%80%9D%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="vue使用 markdown插件 v-md-editor">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="刷 leetCode 题库遇到一些“奇特”解题方法以及常见场景的方法汇总">
                         
-                        <span class="card-title">vue使用 markdown插件 v-md-editor</span>
+                        <span class="card-title">刷 leetCode 题库遇到一些“奇特”解题方法以及常见场景的方法汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -947,14 +861,14 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-01-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue/" class="post-category">
-                                    vue
+                            <a href="/categories/leetCode/" class="post-category">
+                                    leetCode
                                 </a>
                             
                             
@@ -964,8 +878,8 @@ export default &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/leetCode/">
+                        <span class="chip bg-color">leetCode</span>
                     </a>
                     
                 </div>
