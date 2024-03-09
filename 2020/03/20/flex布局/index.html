@@ -661,15 +661,12 @@ css:
     height:100px;
     background-color: skyblue;
     margin-top: 5px;
-&#125;</code></pre><h4 id="经典导航栏"><a href="#经典导航栏" class="headerlink" title="经典导航栏"></a>经典导航栏</h4><img src="https://pic.imgdb.cn/item/6118f7b45132923bf8c656f3.jpg">
-如图所示是一个经典的网站导航栏的布局，logo和导航在左，用户信息在右，不用flex可能会使用浮动，上图使用浮动还好.
-但是如果右边是两个块，那么右边浮动的元素的显示顺序和书写顺序要不一致才行，或者再用一个元素包裹一下，使用flex则没有这种烦恼。
-<img src="https://pic.imgdb.cn/item/6118f7d05132923bf8c6b02b.jpg">
-
-<h4 id="隔行交叉显示"><a href="#隔行交叉显示" class="headerlink" title="隔行交叉显示"></a>隔行交叉显示</h4><p>有时候为了不让布局太单调，即使一个列表是同类数据，展示上也会做成上述隔行交叉的样式，这个使用 flex 可以轻松的做到，<br>给 2n 的行设置 flex-direction: row-reverse 即可让偶数行的主轴方向由默认的从左向右变成从右向左：<br><img src="https://pic.imgdb.cn/item/6118f7f25132923bf8c71e33.jpg"><br><img src="https://pic.imgdb.cn/item/6118fbeb5132923bf8d3f5e6.jpg"></p>
-<h4 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h4><p>此网格非 grid 布局，虽然网格列表用 grid 是最好的，但是本文的主角是 flex，假设我们要实现下面这样一个列表：<br><img src="https://pic.imgdb.cn/item/6118f90e5132923bf8caa8f0.jpg"></p>
-<p>上述列表对 flex 来说是不擅长的，因为要带间距，所以不能简单的把子元素宽度设为 25%，否则再加上外边距，<br>一行肯定显示不下四个，那你可能会想，那我宽度就少一点好了，比如设为 20%，然后允许扩展，即 flex-grow:1，<br>那样不就可以把减去子元素宽度及外边距还剩下的空间再还给子元素了吗<br><img src="https://pic.imgdb.cn/item/6118f9855132923bf8cc3024.jpg"></p>
-<p>可以看到前面一切正常，但是最后一行因为只有一个元素，且设置了允许扩展，所以它被拉满整行了，这种效果显然不是我们要的。<br>其实我们可以使用内边距来做间距，设置一下子元素的 box-sizing:border-box，让内边距包含在宽度内，这样就可以放心的把子元素的宽度设为 25%了<br><img src="https://pic.imgdb.cn/item/6118f9dc5132923bf8cd44fa.jpg"></p>
+&#125;</code></pre><h4 id="经典导航栏"><a href="#经典导航栏" class="headerlink" title="经典导航栏"></a>经典导航栏</h4><p><img src="https://pic.imgdb.cn/item/65ec9b509f345e8d03d946b2.jpg" alt=""><br>如图所示是一个经典的网站导航栏的布局，logo 和导航在左，用户信息在右，不用 flex 可能会使用浮动，上图使用浮动还好.<br>但是如果右边是两个块，那么右边浮动的元素的显示顺序和书写顺序要不一致才行，或者再用一个元素包裹一下，使用 flex 则没有这种烦恼。<br><img src="https://pic.imgdb.cn/item/65ec9b5f9f345e8d03d9951e.jpg" alt=""></p>
+<h4 id="隔行交叉显示"><a href="#隔行交叉显示" class="headerlink" title="隔行交叉显示"></a>隔行交叉显示</h4><p>有时候为了不让布局太单调，即使一个列表是同类数据，展示上也会做成上述隔行交叉的样式，这个使用 flex 可以轻松的做到，<br>给 2n 的行设置 flex-direction: row-reverse 即可让偶数行的主轴方向由默认的从左向右变成从右向左：<br><img src="https://pic.imgdb.cn/item/65ec9b6d9f345e8d03d9da16.jpg" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65ec9b7d9f345e8d03da27e8.jpg" alt=""></p>
+<h4 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h4><p>此网格非 grid 布局，虽然网格列表用 grid 是最好的，但是本文的主角是 flex，假设我们要实现下面这样一个列表：<br><img src="https://pic.imgdb.cn/item/65ec9b8b9f345e8d03da723c.jpg" alt=""></p>
+<p>上述列表对 flex 来说是不擅长的，因为要带间距，所以不能简单的把子元素宽度设为 25%，否则再加上外边距，<br>一行肯定显示不下四个，那你可能会想，那我宽度就少一点好了，比如设为 20%，然后允许扩展，即 flex-grow:1，<br>那样不就可以把减去子元素宽度及外边距还剩下的空间再还给子元素了吗<br><img src="https://pic.imgdb.cn/item/65ec9b979f345e8d03dab0ac.jpg" alt=""></p>
+<p>可以看到前面一切正常，但是最后一行因为只有一个元素，且设置了允许扩展，所以它被拉满整行了，这种效果显然不是我们要的。<br>其实我们可以使用内边距来做间距，设置一下子元素的 box-sizing:border-box，让内边距包含在宽度内，这样就可以放心的把子元素的宽度设为 25%了<br><img src="https://pic.imgdb.cn/item/65ec9ba39f345e8d03daec32.jpg" alt=""></p>
 
             </div>
             <hr/>
