@@ -479,11 +479,11 @@
 <pre><code>npm install -g yarn</code></pre><h3 id="安装脚手架"><a href="#安装脚手架" class="headerlink" title="安装脚手架"></a>安装脚手架</h3><pre><code>npm install -g create-react-app</code></pre><h2 id="二、创建-React-项目"><a href="#二、创建-React-项目" class="headerlink" title="二、创建 React 项目"></a>二、创建 React 项目</h2><p>创建 React 项目的命令如下：<br>注意：项目名称不能包含大写字母</p>
 <pre><code>create-react-app 项目名称</code></pre><p>创建完成后，进入对应的目录，就可以将项目跑起来：</p>
 <pre><code>cd 01-test-react
-yarn start</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e3135f5132923bf8d54ff6.png"><br>项目结构：<br><img src="https://pic.imgdb.cn/item/60e313735132923bf8d5e21f.png"><br>说明：<br><img src="https://pic.imgdb.cn/item/60e313865132923bf8d668f5.png"></p>
+yarn start</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/65ec95c89f345e8d03bb5d79.png" alt=""><br>项目结构：<br><img src="https://pic.imgdb.cn/item/65ec95d69f345e8d03bbaf5f.png" alt=""><br>说明：<br><img src="https://pic.imgdb.cn/item/65ec95e39f345e8d03bbf6f8.png" alt=""></p>
 <h2 id="三、从零编写项目"><a href="#三、从零编写项目" class="headerlink" title="三、从零编写项目"></a>三、从零编写项目</h2><p>开始编写代码<br>在 src 目录下，创建一个 index.js 文件，因为这是 webpack 打包的入口。<br>在 index.js 中开始编写 React 代码：<br>我们需要手动的来导入 React、ReactDOM，因为它们都是在我们安装的模块中；</p>
 <pre><code>import React from &quot;react&quot;;
 import ReactDOM from &#39;react-dom&#39;;
-ReactDOM.render(&lt;h2&gt;Hello React&lt;/h2&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
+ReactDOM.render(&lt;h2&gt;Hello React&lt;/h2&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/65ec95f09f345e8d03bc45ad.jpg" alt=""></p>
 <p>如果我们不希望直接在 ReactDOM.render 中编写过多的代码，就可以单独抽取一个组件<br>App.js：</p>
 <pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
 
@@ -495,7 +495,7 @@ export default class App extends Component &#123;
 <pre><code>import React from &quot;react&quot;;
 import ReactDOM from &#39;react-dom&#39;;
 import App from &#39;./App&#39;;
-ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/60e315795132923bf8e4ae4d.jpg"></p>
+ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;root&quot;));</code></pre><p>结果：<br><img src="https://pic.imgdb.cn/item/65ec95f09f345e8d03bc45ad.jpg" alt=""></p>
 <h2 id="四、创建-React-组件"><a href="#四、创建-React-组件" class="headerlink" title="四、创建 React 组件"></a>四、创建 React 组件</h2><p>根据组件的定义方式，可以分为：函数组件(Functional Component )和类组件(Class Component)<br>在 React 中组件的命名必须以大写字母开头，因为 React 会将以小写字母开头的组件视为原生 DOM 标签。</p>
 <h3 id="4-1-创建类组件"><a href="#4-1-创建类组件" class="headerlink" title="4.1 创建类组件"></a>4.1 创建类组件</h3><p>类组件需要继承自 React.Component<br>类组件必须实现 render 函数<br>使用 class 定义一个组件：<br>constructor 是可选的，我们通常在 constructor 中初始化一些数据；<br>this.state 中维护的就是我们组件内部的数据；<br>render() 方法是 class 组件中<span style="color:red">唯一必须实现</span>的方法；</p>
 <pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
@@ -584,8 +584,7 @@ export default HelloWorld;</code></pre><p>此外要特别注意以下两点：</
     this.fetchData(this.props.userID);
   &#125;
 &#125;</code></pre><h4 id="3、React-组件卸载阶段"><a href="#3、React-组件卸载阶段" class="headerlink" title="3、React 组件卸载阶段"></a>3、React 组件卸载阶段</h4><h5 id="3-1-componentWillUnmount"><a href="#3-1-componentWillUnmount" class="headerlink" title="3.1 componentWillUnmount"></a>3.1 componentWillUnmount</h5><p>componentWillUnmount() 会在组件卸载及销毁之前直接调用。<br>在此方法中执行必要的清理操作；<br>例如，清除 timer，取消网络请求或清除在 componentDidMount() 中创建的订阅等；</p>
-<img src="https://pic.imgdb.cn/item/60e3c65e5132923bf801f243.jpg">
-
+<p><img src="https://pic.imgdb.cn/item/65ec96099f345e8d03bccbee.jpg" alt=""></p>
 <h4 id="4、测试生命周期"><a href="#4、测试生命周期" class="headerlink" title="4、测试生命周期"></a>4、测试生命周期</h4><pre><code>import React, &#123; Component &#125; from &#39;react&#39;;
 
 class HYTestCpn extends Component &#123;
@@ -637,7 +636,7 @@ export default class App extends Component &#123;
   componentWillUnmount() &#123;
     console.log(&quot;调用componentWillUnmount方法&quot;);
   &#125;
-&#125;</code></pre><p>初始化时：<br><img src="https://pic.imgdb.cn/item/60e426d15132923bf8746255.png"><br>修改 data 时：<br><img src="https://pic.imgdb.cn/item/60e426f45132923bf874fd1f.png"><br>组件销毁时：<br><img src="https://pic.imgdb.cn/item/60e4270d5132923bf8756bea.png"></p>
+&#125;</code></pre><p>初始化时：<br><img src="https://pic.imgdb.cn/item/65ec961b9f345e8d03bd3501.png" alt=""><br>修改 data 时：<br><img src="https://pic.imgdb.cn/item/65ec96269f345e8d03bd7525.png" alt=""><br>组件销毁时：<br><img src="https://pic.imgdb.cn/item/65ec96309f345e8d03bdb2a0.png" alt=""></p>
 <h4 id="5、React-父子组件挂载顺序"><a href="#5、React-父子组件挂载顺序" class="headerlink" title="5、React 父子组件挂载顺序"></a>5、React 父子组件挂载顺序</h4><p>和 vue 类似，零界点 mounted，先调用父组件的 constructor-》父 render-》子 constructor-》子 render-》子 componentDidMount-》父 componentDidMount</p>
 <h3 id="函数组件中："><a href="#函数组件中：" class="headerlink" title="函数组件中："></a><b>函数组件中：</b></h3><h4 id="1-1-模拟-constructor"><a href="#1-1-模拟-constructor" class="headerlink" title="1.1 模拟 constructor"></a>1.1 模拟 constructor</h4><p>在函数组件中组件 props 可以通过函数的参数传入，利用 ES6 解构赋值的功能，来获取组件的参数数据，并可以给参数数据设置默认值。</p>
 <pre><code>import React from &#39;react&#39;;
@@ -1393,7 +1392,7 @@ App.css中编写React样式代码：
 &#125;
 foo(&quot;Hello World&quot;);
 可以等价于
-foo`Hello World`; // [[&quot;Hello World&quot;]]</code></pre><h4 id="styled-基本使用"><a href="#styled-基本使用" class="headerlink" title="styled 基本使用"></a>styled 基本使用</h4><p>styled-components 的本质是通过函数的调用，最终创建出一个组件：<br>这个组件会被自动添加上一个不重复的 class；<br>styled-components 会给该 class 添加相关的样式；<br><img src="https://pic.imgdb.cn/item/60f3e9d65132923bf81bcb5e.png"></p>
+foo`Hello World`; // [[&quot;Hello World&quot;]]</code></pre><h4 id="styled-基本使用"><a href="#styled-基本使用" class="headerlink" title="styled 基本使用"></a>styled 基本使用</h4><p>styled-components 的本质是通过函数的调用，最终创建出一个组件：<br>这个组件会被自动添加上一个不重复的 class；<br>styled-components 会给该 class 添加相关的样式；<br><img src="https://pic.imgdb.cn/item/65ec96409f345e8d03be0342.png" alt=""></p>
 <p>另外，它支持类似于 CSS 预处理器一样的样式嵌套：<br>支持直接子代选择器或后代选择器，并且直接编写样式；<br>可以通过&amp;符号获取当前元素；<br>直接伪类选择器、伪元素等；</p>
 <pre><code>const HomeWrapper = styled.div`
   color: purple;
@@ -1451,8 +1450,7 @@ module.exports = &#123;
       &#39;components&#39;: resolve(&quot;src/components&quot;),
     &#125;
   &#125;
-&#125;</code></pre><h3 id="4、AntDesign-案例"><a href="#4、AntDesign-案例" class="headerlink" title="4、AntDesign 案例"></a>4、AntDesign 案例</h3><img src="https://pic.imgdb.cn/item/60f3f9f85132923bf8727f95.png">
-
+&#125;</code></pre><h3 id="4、AntDesign-案例"><a href="#4、AntDesign-案例" class="headerlink" title="4、AntDesign 案例"></a>4、AntDesign 案例</h3><p><img src="https://pic.imgdb.cn/item/65ec96529f345e8d03be6adb.png" alt=""></p>
 <p>我们在 App 组件中，使用封装的两个组件：</p>
 <pre><code>import React, &#123; PureComponent &#125; from &#39;react&#39;;
 import HYCommentInput from &#39;./components/comment-input&#39;;
@@ -1655,7 +1653,7 @@ export default class App extends PureComponent &#123;
       &lt;/BrowserRouter&gt;
     )
   &#125;
-&#125;</code></pre><p>效果：<br><img src="https://pic.imgdb.cn/item/60f6ea4d5132923bf8aa67ab.png"></p>
+&#125;</code></pre><p>效果：<br><img src="https://pic.imgdb.cn/item/65ec96609f345e8d03bebcab.png" alt=""></p>
 <h3 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h3><ul>
 <li>这个时候，我们要使用 NavLink 组件来替代 Link 组件：<ul>
 <li>activeStyle：活跃时（匹配时）的样式；</li>

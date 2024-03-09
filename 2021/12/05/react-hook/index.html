@@ -752,9 +752,7 @@ const ChildComponentUseReactRedux = () =&gt; &#123;
   );
 &#125;;
 
-export default ComponentUseReactRedux;</code></pre><p>如图所示，可以实现数据共享</p>
-<p><img src="https://pic.imgdb.cn/item/61d462ff2ab3f51d9199cc68.gif" alt=""></p>
-<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><p>useMemo 实际的目的也是为了进行性能的优化,类似于 shouldComponentUpdate,避免重渲染问题。<br>我们来看一个案例：<br>无论我们点击了是 +1 还是 切换 案例都会重新计算一次；<br>事实上，我们只是希望在 count 发生变化时重新计算；</p>
+export default ComponentUseReactRedux;</code></pre><h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><p>useMemo 实际的目的也是为了进行性能的优化,类似于 shouldComponentUpdate,避免重渲染问题。<br>我们来看一个案例：<br>无论我们点击了是 +1 还是 切换 案例都会重新计算一次；<br>事实上，我们只是希望在 count 发生变化时重新计算；</p>
 <pre><code>import React, &#123; useState, useMemo &#125; from &#39;react&#39;;
 function calcNum(count) &#123;
   let total = 0;

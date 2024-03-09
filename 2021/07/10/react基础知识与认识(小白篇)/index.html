@@ -752,10 +752,9 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code><
 <ol>
 <li>比如元素都会有 title 属性,比如 img 元素会有 src 属性,比如 a 元素会有 href 属性,比如元素可能需要绑定 class</li>
 <li>注意：绑定 class 比较特殊，因为 class 在 js 中是一个关键字，所以 jsx 中不允许直接写 class,写法：使用 className 替代</li>
-<li>比如原生使用内联样式 style，style 后面跟的是一个对象类型，对象中是样式的属性名和属性值；注意：这里会将属性名转成驼峰标识，而不是连接符-；<img src="https://pic.imgdb.cn/item/60e2b6805132923bf8013d76.png">
-
-</li>
+<li>比如原生使用内联样式 style，style 后面跟的是一个对象类型，对象中是样式的属性名和属性值；注意：这里会将属性名转成驼峰标识，而不是连接符-；</li>
 </ol>
+<p><img src="https://pic.imgdb.cn/item/65ec968e9f345e8d03bfc3b3.png" alt=""></p>
 <h4 id="jsx-事件监听"><a href="#jsx-事件监听" class="headerlink" title="jsx 事件监听"></a>jsx 事件监听</h4><p>方案一：bind 给 btnClick 显示绑定 this</p>
 <pre><code>class App extends React.Component &#123;
   constructor(props) &#123;
@@ -937,7 +936,8 @@ ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;));</code><
 <pre><code>如果我们使用三元运算符
 &#123;this.state.isLogin ? &lt;h2&gt;&#123;this.state.username&#125;&lt;/h2&gt;: null&#125;
 通过逻辑与&amp;&amp;来简化操作
-&#123;this.state.isLogin &amp;&amp; &lt;h2&gt;&#123;this.state.username&#125;&lt;/h2&gt;&#125;</code></pre><p>实现 v-show 效果<br><img src="https://pic.imgdb.cn/item/60e2cfb45132923bf893b3f5.png"></p>
+&#123;this.state.isLogin &amp;&amp; &lt;h2&gt;&#123;this.state.username&#125;&lt;/h2&gt;&#125;</code></pre><p>实现 v-show 效果</p>
+<p><img src="https://pic.imgdb.cn/item/65ec969f9f345e8d03c01fd1.png" alt=""></p>
 <h4 id="jsx-列表渲染"><a href="#jsx-列表渲染" class="headerlink" title="jsx 列表渲染"></a>jsx 列表渲染</h4><p>在 React 中并没有像 Vue 模块语法中的 v-for 指令，而且需要我们通过 JavaScript 代码的方式组织数据，转成 JSX：<br>在 React 中，展示列表最多的方式就是使用数组的 map 高阶函数</p>
 <pre><code>class App extends React.Component &#123;
   constructor(props) &#123;

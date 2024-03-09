@@ -485,7 +485,7 @@
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><p>node 直接去官网下载选择下载即可<a target="_blank" rel="noopener" href='https://nodejs.org/en/download/current/'>https://nodejs.org/en/download/current/</a><br>下载好后，安装如下工具</p>
 <pre><code>npm init -y
 npm install express 或者npm i express -S //express框架安装
-npm install mysql //mysql驱动安装</code></pre><h2 id="2-初始化-express"><a href="#2-初始化-express" class="headerlink" title="2.初始化 express"></a>2.初始化 express</h2><p>安装好依赖后，在根目录下创建 index.js 文件<br><img src="https://pic.imgdb.cn/item/61bf41762ab3f51d91af03b3.png" alt=""></p>
+npm install mysql //mysql驱动安装</code></pre><h2 id="2-初始化-express"><a href="#2-初始化-express" class="headerlink" title="2.初始化 express"></a>2.初始化 express</h2><p>安装好依赖后，在根目录下创建 index.js 文件<br><img src="https://pic.imgdb.cn/item/65ec977b9f345e8d03c5130c.png" alt=""></p>
 <p>在 index 文件中编写模拟下是否可以运行:</p>
 <pre><code>let express=require(&#39;express&#39;);
 //执行express创建一个服务：返回结果app用来操作这个服务
@@ -500,10 +500,10 @@ app.get(&#39;/&#39;,function(req,res)&#123;
 app.listen(8080,()=&gt;&#123;
 //服务创建成功时执行
 console.log(&#39;Server Successfully!Port:8080!&#39;);
-&#125;);</code></pre><h2 id="3-启动服务器测试下-get-请求"><a href="#3-启动服务器测试下-get-请求" class="headerlink" title="3.启动服务器测试下 get 请求"></a>3.启动服务器测试下 get 请求</h2><pre><code>node index.js</code></pre><p><img src="https://pic.imgdb.cn/item/61bf45d22ab3f51d91b0af97.png" alt=""></p>
+&#125;);</code></pre><h2 id="3-启动服务器测试下-get-请求"><a href="#3-启动服务器测试下-get-请求" class="headerlink" title="3.启动服务器测试下 get 请求"></a>3.启动服务器测试下 get 请求</h2><pre><code>node index.js</code></pre><p><img src="https://pic.imgdb.cn/item/65ec978a9f345e8d03c55f2c.png" alt=""></p>
 <p>启动后控制台不能关闭，且每次更新都要重启，为了自动更新，需要引入 nodemon<br>npm i -g nodemon<br>安装好后，直接输入<br>nodemon 文件名(可不选，默认选中 index.js)</p>
-<h2 id="4-初始化数据表"><a href="#4-初始化数据表" class="headerlink" title="4.初始化数据表"></a>4.初始化数据表</h2><p>前提是安装好 mysql，具体安装流程详解：<a target="_blank" rel="noopener" href='https://www.cnblogs.com/xiaokang01/p/12092160.html#_label0'>点击跳转</a><br>安装完后，我们用可视化工具新建一张表<br><img src="https://pic.imgdb.cn/item/61c0aba32ab3f51d9136ce84.png" alt=""></p>
-<h2 id="5-数据库的连接"><a href="#5-数据库的连接" class="headerlink" title="5.数据库的连接"></a>5.数据库的连接</h2><p>在根目录创建 routes 文件，里面存放一个 database 数据库连接器和自定义接口模块，<br>这里我就只建一个 index.js 模拟接口请求<br><img src="https://pic.imgdb.cn/item/61bf47602ab3f51d91b15203.png" alt=""></p>
+<h2 id="4-初始化数据表"><a href="#4-初始化数据表" class="headerlink" title="4.初始化数据表"></a>4.初始化数据表</h2><p>前提是安装好 mysql，具体安装流程详解：<a target="_blank" rel="noopener" href='https://www.cnblogs.com/xiaokang01/p/12092160.html#_label0'>点击跳转</a><br>安装完后，我们用可视化工具新建一张表<br><img src="https://pic.imgdb.cn/item/65ec97979f345e8d03c5a6d5.png" alt=""></p>
+<h2 id="5-数据库的连接"><a href="#5-数据库的连接" class="headerlink" title="5.数据库的连接"></a>5.数据库的连接</h2><p>在根目录创建 routes 文件，里面存放一个 database 数据库连接器和自定义接口模块，<br>这里我就只建一个 index.js 模拟接口请求<br><img src="https://pic.imgdb.cn/item/65ec97a49f345e8d03c5f144.png" alt=""></p>
 <h3 id="database-js"><a href="#database-js" class="headerlink" title="database.js"></a>database.js</h3><pre><code>// 连接Mysql
 var mysql = require(&#39;mysql&#39;);
 // 数据库连接配置

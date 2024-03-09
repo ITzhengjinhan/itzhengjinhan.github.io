@@ -496,11 +496,11 @@ npm start</code></pre><p>2.给项目@alifd/next（ui 库）、patch-package、po
 <pre><code>yarn add @alifd/next patch-package postinstall-postinstall -D</code></pre><p>3.给 package.json 文件中添加脚本命令（非常重要，无论我们使用 yarn 还是 npm，在整体安装结束后都会自动执行该命令，对 node_modules 中的包打补丁）</p>
 <pre><code>&quot;scripts&quot;: &#123;
   &quot;postinstall&quot;: &quot;patch-package&quot;
- &#125;</code></pre><p>4.我们引入组件 button，并查看组件当前结构<br><img src="https://pic.imgdb.cn/item/61b216d22ab3f51d91085fa0.jpg" alt=""></p>
-<p>5.我们去 node_module 中修改 button 源码<br><img src="https://pic.imgdb.cn/item/61b216ee2ab3f51d9108715a.jpg" alt=""></p>
-<p>6.我们在看看页面情况（如果没有效果的话，可以重启一下服务 ）<br><img src="https://pic.imgdb.cn/item/61b217032ab3f51d91087c4e.jpg" alt=""></p>
+ &#125;</code></pre><p>4.我们引入组件 button，并查看组件当前结构<br><img src="https://pic.imgdb.cn/item/65ec93269f345e8d03abb6c4.jpg" alt=""></p>
+<p>5.我们去 node_module 中修改 button 源码<br><img src="https://pic.imgdb.cn/item/65ec93359f345e8d03ac1053.jpg" alt=""></p>
+<p>6.我们在看看页面情况（如果没有效果的话，可以重启一下服务 ）<br><img src="https://pic.imgdb.cn/item/65ec93409f345e8d03ac55cc.jpg" alt=""></p>
 <p>7.修改完并且也生效了，我们就要开始打补丁了，运行命令 yarn patch-package package-name</p>
-<pre><code>yarn patch-package @alifd/next</code></pre><p>8.成功后会看到根目录多了一个 patches 文件夹，里面包含了你修改的 npm 包的 patch 文件。点开可以很清楚的看到你都做了哪些修改。<br>文件名中的 1.22.21 就是依赖包的版本号，表示这个补丁只对 1.22.21 版本的插件生效<br><img src="https://pic.imgdb.cn/item/61b217292ab3f51d91089282.jpg" alt=""></p>
+<pre><code>yarn patch-package @alifd/next</code></pre><p>8.成功后会看到根目录多了一个 patches 文件夹，里面包含了你修改的 npm 包的 patch 文件。点开可以很清楚的看到你都做了哪些修改。<br>文件名中的 1.22.21 就是依赖包的版本号，表示这个补丁只对 1.22.21 版本的插件生效<br><img src="https://pic.imgdb.cn/item/65ec934d9f345e8d03aca78c.jpg" alt=""></p>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>1.删除 node_module 并重新安装</p>
 <pre><code>rm -rf node_modules/ &amp;&amp; yarn</code></pre><p>2.yarn start 重新启动，查看审查元素，依旧是 a 标签！</p>
 
