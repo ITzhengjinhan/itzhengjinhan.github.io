@@ -481,7 +481,7 @@
 <p><img src="https://pic1.imgdb.cn/item/647378f9f024cca173ffd985.png" alt=""></p>
 <h3 id="1-在项目中安装并引入-vuex"><a href="#1-在项目中安装并引入-vuex" class="headerlink" title="1.在项目中安装并引入 vuex"></a>1.在项目中安装并引入 vuex</h3><p>npm 安装 vuex：npm install vuex –save</p>
 <p>在项目的 src 中创建一个以 store 命名的文件夹，在 store 下创建一个以 index.js 命名的文件</p>
-<p><img src="https://pic.imgdb.cn/item/63e9aeaa4757feff33f01510.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc95d9f345e8d038cfaee.png" alt=""></p>
 <p>在 index.js 文件中创建一个 store</p>
 <pre><code>
 import Vue from &quot;vue&quot;
@@ -503,15 +503,15 @@ export default new Vuex.Store(&#123;
         //类似methods，可实现异步方法（实际调用了mutations中的方法来实现）
     &#125;
 &#125;)</code></pre><p>在 main.js 中引入 store</p>
-<p><img src="https://pic.imgdb.cn/item/63e9af614757feff33f52d5a.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc9999f345e8d038ef37c.png" alt=""></p>
 <h3 id="2-创建和使用共享的数据"><a href="#2-创建和使用共享的数据" class="headerlink" title="2.创建和使用共享的数据"></a>2.创建和使用共享的数据</h3><p>2.1 如何直接使用 state 中的数据以及设置数据呢？</p>
 <p>例：在 store 下的 index.js 中 state 里创建变量 count，就可在任意组件中使用$store.state.count。</p>
-<p><img src="https://pic.imgdb.cn/item/63e9af9f4757feff33f6f5d0.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc9d09f345e8d0390b5b3.png" alt=""></p>
 <p>若出现 Property or method “$store“ is not defined on the instance but referenced during render.报错</p>
 <p>则说明下载的版本默认是 vuex4 以上，重新下载 vuex3 版本即可。</p>
 <p>2.2 什么是 getters？</p>
 <p>getters 类似于 computed，也可计算属性，通过$store 来使用。</p>
-<p><img src="https://pic.imgdb.cn/item/63e9afe44757feff33f8dfa6.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc9dd9f345e8d03911c9a.png" alt=""></p>
 <p>2.3 如何通过 getters 传参呢?</p>
 <p>默认情况下，getters 不支持接受参数。但是，可以通过返回一个函数来实现在 getters 中传递参数的效果。这样，就可以在返回的函数中接收参数并进行相应的处理。</p>
 <pre><code> getters: &#123;
@@ -525,11 +525,11 @@ export default new Vuex.Store(&#123;
   console.log(this.$store.getters.getState(11));//11</code></pre><p>2.4 如何修改 state 中的数据？</p>
 <p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation,mutations 必须是同步函数，即不可在 mutations 中使用 setTimeout 或 axios 等异步函数。</p>
 <p>例：在 mutations 中定义 addOne 函数，在组件中使用$store.commit 来唤醒 mutations 中的 addOne 方法来改变 count 的值。</p>
-<p><img src="https://pic.imgdb.cn/item/63e9b0254757feff33fa9be5.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc9ee9f345e8d03919a71.png" alt=""></p>
 <p>2.5 如何实现异步处理数据？</p>
 <p>虽然 mutations 不能实现异步，但在 actions 中实现异步时还是需要 mutations 中的方法来改变 state 中的变量的</p>
 <p>例：通过$store.dispatch 触发 actions 中的方法 jiayi，jianyi 方法通过 context 提交一个 mutation 来唤醒 mutations 中的 subOne 方法来改变 count 的值。</p>
-<p><img src="https://pic.imgdb.cn/item/63e9b0724757feff33fcc9fb.png" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/65edc9fb9f345e8d0391ff10.png" alt=""></p>
 <p>2.6 mutations 中怎么传参？</p>
 <pre><code>页面触发方法：
 let num = 10;
