@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于vue的树形穿梭选择组件, IT默小涵的个人博客">
+    <meta name="keywords" content="基于Ant Design Vue的树形穿梭选择组件, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于vue的树形穿梭选择组件 | IT默小涵的个人博客</title>
+    <title>基于Ant Design Vue的树形穿梭选择组件 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于vue的树形穿梭选择组件</h1>
+                    <h1 class="description center-align post-title">基于Ant Design Vue的树形穿梭选择组件</h1>
                 </div>
             </div>
         </div>
@@ -480,8 +480,7 @@
                 <p>背景：Ant Design Vue 官网中有穿梭框 Transfer 组件，但提供的示例是左侧是树，右侧则是平铺列表</p>
 <p>需求左边是树，右边也是树结构数据，且要支持搜索</p>
 <p>自定义封装组件</p>
-<p>TransferTree/index.vue:</p>
-<pre><code>&lt;template&gt;
+<h3 id="TransferTree-index-vue"><a href="#TransferTree-index-vue" class="headerlink" title="TransferTree/index.vue:"></a>TransferTree/index.vue:</h3><pre><code>&lt;template&gt;
   &lt;a-transfer
     class=&quot;tree-transfer&quot;
     :data-source=&quot;dataSource&quot;
@@ -625,26 +624,24 @@ export default &#123;
       &#125;
     &#125;,
     // 处理编辑数据
-    processEditData() &#123;
+     processEditData() &#123;
       this.leftCheckedAllKey = this.editKey;
       this.rightExpandedKeys = this.editKey;
       this.targetKeys = this.editKey;
       this.rightTreeData = findPathById(cloneDeep(this.originTreeData), this.editKey);
-
       getDeepList(this.deepList, this.originTreeData);
-
       this.leftCheckedKey = uniqueTree(this.editKey, this.deepList);
       this.leftHalfCheckedKeys = this.leftCheckedAllKey.filter((item) =&gt; this.leftCheckedKey.indexOf(item) === -1);
       this.leftTreeData = handleLeftTreeData(cloneDeep(this.originTreeData), this.leftCheckedKey);
-
       this.emitKeys = this.rightExpandedKeys;
     &#125;,
+
     // 穿梭更改
     onChange(_, direction) &#123;
       if (direction === &#39;right&#39;) &#123;
         this.targetKeys = this.leftCheckedAllKey;
         this.rightCheckedKey = [];
-        this.rightTreeData = findPathById(cloneDeep(this.originTreeData), this.leftCheckedAllKey);
+        this.rightTreeData = this.uniqueObject(findPathById(cloneDeep(this.originTreeData), this.leftCheckedAllKey));
         this.leftTreeData = handleLeftTreeData(cloneDeep(this.originTreeData), this.leftCheckedKey, &#39;right&#39;);
       &#125; else if (direction === &#39;left&#39;) &#123;
         this.rightTreeData = filterTreeArray(this.rightTreeData, this.rightCheckedKey, &#39;id&#39;);
@@ -671,6 +668,19 @@ export default &#123;
       this.rightCheckedAllKey = [...halfCheckedKeys, ..._];
       const &#123; eventKey &#125; = node;
       itemSelect(eventKey, isChecked(_, eventKey));
+    &#125;,
+     uniqueObject(arr) &#123;
+      let obj = &#123;&#125;;
+      arr.forEach((item, index) =&gt; &#123;
+        // 若重复则删除该项
+        if (obj.hasOwnProperty(item.id)) &#123;
+          arr.splice(index, 1);
+          // 不重复则存入obj
+        &#125; else &#123;
+          obj[item.id] = item.name;
+        &#125;
+      &#125;);
+      return arr;
     &#125;,
     getParentKey(key, tree) &#123;
       let parentKey;
@@ -743,13 +753,55 @@ export default &#123;
   display: contents !important;
 &#125;
 &lt;/style&gt;
-</code></pre><p>组件涉及到的树形数据操作方法：TransferTree/index.js</p>
+</code></pre><h3 id="TransferTree-index-js"><a href="#TransferTree-index-js" class="headerlink" title="TransferTree/index.js"></a>TransferTree/index.js</h3><p>组件涉及到的树形数据操作方法：</p>
 <pre><code>/**
  * 深拷贝
  * @param data
  */
 export function cloneDeep(data) &#123;
   return JSON.parse(JSON.stringify(data));
+&#125;
+
+/**
+ * 通过id获取树的完整路径
+ * @param tree 树型数据
+ * @param ids  id集合
+ * @param keyName 关键字
+ */
+export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
+  const result = [];
+  for (const node of tree) &#123;
+    if (ids.includes(node[keyName]) &amp;&amp; node.isLeaf) &#123;
+      result.push(node);
+    &#125;
+    if (node.children) &#123;
+      const childResults = findPathById(node.children, ids);
+      if (childResults.length &gt; 0) &#123;
+        result.push(&#123; ...node, children: childResults &#125;);
+      &#125;
+    &#125;
+  &#125;
+  return result;
+&#125;
+
+/**
+ * 通过id过滤树的id所在子节点
+ * @param tree 树型数据
+ * @param ids  id集合
+ * @param keyName 关键字
+ */
+export function filterTreeArray(tree, ids, keyName = &#39;id&#39;) &#123;
+  return tree
+    .filter((item) =&gt; &#123;
+      return ids.indexOf(item[keyName]) == -1;
+    &#125;)
+    .map((item) =&gt; &#123;
+      item = Object.assign(&#123;&#125;, item);
+      if (item.children) &#123;
+        item.children = filterTreeArray(item.children, ids);
+      &#125;
+      return item;
+    &#125;);
 &#125;
 
 /**
@@ -902,7 +954,7 @@ export function handleRightTreeData(data, targetKeys, direction = &#39;right&#39
 export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
   const result = [];
   for (const node of tree) &#123;
-    if (ids.includes(node[keyName])) &#123;
+    if (ids.includes(node[keyName]) &amp;&amp; node.isLeaf) &#123;
       result.push(node);
     &#125;
     if (node.children) &#123;
@@ -933,8 +985,7 @@ export function filterTreeArray(tree, ids, keyName = &#39;id&#39;) &#123;
       &#125;
       return item;
     &#125;);
-&#125;</code></pre><p>引入组件：</p>
-<pre><code>&lt;TransferTree ref=&quot;transferRef&quot; :originTreeData=&quot;originTreeData&quot; :editKey=&quot;editKey&quot; /&gt;
+&#125;</code></pre><h3 id="引入组件："><a href="#引入组件：" class="headerlink" title="引入组件："></a>引入组件：</h3><pre><code>&lt;TransferTree ref=&quot;transferRef&quot; :originTreeData=&quot;originTreeData&quot; :editKey=&quot;editKey&quot; /&gt;
 &lt;button @click=&quot;save&quot;&gt;保存&lt;/button&gt;
 
 方法：
@@ -943,39 +994,42 @@ onSave() &#123;
 &#125;
 
 数据：
- originTreeData: [
+ originTreeData:  [
         &#123;
           id: &#39;1&#39;,
           parentId: &#39;0&#39;,
-          checkable: false,
-          key: &#39;0&#39;,
+          key: &#39;1&#39;,
           title: &#39;一级&#39;,
+          isLeaf: false,
+          // checkable: false 是否可选
         &#125;,
         &#123;
           id: &#39;2&#39;,
           parentId: &#39;0&#39;,
-          checkable: false,
           key: &#39;2&#39;,
           title: &#39;一级1&#39;,
+          isLeaf: false,
           children: [
             &#123;
               id: &#39;3&#39;,
               parentId: &#39;2&#39;,
               key: &#39;3&#39;,
-              checkable: false,
               title: &#39;二级1&#39;,
+              isLeaf: false,
               children: [
                 &#123;
                   id: &#39;99&#39;,
                   parentId: &#39;3&#39;,
                   key: &#39;99&#39;,
                   title: &#39;三级1&#39;,
+                  isLeaf: true,
                 &#125;,
                 &#123;
                   id: &#39;98&#39;,
                   parentId: &#39;3&#39;,
                   key: &#39;98&#39;,
                   title: &#39;三级11&#39;,
+                  isLeaf: true,
                 &#125;,
               ],
             &#125;,
@@ -983,20 +1037,22 @@ onSave() &#123;
               id: &#39;4&#39;,
               parentId: &#39;2&#39;,
               key: &#39;4&#39;,
-              checkable: false,
               title: &#39;二级2&#39;,
+              isLeaf: false,
               children: [
                 &#123;
                   id: &#39;999&#39;,
                   parentId: &#39;4&#39;,
                   key: &#39;999&#39;,
                   title: &#39;三级2&#39;,
+                  isLeaf: true,
                 &#125;,
                 &#123;
                   id: &#39;998&#39;,
                   parentId: &#39;4&#39;,
                   key: &#39;998&#39;,
                   title: &#39;三级22&#39;,
+                  isLeaf: true,
                 &#125;,
               ],
             &#125;,
