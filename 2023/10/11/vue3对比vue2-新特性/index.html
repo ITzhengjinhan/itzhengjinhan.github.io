@@ -572,7 +572,12 @@ export default &#123;
   &#125;,
 &#125;;
 &lt;/script&gt;
-</code></pre><h3 id="4、Vue3-的生命周期"><a href="#4、Vue3-的生命周期" class="headerlink" title="4、Vue3 的生命周期"></a>4、Vue3 的生命周期</h3><pre><code>import &#123; onMounted, onUpdated, onUnmounted &#125; from &#39;vue&#39;
+</code></pre><h4 id="二者的区别和使用规则"><a href="#二者的区别和使用规则" class="headerlink" title="二者的区别和使用规则"></a>二者的区别和使用规则</h4><pre><code>ref创建的变量必须使用.value
+reactive重新分配一个对象，会失去响应式（但可以Object.assign()整体替换）
+
+1.若需要一个基本类型的响应式数据，必须使用ref
+2.若需要一个响应式对象，层级不深用ref、reactive都可以
+3.若需要一个响应式对象，且层级较深，推荐使用reactive</code></pre><h3 id="4、Vue3-的生命周期"><a href="#4、Vue3-的生命周期" class="headerlink" title="4、Vue3 的生命周期"></a>4、Vue3 的生命周期</h3><pre><code>import &#123; onMounted, onUpdated, onUnmounted &#125; from &#39;vue&#39;
 
 const MyComponent = &#123;
   setup() &#123;
