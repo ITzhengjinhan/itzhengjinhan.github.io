@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue 设置路由的登录权限的方法, IT默小涵的个人博客">
+    <meta name="keywords" content="vue 父组件如何将所有来自祖父组件的props传递给子组件, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue 设置路由的登录权限的方法 | IT默小涵的个人博客</title>
+    <title>vue 父组件如何将所有来自祖父组件的props传递给子组件 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue 设置路由的登录权限的方法</h1>
+                    <h1 class="description center-align post-title">vue 父组件如何将所有来自祖父组件的props传递给子组件</h1>
                 </div>
             </div>
         </div>
@@ -436,10 +436,6 @@
                                 <span class="chip bg-color">vue</span>
                             </a>
                         
-                            <a href="/tags/%E7%99%BB%E5%BD%95%E6%9D%83%E9%99%90/">
-                                <span class="chip bg-color">登录权限</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -477,19 +473,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>介绍：<br>用于路由拦截，常用于用户在没登陆情况下不能进行访问</p>
-<h3 id="第一步：index-js：将需要登录权限的路由设置-meta-属性"><a href="#第一步：index-js：将需要登录权限的路由设置-meta-属性" class="headerlink" title="第一步：index.js：将需要登录权限的路由设置 meta 属性"></a>第一步：index.js：将需要登录权限的路由设置 meta 属性</h3><img alt="logo" src="https://s1.ax1x.com/2020/06/20/NQD0bR.png" style="margin-bottom:10px;width:1200px;height:300px">
-
-<h3 id="第二步-main-js：在-main-js-内直接写对路由的验证"><a href="#第二步-main-js：在-main-js-内直接写对路由的验证" class="headerlink" title="第二步:main.js：在 main.js 内直接写对路由的验证"></a>第二步:main.js：在 main.js 内直接写对路由的验证</h3><pre class=" language-vue"><code class="language-vue">router.beforeEach((to, from, next) => &#123; if (to.matched.some(record =>
-record.meta.requireAuth))&#123; // 判断该路由是否需要登录权限 if
-(sessionStorage.getItem("token")) &#123; // 判断当前的token是否存在 next(); &#125; else &#123;
-next(&#123; path: '/manage', query: &#123;redirect: to.fullPath&#125; //
-将跳转的路由path作为参数，登录成功后跳转到该路由 &#125;) &#125; &#125; else &#123; next(); &#125; &#125;);</code></pre>
-<h3 id="第三步：在页面判断是否符合条件进行访问"><a href="#第三步：在页面判断是否符合条件进行访问" class="headerlink" title="第三步：在页面判断是否符合条件进行访问"></a>第三步：在页面判断是否符合条件进行访问</h3><pre class=" language-vue"><code class="language-vue">if(this.nickname=='admin'&&this.password=="admin")&#123;
-sessionStorage.setItem('token',1) this.$message(&#123; message: '登录成功', type:
-'success' &#125;); this.$router.push(&#123; path: '/home/index' &#125;) &#125;else&#123;
-this.$message.error('账号或密码错误'); return &#125;</code></pre>
-
+                <pre><code>&lt;Son v-bind=&#39;$props&#39;/&gt;</code></pre>
             </div>
             <hr/>
 
@@ -514,7 +498,7 @@ this.$message.error('账号或密码错误'); return &#125;</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/10/18/vue%20%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E7%9A%84%E7%99%BB%E5%BD%95%E6%9D%83%E9%99%90%E7%9A%84%E6%96%B9%E6%B3%95/">http://itzhengjinhan.github.io/2020/10/18/vue%20%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E7%9A%84%E7%99%BB%E5%BD%95%E6%9D%83%E9%99%90%E7%9A%84%E6%96%B9%E6%B3%95/</a>
+                    <a href="http://itzhengjinhan.github.io/2020/10/18/vue%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%B0%86%E6%89%80%E6%9C%89%E6%9D%A5%E8%87%AA%E7%A5%96%E7%88%B6%E7%BB%84%E4%BB%B6%E7%9A%84props%E4%BC%A0%E9%80%92%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2020/10/18/vue%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%B0%86%E6%89%80%E6%9C%89%E6%9D%A5%E8%87%AA%E7%A5%96%E7%88%B6%E7%BB%84%E4%BB%B6%E7%9A%84props%E4%BC%A0%E9%80%92%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -554,10 +538,6 @@ this.$message.error('账号或密码错误'); return &#125;</code></pre>
                             
                                 <a href="/tags/vue/">
                                     <span class="chip bg-color">vue</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%99%BB%E5%BD%95%E6%9D%83%E9%99%90/">
-                                    <span class="chip bg-color">登录权限</span>
                                 </a>
                             
                         </div>

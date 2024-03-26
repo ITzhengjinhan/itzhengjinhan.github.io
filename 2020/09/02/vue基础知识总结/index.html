@@ -1251,85 +1251,106 @@ export default &#123;
     required:true，//必要性
     default：&#39;老王&#39; //默认值
   &#125;
-&#125;</code></pre><p>例如：</p>
-<pre><code>&lt;style&gt;
-div.product&#123;
-  float:left;
-  border:1px solid lightGray;
-  width:200px;
-  margin:10px;
-  cursor: pointer;
-&#125;
-&lt;/style&gt;
-
-&lt;div id=&quot;div1&quot;&gt;
-    组件外的值：&lt;input v-model=&quot;outName&quot; &gt;&lt;br&gt;
-    &lt;product v-bind:name=&quot;outName&quot;&gt;&lt;/product&gt;
-&lt;/div&gt;
+&#125;</code></pre><p>例如：父组件通过属性传参 :message=”message”</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;child-component :message=&quot;message&quot; @update-message=&quot;updateMessage&quot;&gt;&lt;/child-component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
 &lt;script&gt;
+import ChildComponent from &#39;./ChildComponent.vue&#39;;
 
-const product = Vue.extend(&#123;
-      props:[&#39;name&#39;],
-      template: &#39;&lt;div class=&quot;product&quot; &gt;&#123;&#123;name&#125;&#125;&lt;/div&gt;&#39;
-&#125;);
-
-Vue.component(&#39;product&#39;, product);
-
-new Vue(&#123;
-  el: &#39;#div1&#39;,
-  data:&#123;
-      outName:&#39;我是父组件，给子组件传值&#39;
+export default &#123;
+  components: &#123;
+    ChildComponent
+  &#125;,
+  data() &#123;
+    return &#123;
+      message: &#39;Hello World&#39;
+    &#125;
+  &#125;,
+  methods: &#123;
+    updateMessage(newMessage) &#123;
+      this.message = newMessage;
+    &#125;
   &#125;
-&#125;)
-&lt;/script&gt;</code></pre><h4 id="子组件给父组件传值，通过-emit"><a href="#子组件给父组件传值，通过-emit" class="headerlink" title="子组件给父组件传值，通过$emit();"></a>子组件给父组件传值，通过$emit();</h4><pre><code>&lt;style&gt;
-div.product&#123;
-  float:left;
-  border:1px solid lightGray;
-  width:200px;
-  margin:10px;
-  cursor: pointer;
 &#125;
-&lt;/style&gt;
-
-&lt;div id=&quot;div1&quot;&gt;
-    &lt;product @increment=&quot;changeTotal&quot; @descrement=&quot;changeTotal&quot;&gt;&#123;&#123;total&#125;&#125;&lt;/product&gt;
-&lt;/div&gt;
+&lt;/script&gt;</code></pre><h4 id="子组件通过-props-接收参数，同时给父组件传值，通过-emit"><a href="#子组件通过-props-接收参数，同时给父组件传值，通过-emit" class="headerlink" title="子组件通过 props 接收参数，同时给父组件传值，通过$emit();"></a>子组件通过 props 接收参数，同时给父组件传值，通过$emit();</h4><p>子组件：</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;
+    &lt;button @click=&quot;updateMessage&quot;&gt;Update Message&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
 &lt;script&gt;
-
-const product = Vue.extend(&#123;
-    template:&#39;&lt;div class=&quot;product&quot; &gt;MAXFEEL休闲男士手包真皮手拿包大容量信封包手抓包夹包软韩版潮&lt;/div&gt;&#39;,
-    data()&#123;
-        return &#123;
-            count:0;
-        &#125;
-    &#125;,
-    methods:&#123;
-        increment()&#123;
-            this.$emit(&#39;increment&#39;,this.count++)
-        &#125;,
-        descrement()&#123;
-            this.$emit(&#39;descrement&#39;,this.count--)
-        &#125;
-    &#125;
-&#125;)
-
-new Vue(&#123;
-  el: &#39;#div1&#39;,
-  data:&#123;
-      total:0
+export default &#123;
+  props: &#123;
+    message: String
   &#125;,
-  methods:&#123;
-    changeTotal(counter)&#123;
-        this.total=counter;//接受子组件传值
+  methods: &#123;
+    updateMessage() &#123;
+      this.$emit(&#39;update-message&#39;, &#39;New Message&#39;);
     &#125;
-  &#125;,
-  components:&#123;
-    product
   &#125;
-&#125;)
-&lt;/script&gt;</code></pre><h2 id="九、vue-cli-初始化脚手架"><a href="#九、vue-cli-初始化脚手架" class="headerlink" title="九、vue-cli 初始化脚手架"></a>九、vue-cli 初始化脚手架</h2><p>Vue 脚手架是 Vue 官方提供的标准化开发工具（开发平台）</p>
+&#125;
+&lt;/script&gt;</code></pre><h4 id="自定义-v-model"><a href="#自定义-v-model" class="headerlink" title="自定义 v-model"></a>自定义 v-model</h4><p>在组件内定义</p>
+<p>model: {<br>prop: ‘参数名’,<br>event: ‘回调函数名’<br>},</p>
+<p>父组件</p>
+<pre><code>&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;HelloWorld v-model=&quot;showFlag&quot; v-if=&quot;showFlag&quot;&gt;&lt;/HelloWorld&gt;
+    &lt;button @click=&quot;showFlag=true&quot;&gt;打开组件&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import HelloWorld from &#39;./components/HelloWorld&#39;
+
+export default &#123;
+  name: &#39;App&#39;,
+  data()&#123;
+    return &#123;
+       showFlag: false
+    &#125;
+  &#125;,
+  components: &#123;
+    HelloWorld
+  &#125;
+&#125;
+&lt;/script&gt;
+</code></pre><p>子组件</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;hello&quot;&gt;
+    &lt;h1&gt;这是组件里面的内容&lt;/h1&gt;
+    &lt;button @click=&quot;close&quot;&gt;关闭组件&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  name: &#39;HelloWorld&#39;,
+  model: &#123;
+    prop: &#39;checked&#39;,
+    event: &#39;change&#39;
+  &#125;,
+  props: &#123;
+    checked: &#123;
+      type: Boolean
+    &#125;
+  &#125;,
+  methods: &#123;
+    close()&#123;
+      this.$emit(&#39;change&#39;, false)
+    &#125;
+  &#125;
+&#125;
+
+
+对于子组件来说，允许自定义使用v-model时定制prop和event，
+v-model中的prop就是把value用作prop，input用作event，
+但是为了避免冲突，我们使用model的选项可以回避这些冲突，当然，也可使用props声明checked这个prop。</code></pre><h2 id="九、vue-cli-初始化脚手架"><a href="#九、vue-cli-初始化脚手架" class="headerlink" title="九、vue-cli 初始化脚手架"></a>九、vue-cli 初始化脚手架</h2><p>Vue 脚手架是 Vue 官方提供的标准化开发工具（开发平台）</p>
 <h3 id="具体安装步骤"><a href="#具体安装步骤" class="headerlink" title="具体安装步骤"></a>具体安装步骤</h3><ol>
 <li>如果下载缓慢请配置 npm 淘宝镜像 npm config set registry <a target="_blank" rel="noopener" href="http://registry.npm.taobao.org">http://registry.npm.taobao.org</a></li>
 <li>全局安装 @vue/cli npm install -g @vue/cli</li>
