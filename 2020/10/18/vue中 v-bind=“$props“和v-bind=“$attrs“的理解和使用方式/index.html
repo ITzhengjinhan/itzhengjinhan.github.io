@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue 父组件如何将所有来自祖父组件的props传递给子组件, IT默小涵的个人博客">
+    <meta name="keywords" content="vue中 v-bind=“$props“和v-bind=“$attrs“的理解和使用方式, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue 父组件如何将所有来自祖父组件的props传递给子组件 | IT默小涵的个人博客</title>
+    <title>vue中 v-bind=“$props“和v-bind=“$attrs“的理解和使用方式 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue 父组件如何将所有来自祖父组件的props传递给子组件</h1>
+                    <h1 class="description center-align post-title">vue中 v-bind=“$props“和v-bind=“$attrs“的理解和使用方式</h1>
                 </div>
             </div>
         </div>
@@ -473,7 +473,48 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code>&lt;Son v-bind=&#39;$props&#39;/&gt;</code></pre>
+                <h3 id="一、v-bind-“-attrs“"><a href="#一、v-bind-“-attrs“" class="headerlink" title="一、v-bind=“$attrs“"></a>一、v-bind=“$attrs“</h3><p>主要用于组件之间的隔代传值。 在一个组件里，this.$attr 传递当前组件身上绑定的所有属性（注意：不能是声明在组件 props 内的属性）</p>
+<p>例如：将 GrandFather 的数据传递给 ChildPage 组件</p>
+<p>// GrandFather.vue 祖父组件</p>
+<pre><code>&lt;template&gt;
+   &lt;div&gt;
+      &lt;father-page :name=&quot;testName&quot; :data-name=&quot;dataName&quot; /&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    ...
+    testName = &#39;Test101&#39;;
+    ...
+    dataName = &#39;dataName&#39;
+&lt;/script&gt;</code></pre><p>// FatherPage.vue 父组件</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;child-page v-bind=&quot;$attrs&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    // 不声明props（不接收祖父组件传过来的数据）
+&lt;/script&gt;</code></pre><p>这时候 ChildPage.vue 和 FatherPage.vue 组件内的 this.$attrs</p>
+<pre><code>&#123;
+  testName: &#39;Test101&#39;,
+  dataName: &#39;dataName&#39;
+&#125;</code></pre><p>如果我们修改一下 FatherPage.vue 组件</p>
+<pre><code>// FatherPage.vue    父组件
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;child-page v-bind=&quot;$attrs&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+    ...
+    props:[&#39;testName&#39;]
+&lt;/script&gt;</code></pre><p>那么 FatherPage.vue 的 this.$attrs 属性里少了 testName，而 props 多了 testName</p>
+<p>ChildPage.vue 接收到的 this.$attrs 也只有 dataName 了。</p>
+<h3 id="二、v-bind-”-props”"><a href="#二、v-bind-”-props”" class="headerlink" title="二、v-bind=”$props”"></a>二、v-bind=”$props”</h3><p>将父组件的所有 props 下发给它的子组件,子组件需要在其 props:{} 中定义要接受的 props。</p>
+<p>例： 上述代码中，如果将父组件传递给子组件的方式改为</p>
+<pre><code> &lt;grand-son v-bind=&quot;$props&quot;&gt;&lt;/grand-son&gt;</code></pre><p>会发现，如果在 FatherPage.vue 的 props 中接收的了 testName，那么通过 v-bind=”$props” 传递给ChildPage.vue 的 this.$props 就是 testName；如果在 FatherPage.vue 中没有声明 props，那么在 ChildPage.vue 中的 this.$props 就是空</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><p>v-bind=”$props”和v-bind=”$attrs” 其实就是往子组件里传的参数不同，一个传的是 vm.props 一个传的是 vm.attrs。而组件的 attrs 其实就是除了本组件声明的 props 属性之外的其他绑定在本组件上的属性（可以是 vue 的动态绑定属性或者 name type 这些原生/自定义属性）</p>
+
             </div>
             <hr/>
 
@@ -498,7 +539,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/10/18/vue%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%B0%86%E6%89%80%E6%9C%89%E6%9D%A5%E8%87%AA%E7%A5%96%E7%88%B6%E7%BB%84%E4%BB%B6%E7%9A%84props%E4%BC%A0%E9%80%92%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2020/10/18/vue%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%B0%86%E6%89%80%E6%9C%89%E6%9D%A5%E8%87%AA%E7%A5%96%E7%88%B6%E7%BB%84%E4%BB%B6%E7%9A%84props%E4%BC%A0%E9%80%92%E7%BB%99%E5%AD%90%E7%BB%84%E4%BB%B6/</a>
+                    <a href="http://itzhengjinhan.github.io/2020/10/18/vue%E4%B8%AD%20v-bind=%E2%80%9C$props%E2%80%9C%E5%92%8Cv-bind=%E2%80%9C$attrs%E2%80%9C%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/">http://itzhengjinhan.github.io/2020/10/18/vue%E4%B8%AD%20v-bind=%E2%80%9C$props%E2%80%9C%E5%92%8Cv-bind=%E2%80%9C$attrs%E2%80%9C%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
