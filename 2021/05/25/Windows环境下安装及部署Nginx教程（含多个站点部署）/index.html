@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JS 语法 ES6、ES7、ES8、ES9、ES10、ES11、ES12新特性, IT默小涵的个人博客">
+    <meta name="keywords" content="Windows环境下安装及部署Nginx教程（含多个站点部署）, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JS 语法 ES6、ES7、ES8、ES9、ES10、ES11、ES12新特性 | IT默小涵的个人博客</title>
+    <title>Windows环境下安装及部署Nginx教程（含多个站点部署） | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JS 语法 ES6、ES7、ES8、ES9、ES10、ES11、ES12新特性</h1>
+                    <h1 class="description center-align post-title">Windows环境下安装及部署Nginx教程（含多个站点部署）</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/es%E8%AF%AD%E6%B3%95/">
-                                <span class="chip bg-color">es语法</span>
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
                             </a>
                         
                     </div>
@@ -444,8 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/js/" class="post-category">
-                                js
+                            <a href="/categories/Nginx/" class="post-category">
+                                Nginx
                             </a>
                         
                     </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-01
+                    2021-05-25
                 </div>
                 
 
@@ -473,324 +473,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>记录贴：持续更新</p>
-<h2 id="一、ES6（2015）"><a href="#一、ES6（2015）" class="headerlink" title="一、ES6（2015）"></a>一、ES6（2015）</h2><ol>
-<li>类（class）</li>
-</ol>
-<pre><code>class Man &#123;
-  constructor(name) &#123;
-    this.name = &#39;小豪&#39;;
-  &#125;
-  console() &#123;
-    console.log(this.name);
-  &#125;
-&#125;
-const man = new Man(&#39;小豪&#39;);
-man.console(); // 小豪</code></pre><ol start="2">
-<li>模块化(ES Module)</li>
-</ol>
-<pre><code>// 模块 A 导出一个方法
-export const sub = (a, b) =&gt; a + b;
-// 模块 B 导入使用
-import &#123; sub &#125; from &#39;./A&#39;;
-console.log(sub(1, 2)); // 3</code></pre><ol start="3">
-<li>箭头（Arrow）函数</li>
-</ol>
-<pre><code>const func = (a, b) =&gt; a + b;
-func(1, 2); // 3</code></pre><ol start="4">
-<li>函数参数默认值</li>
-</ol>
-<pre><code>function foo(age = 25,)&#123; // ...&#125;</code></pre><ol start="5">
-<li>模板字符串</li>
-</ol>
-<pre><code>const name = &#39;小豪&#39;;
-const str = `Your name is $&#123;name&#125;`;</code></pre><ol start="6">
-<li>解构赋值</li>
-</ol>
-<pre><code>let a = 1, b= 2;
-[a, b] = [b, a]; // a 2  b 1</code></pre><ol start="7">
-<li>延展操作符</li>
-</ol>
-<pre><code>let a = [...&#39;hello world&#39;]; // [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot; &quot;, &quot;w&quot;, &quot;o&quot;, &quot;r&quot;, &quot;l&quot;, &quot;d&quot;]</code></pre><ol start="8">
-<li>对象属性简写</li>
-</ol>
-<pre><code>const name=&#39;小豪&#39;,
-const obj = &#123; name &#125;;</code></pre><ol start="9">
-<li>Promise</li>
-</ol>
-<pre><code>Promise.resolve().then(() =&gt; &#123; console.log(2); &#125;);
-console.log(1);
-// 先打印 1 ，再打印 2</code></pre><h2 id="二、ES7（2016）"><a href="#二、ES7（2016）" class="headerlink" title="二、ES7（2016）"></a>二、ES7（2016）</h2><ol>
-<li>Array.prototype.includes()</li>
-</ol>
-<pre><code>[1].includes(1); // true</code></pre><ol start="2">
-<li>指数操作符</li>
-</ol>
-<pre><code>2**10; // 1024</code></pre><h2 id="三、ES8（2017）"><a href="#三、ES8（2017）" class="headerlink" title="三、ES8（2017）"></a>三、ES8（2017）</h2><ol>
-<li>async/await:异步终极解决方案</li>
-</ol>
-<pre><code>async getData()&#123;
-    const res = await api.getTableData(); // await 异步任务
-    // do something
-&#125;</code></pre><ol start="2">
-<li>Object.values()和 Object.keys()</li>
-</ol>
-<pre><code>Object.values(&#123;a: 1, b: 2, c: 3&#125;); // [1, 2, 3]
-let person = &#123;name:&quot;张三&quot;,age:25,address:&quot;深圳&quot;,getName:function()&#123;&#125;&#125;
-Object.keys(person) // [&quot;name&quot;, &quot;age&quot;, &quot;address&quot;,&quot;getName&quot;]</code></pre><ol start="3">
-<li>Object.entries()</li>
-</ol>
-<pre><code>Object.entries(&#123;a: 1, b: 2, c: 3&#125;); // [[&quot;a&quot;, 1], [&quot;b&quot;, 2], [&quot;c&quot;, 3]]</code></pre><ol start="4">
-<li>padStart 和 padEnd</li>
-</ol>
-<pre><code>// padStart
-&#39;hello&#39;.padStart(10); // &quot;     hello&quot;
-// padEnd
-&#39;hello&#39;.padEnd(10) &quot;hello     &quot;</code></pre><ol start="5">
-<li>函数参数列表结尾允许逗号</li>
-</ol>
-<pre><code>let obj = &#123;
-    first: &#39;Jane&#39;,
-    last: &#39;Doe&#39;,
-&#125;;</code></pre><ol start="6">
-<li>Object.getOwnPropertyDescriptors()<br>获取一个对象的所有自身属性的描述符,如果没有任何自身属性，则返回空对象。</li>
-</ol>
-<pre><code>const obj = &#123;
-  foo: 123,
-  get bar() &#123; return &#39;abc&#39; &#125;
-&#125;;
-Object.getOwnPropertyDescriptors(obj)
- &#123; foo:
-    &#123; value: 123,
-      writable: true,
-      enumerable: true,
-      configurable: true &#125;,
-   bar:
-    &#123; get: [Function: bar],
-      set: undefined,
-      enumerable: true,
-      configurable: true &#125; &#125;
-该方法的引入目的，主要是为了解决 Object.assign() 无法正确拷贝 get 属性和 set 属性的问题。</code></pre><ol start="7">
-<li>SharedArrayBuffer 对象</li>
-</ol>
-<pre><code>SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区.</code></pre><ol start="8">
-<li>Atomics 对象</li>
-</ol>
-<pre><code>Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象进行原子操作。</code></pre><h2 id="四、ES9（2018）"><a href="#四、ES9（2018）" class="headerlink" title="四、ES9（2018）"></a>四、ES9（2018）</h2><ol>
-<li>异步迭代：await 可以和 for…of 循环一起使用，以串行的方式运行异步操作</li>
-</ol>
-<pre><code>async function process(array) &#123;
-  for await (let i of array) &#123;
-    // doSomething(i);
-  &#125;
-&#125;</code></pre><ol start="2">
-<li>Promise.finally()</li>
-</ol>
-<pre><code>Promise.resolve().then().catch(e =&gt; e).finally();</code></pre><ol start="3">
-<li>Rest/Spread 属性</li>
-</ol>
-<pre><code>const values = [1, 2, 3, 5, 6];
-console.log( Math.max(...values) ); // 6</code></pre><ol start="4">
-<li>正则表达式命名捕获组 groups</li>
-</ol>
-<pre><code>const reg = /(?&lt;year&gt;[0-9]&#123;4&#125;)-(?&lt;month&gt;[0-9]&#123;2&#125;)-(?&lt;day&gt;[0-9]&#123;2&#125;)/;
-const match = reg.exec(&#39;2021-02-23&#39;);
-//[
-    &quot;2021-02-23&quot;,
-    &quot;2021&quot;,
-    &quot;02&quot;,
-    &quot;23&quot;
-    groups:
-  &#123;
-    day: &quot;23&quot;
-    month: &quot;02&quot;
-    year: &quot;2021&quot;
- &#125;
-    index: 0
-    input: &quot;2021-02-23&quot;
-]</code></pre><h2 id="五、ES10（2019）"><a href="#五、ES10（2019）" class="headerlink" title="五、ES10（2019）"></a>五、ES10（2019）</h2><ol>
-<li>Array.flat()和 Array.flatMap()</li>
-</ol>
-<pre><code>flat()
-[1, 2, [3, 4]].flat(Infinity); // [1, 2, 3, 4]
-flatMap()
-[1, 2, 3, 4].flatMap(a =&gt; [a**2]); // [1, 4, 9, 16]</code></pre><ol start="2">
-<li><p>String.trimStart()和 String.trimEnd()<br>去除字符串首尾空白字符</p>
+                <h3 id="一、下载安装-Nginx"><a href="#一、下载安装-Nginx" class="headerlink" title="一、下载安装 Nginx"></a>一、下载安装 Nginx</h3><ol>
+<li><p>网下载地址：<a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">https://nginx.org/en/download.html</a></p>
 </li>
-<li><p>String.prototype.matchAll<br>matchAll（）为所有匹配的匹配对象返回一个迭代器</p>
+<li><p>下载教程：选择最新的 Stable version（稳定版本）下载到本地</p>
 </li>
 </ol>
-<pre><code>const raw_arr = &#39;test1  test2  test3&#39;.matchAll((/t(e)(st(\d?))/g));
-const arr = [...raw_arr];</code></pre><ol start="4">
-<li><p>Symbol.prototype.description<br>只读属性，回 Symbol 对象的可选描述的字符串。<br>Symbol(‘description’).description; // ‘description’</p>
-</li>
-<li><p>Object.fromEntries()<br>返回一个给定对象自身可枚举属性的键值对数组</p>
-</li>
+<p><img src="https://pic.imgdb.cn/item/661be1d468eb935713465b10.jpg" alt=""></p>
+<ol start="3">
+<li>下载完成后，解压放入本地非中文的文件夹中</li>
 </ol>
-<pre><code>// 通过 Object.fromEntries， 可以将 Map 转化为 Object:
-const map = new Map([ [&#39;foo&#39;, &#39;bar&#39;], [&#39;baz&#39;, 42] ]);
-console.log(Object.fromEntries(map)); // &#123; foo: &quot;bar&quot;, baz: 42 &#125;</code></pre><h2 id="六、ES11（2020）"><a href="#六、ES11（2020）" class="headerlink" title="六、ES11（2020）"></a>六、ES11（2020）</h2><ol>
-<li>Nullish coalescing Operator(空值处理)<br>表达式在 ?? 的左侧 运算符求值为 undefined 或 null，返回其右侧。</li>
-</ol>
-<pre><code>let user = &#123;
-    u1: 0,
-    u2: false,
-    u3: null,
-    u4: undefined
-    u5: &#39;&#39;,
-&#125;
-let u2 = user.u2 ?? &#39;用户2&#39;  // false
-let u3 = user.u3 ?? &#39;用户3&#39;  // 用户3
-let u4 = user.u4 ?? &#39;用户4&#39;  // 用户4
-let u5 = user.u5 ?? &#39;用户5&#39;  // &#39;&#39;</code></pre><ol start="2">
-<li>Optional chaining（可选链）<br>?.用户检测不确定的中间节点</li>
-</ol>
-<pre><code>let user = &#123;&#125;
-let u1 = user.childer.name // TypeError: Cannot read property &#39;name&#39; of undefined
-let u1 = user.childer?.name // undefined</code></pre><ol start="4">
-<li>import()<br>按需导入</li>
-</ol>
-<h2 id="七、ES12（2021）"><a href="#七、ES12（2021）" class="headerlink" title="七、ES12（2021）"></a>七、ES12（2021）</h2><ol>
-<li>replaceAll<br>返回一个全新的字符串，所有符合匹配规则的字符都将被替换掉</li>
-</ol>
-<pre><code>const str = &#39;hello world&#39;;
-str.replaceAll(&#39;l&#39;, &#39;&#39;); // &quot;heo word&quot;</code></pre><ol start="2">
-<li>数字分隔符<br>可以在数字之间创建可视化分隔符，通过_下划线来分割数字，使数字更具可读性</li>
-</ol>
-<pre><code>const money = 1_000_000_000;
-//等价于
-const money = 1000000000;
-1_000_000_000 === 1000000000; // true</code></pre><ol start="3">
-<li>Promise.any<br>返回一个在所有给定的 promise 已被决议或被拒绝后决议的 promise，并带有一个对象数组，每个对象表示对应的 promise 结果</li>
-</ol>
-<pre><code>Promise.any() 接收一个Promise可迭代对象，只要其中的一个 promise 成功，就返回那个已经成功的 promise 。如果可迭代对象中没有一个 promise 成功（即所有的 promises 都失败/拒绝），就返回一个失败的 promise
-const promise1 = new Promise((resolve, reject) =&gt; reject(&#39;我是失败的Promise_1&#39;));
-const promise2 = new Promise((resolve, reject) =&gt; reject(&#39;我是失败的Promise_2&#39;));
-const promiseList = [promise1, promise2];
-Promise.any(promiseList)
-.then(values=&gt;&#123;
-  console.log(values);
-&#125;)
-.catch(e=&gt;&#123;
-  console.log(e);
-&#125;);</code></pre><ol start="4">
-<li>逻辑运算符和赋值表达式<br>逻辑运算符和赋值表达式，新特性结合了逻辑运算符（&amp;&amp;，||，??）和赋值表达式而 JavaScript 已存在的 复合赋值运算符有：</li>
-</ol>
-<pre><code>a ||= b
-//等价于
-a = a || (a = b)
-a &amp;&amp;= b
-//等价于
-a = a &amp;&amp; (a = b)
-a ??= b
-//等价于
-a = a ?? (a = b)</code></pre><h2 id="八、ES13（2022）"><a href="#八、ES13（2022）" class="headerlink" title="八、ES13（2022）"></a>八、ES13（2022）</h2><ol>
-<li>error.cause</li>
-</ol>
-<p>这是一个关于错误捕获的特性，下文代码列举了过去我们常使用的三种捕获错误的方式。</p>
-<pre><code>async function doJob() &#123;
-  const rawResource = await fetch(&#39;/test&#39;)
-    .catch(err =&gt; &#123;
-      // 下面三种是过去常用的一些捕获错误的代码方式
+<h3 id="二、启动-nginx"><a href="#二、启动-nginx" class="headerlink" title="二、启动 nginx"></a>二、启动 nginx</h3><p>注意：启动前，切勿直接双击 nginx.exe</p>
+<p>推荐使用 cmd 命令行：输入 start nginx</p>
+<pre><code>相关启动命令
+注意不要直接双击nginx.exe，这样会导致修改配置后重启、停止nginx无效，需要手动关闭任务管理器内的所有nginx进程
+ 在nginx.exe目录，打开命令行工具，用命令 启动/关闭/重启nginx
+ start nginx : 启动nginx
+ nginx -s reload  ：修改配置后重新加载生效
+ nginx -s reopen  ：重新打开日志文件
+ nginx -t -c /path/to/nginx.conf 测试nginx配置文件是否正确
+       关闭nginx：
+ nginx -s stop  :快速停止nginx
+ nginx -s quit  ：完整有序的停止nginx
+ 如果遇到报错：
+ bash: nginx: command not found
+ 有可能是你再linux命令行环境下运行了windows命令，
+ 如果你之前是允许 nginx -s reload报错， 试下 ./nginx -s reload
+ 或者 用windows系统自带命令行工具运行</code></pre><h3 id="三、查看是否启动成功"><a href="#三、查看是否启动成功" class="headerlink" title="三、查看是否启动成功"></a>三、查看是否启动成功</h3><p>在浏览器输入：<a href="https://localhost:端口，能看到界面说明启动成功">https://localhost:端口，能看到界面说明启动成功</a></p>
+<p><img src="https://pic.imgdb.cn/item/661be22568eb935713468593.jpg" alt=""></p>
+<h3 id="四、部署前端页面"><a href="#四、部署前端页面" class="headerlink" title="四、部署前端页面"></a>四、部署前端页面</h3><p>将打包后的 vue 文件 dist 目录下的文件复制到 html 文件下面</p>
+<p><img src="https://pic.imgdb.cn/item/661be26868eb93571346d97f.jpg" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/661be26968eb93571346dad0.jpg" alt=""></p>
+<h3 id="五、多个站点部署"><a href="#五、多个站点部署" class="headerlink" title="五、多个站点部署"></a>五、多个站点部署</h3><p>虚拟主机可以在一台 nginx 服务器上运行多个网站。</p>
+<p>修改 nginx.conf 文件，如图：</p>
+<p><img src="https://pic.imgdb.cn/item/661be6b868eb9357134af671.jpg" alt=""></p>
+<p>分别将前端静态资源分配到 web 下的不同目录即可，如果需要配置域名，则 server_name 改成对应域名</p>
+<p>若出现编码错乱，需要添加 charset utf-8;</p>
+<p><img src="https://pic.imgdb.cn/item/661be77a68eb9357134c2b20.jpg" alt=""></p>
 
-      // 1. throw new Error(&#39;下载资源失败: &#39; + err.message);
-
-      // 2. const wrapErr = new Error(&#39;下载资源失败&#39;);
-      //    wrapErr.cause = err;
-      //    throw wrapErr;
-
-      // 3. class CustomError extends Error &#123;
-      //      constructor(msg, cause) &#123;
-      //        super(msg);
-      //        this.cause = cause;
-      //      &#125;
-      //    &#125;
-      //    throw new CustomError(&#39;下载资源失败&#39;, err);
-    &#125;)
-&#125;
-
-await doJob(); // =&gt; Uncaught Error: 下载资源失败: Failed to fetch</code></pre><p>过去的捕获错误的写法比较复杂，而且开发人员对具体使用哪个属性来获取错误的上下文没有达成共识。<br>新特性是在 Error 构造函数上添加一个附加选项参数 cause，其值将作为属性分配给错误实例。因此，可以将错误链接起来。</p>
-<pre><code>async function doJob() &#123;
-  const rawResource = await fetch(&#39;/test&#39;)
-    .catch(err =&gt; &#123;
-      throw new Error(&#39;下载资源失败&#39;, &#123; cause: err &#125;);
-    &#125;);
-&#125;
-
-try &#123;
-  await doJob();
-&#125; catch (e) &#123;
-  console.log(e);
-  console.log(&#39;Caused by&#39;, e.cause);
-&#125;
-// Error: 下载资源失败
-// Caused by TypeError: Failed to fetch
-</code></pre><ol start="2">
-<li>Top-level await</li>
-</ol>
-<p>我们现在可以在模块的顶层使用 await， 并且不再需要配合 async 函数使用。</p>
-<pre><code>const strings = await import(`/i18n/$&#123;navigator.language&#125;`);
-
-//依赖发生故障时，可以回退到旧版本，防止程序崩溃。
-let jQuery;
-try &#123;
-  jQuery = await import(&#39;https://cdn-a.com/jQuery&#39;);
-&#125; catch &#123;
-  jQuery = await import(&#39;https://cdn-b.com/jQuery&#39;);
-&#125;
-</code></pre><ol start="3">
-<li>Object.hasOwn(obj, propKey)</li>
-</ol>
-<p>Object.hasOwn() 方法是比 Object.prototype.hasOwnProperty() 方法更加 便捷 和 安全 的策略。<br>例如 Object.create(null) 创建一个不继承自 Object.prototype 的对象，使 hasOwnProperty 方法无法访问。</p>
-<pre><code>Object.create(null).hasOwnProperty(&quot;foo&quot;)
-// Uncaught TypeError: Object.create(...).hasOwnProperty is not a function
-
-let object = &#123; foo: false &#125;
-Object.hasOwn(object, &quot;foo&quot;) // true
-
-let object2 = Object.create(&#123; foo: true &#125;)
-Object.hasOwn(object2, &quot;foo&quot;) // false
-
-let object3 = Object.create(null)
-Object.hasOwn(object3, &quot;foo&quot;) // false
-</code></pre><ol start="4">
-<li>New members of classes</li>
-</ol>
-<p>class 支持在 constructor 外部直接声明变量，过去我们必须在内部声明。</p>
-<pre><code>class Cat &#123;
-  gender = &#39;female&#39;
-&#125;
-let cat = new Cat()
-cat.gender // female
-</code></pre><p>私有变量和私有方法<br>class 的最近改动里加入了 #，用来将类中的变量、方法或访问器标记为私有，从外部访问私有化的内容，会直接报错。</p>
-<pre><code>class Cat &#123;
-  #name = &#39;kitty&#39;
-  gender = &#39;female&#39;
-
-  setName = () =&gt; &#123;
-    this.#name = &#39;jack&#39;
-      console.log(this.#name)
-  &#125;
-
-  #setGender = () =&gt; &#123;
-    this.gender= &#39;male&#39;
-  &#125;
-&#125;
-let cat = new Cat()
-cat.#name // SyntaxError
-cat.gender // &#39;female&#39;
-cat.setName() // &#39;jack&#39;
-cat.#setGender // SyntaxError
-</code></pre><ol start="5">
-<li>at（）</li>
-</ol>
-<p>.at()支持我们读取给定索引处的元素。它可以接受负索引来从给定数据类型的末尾读取元素。<br>过去我们需要这样来获取数组末尾元素：</p>
-<pre><code>const arr = [1,2,3,4,5];
-arr[arr.length-1] // 5
-
-const arr = [1,2,3,4,5];
-arr.at(-1) // 5
-</code></pre>
             </div>
             <hr/>
 
@@ -815,7 +535,7 @@ arr.at(-1) // 5
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/08/01/ES%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">http://itzhengjinhan.github.io/2020/08/01/ES%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</a>
+                    <a href="http://itzhengjinhan.github.io/2021/05/25/Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%8F%8A%E9%83%A8%E7%BD%B2Nginx%E6%95%99%E7%A8%8B%EF%BC%88%E5%90%AB%E5%A4%9A%E4%B8%AA%E7%AB%99%E7%82%B9%E9%83%A8%E7%BD%B2%EF%BC%89/">http://itzhengjinhan.github.io/2021/05/25/Windows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E5%8F%8A%E9%83%A8%E7%BD%B2Nginx%E6%95%99%E7%A8%8B%EF%BC%88%E5%90%AB%E5%A4%9A%E4%B8%AA%E7%AB%99%E7%82%B9%E9%83%A8%E7%BD%B2%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -853,8 +573,8 @@ arr.at(-1) // 5
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/es%E8%AF%AD%E6%B3%95/">
-                                    <span class="chip bg-color">es语法</span>
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
                                 </a>
                             
                         </div>
@@ -1026,13 +746,13 @@ arr.at(-1) // 5
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/08/05/%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%80%BB%E7%BB%93/">
+                <a href="/2021/06/24/Node.js+Express+Mysql%20%E5%AE%9E%E7%8E%B0%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/46.jpg" class="responsive-img" alt="总结跨域的解决方法">
+                        <img src="/medias/featureimages/33.jpg" class="responsive-img" alt="Node.js+Express+Mysql 实现增删改查">
                         
-                        <span class="card-title">总结跨域的解决方法</span>
+                        <span class="card-title">Node.js+Express+Mysql 实现增删改查</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1043,14 +763,14 @@ arr.at(-1) // 5
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-24
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/js/" class="post-category">
-                                    js
+                            <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/" class="post-category">
+                                    服务器端
                                 </a>
                             
                             
@@ -1060,8 +780,16 @@ arr.at(-1) // 5
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B7%A8%E5%9F%9F/">
-                        <span class="chip bg-color">跨域</span>
+                    <a href="/tags/mysql/">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/node/">
+                        <span class="chip bg-color">node</span>
+                    </a>
+                    
+                    <a href="/tags/express/">
+                        <span class="chip bg-color">express</span>
                     </a>
                     
                 </div>
@@ -1075,13 +803,13 @@ arr.at(-1) // 5
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/08/promise,async,await%E8%AF%A6%E8%A7%A3/">
+                <a href="/2021/05/15/nvm%E3%80%81nrm%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="promise,async/await详解">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="nvm nrm工具使用总结">
                         
-                        <span class="card-title">promise,async/await详解</span>
+                        <span class="card-title">nvm nrm工具使用总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1092,14 +820,14 @@ arr.at(-1) // 5
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/js/" class="post-category">
-                                    js
+                            <a href="/categories/nvm-nrm/" class="post-category">
+                                    nvm nrm
                                 </a>
                             
                             
@@ -1109,16 +837,12 @@ arr.at(-1) // 5
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%BC%82%E6%AD%A5%E6%96%B9%E6%A1%88/">
-                        <span class="chip bg-color">异步方案</span>
+                    <a href="/tags/nvm/">
+                        <span class="chip bg-color">nvm</span>
                     </a>
                     
-                    <a href="/tags/promise/">
-                        <span class="chip bg-color">promise</span>
-                    </a>
-                    
-                    <a href="/tags/async-await/">
-                        <span class="chip bg-color">async/await</span>
+                    <a href="/tags/nrm/">
+                        <span class="chip bg-color">nrm</span>
                     </a>
                     
                 </div>

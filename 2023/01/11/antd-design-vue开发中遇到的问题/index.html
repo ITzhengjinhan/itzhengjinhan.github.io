@@ -486,7 +486,12 @@
 在methods中
 beforeToday(current)&#123;
   return current&gt;moment()
-&#125;</code></pre>
+&#125;</code></pre><h3 id="如何新开页签打开新的页面"><a href="#如何新开页签打开新的页面" class="headerlink" title="如何新开页签打开新的页面"></a>如何新开页签打开新的页面</h3><pre><code>let &#123;href&#125; = this.$router.resolve(&#123;
+  path:&#39;/xxx&#39;,
+  param:xxx
+&#125;)
+
+window.open(href,&#39;_blank&#39;)</code></pre>
             </div>
             <hr/>
 
