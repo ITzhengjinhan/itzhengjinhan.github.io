@@ -473,7 +473,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="1、格式化"><a href="#1、格式化" class="headerlink" title="1、格式化"></a>1、格式化</h3><p>JSON.stringify 也有一个内置的格式化程序！</p>
+                <h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="1、格式化"><a href="#1、格式化" class="headerlink" title="1、格式化"></a>1、格式化</h3><p>JSON.stringify 也有一个内置的格式化程序！</p>
 <pre><code>const user = &#123;
   name: &#39;John&#39;,
   age: 30,
@@ -582,7 +582,7 @@ function deRepeat(arr)&#123;
         return pre;
     &#125;,[])
     return arr;
-&#125;</code></pre><h3 id="4、根据条件保留某些节点"><a href="#4、根据条件保留某些节点" class="headerlink" title="4、根据条件保留某些节点"></a>4、根据条件保留某些节点</h3><p>从树 tree 中过滤掉，树的 key 不在 bList 数组中的节点</p>
+&#125;</code></pre><h2 id="树结构数据"><a href="#树结构数据" class="headerlink" title="树结构数据"></a>树结构数据</h2><h3 id="1、根据条件保留某些节点"><a href="#1、根据条件保留某些节点" class="headerlink" title="1、根据条件保留某些节点"></a>1、根据条件保留某些节点</h3><p>从树 tree 中过滤掉，树的 key 不在 bList 数组中的节点</p>
 <pre><code>    filterTreeArray(tree, bList) &#123;
         return tree.filter(item =&gt; &#123;
             return bList.indexOf(item.key) &gt; -1
@@ -644,7 +644,7 @@ function deRepeat(arr)&#123;
         &#125;,
     ]
 
-    */</code></pre><h3 id="5、通过-id-过滤树的-id-所在子节点"><a href="#5、通过-id-过滤树的-id-所在子节点" class="headerlink" title="5、通过 id 过滤树的 id 所在子节点"></a>5、通过 id 过滤树的 id 所在子节点</h3><pre><code>/**
+    */</code></pre><h3 id="2、通过-id-过滤树的-id-所在子节点"><a href="#2、通过-id-过滤树的-id-所在子节点" class="headerlink" title="2、通过 id 过滤树的 id 所在子节点"></a>2、通过 id 过滤树的 id 所在子节点</h3><pre><code>/**
  * 通过id过滤树的id所在子节点
  * @param tree 树型数据
  * @param ids  id集合
@@ -662,8 +662,73 @@ export function filterTreeArray(tree, ids, keyName = &#39;id&#39;) &#123;
       &#125;
       return item;
     &#125;);
-&#125;</code></pre><h3 id="6、通过-id-获取树的完整路径"><a href="#6、通过-id-获取树的完整路径" class="headerlink" title="6、通过 id 获取树的完整路径"></a>6、通过 id 获取树的完整路径</h3><pre><code>/**
- * 通过id获取树的完整路径
+&#125;</code></pre><pre><code>测试数据
+const provinceList = [
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];
+filterTreeArray(provinceList,[&#39;100101&#39;,&#39;100102&#39;]);
+
+打印结果：洪山区和武昌区被过滤了
+[
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];</code></pre><h3 id="3、获取包含-id-的父级及其当前节点的完整路径"><a href="#3、获取包含-id-的父级及其当前节点的完整路径" class="headerlink" title="3、获取包含 id 的父级及其当前节点的完整路径"></a>3、获取包含 id 的父级及其当前节点的完整路径</h3><pre><code>/**
+ * 获取包含 id 的父级及其当前节点的完整路径
  * @param tree 树型数据
  * @param ids  id集合
  * @param keyName 关键字
@@ -682,7 +747,59 @@ export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
     &#125;
   &#125;
   return result;
-&#125;</code></pre><h3 id="7、修改数组中对象的-key-值"><a href="#7、修改数组中对象的-key-值" class="headerlink" title="7、修改数组中对象的 key 值"></a>7、修改数组中对象的 key 值</h3><pre><code>     findItem(treeArr) &#123;
+&#125;</code></pre><pre><code>测试数据
+const provinceList = [
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];
+findPathById(provinceList,[&#39;100101&#39;,&#39;100102&#39;]);
+
+打印结果：只返回了洪山区和武昌区的完整路径
+[
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+        ],
+      &#125;,
+    ],
+  &#125;,
+];</code></pre><h3 id="4、将树中的-id-换成-key"><a href="#4、将树中的-id-换成-key" class="headerlink" title="4、将树中的 id 换成 key"></a>4、将树中的 id 换成 key</h3><pre><code>     findItem(treeArr) &#123;
       function eachItem(arr) &#123;
         let res = arr.filter(item =&gt; &#123;
           if (item.children &amp;&amp; item.children.length &gt; 0) &#123;
@@ -697,16 +814,6 @@ export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
     &#125;,
     //[
     //     &#123;
-    //         key: 6,
-    //         path: &quot;/modal&quot;,
-    //         name: &quot;弹窗&quot;,
-    //         component: &quot;modal/index&quot;,
-    //         title: &quot;弹窗&quot;, icon: &quot;home&quot;, children: []
-    //       &#125;
-    //]
-
-    //[
-    //     &#123;
     //         id: 6,
     //         path: &quot;/modal&quot;,
     //         name: &quot;弹窗&quot;,
@@ -714,77 +821,162 @@ export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
     //         title: &quot;弹窗&quot;, icon: &quot;home&quot;, children: []
     //       &#125;
     //]
-</code></pre><h3 id="8、实现树形结构与数组的相互转换"><a href="#8、实现树形结构与数组的相互转换" class="headerlink" title="8、实现树形结构与数组的相互转换"></a>8、实现树形结构与数组的相互转换</h3><pre><code>const arr =[
-    &#123;id:2,name:&#39;部门B&#39;,parentId:0&#125;,
-    &#123;id:3,name:&#39;部门C&#39;,parentId:1&#125;,
-    &#123;id:1,name:&#39;部门A&#39;,parentId:2&#125;,
-    &#123;id:4,name:&#39;部门D&#39;,parentId:1&#125;,
-    &#123;id:5,name:&#39;部门E&#39;,parentId:2&#125;,
-    &#123;id:6,name:&#39;部门F&#39;,parentId:3&#125;,
-    &#123;id:7,name:&#39;部门G&#39;,parentId:2&#125;,
-    &#123;id:8,name:&#39;部门H&#39;,parentId:4&#125;
+    // =================================&gt;
+    //[
+    //     &#123;
+    //         key: 6,
+    //         path: &quot;/modal&quot;,
+    //         name: &quot;弹窗&quot;,
+    //         component: &quot;modal/index&quot;,
+    //         title: &quot;弹窗&quot;, icon: &quot;home&quot;, children: []
+    //       &#125;
+    //]
+</code></pre><h3 id="5、实现树形结构与数组的相互转换"><a href="#5、实现树形结构与数组的相互转换" class="headerlink" title="5、实现树形结构与数组的相互转换"></a>5、实现树形结构与数组的相互转换</h3><pre><code>const arr =[
+  &#123;id:2,name:&#39;部门 B&#39;,parentId:0&#125;,
+  &#123;id:3,name:&#39;部门 C&#39;,parentId:1&#125;,
+  &#123;id:1,name:&#39;部门 A&#39;,parentId:2&#125;,
+  &#123;id:4,name:&#39;部门 D&#39;,parentId:1&#125;,
+  &#123;id:5,name:&#39;部门 E&#39;,parentId:2&#125;,
+  &#123;id:6,name:&#39;部门 F&#39;,parentId:3&#125;,
+  &#123;id:7,name:&#39;部门 G&#39;,parentId:2&#125;,
+  &#123;id:8,name:&#39;部门 H&#39;,parentId:4&#125;
 ];
 
 数组转树形结构
 
-function arrToTree(&#123;arrayList, pidStr = &#39;pid&#39;, idStr = &#39;id&#39;, childrenStr = &#39;children&#39;&#125;) &#123;
+function arrToTree(&#123;
+  arrayList,
+  pidStr = &quot;pid&quot;,
+  idStr = &quot;id&quot;,
+  childrenStr = &quot;children&quot;,
+&#125;) &#123;
   let listOjb = &#123;&#125;; // 用来储存&#123;key: obj&#125;格式的对象
   let treeList = []; // 用来储存最终树形结构数据的数组
   // 将数据变换成&#123;key: obj&#125;格式，方便下面处理数据
   for (let i = 0; i &lt; arrayList.length; i++) &#123;
-      listOjb[arrayList[i][idStr]] = arrayList[i]
+    listOjb[arrayList[i][idStr]] = arrayList[i];
   &#125;
-  // 根据pid来将数据进行格式化
+  // 根据 pid 来将数据进行格式化
   for (let j = 0; j &lt; arrayList.length; j++) &#123;
-      // 判断父级是否存在
-      let haveParent = listOjb[arrayList[j][pidStr]]
-      if (haveParent) &#123;
-          // 如果有没有父级children字段，就创建一个children字段
-          !haveParent[childrenStr] &amp;&amp; (haveParent[childrenStr] = [])
-          // 在父级里插入子项
-          haveParent[childrenStr].push(arrayList[j])
-      &#125; else &#123;
-          // 如果没有父级直接插入到最外层
-          treeList.push(arrayList[j])
-      &#125;
+    // 判断父级是否存在
+    let haveParent = listOjb[arrayList[j][pidStr]];
+    if (haveParent) &#123;
+      // 如果有没有父级 children 字段，就创建一个 children 字段
+      !haveParent[childrenStr] &amp;&amp; (haveParent[childrenStr] = []);
+      // 在父级里插入子项
+      haveParent[childrenStr].push(arrayList[j]);
+    &#125; else &#123;
+      // 如果没有父级直接插入到最外层
+      treeList.push(arrayList[j]);
+    &#125;
   &#125;
-  return treeList
+  return treeList;
 &#125;
 
 
-树形结构转数组
+数据测试
+arrToTree(&#123;arrayList:arr,pidStr:&#39;parentId&#39;&#125;);
+
+[
+    &#123;
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;部门 B&quot;,
+        &quot;parentId&quot;: 0,
+        &quot;children&quot;: [
+            &#123;
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;部门 A&quot;,
+                &quot;parentId&quot;: 2,
+                &quot;children&quot;: [
+                    &#123;
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;部门 C&quot;,
+                        &quot;parentId&quot;: 1,
+                        &quot;children&quot;: [
+                            &#123;
+                                &quot;id&quot;: 6,
+                                &quot;name&quot;: &quot;部门 F&quot;,
+                                &quot;parentId&quot;: 3
+                            &#125;
+                        ]
+                    &#125;,
+                    &#123;
+                        &quot;id&quot;: 4,
+                        &quot;name&quot;: &quot;部门 D&quot;,
+                        &quot;parentId&quot;: 1,
+                        &quot;children&quot;: [
+                            &#123;
+                                &quot;id&quot;: 8,
+                                &quot;name&quot;: &quot;部门 H&quot;,
+                                &quot;parentId&quot;: 4
+                            &#125;
+                        ]
+                    &#125;
+                ]
+            &#125;,
+            &#123;
+                &quot;id&quot;: 5,
+                &quot;name&quot;: &quot;部门 E&quot;,
+                &quot;parentId&quot;: 2
+            &#125;,
+            &#123;
+                &quot;id&quot;: 7,
+                &quot;name&quot;: &quot;部门 G&quot;,
+                &quot;parentId&quot;: 2
+            &#125;
+        ]
+    &#125;
+]
+</code></pre><pre><code>树形结构转扁平化数组
 
 function treeToArr(data) &#123;
   const result = [];
-  data.forEach(item =&gt; &#123;
-      const loop = data =&gt; &#123;
-          result.push(&#123;
-            id: data.id,
-            name: data.name,
-            parentId: data.parentId
-          &#125;);
-          let child = data.children
-          if(child)&#123;
-            for(let i = 0; i &lt; child.length; i++)&#123;
-              loop(child[i])
-            &#125;
-          &#125;
+  data.forEach((item) =&gt; &#123;
+    const loop = (data) =&gt; &#123;
+      result.push(&#123;
+        id: data.id,
+        name: data.name,
+        parentId: data.parentId,
+      &#125;);
+      let child = data.children;
+      if (child) &#123;
+        for (let i = 0; i &lt; child.length; i++) &#123;
+          loop(child[i]);
+        &#125;
       &#125;
-      loop(item);
-  &#125;)
+    &#125;;
+    loop(item);
+  &#125;);
   return result;
-&#125;</code></pre><h3 id="9、获取树结构中指定的所有的-key-集合"><a href="#9、获取树结构中指定的所有的-key-集合" class="headerlink" title="9、获取树结构中指定的所有的 key 集合"></a>9、获取树结构中指定的所有的 key 集合</h3><pre><code>      const pathList: string[] = [];
-      const loop = (backMenuTree: any[], pathList: string[]) =&gt; &#123;
-        backMenuTree?.forEach((item) =&gt; &#123;
-          if (item.children) &#123;
-            pathList.push(item.resourcePath);
-            return loop(item.children, pathList);
-          &#125; else &#123;
-            pathList.push(item.resourcePath);
-          &#125;
-        &#125;);
-      &#125;;
-      loop(backMenuTree, pathList);</code></pre><h3 id="10、判断某个节点是否存在，存在返回-true，否则返回-false"><a href="#10、判断某个节点是否存在，存在返回-true，否则返回-false" class="headerlink" title="10、判断某个节点是否存在，存在返回 true，否则返回 false"></a>10、判断某个节点是否存在，存在返回 true，否则返回 false</h3><pre><code>const provinceList = [
+&#125;
+
+数据测试
+[
+  &#123;id:2,name:&#39;部门 B&#39;,parentId:0&#125;,
+  &#123;id:3,name:&#39;部门 C&#39;,parentId:1&#125;,
+  &#123;id:1,name:&#39;部门 A&#39;,parentId:2&#125;,
+  &#123;id:4,name:&#39;部门 D&#39;,parentId:1&#125;,
+  &#123;id:5,name:&#39;部门 E&#39;,parentId:2&#125;,
+  &#123;id:6,name:&#39;部门 F&#39;,parentId:3&#125;,
+  &#123;id:7,name:&#39;部门 G&#39;,parentId:2&#125;,
+  &#123;id:8,name:&#39;部门 H&#39;,parentId:4&#125;
+];</code></pre><h3 id="6、获取树结构中指定的所有的-key-集合"><a href="#6、获取树结构中指定的所有的-key-集合" class="headerlink" title="6、获取树结构中指定的所有的 key 集合"></a>6、获取树结构中指定的所有的 key 集合</h3><pre><code>function getAllKey(backMenuTree)&#123;
+  const pathList = [];
+  const loop = (backMenuTree, pathList) =&gt; &#123;
+    backMenuTree?.forEach((item) =&gt; &#123;
+      if (item.children) &#123;
+        pathList.push(item.key);
+        return loop(item.children, pathList);
+      &#125; else &#123;
+        pathList.push(item.key);
+      &#125;
+    &#125;);
+  &#125;;
+  loop(backMenuTree, pathList);
+  return pathList;
+&#125;
+</code></pre><pre><code>测试数据
+const provinceList = [
   &#123;
     id: &quot;1000&quot;,
     label: &quot;湖北省&quot;,
@@ -817,7 +1009,9 @@ function treeToArr(data) &#123;
   &#125;,
 ];
 
-const treeFindFn = (tree, func) =&gt; &#123;
+getAllKey(provinceList);
+
+[&#39;1000&#39;, &#39;1001&#39;, &#39;100101&#39;, &#39;100102&#39;, &#39;100103&#39;, &#39;1020&#39;, &#39;1022&#39;, &#39;1034&#39;, &#39;1003&#39;, &#39;1200&#39;, &#39;1201&#39;, &#39;1202&#39;, &#39;1204&#39;]</code></pre><h3 id="7、判断某个节点是否存在，存在返回节点所在的-item，否则返回-false"><a href="#7、判断某个节点是否存在，存在返回节点所在的-item，否则返回-false" class="headerlink" title="7、判断某个节点是否存在，存在返回节点所在的 item，否则返回 false"></a>7、判断某个节点是否存在，存在返回节点所在的 item，否则返回 false</h3><pre><code>const treeFindFn = (tree, func) =&gt; &#123;
   for (let node of tree) &#123;
     if (func(node)) return node;
     if (node.children) &#123;
@@ -827,26 +1021,183 @@ const treeFindFn = (tree, func) =&gt; &#123;
   &#125;
   return false;
 &#125;;
-
-// 测试代码
-let findFlag1 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;1020&quot;);
-let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&quot;);
-</code></pre><h3 id="11、根据-id-找到对应数据-name"><a href="#11、根据-id-找到对应数据-name" class="headerlink" title="11、根据 id 找到对应数据 name"></a>11、根据 id 找到对应数据 name</h3><pre><code>function getTreeName(list,id)&#123;
-       let _this=this
-      for (let i = 0; i &lt; list.length; i++) &#123;
-        let a=list[i]
-        if(a.id===id)&#123;
-          return a.name
-        &#125;else&#123;
-          if(a.children &amp;&amp; a.children.length&gt;0)&#123;
-            let res=_this.getTreeName(a.children,id)
-            if(res)&#123;
-              return res
-            &#125;
-          &#125;
-        &#125;
+</code></pre><pre><code>// 测试数据
+const provinceList = [
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];
+let findFlag1 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;1020&quot;); // &#123;id: &#39;1020&#39;, pid: &#39;1000&#39;, label: &#39;咸宁&#39;, key: &#39;1020&#39;&#125;
+let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&quot;); // false
+</code></pre><h3 id="8、根据-id-查找树结构中的某一项"><a href="#8、根据-id-查找树结构中的某一项" class="headerlink" title="8、根据 id 查找树结构中的某一项"></a>8、根据 id 查找树结构中的某一项</h3><pre><code>function findItemById(list, id) &#123;
+  let target = null;
+  const recursion = (list) =&gt; &#123;
+    if (target) return false;
+    list.forEach((item) =&gt; &#123;
+      if (item.id === id) &#123;
+        target = item;
+      &#125; else if (item.children &amp;&amp; item.children.length !== 0) &#123;
+        recursion(item.children);
       &#125;
+    &#125;);
+  &#125;;
+  recursion(list, id);
+  return target;
+&#125;
+</code></pre><h3 id="9、根据-id-查找父级路径-扁平返回"><a href="#9、根据-id-查找父级路径-扁平返回" class="headerlink" title="9、根据 id 查找父级路径(扁平返回)"></a>9、根据 id 查找父级路径(扁平返回)</h3><pre><code>function findPathById(treeList, id) &#123;
+    const path = []
+    try &#123;
+        const getPath = node =&gt; &#123;
+            path.push(node)
+            if (node.id === id) &#123;
+                throw new Error(&#39;GOT IT&#39;)
+            &#125;
+            if (node.children &amp;&amp; node.children.length !== 0) &#123;
+                node.children.forEach(item =&gt; &#123;
+                    getPath(item)
+                &#125;)
+                path.pop()
+            &#125; else &#123;
+                path.pop()
+            &#125;
+        &#125;
+        for (let i = 0; i &lt; treeList.length; i++) &#123;
+            getPath(treeList[i])
+        &#125;
+    &#125; catch (e) &#123;&#125;
+    return path
+&#125;
+</code></pre><pre><code>// 测试数据
+const provinceList = [
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];
+
+findPathById(provinceList,&#39;1201&#39;);
+
+[
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    &quot;id&quot;: &quot;1201&quot;,
+    &quot;pid&quot;: &quot;1200&quot;,
+    &quot;label&quot;: &quot;南京&quot;,
+  &#125;
+]
+</code></pre><h3 id="10、根据-id-查找完整的-label-名称"><a href="#10、根据-id-查找完整的-label-名称" class="headerlink" title="10、根据 id 查找完整的 label 名称"></a>10、根据 id 查找完整的 label 名称</h3><pre><code>function getFullNameById(tree, id) &#123;
+  function findName(nodes, id, path = []) &#123;
+    for (let node of nodes) &#123;
+      path.push(node.label);
+      if (node.id === id) &#123;
+        return path.join(&quot;/&quot;);
+      &#125;
+      if (node.children &amp;&amp; node.children.length &gt; 0) &#123;
+        const result = findName(node.children, id, [...path]);
+        if (result) return result;
+      &#125;
+      path.pop();
     &#125;
+    return null;
+  &#125;
+  return findName(tree, id);
+&#125;</code></pre><pre><code>// 测试数据
+const provinceList = [
+  &#123;
+    id: &quot;1000&quot;,
+    label: &quot;湖北省&quot;,
+    children: [
+      &#123;
+        id: &quot;1001&quot;,
+        pid: &quot;1000&quot;,
+        label: &quot;武汉&quot;,
+        children: [
+          &#123; id: &quot;100101&quot;, pid: &quot;1001&quot;, label: &quot;洪山区&quot; &#125;,
+          &#123; id: &quot;100102&quot;, pid: &quot;1001&quot;, label: &quot;武昌区&quot; &#125;,
+          &#123; id: &quot;100103&quot;, pid: &quot;1001&quot;, label: &quot;汉阳区&quot; &#125;,
+        ],
+      &#125;,
+      &#123; id: &quot;1020&quot;, pid: &quot;1000&quot;, label: &quot;咸宁&quot; &#125;,
+      &#123; id: &quot;1022&quot;, pid: &quot;1000&quot;, label: &quot;孝感&quot; &#125;,
+      &#123; id: &quot;1034&quot;, pid: &quot;1000&quot;, label: &quot;襄阳&quot; &#125;,
+      &#123; id: &quot;1003&quot;, pid: &quot;1000&quot;, label: &quot;宜昌&quot; &#125;,
+    ],
+  &#125;,
+  &#123;
+    id: &quot;1200&quot;,
+    value: &quot;江苏省&quot;,
+    label: &quot;江苏省&quot;,
+    children: [
+      &#123; id: &quot;1201&quot;, pid: &quot;1200&quot;, label: &quot;南京&quot; &#125;,
+      &#123; id: &quot;1202&quot;, pid: &quot;1200&quot;, label: &quot;苏州&quot; &#125;,
+      &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
+    ],
+  &#125;,
+];
+
+getFullNameById(provinceList,&#39;100101&#39;) // 湖北省/武汉/洪山区
 </code></pre>
             </div>
             <hr/>
