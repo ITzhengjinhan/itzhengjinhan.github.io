@@ -508,7 +508,25 @@ beforeToday(current)&#123;
   param:xxx
 &#125;)
 
-window.open(href,&#39;_blank&#39;)</code></pre>
+window.open(href,&#39;_blank&#39;)</code></pre><h3 id="Anchor-常见的问题"><a href="#Anchor-常见的问题" class="headerlink" title="Anchor 常见的问题"></a>Anchor 常见的问题</h3><p>锚点浏览器会报错；</p>
+<p>路由会被更改，影响哈希模式的页面路由；</p>
+<p>affix 属性不生效，没有随着页面滚动高亮变化</p>
+<pre><code>/** #号后面不能为纯数字，否则无法正常定位，浏览器报错*/
+&lt;a-anchor :affix=&quot;true&quot; :target-offset=&quot;16&quot; :get-container=&quot;getContainer&quot; @click=&quot;handleClickAnchor&quot;&gt;
+  &lt;a-anchor-link v-for=&quot;(item, $index) in steps&quot; :key=&quot;$index&quot; :href=&quot;&#39;#&#39; + item.id&quot; :title=&quot;item.title&quot; /&gt;
+&lt;/a-anchor&gt;
+
+/** Anchor 锚点指定滚动的容器 */
+getContainer() &#123;
+  // 给组件指定渲染的容器，解决锚点不会随页面滚动而移动的问题
+  return document.querySelector(&#39;.form-wrapper&#39;);
+&#125;
+
+/** Anchor 锚点形式点击锚点 */
+handleClickAnchor(e, link) &#123;
+  // 阻止点击的默认事件修改路由
+  e.preventDefault();
+&#125;</code></pre>
             </div>
             <hr/>
 
