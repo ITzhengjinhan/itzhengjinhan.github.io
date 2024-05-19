@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="基于Ant Design Vue的树形穿梭选择组件, IT默小涵的个人博客">
+    <meta name="keywords" content="基于Vue的日历组件, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>基于Ant Design Vue的树形穿梭选择组件 | IT默小涵的个人博客</title>
+    <title>基于Vue的日历组件 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/38.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于Ant Design Vue的树形穿梭选择组件</h1>
+                    <h1 class="description center-align post-title">基于Vue的日历组件</h1>
                 </div>
             </div>
         </div>
@@ -436,8 +436,8 @@
                                 <span class="chip bg-color">vue</span>
                             </a>
                         
-                            <a href="/tags/TransferTree/">
-                                <span class="chip bg-color">TransferTree</span>
+                            <a href="/tags/Calendar/">
+                                <span class="chip bg-color">Calendar</span>
                             </a>
                         
                     </div>
@@ -461,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-05-20
+                    2023-07-11
                 </div>
                 
 
@@ -477,592 +477,447 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>背景：Ant Design Vue 官网中有穿梭框 Transfer 组件，但提供的示例是左侧是树，右侧则是平铺列表</p>
-<p>需求左边是树，右边也是树结构数据，且要支持搜索</p>
+                <p>背景：Ant Design Vue 官网中有 Calendar 日历组件，但提供的示例不支持多选，禁选功能</p>
 <p>自定义封装组件</p>
-<h3 id="TransferTree-index-vue"><a href="#TransferTree-index-vue" class="headerlink" title="TransferTree/index.vue:"></a>TransferTree/index.vue:</h3><pre><code>&lt;template&gt;
-  &lt;a-transfer
-    class=&quot;tree-transfer&quot;
-    :data-source=&quot;dataSource&quot;
-    checkStrictly
-    :target-keys=&quot;targetKeys&quot;
-    :render=&quot;(item) =&gt; item.title&quot;
-    :show-select-all=&quot;false&quot;
-    @change=&quot;onChange&quot;
-    :titles=&quot;[&#39;源数据&#39;, &#39;已添加数据&#39;]&quot;
-  &gt;
-    &lt;template slot=&quot;children&quot; slot-scope=&quot;&#123; props: &#123; direction, selectedKeys &#125;, on: &#123; itemSelect &#125; &#125;&quot;&gt;
-      &lt;template v-if=&quot;direction === &#39;left&#39;&quot;&gt;
-        &lt;a-input-search style=&quot;margin-bottom: 8px&quot; placeholder=&quot;搜索&quot; @change=&quot;onLeftSearch&quot; /&gt;
-        &lt;a-tree
-          v-if=&quot;leftTreeData.length&quot;
-          blockNode
-          checkable
-          :auto-expand-parent=&quot;leftAutoExpandParent&quot;
-          :expanded-keys=&quot;leftExpandedKeys&quot;
-          @expand=&quot;onLeftExpand&quot;
-          :tree-data=&quot;leftTreeData&quot;
-          :checked-keys=&quot;leftCheckedKey&quot;
-          @check=&quot;
-            (_, props) =&gt; &#123;
-              handleLeftChecked(_, props, [...selectedKeys, ...targetKeys], itemSelect);
-            &#125;
-          &quot;
-        &gt;
-          &lt;template slot=&quot;title&quot; slot-scope=&quot;&#123; title &#125;&quot;&gt;
-            &lt;span v-if=&quot;title.indexOf(leftSearchValue) &gt; -1&quot;&gt;
-              &#123;&#123; title.substr(0, title.indexOf(leftSearchValue)) &#125;&#125;
-              &lt;span style=&quot;color: #f50&quot;&gt;&#123;&#123; leftSearchValue &#125;&#125;&lt;/span&gt;
-              &#123;&#123; title.substr(title.indexOf(leftSearchValue) + leftSearchValue.length) &#125;&#125;
-            &lt;/span&gt;
-            &lt;span v-else&gt;&#123;&#123; title &#125;&#125;&lt;/span&gt;
-          &lt;/template&gt;
-        &lt;/a-tree&gt;
+<h3 id="Calendar-index-vue"><a href="#Calendar-index-vue" class="headerlink" title="Calendar/index.vue:"></a>Calendar/index.vue:</h3><pre><code>&lt;template&gt;
+  &lt;div class=&quot;calendar&quot;&gt;
+    &lt;div class=&quot;select&quot; :style=&quot;&#123; width &#125;&quot;&gt;
+      &lt;a-select
+        v-model=&quot;curYear&quot;
+        placeholder=&quot;请选择&quot;
+        :options=&quot;yearOptions&quot;
+        style=&quot;width: 100px; margin-right: 10px&quot;
+      /&gt;
+      &lt;a-select
+        v-model=&quot;curMonth&quot;
+        placeholder=&quot;请选择&quot;
+        :options=&quot;monthOptions&quot;
+        style=&quot;width: 80px; margin-right: 10px&quot;
+      /&gt;
+      &lt;a-button type=&quot;primary&quot; @click=&quot;handleQuickChange(&#39;prev&#39;)&quot;&gt;上一月&lt;/a-button&gt;
+      &lt;a-button type=&quot;primary&quot; @click=&quot;handleQuickChange(&#39;next&#39;)&quot;&gt;下一月&lt;/a-button&gt;
+    &lt;/div&gt;
 
-        &lt;a-empty v-else&gt;
-          &lt;template #description&gt;暂无数据&lt;/template&gt;
-        &lt;/a-empty&gt;
-      &lt;/template&gt;
-      &lt;template v-else-if=&quot;direction === &#39;right&#39;&quot;&gt;
-        &lt;a-input-search style=&quot;margin-bottom: 8px&quot; placeholder=&quot;搜索&quot; @change=&quot;onRightSearch&quot; /&gt;
-        &lt;a-tree
-          v-if=&quot;rightTreeData.length&quot;
-          blockNode
-          checkable
-          :auto-expand-parent=&quot;rightAutoExpandParent&quot;
-          :expanded-keys=&quot;rightExpandedKeys&quot;
-          @expand=&quot;onRightExpand&quot;
-          :tree-data=&quot;rightTreeData&quot;
-          :checked-keys=&quot;rightCheckedKey&quot;
-          @check=&quot;
-            (_, props) =&gt; &#123;
-              handleRightChecked(_, props, [...selectedKeys, ...targetKeys], itemSelect);
-            &#125;
-          &quot;
-        &gt;
-          &lt;template slot=&quot;title&quot; slot-scope=&quot;&#123; title &#125;&quot;&gt;
-            &lt;span v-if=&quot;title.indexOf(rightSearchValue) &gt; -1&quot;&gt;
-              &#123;&#123; title.substr(0, title.indexOf(rightSearchValue)) &#125;&#125;
-              &lt;span style=&quot;color: #f50&quot;&gt;&#123;&#123; rightSearchValue &#125;&#125;&lt;/span&gt;
-              &#123;&#123; title.substr(title.indexOf(rightSearchValue) + rightSearchValue.length) &#125;&#125;
-            &lt;/span&gt;
-            &lt;span v-else&gt;&#123;&#123; title &#125;&#125;&lt;/span&gt;
-          &lt;/template&gt;
-        &lt;/a-tree&gt;
-        &lt;a-empty v-else&gt;
-          &lt;template #description&gt;暂无数据&lt;/template&gt;
-        &lt;/a-empty&gt;
-      &lt;/template&gt;
-    &lt;/template&gt;
-  &lt;/a-transfer&gt;
+    &lt;table class=&quot;calendar-table&quot; :style=&quot;&#123; width &#125;&quot;&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th v-for=&quot;(item, i) in weeks&quot; :key=&quot;i&quot;&gt;&#123;&#123; item &#125;&#125;&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr v-for=&quot;(dates, i) in res&quot; :key=&quot;i&quot; :style=&quot;&#123; height: tbodyHeight &#125;&quot;&gt;
+          &lt;td
+            v-for=&quot;(item, index) in dates&quot;
+            :key=&quot;index&quot;
+            :class=&quot;&#123;
+              notCurMonth: !item.isCurMonth,
+              currentDay: item.date === curDate,
+              oldDay: oldSelectable ? undefined : item.date &lt; curDate,
+              selectDay: item.isSelected,
+              rangeSelectd: item.isRangeSelected,
+            &#125;&quot;
+            @click=&quot;handleItemClick(item, i, index)&quot;
+            @mouseover=&quot;handleItemMove(item, i, index)&quot;
+          &gt;
+            &lt;span&gt;&#123;&#123; item.date &#125;&#125;&lt;/span&gt;
+            &lt;slot :data=&quot;item&quot; /&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
-import &#123; findPathById, filterTreeArray, cloneDeep, getDeepList, getTreeKeys, treeToList, handleLeftTreeData, uniqueTree, isChecked &#125; from &#39;./index&#39;;
-
+import &#123; getDaysInMonth, handleCrateDate, handleCreateDatePicker, parseTime &#125; from &#39;./index&#39;;
 export default &#123;
-  name: &#39;OptionsTransfer&#39;,
+  name: &#39;Calendar&#39;,
   props: &#123;
-    /** 源树数据 */
-    originTreeData: &#123;
-      type: Array,
+    selectMode: &#123;
+      type: String,
+      default: &#39;click&#39;, // click: 点击，mouseover滑动
+    &#125;,
+    startOfWeek: &#123;
+      type: Number,
+      default: 1, //表头默认开始为周一
+    &#125;,
+    selectable: &#123;
+      type: Boolean,
+      default: true, // 是否可选择
+    &#125;,
+    oldSelectable: &#123;
+      type: Boolean,
+      default: false, // 过去的时间是否可选择
+    &#125;,
+    selectedValues: &#123;
+      type: Array, // 回显的日期集合
       default: () =&gt; [],
     &#125;,
-    /** 编辑 key */
-    editKey: &#123;
-      type: Array,
-      default: () =&gt; [],
+    width: &#123;
+      type: String,
+      default: &#39;70%&#39;,
+    &#125;,
+    tbodyHeight: &#123;
+      type: String,
+      default: &#39;60px&#39;,
     &#125;,
   &#125;,
   data() &#123;
     return &#123;
-      targetKeys: [], // 显示在右侧框数据的 key 集合
-      dataSource: [], // 数据源，其中的数据将会被渲染到左边一栏
-      leftCheckedKey: [], // 左侧树选中 key 集合
-      leftHalfCheckedKeys: [], // 左侧半选集合
-      leftCheckedAllKey: [], // 左侧树选中的 key 集合，包括半选与全选
-      leftTreeData: [], // 左侧树
-      rightCheckedKey: [], // 右侧树选中 key 集合
-      rightCheckedAllKey: [], // 右侧树选中集合，包括半选与全选
-      rightExpandedKey: [], // 右侧展开数集合
-      rightTreeData: [], // 右侧树
-      emitKeys: [], // 往父级组件传递的数据
-      deepList: [], // 深层列表
-      leftSearchValue: &#39;&#39;, // 左侧树搜索值
-      leftAutoExpandParent: false, // 左侧树是否展开父节点
-      leftExpandedKeys: [], // 左侧树扩展的key
-      rightSearchValue: &#39;&#39;, // 右侧树搜索值
-      rightAutoExpandParent: false, // 右侧树是否展开父节点
-      rightExpandedKeys: [], // 右侧树扩展的key
+      monthOptions: [],
+      yearOptions: [],
+      weeks: [&#39;周一&#39;, &#39;周二&#39;, &#39;周三&#39;, &#39;周四&#39;, &#39;周五&#39;, &#39;周六&#39;, &#39;周日&#39;],
+      curYear: new Date().getFullYear(), // 当前年
+      curMonth: new Date().getMonth(), // 当前月
+      days: 0, // 当前月总共天数
+      curDate: parseTime(new Date().getTime()), // 当前日期 yyyy-MM-dd 格式，用来匹配是否是当前日期
+      prevDays: [], // 非当前月的上一月展示的日期
+      rearDays: [], // 非当前月的下一月展示的日期
+      curDays: [], // 当前月的日期
+      showDays: [], // 总共展示的42个日期
+      res: [], // 二维数组
+      selectedDates: [], // 选中的日期
+      selectedMode: true, // true表示点击， false表示滑动
+      moveIndex: [], // 两个，第一个是起始，第二个是结束
+      canMove: true, // 当moveIndex数组有一个值时，可以触发滑动
     &#125;;
   &#125;,
+  computed: &#123;&#125;,
   watch: &#123;
-    originTreeData: &#123;
-      deep: true,
+    curMonth: &#123;
       handler(val) &#123;
-        this.processTreeData();
+        this.handleGetDays(this.curYear, val, this.startOfWeek);
       &#125;,
     &#125;,
-    editKey: &#123;
-      deep: true,
+    curYear: &#123;
       handler(val) &#123;
-        this.processTreeData();
+        this.handleGetDays(val, this.curMonth, this.startOfWeek);
       &#125;,
     &#125;,
   &#125;,
   created() &#123;
-    this.processTreeData();
+    this.weeks.unshift(...this.weeks.splice(this.startOfWeek - 1));
+    this.handleGetDays(this.curYear, this.curMonth, this.startOfWeek);
+    this.selectedMode = this.selectMode === &#39;click&#39;;
+  &#125;,
+  mounted() &#123;
+    this.monthOptions = handleCreateDatePicker().months;
+    this.yearOptions = handleCreateDatePicker().years;
+    this.selectedDates = this.selectedValues;
   &#125;,
   methods: &#123;
-    // 处理树数据
-    processTreeData() &#123;
-      this.dataSource = treeToList(cloneDeep(this.originTreeData), true);
-      if (this.editKey.length) &#123;
-        this.processEditData();
-      &#125; else &#123;
-        this.leftTreeData = handleLeftTreeData(cloneDeep(this.originTreeData), this.leftCheckedKey);
-      &#125;
-    &#125;,
-    // 处理编辑数据
-     processEditData() &#123;
-      this.leftCheckedAllKey = this.editKey;
-      this.rightExpandedKeys = this.editKey;
-      this.targetKeys = this.editKey;
-      this.rightTreeData = findPathById(cloneDeep(this.originTreeData), this.editKey);
-      getDeepList(this.deepList, this.originTreeData);
-      this.leftCheckedKey = uniqueTree(this.editKey, this.deepList);
-      this.leftHalfCheckedKeys = this.leftCheckedAllKey.filter((item) =&gt; this.leftCheckedKey.indexOf(item) === -1);
-      this.leftTreeData = handleLeftTreeData(cloneDeep(this.originTreeData), this.leftCheckedKey);
-      this.emitKeys = this.rightExpandedKeys;
-    &#125;,
+    handleGetDays(year, month, startOfWeek) &#123;
+      this.showDays = [];
+      // 通过年月获取对应的天数
+      this.days = getDaysInMonth(year, month);
+      // 通过年月获取当月1号的星期
+      let firstDayOfWeek = new Date(`$&#123;year&#125;-$&#123;month + 1&#125;-01`).getDay();
 
-    // 穿梭更改
-    onChange(_, direction) &#123;
-      if (direction === &#39;right&#39;) &#123;
-        this.targetKeys = this.leftCheckedAllKey;
-        this.rightCheckedKey = [];
-        this.rightTreeData = this.uniqueObject(findPathById(cloneDeep(this.originTreeData), this.leftCheckedAllKey));
-        this.leftTreeData = handleLeftTreeData(cloneDeep(this.originTreeData), this.leftCheckedKey, &#39;right&#39;);
-      &#125; else if (direction === &#39;left&#39;) &#123;
-        this.rightTreeData = filterTreeArray(this.rightTreeData, this.rightCheckedKey, &#39;id&#39;);
-        this.leftTreeData = handleLeftTreeData(this.leftTreeData, this.rightCheckedKey, &#39;left&#39;);
-        this.leftCheckedKey = this.leftCheckedKey.filter((item) =&gt; this.rightCheckedKey.indexOf(item) === -1);
-        this.targetKeys = this.targetKeys.filter((item) =&gt; this.rightCheckedKey.indexOf(item) === -1);
-        this.leftHalfCheckedKeys = this.leftHalfCheckedKeys.filter((item) =&gt; this.rightCheckedKey.indexOf(item) === -1);
-        this.rightCheckedKey = [];
+      // 处理周起始日
+      const obj = &#123;
+        1: this.weeks[0],
+        2: this.weeks[1],
+        3: this.weeks[2],
+        4: this.weeks[3],
+        5: this.weeks[4],
+        6: this.weeks[5],
+        0: this.weeks[6],
+      &#125;;
+      const firstDayInCN = obj[firstDayOfWeek];
+
+      // 获取当前星期到星期一的索引
+      const index = this.weeks.indexOf(firstDayInCN);
+
+      if (firstDayOfWeek === 0) &#123;
+        // 星期天为0 星期一为1 ，以此类推
+        firstDayOfWeek = 7;
       &#125;
-      this.rightExpandedKeys = getTreeKeys(this.rightTreeData);
-      this.emitKeys = this.rightExpandedKeys;
+
+      this.prevDays = handleCrateDate(year, month, 1, index + 1, &#39;prev&#39;, this.selectedValues);
+      this.rearDays = handleCrateDate(year, month, 1, 42 - this.days - index, &#39;rear&#39;, this.selectedValues);
+      this.curDays = handleCrateDate(year, month, 1, this.days, undefined, this.selectedValues);
+      this.showDays.unshift(...this.prevDays);
+      this.showDays.push(...this.curDays);
+      this.showDays.push(...this.rearDays);
+      this.res = this.handleFormatDates(this.showDays);
     &#125;,
-    // 左侧选择
-    handleLeftChecked(_, &#123; node, halfCheckedKeys &#125;, checkedKeys, itemSelect) &#123;
-      this.leftCheckedKey = _;
-      this.leftHalfCheckedKeys = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys])];
-      this.leftCheckedAllKey = [...new Set([...this.leftHalfCheckedKeys, ...halfCheckedKeys, ..._])];
-      const &#123; eventKey &#125; = node;
-      itemSelect(eventKey, !isChecked(checkedKeys, eventKey));
+    handleFormatDates(arr, size = 7) &#123;
+      // 传入长度42的原数组，最终转换成二维数组
+      const arr2 = [];
+      for (let i = 0; i &lt; size; i++) &#123;
+        const temp = arr.slice(i * size, i * size + size);
+        arr2.push(temp);
+      &#125;
+      return arr2;
     &#125;,
-    // 右侧选择
-    handleRightChecked(_, &#123; node, halfCheckedKeys &#125;, checkedKeys, itemSelect) &#123;
-      this.rightCheckedKey = _;
-      this.rightCheckedAllKey = [...halfCheckedKeys, ..._];
-      const &#123; eventKey &#125; = node;
-      itemSelect(eventKey, isChecked(_, eventKey));
+    handleTableHead(start) &#123;
+      const sliceDates = this.weeks.splice(start - 1);
+      this.weeks.unshift(...sliceDates);
     &#125;,
-     uniqueObject(arr) &#123;
-      let obj = &#123;&#125;;
-      arr.forEach((item, index) =&gt; &#123;
-        // 若重复则删除该项
-        if (obj.hasOwnProperty(item.id)) &#123;
-          arr.splice(index, 1);
-          // 不重复则存入obj
+    handleItemClick(item, i, j) &#123;
+      if (!this.selectable) return;
+      if (!this.oldSelectable &amp;&amp; item.date &lt; this.curDate) &#123;
+        return;
+      &#125; else &#123;
+        if (this.selectedMode) &#123;
+          this.$nextTick(() =&gt; &#123;
+            this.res[i][j].isSelected = !this.res[i][j].isSelected;
+            if (this.res[i][j].isSelected) &#123;
+              this.selectedDates.push(this.res[i][j].date);
+              this.selectedDates = Array.from(new Set(this.selectedDates));
+            &#125; else &#123;
+              this.selectedDates.splice(this.selectedDates.indexOf(item.date), 1);
+            &#125;
+            this.$emit(&#39;dateSelected&#39;, this.selectedDates);
+          &#125;);
         &#125; else &#123;
-          obj[item.id] = item.name;
+          // 滑动模式下，第一次点击是起始，第二次点击是结束
+          const index = i * 7 + j;
+          this.canMove = true;
+          if (this.moveIndex.length === 1) &#123;
+            this.canMove = false;
+          &#125;
+          if (this.moveIndex.length === 2) &#123;
+            this.showDays.forEach((item) =&gt; &#123;
+              item.isSelected = false;
+              item.isRangeSelected = false;
+            &#125;);
+            this.canMove = true;
+            this.moveIndex.length = 0;
+          &#125;
+          this.moveIndex.push(index);
+          this.moveIndex.sort((a, b) =&gt; a - b);
+          this.selectedDates = this.showDays.slice(this.moveIndex[0], this.moveIndex[1] + 1);
+          this.selectedDates.length !== 0 &amp;&amp; this.$emit(&#39;dateSelected&#39;, this.selectedDates);
         &#125;
-      &#125;);
-      return arr;
+      &#125;
     &#125;,
-    getParentKey(key, tree) &#123;
-      let parentKey;
-      for (let i = 0; i &lt; tree.length; i++) &#123;
-        const node = tree[i];
-        if (node.children) &#123;
-          if (node.children.some((item) =&gt; item.key === key)) &#123;
-            parentKey = node.key;
-          &#125; else if (this.getParentKey(key, node.children)) &#123;
-            parentKey = this.getParentKey(key, node.children);
+    handleItemMove(data, i, j) &#123;
+      if (this.canMove &amp;&amp; !this.selectedMode) &#123;
+        const index = i * 7 + j;
+        this.showDays.forEach((item) =&gt; &#123;
+          item.isSelected = false;
+          item.isRangeSelected = false;
+        &#125;);
+        // 让第一个日期和最后一个日期显示蓝色高亮
+        this.showDays[index].isSelected = true;
+        this.showDays[this.moveIndex[0]].isSelected = true;
+
+        // 不同情况的判断，当用户的鼠标滑动进日期的索引小于起始日期的索引，要做if else处理
+        if (this.moveIndex[0] &lt; index) &#123;
+          for (let i = this.moveIndex[0] + 1; i &lt; index; i++) &#123;
+            this.showDays[i].isRangeSelected = true;
+          &#125;
+        &#125; else &#123;
+          for (let i = index + 1; i &lt; this.moveIndex[0]; i++) &#123;
+            this.showDays[i].isRangeSelected = true;
           &#125;
         &#125;
       &#125;
-      return parentKey;
     &#125;,
-    onLeftExpand(leftExpandedKeys) &#123;
-      this.leftExpandedKeys = leftExpandedKeys;
-      this.leftAutoExpandParent = false;
-    &#125;,
-    onLeftSearch(e) &#123;
-      const value = e.target.value;
-      const leftExpandedKeys = treeToList(this.originTreeData, true)
-        .map((item) =&gt; &#123;
-          if (item.title.indexOf(value) &gt; -1) &#123;
-            return this.getParentKey(item.key, this.originTreeData);
-          &#125;
-          return null;
-        &#125;)
-        .filter((item, i, self) =&gt; item &amp;&amp; self.indexOf(item) === i);
-      Object.assign(this, &#123;
-        leftExpandedKeys,
-        leftSearchValue: value,
-        leftAutoExpandParent: true,
-      &#125;);
-    &#125;,
-    onRightExpand(rightExpandedKeys) &#123;
-      this.rightExpandedKeys = rightExpandedKeys;
-      this.rightAutoExpandParent = false;
-    &#125;,
-    onRightSearch(e) &#123;
-      const value = e.target.value;
-      const rightExpandedKeys = treeToList(this.rightTreeData, true)
-        .map((item) =&gt; &#123;
-          if (item.title.indexOf(value) &gt; -1) &#123;
-            return this.getParentKey(item.key, this.rightTreeData);
-          &#125;
-          return null;
-        &#125;)
-        .filter((item, i, self) =&gt; item &amp;&amp; self.indexOf(item) === i);
-      Object.assign(this, &#123;
-        rightExpandedKeys,
-        rightSearchValue: value,
-        rightAutoExpandParent: true,
-      &#125;);
+    handleQuickChange(type) &#123;
+      if (type === &#39;prev&#39;) &#123;
+        this.curMonth--;
+        if (this.curMonth === -1) &#123;
+          this.curMonth = 11;
+          this.curYear -= 1;
+        &#125;
+      &#125; else if (type === &#39;next&#39;) &#123;
+        this.curMonth++;
+        if (this.curMonth === 12) &#123;
+          this.curMonth = 0;
+          this.curYear += 1;
+        &#125;
+      &#125;
     &#125;,
   &#125;,
 &#125;;
 &lt;/script&gt;
 
-&lt;style lang=&quot;less&quot;&gt;
-.ant-transfer-list &#123;
-  width: 800px;
+&lt;style scoped lang=&quot;less&quot;&gt;
+.calendar &#123;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 &#125;
-.ant-transfer-list-header-selected &#123;
-  span &#123;
-    display: none;
+.select &#123;
+  display: flex;
+  width: 100%;
+  justify-content: end;
+&#125;
+.calendar-table &#123;
+  table-layout: fixed;
+  border-collapse: collapse;
+  transition: 0.3s;
+  thead tr &#123;
+    height: 50px;
+  &#125;
+  tbody tr &#123;
+    &amp;:first-child td &#123;
+      border-top: 1px solid #238dde;
+    &#125;
+    td &#123;
+      cursor: pointer;
+      border-right: 1px solid #238dde;
+      border-bottom: 1px solid #238dde;
+      &amp;:first-child &#123;
+        border-left: 1px solid #238dde;
+      &#125;
+    &#125;
   &#125;
 &#125;
-.ant-transfer-list-header-title &#123;
-  display: contents !important;
+
+.notCurMonth &#123;
+  color: #c0c4cc;
+&#125;
+.currentDay &#123;
+  //   color: #fff;
+  //   background-color: #409eff;
+&#125;
+.oldDay &#123;
+  color: #606266;
+  background-color: #c0c4cc;
+&#125;
+.selectDay &#123;
+  color: #fff;
+  background-color: #238dde;
+&#125;
+.rangeSelectd &#123;
+  color: #fff;
+  background-color: #238dde;
 &#125;
 &lt;/style&gt;
-</code></pre><h3 id="TransferTree-index-js"><a href="#TransferTree-index-js" class="headerlink" title="TransferTree/index.js"></a>TransferTree/index.js</h3><p>组件涉及到的树形数据操作方法：</p>
-<pre><code>/**
- * 深拷贝
- * @param data
- */
-export function cloneDeep(data) &#123;
-  return JSON.parse(JSON.stringify(data));
-&#125;
 
-/**
- * 通过id获取树的完整路径
- * @param tree 树型数据
- * @param ids  id集合
- * @param keyName 关键字
- */
-export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
-  const result = [];
-  for (const node of tree) &#123;
-    if (ids.includes(node[keyName]) &amp;&amp; node.isLeaf) &#123;
-      result.push(node);
-    &#125;
-    if (node.children) &#123;
-      const childResults = findPathById(node.children, ids);
-      if (childResults.length &gt; 0) &#123;
-        result.push(&#123; ...node, children: childResults &#125;);
-      &#125;
-    &#125;
-  &#125;
-  return result;
-&#125;
+</code></pre><h3 id="Calendar-index-js"><a href="#Calendar-index-js" class="headerlink" title="Calendar/index.js"></a>Calendar/index.js</h3><p>组件涉及到的方法：</p>
+<pre><code>// 获取该月的天数
+export const getDaysInMonth = (year, month) =&gt; &#123;
+  const day = new Date(year, month + 1, 0);
+  return day.getDate();
+&#125;;
 
-/**
- * 通过id过滤树的id所在子节点
- * @param tree 树型数据
- * @param ids  id集合
- * @param keyName 关键字
- */
-export function filterTreeArray(tree, ids, keyName = &#39;id&#39;) &#123;
-  return tree
-    .filter((item) =&gt; &#123;
-      return ids.indexOf(item[keyName]) == -1;
-    &#125;)
-    .map((item) =&gt; &#123;
-      item = Object.assign(&#123;&#125;, item);
-      if (item.children) &#123;
-        item.children = filterTreeArray(item.children, ids);
-      &#125;
-      return item;
-    &#125;);
-&#125;
-
-/**
- * 树转数组
- * @param tree
- * @param hasChildren
- */
-export function treeToList(tree = [], hasChildren = false) &#123;
-  let queen = [];
-  const out = [];
-  queen = queen.concat(JSON.parse(JSON.stringify(tree)));
-  while (queen.length) &#123;
-    const first = queen.shift();
-    if (first?.children) &#123;
-      queen = queen.concat(first.children);
-      if (!hasChildren) delete first.children;
-    &#125;
-    out.push(first);
-  &#125;
-  return out;
-&#125;
-
-/**
- * 数组转树
- * @param list
- * @param tree
- * @param parentId
- * @param key
- */
-export function listToTree(list = [], tree = [], parentId = 0, key = &#39;parentId&#39;) &#123;
-  list.forEach((item) =&gt; &#123;
-    if (item[key] === parentId) &#123;
-      const child = &#123;
-        ...item,
-        children: [],
-      &#125;;
-      listToTree(list, child.children, item.id, key);
-      if (!child.children?.length) delete child.children;
-      tree.push(child);
-    &#125;
-  &#125;);
-  return tree;
-&#125;
-
-/**
- * 获取树节点 key 列表
- * @param treeData
- * @param key
- */
-export function getTreeKeys(treeData, key = &#39;key&#39;) &#123;
-  const list = treeToList(treeData);
-  return list.map((item) =&gt; item[key]);
-&#125;
-
-/**
- * 循环遍历出最深层子节点，存放在一个数组中
- * @param deepList
- * @param treeData
- */
-export function getDeepList(deepList, treeData) &#123;
-  treeData?.forEach((item) =&gt; &#123;
-    if (item?.children?.length) &#123;
-      getDeepList(deepList, item.children);
-    &#125; else &#123;
-      deepList.push(item.key);
-    &#125;
-  &#125;);
-  return deepList;
-&#125;
-
-/**
- * 将后台返回的含有父节点的数组和第一步骤遍历的数组做比较,如果有相同值，将相同值取出来，push到一个新数组中
- * @param uniqueArr
- * @param arr
- */
-export function uniqueTree(uniqueArr, arr) &#123;
-  const uniqueChild = [];
-  for (const i in arr) &#123;
-    for (const k in uniqueArr) &#123;
-      if (uniqueArr[k] === arr[i]) &#123;
-        uniqueChild.push(uniqueArr[k]);
-      &#125;
-    &#125;
-  &#125;
-  return uniqueChild;
-&#125;
-
-/**
- * 是否选中
- * @param selectedKeys
- * @param eventKey
- */
-export function isChecked(selectedKeys, eventKey = &#39;&#39;) &#123;
-  return selectedKeys.indexOf(eventKey) !== -1;
-&#125;
-
-/**
- * 处理左侧树数据
- * @param data
- * @param targetKeys
- * @param direction
- */
-export function handleLeftTreeData(data, targetKeys, direction = &#39;right&#39;) &#123;
-  data.forEach((item) =&gt; &#123;
-    if (direction === &#39;right&#39;) &#123;
-      item.disabled = targetKeys.includes(item.key);
-    &#125; else if (direction === &#39;left&#39;) &#123;
-      if (item.disabled &amp;&amp; targetKeys.includes(item.key)) item.disabled = false;
-    &#125;
-    if (item.children) handleLeftTreeData(item.children, targetKeys, direction);
-  &#125;);
-  return data;
-&#125;
-
-/**
- * 处理右侧树数据
- * @param data
- * @param targetKeys
- * @param direction
- */
-export function handleRightTreeData(data, targetKeys, direction = &#39;right&#39;) &#123;
-  const list = treeToList(data);
+// 创建日期 yyyy-MM-dd 格式， 用于创建非当前月的日期
+export const handleCrateDate = (year, month, start, end, type, selectedValues) =&gt; &#123;
   const arr = [];
-  const tree = [];
-  list.forEach((item) =&gt; &#123;
-    if (direction === &#39;right&#39;) &#123;
-      if (targetKeys.includes(item.key)) &#123;
-        const content = &#123; ...item &#125;;
-        if (content.children) delete content.children;
-        arr.push(&#123; ...content &#125;);
-      &#125;
-    &#125; else if (direction === &#39;left&#39;) &#123;
-      if (!targetKeys.includes(item.key)) &#123;
-        const content = &#123; ...item &#125;;
-        if (content.children) delete content.children;
-        arr.push(&#123; ...content &#125;);
-      &#125;
+  if (type === &#39;prev&#39;) &#123;
+    // 上一月
+    if (start === end) return [];
+    const daysInLastMonth = getDaysInMonth(year, month - 1); // 获取上一个月有多少天
+    console.log(`当前月是$&#123;month + 1&#125;月, 上一月$&#123;month&#125;月的天数是$&#123;daysInLastMonth&#125;天`);
+    for (let i = daysInLastMonth - end + 2; i &lt;= daysInLastMonth; i++) &#123;
+      arr.push(&#123;
+        date: parseTime(new Date(year, month - 1, i)),
+        isCurMonth: false,
+        isSelected: selectedValues.includes(parseTime(new Date(year, month - 1, i))),
+        isRangeSelected: false,
+      &#125;);
     &#125;
-  &#125;);
-  listToTree(arr, tree, 0);
-  return tree;
-&#125;
-
-/**
- * 通过id获取树的完整路径
- * @param tree 树型数据
- * @param ids  id集合
- * @param keyName 关键字
- */
-export function findPathById(tree, ids, keyName = &#39;id&#39;) &#123;
-  const result = [];
-  for (const node of tree) &#123;
-    if (ids.includes(node[keyName]) &amp;&amp; node.isLeaf) &#123;
-      result.push(node);
+  &#125; else if (type === &#39;rear&#39;) &#123;
+    // 下一月
+    for (let i = start; i &lt;= end; i++) &#123;
+      arr.push(&#123;
+        date: parseTime(new Date(year, month + 1, i)),
+        isCurMonth: false,
+        isSelected: selectedValues.includes(parseTime(new Date(year, month + 1, i))),
+        isRangeSelected: false,
+      &#125;);
     &#125;
-    if (node.children) &#123;
-      const childResults = findPathById(node.children, ids);
-      if (childResults.length &gt; 0) &#123;
-        result.push(&#123; ...node, children: childResults &#125;);
-      &#125;
+  &#125; else &#123;
+    // 本月
+    for (let i = start; i &lt;= end; i++) &#123;
+      arr.push(&#123;
+        date: parseTime(new Date(year, month, i)),
+        isCurMonth: true,
+        isSelected: selectedValues.includes(parseTime(new Date(year, month, i))),
+        isRangeSelected: false,
+      &#125;);
     &#125;
   &#125;
-  return result;
-&#125;
+  return arr;
+&#125;;
+
+export const handleCreateDatePicker = () =&gt; &#123;
+  const years = [];
+  const months = [];
+  for (let i = 1970; i &lt;= 2099; i++) &#123;
+    years.push(&#123;
+      label: `$&#123;i&#125;年`,
+      value: i,
+    &#125;);
+  &#125;
+  for (let i = 0; i &lt;= 11; i++) &#123;
+    months.push(&#123;
+      label: `$&#123;i + 1&#125;月`,
+      value: i,
+    &#125;);
+  &#125;
+  return &#123;
+    years,
+    months,
+  &#125;;
+&#125;;
 
 /**
- * 通过id过滤树的id所在子节点
- * @param tree 树型数据
- * @param ids  id集合
- * @param keyName 关键字
+ * Parse the time to string
+ * @param &#123;(Object|string|number)&#125; time
+ * @param &#123;string&#125; cFormat
+ * @returns &#123;string | null&#125;
  */
-export function filterTreeArray(tree, ids, keyName = &#39;id&#39;) &#123;
-  return tree
-    .filter((item) =&gt; &#123;
-      return ids.indexOf(item[keyName]) == -1;
-    &#125;)
-    .map((item) =&gt; &#123;
-      item = Object.assign(&#123;&#125;, item);
-      if (item.children) &#123;
-        item.children = filterTreeArray(item.children, ids);
+export function parseTime(time, cFormat) &#123;
+  if (arguments.length === 0 || !time) &#123;
+    return null;
+  &#125;
+  const format = cFormat || &#39;&#123;y&#125;-&#123;m&#125;-&#123;d&#125;&#39;;
+  let date;
+  if (typeof time === &#39;object&#39;) &#123;
+    date = time;
+  &#125; else &#123;
+    if (typeof time === &#39;string&#39;) &#123;
+      if (/^[0-9]+$/.test(time)) &#123;
+        // support &quot;1548221490638&quot;
+        time = parseInt(time);
+      &#125; else &#123;
+        // support safari
+        // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
+        time = time.replace(new RegExp(/-/gm), &#39;/&#39;);
       &#125;
-      return item;
-    &#125;);
-&#125;</code></pre><h3 id="引入组件："><a href="#引入组件：" class="headerlink" title="引入组件："></a>引入组件：</h3><pre><code>&lt;TransferTree ref=&quot;transferRef&quot; :originTreeData=&quot;originTreeData&quot; :editKey=&quot;editKey&quot; /&gt;
-&lt;button @click=&quot;save&quot;&gt;保存&lt;/button&gt;
+    &#125;
+
+    if (typeof time === &#39;number&#39; &amp;&amp; time.toString().length === 10) &#123;
+      time = time * 1000;
+    &#125;
+    date = new Date(time);
+  &#125;
+  const formatObj = &#123;
+    y: date.getFullYear(),
+    m: date.getMonth() + 1,
+    d: date.getDate(),
+    h: date.getHours(),
+    i: date.getMinutes(),
+    s: date.getSeconds(),
+    a: date.getDay(),
+  &#125;;
+  const time_str = format.replace(/&#123;([ymdhisa])+&#125;/g, (result, key) =&gt; &#123;
+    const value = formatObj[key];
+    // Note: getDay() returns 0 on Sunday
+    if (key === &#39;a&#39;) &#123;
+      return [&#39;日&#39;, &#39;一&#39;, &#39;二&#39;, &#39;三&#39;, &#39;四&#39;, &#39;五&#39;, &#39;六&#39;][value];
+    &#125;
+    return value.toString().padStart(2, &#39;0&#39;);
+  &#125;);
+  return time_str;
+&#125;
+</code></pre><h3 id="引入组件："><a href="#引入组件：" class="headerlink" title="引入组件："></a>引入组件：</h3><pre><code>&lt;Calendar :selectedValues=&quot;selectedValues“ @dateSelected=&quot;dateSelected&quot;/&gt;
 
 方法：
-onSave() &#123;
-  alert(this.$refs.transferRef.emitKeys);
+dateSelected(selectedValues) &#123;
+ this.selectedValues=selectedValues;
 &#125;
-
-数据：
- originTreeData:  [
-        &#123;
-          id: &#39;1&#39;,
-          parentId: &#39;0&#39;,
-          key: &#39;1&#39;,
-          title: &#39;一级&#39;,
-          isLeaf: false,
-          // checkable: false 是否可选
-        &#125;,
-        &#123;
-          id: &#39;2&#39;,
-          parentId: &#39;0&#39;,
-          key: &#39;2&#39;,
-          title: &#39;一级1&#39;,
-          isLeaf: false,
-          children: [
-            &#123;
-              id: &#39;3&#39;,
-              parentId: &#39;2&#39;,
-              key: &#39;3&#39;,
-              title: &#39;二级1&#39;,
-              isLeaf: false,
-              children: [
-                &#123;
-                  id: &#39;99&#39;,
-                  parentId: &#39;3&#39;,
-                  key: &#39;99&#39;,
-                  title: &#39;三级1&#39;,
-                  isLeaf: true,
-                &#125;,
-                &#123;
-                  id: &#39;98&#39;,
-                  parentId: &#39;3&#39;,
-                  key: &#39;98&#39;,
-                  title: &#39;三级11&#39;,
-                  isLeaf: true,
-                &#125;,
-              ],
-            &#125;,
-            &#123;
-              id: &#39;4&#39;,
-              parentId: &#39;2&#39;,
-              key: &#39;4&#39;,
-              title: &#39;二级2&#39;,
-              isLeaf: false,
-              children: [
-                &#123;
-                  id: &#39;999&#39;,
-                  parentId: &#39;4&#39;,
-                  key: &#39;999&#39;,
-                  title: &#39;三级2&#39;,
-                  isLeaf: true,
-                &#125;,
-                &#123;
-                  id: &#39;998&#39;,
-                  parentId: &#39;4&#39;,
-                  key: &#39;998&#39;,
-                  title: &#39;三级22&#39;,
-                  isLeaf: true,
-                &#125;,
-              ],
-            &#125;,
-          ],
-        &#125;,
-      ],
-      editKey: [&#39;99&#39;],</code></pre><p>效果：</p>
-<p><img src="https://pic.imgdb.cn/item/65ec9df19f345e8d03e593a2.png" alt=""></p>
-<p><img src="https://pic.imgdb.cn/item/65ec9dff9f345e8d03e5cf11.png" alt=""></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/ITzhengjinhan/TransferTree">访问地址</a></p>
+</code></pre><p>效果：</p>
+<p><img src="https://pic.imgdb.cn/item/664a0bc9d9c307b7e97f082a.gif" alt=""></p>
+<p>多选：<br><img src="https://pic.imgdb.cn/item/664a0bc9d9c307b7e97f0870.gif" alt=""></p>
+<p>滑动选择：<br><img src="https://pic.imgdb.cn/item/664a0bcad9c307b7e97f08be.gif" alt=""></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a target="_blank" rel="noopener" href="https://github.com/ITzhengjinhan/Calendar">访问地址</a></p>
 
             </div>
             <hr/>
@@ -1088,7 +943,7 @@ onSave() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/05/20/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%A0%91%E5%BD%A2%E7%A9%BF%E6%A2%AD%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2023/05/20/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%A0%91%E5%BD%A2%E7%A9%BF%E6%A2%AD%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/07/11/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/">http://itzhengjinhan.github.io/2023/07/11/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1130,8 +985,8 @@ onSave() &#123;
                                     <span class="chip bg-color">vue</span>
                                 </a>
                             
-                                <a href="/tags/TransferTree/">
-                                    <span class="chip bg-color">TransferTree</span>
+                                <a href="/tags/Calendar/">
+                                    <span class="chip bg-color">Calendar</span>
                                 </a>
                             
                         </div>
@@ -1356,13 +1211,13 @@ onSave() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/05/11/%E5%9F%BA%E4%BA%8Evue%E7%9A%84cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%BB%84%E4%BB%B6/">
+                <a href="/2023/05/20/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%A0%91%E5%BD%A2%E7%A9%BF%E6%A2%AD%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="基于vue的cron表达式组件">
+                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="基于Ant Design Vue的树形穿梭选择组件二次封装">
                         
-                        <span class="card-title">基于vue的cron表达式组件</span>
+                        <span class="card-title">基于Ant Design Vue的树形穿梭选择组件二次封装</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1373,7 +1228,7 @@ onSave() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-20
                             </span>
                         <span class="publish-author">
                             
@@ -1394,8 +1249,8 @@ onSave() &#123;
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="/tags/cron%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-                        <span class="chip bg-color">cron表达式</span>
+                    <a href="/tags/TransferTree/">
+                        <span class="chip bg-color">TransferTree</span>
                     </a>
                     
                 </div>
