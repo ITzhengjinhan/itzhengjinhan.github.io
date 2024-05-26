@@ -978,7 +978,23 @@ new Vue(&#123;
           &#125;
       &#125;
     &#125;)
-&lt;/script&gt;</code></pre><h2 id="五、filter-过滤器"><a href="#五、filter-过滤器" class="headerlink" title="五、filter 过滤器"></a>五、filter 过滤器</h2><p>过滤器默认是以 | 前面的的内容作为过滤器的第一个参数接收 , 自身若有参数，则作为第二个参数接收。</p>
+&lt;/script&gt;</code></pre><h3 id="vue-中监视多个属性，执行同一个方法，初次加载只执行一次"><a href="#vue-中监视多个属性，执行同一个方法，初次加载只执行一次" class="headerlink" title="vue 中监视多个属性，执行同一个方法，初次加载只执行一次"></a>vue 中监视多个属性，执行同一个方法，初次加载只执行一次</h3><pre><code>watch:&#123;
+  nameAndAge:&#123;
+    handler(newValue,oldValue)&#123;
+      // xxx
+    &#125;
+  &#125;,
+
+&#125;
+computed:&#123;
+  nameAndAge()&#123;
+    return &#123;
+      name: this.name,
+      age: this.age
+    &#125;
+  &#125;
+&#125;
+</code></pre><h2 id="五、filter-过滤器"><a href="#五、filter-过滤器" class="headerlink" title="五、filter 过滤器"></a>五、filter 过滤器</h2><p>过滤器默认是以 | 前面的的内容作为过滤器的第一个参数接收 , 自身若有参数，则作为第二个参数接收。</p>
 <p>注意：使用过滤器不会改变原数据</p>
 <p>例如：定义两个过滤器，分别是首字母大写和尾字母大写，然后通过如下方式实现</p>
 <pre><code>&lt;style&gt;
