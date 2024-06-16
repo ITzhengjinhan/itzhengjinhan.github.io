@@ -585,7 +585,14 @@ console.log(d2); // 12</code></pre><ol start="2">
 <pre><code>const tInfo: [string, number, number] = [&quot;why&quot;, 18, 1.88];
 const item1 = tInfo[0]; // why, 并且知道类型是string类型
 const item2 = tInfo[1]; // 18, 并且知道类型是number类型</code></pre><p>tuple 和数组类比<br>但是数组中通常会定义一组相同的数据，如果数据不同会造成类型的丢失</p>
-<ol start="3">
+<p>元组常见运用场景</p>
+<p>定义一个变量，要求该变量类型只能从某一个数组中读取</p>
+<pre><code>const valuesType=[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;];
+
+type ValuesType = typeof valuesType[number]
+
+let values:ValuesType=3 // 不会报错
+let values:ValuesType=4 // 会报错</code></pre><ol start="3">
 <li>any 类型<br>在某些情况下，我们确实无法确定一个变量的类型，并且可能它会发生一些变化，这个时候我们可以使用 any 类型</li>
 </ol>
 <pre><code>let a: any = &quot;why&quot;;

@@ -526,7 +526,28 @@ getContainer() &#123;
 handleClickAnchor(e, link) &#123;
   // 阻止点击的默认事件修改路由
   e.preventDefault();
-&#125;</code></pre>
+&#125;</code></pre><h3 id="检测元素外部-或内部-的单击"><a href="#检测元素外部-或内部-的单击" class="headerlink" title="检测元素外部(或内部)的单击"></a>检测元素外部(或内部)的单击</h3><pre><code>let el= document.querySelector(&#39;#target&#39;)
+window.addEventListener(&#39;mousedown&#39;, e =&gt; &#123;
+  // 获取被点击的元素
+  const clickedEl = e.target;
+
+  if (el.contains(clickedEl)) &#123;
+   //在 &quot;el &quot;里面点击了
+  &#125; else &#123;
+   //在 &quot;el &quot;外点击了
+  &#125;
+&#125;);</code></pre><h3 id="iframe-框架内页面控制父框架页面跳转到某地址"><a href="#iframe-框架内页面控制父框架页面跳转到某地址" class="headerlink" title="iframe 框架内页面控制父框架页面跳转到某地址"></a>iframe 框架内页面控制父框架页面跳转到某地址</h3><pre><code>const &#123; href &#125; = this.$router.resolve(&#123; path: &quot;/index&quot;, query: &#123; key: key &#125; &#125;);
+// iframe 控制父页面跳转
+window.parent.window.location.href = href</code></pre><h3 id="生产环境去除-console-log"><a href="#生产环境去除-console-log" class="headerlink" title="生产环境去除 console.log"></a>生产环境去除 console.log</h3><p>vue.config.js 中配置</p>
+<pre><code>configureWebpack: (config) =&gt; &#123;
+  if (process.env.NODE_ENV === &quot;production&quot;) &#123;
+    config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+    config.optimization.minimizer[0].options.terserOptions.compress.pure_funcs = [
+      &quot;console.log&quot;,
+    ];
+  &#125;
+&#125;
+</code></pre>
             </div>
             <hr/>
 
