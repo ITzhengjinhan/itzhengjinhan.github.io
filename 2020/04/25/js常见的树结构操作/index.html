@@ -644,8 +644,8 @@ function deRepeat(arr)&#123;
         &#125;,
     ]
 
-    */</code></pre><h3 id="2、通过-id-过滤树的-id-所在子节点"><a href="#2、通过-id-过滤树的-id-所在子节点" class="headerlink" title="2、通过 id 过滤树的 id 所在子节点"></a>2、通过 id 过滤树的 id 所在子节点</h3><pre><code>/**
- * 通过id过滤树的id所在子节点
+    */</code></pre><h3 id="2、通过-id-过滤树形数据中-id-所在节点"><a href="#2、通过-id-过滤树形数据中-id-所在节点" class="headerlink" title="2、通过 id 过滤树形数据中 id 所在节点"></a>2、通过 id 过滤树形数据中 id 所在节点</h3><pre><code>/**
+ * 通过 id 过滤树形数据中 id 所在节点
  * @param tree 树型数据
  * @param ids  id集合
  * @param keyName 关键字
@@ -727,8 +727,8 @@ filterTreeArray(provinceList,[&#39;100101&#39;,&#39;100102&#39;]);
       &#123; id: &quot;1204&quot;, pid: &quot;1200&quot;, label: &quot;扬州&quot; &#125;,
     ],
   &#125;,
-];</code></pre><h3 id="3、获取包含-id-的父级及其当前节点的完整路径"><a href="#3、获取包含-id-的父级及其当前节点的完整路径" class="headerlink" title="3、获取包含 id 的父级及其当前节点的完整路径"></a>3、获取包含 id 的父级及其当前节点的完整路径</h3><pre><code>/**
- * 获取包含 id 的父级及其当前节点的完整路径
+];</code></pre><h3 id="3、树结构中获取包含-id-的父级到-id-所在节点的完整路径（按树形结构返回）"><a href="#3、树结构中获取包含-id-的父级到-id-所在节点的完整路径（按树形结构返回）" class="headerlink" title="3、树结构中获取包含 id 的父级到 id 所在节点的完整路径（按树形结构返回）"></a>3、树结构中获取包含 id 的父级到 id 所在节点的完整路径（按树形结构返回）</h3><pre><code>/**
+ * 树结构中获取包含 id 的父级到 id 所在节点的完整路径
  * @param tree 树型数据
  * @param ids  id集合
  * @param keyName 关键字
@@ -831,7 +831,7 @@ findPathById(provinceList,[&#39;100101&#39;,&#39;100102&#39;]);
     //         title: &quot;弹窗&quot;, icon: &quot;home&quot;, children: []
     //       &#125;
     //]
-</code></pre><h3 id="5、实现树形结构与数组的相互转换"><a href="#5、实现树形结构与数组的相互转换" class="headerlink" title="5、实现树形结构与数组的相互转换"></a>5、实现树形结构与数组的相互转换</h3><pre><code>const arr =[
+</code></pre><h3 id="5、实现树形结构与数组的相互转换"><a href="#5、实现树形结构与数组的相互转换" class="headerlink" title="5、实现树形结构与数组的相互转换"></a>5、实现树形结构与数组的相互转换</h3><h4 id="数组转树形结构"><a href="#数组转树形结构" class="headerlink" title="数组转树形结构"></a>数组转树形结构</h4><pre><code>const arr =[
   &#123;id:2,name:&#39;部门 B&#39;,parentId:0&#125;,
   &#123;id:3,name:&#39;部门 C&#39;,parentId:1&#125;,
   &#123;id:1,name:&#39;部门 A&#39;,parentId:2&#125;,
@@ -842,93 +842,216 @@ findPathById(provinceList,[&#39;100101&#39;,&#39;100102&#39;]);
   &#123;id:8,name:&#39;部门 H&#39;,parentId:4&#125;
 ];
 
-数组转树形结构
-
-function arrToTree(&#123;
-  arrayList,
-  pidStr = &quot;pid&quot;,
-  idStr = &quot;id&quot;,
-  childrenStr = &quot;children&quot;,
-&#125;) &#123;
-  let listOjb = &#123;&#125;; // 用来储存&#123;key: obj&#125;格式的对象
-  let treeList = []; // 用来储存最终树形结构数据的数组
-  // 将数据变换成&#123;key: obj&#125;格式，方便下面处理数据
-  for (let i = 0; i &lt; arrayList.length; i++) &#123;
-    listOjb[arrayList[i][idStr]] = arrayList[i];
-  &#125;
-  // 根据 pid 来将数据进行格式化
-  for (let j = 0; j &lt; arrayList.length; j++) &#123;
-    // 判断父级是否存在
-    let haveParent = listOjb[arrayList[j][pidStr]];
-    if (haveParent) &#123;
-      // 如果有没有父级 children 字段，就创建一个 children 字段
-      !haveParent[childrenStr] &amp;&amp; (haveParent[childrenStr] = []);
-      // 在父级里插入子项
-      haveParent[childrenStr].push(arrayList[j]);
+// 数组转树形结构
+export const listToTree = (list = [], keyName = &#39;id&#39;, pKeyName = &#39;pid&#39;) =&gt; &#123;
+  // 寻树
+  const trees =
+    list.filter((l) =&gt; &#123;
+      return !list.some((t) =&gt; t[keyName] === l[pKeyName]);
+    &#125;) || [];
+  // 寻子节点
+  const setChildren = (pNode) =&gt; &#123;
+    const &#123; pathNodes &#125; = pNode;
+    const children =
+      list.filter((l) =&gt; &#123;
+        if (l[pKeyName] === pNode[keyName]) &#123;
+          l.pathNodes = pathNodes.concat(&#123; ...l &#125;);
+        &#125;
+        return l[pKeyName] === pNode[keyName];
+      &#125;) || [];
+    if (children?.length) &#123;
+      pNode.children = children;
+      children.forEach((node) =&gt; setChildren(node));
     &#125; else &#123;
-      // 如果没有父级直接插入到最外层
-      treeList.push(arrayList[j]);
+      pNode.isLeaf = true;
     &#125;
-  &#125;
-  return treeList;
-&#125;
+  &#125;;
+  // 组装树
+  trees.forEach((node) =&gt; &#123;
+    node.pathNodes = [&#123; ...node &#125;];
+    setChildren(node);
+  &#125;);
+  return trees;
+&#125;;
 
 
 数据测试
-arrToTree(&#123;arrayList:arr,pidStr:&#39;parentId&#39;&#125;);
+listToTree(arr,&#39;id&#39;,&#39;parentId&#39;);
 
-[
-    &#123;
-        &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;部门 B&quot;,
-        &quot;parentId&quot;: 0,
-        &quot;children&quot;: [
-            &#123;
-                &quot;id&quot;: 1,
-                &quot;name&quot;: &quot;部门 A&quot;,
-                &quot;parentId&quot;: 2,
-                &quot;children&quot;: [
-                    &#123;
-                        &quot;id&quot;: 3,
-                        &quot;name&quot;: &quot;部门 C&quot;,
-                        &quot;parentId&quot;: 1,
-                        &quot;children&quot;: [
-                            &#123;
-                                &quot;id&quot;: 6,
-                                &quot;name&quot;: &quot;部门 F&quot;,
-                                &quot;parentId&quot;: 3
-                            &#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        &quot;id&quot;: 4,
-                        &quot;name&quot;: &quot;部门 D&quot;,
-                        &quot;parentId&quot;: 1,
-                        &quot;children&quot;: [
-                            &#123;
-                                &quot;id&quot;: 8,
-                                &quot;name&quot;: &quot;部门 H&quot;,
-                                &quot;parentId&quot;: 4
-                            &#125;
-                        ]
-                    &#125;
-                ]
-            &#125;,
-            &#123;
-                &quot;id&quot;: 5,
-                &quot;name&quot;: &quot;部门 E&quot;,
-                &quot;parentId&quot;: 2
-            &#125;,
-            &#123;
-                &quot;id&quot;: 7,
-                &quot;name&quot;: &quot;部门 G&quot;,
-                &quot;parentId&quot;: 2
-            &#125;
-        ]
-    &#125;
-]
-</code></pre><pre><code>树形结构转扁平化数组
-
+[&#123;
+    &quot;id&quot;: 2,
+    &quot;name&quot;: &quot;部门 B&quot;,
+    &quot;parentId&quot;: 0,
+    &quot;pathNodes&quot;: [
+        &#123;
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;部门 B&quot;,
+            &quot;parentId&quot;: 0
+        &#125;
+    ],
+    &quot;children&quot;: [
+        &#123;
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;部门 A&quot;,
+            &quot;parentId&quot;: 2,
+            &quot;pathNodes&quot;: [
+                &#123;
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;部门 B&quot;,
+                    &quot;parentId&quot;: 0
+                &#125;,
+                &#123;
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;部门 A&quot;,
+                    &quot;parentId&quot;: 2
+                &#125;
+            ],
+            &quot;children&quot;: [
+                &#123;
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;部门 C&quot;,
+                    &quot;parentId&quot;: 1,
+                    &quot;pathNodes&quot;: [
+                        &#123;
+                            &quot;id&quot;: 2,
+                            &quot;name&quot;: &quot;部门 B&quot;,
+                            &quot;parentId&quot;: 0
+                        &#125;,
+                        &#123;
+                            &quot;id&quot;: 1,
+                            &quot;name&quot;: &quot;部门 A&quot;,
+                            &quot;parentId&quot;: 2
+                        &#125;,
+                        &#123;
+                            &quot;id&quot;: 3,
+                            &quot;name&quot;: &quot;部门 C&quot;,
+                            &quot;parentId&quot;: 1
+                        &#125;
+                    ],
+                    &quot;children&quot;: [
+                        &#123;
+                            &quot;id&quot;: 6,
+                            &quot;name&quot;: &quot;部门 F&quot;,
+                            &quot;parentId&quot;: 3,
+                            &quot;pathNodes&quot;: [
+                                &#123;
+                                    &quot;id&quot;: 2,
+                                    &quot;name&quot;: &quot;部门 B&quot;,
+                                    &quot;parentId&quot;: 0
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 1,
+                                    &quot;name&quot;: &quot;部门 A&quot;,
+                                    &quot;parentId&quot;: 2
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 3,
+                                    &quot;name&quot;: &quot;部门 C&quot;,
+                                    &quot;parentId&quot;: 1
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 6,
+                                    &quot;name&quot;: &quot;部门 F&quot;,
+                                    &quot;parentId&quot;: 3
+                                &#125;
+                            ],
+                            &quot;isLeaf&quot;: true
+                        &#125;
+                    ]
+                &#125;,
+                &#123;
+                    &quot;id&quot;: 4,
+                    &quot;name&quot;: &quot;部门 D&quot;,
+                    &quot;parentId&quot;: 1,
+                    &quot;pathNodes&quot;: [
+                        &#123;
+                            &quot;id&quot;: 2,
+                            &quot;name&quot;: &quot;部门 B&quot;,
+                            &quot;parentId&quot;: 0
+                        &#125;,
+                        &#123;
+                            &quot;id&quot;: 1,
+                            &quot;name&quot;: &quot;部门 A&quot;,
+                            &quot;parentId&quot;: 2
+                        &#125;,
+                        &#123;
+                            &quot;id&quot;: 4,
+                            &quot;name&quot;: &quot;部门 D&quot;,
+                            &quot;parentId&quot;: 1
+                        &#125;
+                    ],
+                    &quot;children&quot;: [
+                        &#123;
+                            &quot;id&quot;: 8,
+                            &quot;name&quot;: &quot;部门 H&quot;,
+                            &quot;parentId&quot;: 4,
+                            &quot;pathNodes&quot;: [
+                                &#123;
+                                    &quot;id&quot;: 2,
+                                    &quot;name&quot;: &quot;部门 B&quot;,
+                                    &quot;parentId&quot;: 0
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 1,
+                                    &quot;name&quot;: &quot;部门 A&quot;,
+                                    &quot;parentId&quot;: 2
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 4,
+                                    &quot;name&quot;: &quot;部门 D&quot;,
+                                    &quot;parentId&quot;: 1
+                                &#125;,
+                                &#123;
+                                    &quot;id&quot;: 8,
+                                    &quot;name&quot;: &quot;部门 H&quot;,
+                                    &quot;parentId&quot;: 4
+                                &#125;
+                            ],
+                            &quot;isLeaf&quot;: true
+                        &#125;
+                    ]
+                &#125;
+            ]
+        &#125;,
+        &#123;
+            &quot;id&quot;: 5,
+            &quot;name&quot;: &quot;部门 E&quot;,
+            &quot;parentId&quot;: 2,
+            &quot;pathNodes&quot;: [
+                &#123;
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;部门 B&quot;,
+                    &quot;parentId&quot;: 0
+                &#125;,
+                &#123;
+                    &quot;id&quot;: 5,
+                    &quot;name&quot;: &quot;部门 E&quot;,
+                    &quot;parentId&quot;: 2
+                &#125;
+            ],
+            &quot;isLeaf&quot;: true
+        &#125;,
+        &#123;
+            &quot;id&quot;: 7,
+            &quot;name&quot;: &quot;部门 G&quot;,
+            &quot;parentId&quot;: 2,
+            &quot;pathNodes&quot;: [
+                &#123;
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;部门 B&quot;,
+                    &quot;parentId&quot;: 0
+                &#125;,
+                &#123;
+                    &quot;id&quot;: 7,
+                    &quot;name&quot;: &quot;部门 G&quot;,
+                    &quot;parentId&quot;: 2
+                &#125;
+            ],
+            &quot;isLeaf&quot;: true
+        &#125;
+    ]
+&#125;]
+</code></pre><h4 id="树形结构转扁平化数组"><a href="#树形结构转扁平化数组" class="headerlink" title="树形结构转扁平化数组"></a>树形结构转扁平化数组</h4><pre><code>// 树形结构转扁平化数组
 function treeToArr(data) &#123;
   const result = [];
   data.forEach((item) =&gt; &#123;
@@ -960,15 +1083,15 @@ function treeToArr(data) &#123;
   &#123;id:6,name:&#39;部门 F&#39;,parentId:3&#125;,
   &#123;id:7,name:&#39;部门 G&#39;,parentId:2&#125;,
   &#123;id:8,name:&#39;部门 H&#39;,parentId:4&#125;
-];</code></pre><h3 id="6、获取树结构中指定的所有的-key-集合"><a href="#6、获取树结构中指定的所有的-key-集合" class="headerlink" title="6、获取树结构中指定的所有的 key 集合"></a>6、获取树结构中指定的所有的 key 集合</h3><pre><code>function getAllKey(backMenuTree)&#123;
+];</code></pre><h3 id="6、获取树结构中指定的所有-id-集合"><a href="#6、获取树结构中指定的所有-id-集合" class="headerlink" title="6、获取树结构中指定的所有 id 集合"></a>6、获取树结构中指定的所有 id 集合</h3><pre><code>function getAllIds(backMenuTree)&#123;
   const pathList = [];
   const loop = (backMenuTree, pathList) =&gt; &#123;
     backMenuTree?.forEach((item) =&gt; &#123;
       if (item.children) &#123;
-        pathList.push(item.key);
+        pathList.push(item.id);
         return loop(item.children, pathList);
       &#125; else &#123;
-        pathList.push(item.key);
+        pathList.push(item.id);
       &#125;
     &#125;);
   &#125;;
@@ -1011,7 +1134,7 @@ const provinceList = [
 
 getAllKey(provinceList);
 
-[&#39;1000&#39;, &#39;1001&#39;, &#39;100101&#39;, &#39;100102&#39;, &#39;100103&#39;, &#39;1020&#39;, &#39;1022&#39;, &#39;1034&#39;, &#39;1003&#39;, &#39;1200&#39;, &#39;1201&#39;, &#39;1202&#39;, &#39;1204&#39;]</code></pre><h3 id="7、判断某个节点是否存在，存在返回节点所在的-item，否则返回-false"><a href="#7、判断某个节点是否存在，存在返回节点所在的-item，否则返回-false" class="headerlink" title="7、判断某个节点是否存在，存在返回节点所在的 item，否则返回 false"></a>7、判断某个节点是否存在，存在返回节点所在的 item，否则返回 false</h3><pre><code>const treeFindFn = (tree, func) =&gt; &#123;
+[&#39;1000&#39;, &#39;1001&#39;, &#39;100101&#39;, &#39;100102&#39;, &#39;100103&#39;, &#39;1020&#39;, &#39;1022&#39;, &#39;1034&#39;, &#39;1003&#39;, &#39;1200&#39;, &#39;1201&#39;, &#39;1202&#39;, &#39;1204&#39;]</code></pre><h3 id="7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回-false"><a href="#7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回-false" class="headerlink" title="7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 false"></a>7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 false</h3><pre><code>const treeFindFn = (tree, func) =&gt; &#123;
   for (let node of tree) &#123;
     if (func(node)) return node;
     if (node.children) &#123;
@@ -1056,7 +1179,7 @@ const provinceList = [
 ];
 let findFlag1 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;1020&quot;); // &#123;id: &#39;1020&#39;, pid: &#39;1000&#39;, label: &#39;咸宁&#39;, key: &#39;1020&#39;&#125;
 let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&quot;); // false
-</code></pre><h3 id="8、根据-id-查找树结构中的某一项"><a href="#8、根据-id-查找树结构中的某一项" class="headerlink" title="8、根据 id 查找树结构中的某一项"></a>8、根据 id 查找树结构中的某一项</h3><pre><code>function findItemById(list, id) &#123;
+</code></pre><h3 id="8、树结构中根据-id-查找-id-所在的节点"><a href="#8、树结构中根据-id-查找-id-所在的节点" class="headerlink" title="8、树结构中根据 id 查找 id 所在的节点"></a>8、树结构中根据 id 查找 id 所在的节点</h3><pre><code>function findItemById(list, id) &#123;
   let target = null;
   const recursion = (list) =&gt; &#123;
     if (target) return false;
@@ -1071,7 +1194,7 @@ let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&q
   recursion(list, id);
   return target;
 &#125;
-</code></pre><h3 id="9、根据-id-查找父级路径-扁平返回"><a href="#9、根据-id-查找父级路径-扁平返回" class="headerlink" title="9、根据 id 查找父级路径(扁平返回)"></a>9、根据 id 查找父级路径(扁平返回)</h3><pre><code>function findPathById(treeList, id) &#123;
+</code></pre><h3 id="9、树结构中根据-id-查找父级到-id-所在节点的路径-按层级扁平返回"><a href="#9、树结构中根据-id-查找父级到-id-所在节点的路径-按层级扁平返回" class="headerlink" title="9、树结构中根据 id 查找父级到 id 所在节点的路径(按层级扁平返回)"></a>9、树结构中根据 id 查找父级到 id 所在节点的路径(按层级扁平返回)</h3><pre><code>function findPathById(treeList, id) &#123;
     const path = []
     try &#123;
         const getPath = node =&gt; &#123;
@@ -1147,7 +1270,7 @@ findPathById(provinceList,&#39;1201&#39;);
     &quot;label&quot;: &quot;南京&quot;,
   &#125;
 ]
-</code></pre><h3 id="10、根据-id-查找完整的-label-名称"><a href="#10、根据-id-查找完整的-label-名称" class="headerlink" title="10、根据 id 查找完整的 label 名称"></a>10、根据 id 查找完整的 label 名称</h3><pre><code>function getFullNameById(tree, id) &#123;
+</code></pre><h3 id="10、根据-id-查找父级到-id-所在节点的完整-label-拼接的名称"><a href="#10、根据-id-查找父级到-id-所在节点的完整-label-拼接的名称" class="headerlink" title="10、根据 id 查找父级到 id 所在节点的完整 label 拼接的名称"></a>10、根据 id 查找父级到 id 所在节点的完整 label 拼接的名称</h3><pre><code>function getFullNameById(tree, id) &#123;
   function findName(nodes, id, path = []) &#123;
     for (let node of nodes) &#123;
       path.push(node.label);
