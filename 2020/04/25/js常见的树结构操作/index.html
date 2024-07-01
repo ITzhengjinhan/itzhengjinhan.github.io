@@ -1134,16 +1134,31 @@ const provinceList = [
 
 getAllKey(provinceList);
 
-[&#39;1000&#39;, &#39;1001&#39;, &#39;100101&#39;, &#39;100102&#39;, &#39;100103&#39;, &#39;1020&#39;, &#39;1022&#39;, &#39;1034&#39;, &#39;1003&#39;, &#39;1200&#39;, &#39;1201&#39;, &#39;1202&#39;, &#39;1204&#39;]</code></pre><h3 id="7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回-false"><a href="#7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回-false" class="headerlink" title="7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 false"></a>7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 false</h3><pre><code>const treeFindFn = (tree, func) =&gt; &#123;
-  for (let node of tree) &#123;
-    if (func(node)) return node;
+[&#39;1000&#39;, &#39;1001&#39;, &#39;100101&#39;, &#39;100102&#39;, &#39;100103&#39;, &#39;1020&#39;, &#39;1022&#39;, &#39;1034&#39;, &#39;1003&#39;, &#39;1200&#39;, &#39;1201&#39;, &#39;1202&#39;, &#39;1204&#39;]</code></pre><h3 id="7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回"><a href="#7、树结构中判断某个节点是否存在，存在返回节点所在的-item，否则返回" class="headerlink" title="7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 {}"></a>7、树结构中判断某个节点是否存在，存在返回节点所在的 item，否则返回 {}</h3><pre><code>function treeFindFn(tree, func) &#123;
+  function search(node) &#123;
+    if (func(node)) &#123;
+      return node;
+    &#125;
     if (node.children) &#123;
-      let result = treeFindFn(node.children, func);
-      if (result) return result;
+      for (let child of node.children) &#123;
+        let result = search(child);
+        if (result) &#123;
+          return result;
+        &#125;
+      &#125;
+    &#125;
+    return null;
+  &#125;
+
+  for (let node of tree) &#123;
+    let result = search(node);
+    if (result) &#123;
+      return result;
     &#125;
   &#125;
-  return false;
-&#125;;
+
+  return &#123;&#125;;
+&#125;
 </code></pre><pre><code>// 测试数据
 const provinceList = [
   &#123;
@@ -1178,7 +1193,7 @@ const provinceList = [
   &#125;,
 ];
 let findFlag1 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;1020&quot;); // &#123;id: &#39;1020&#39;, pid: &#39;1000&#39;, label: &#39;咸宁&#39;, key: &#39;1020&#39;&#125;
-let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&quot;); // false
+let findFlag2 = treeFindFn(provinceList, (node) =&gt; node.id === &quot;100125&quot;); // &#123;&#125;
 </code></pre><h3 id="8、树结构中根据-id-查找-id-所在的节点"><a href="#8、树结构中根据-id-查找-id-所在的节点" class="headerlink" title="8、树结构中根据 id 查找 id 所在的节点"></a>8、树结构中根据 id 查找 id 所在的节点</h3><pre><code>function findItemById(list, id) &#123;
   let target = null;
   const recursion = (list) =&gt; &#123;
