@@ -531,7 +531,7 @@ handleClickAnchor(e, link) &#123;
 方法二：
     let url = &quot;http://127.0.0.1:5555/test.html/?type=woman#/&quot;;
     let b = new URL(url);
-    this.location =  b.origin + b.pathname + b.hash + b.search;</code></pre><h3 id="URL-哈希模式如何新开页签并携带参数打开新页面"><a href="#URL-哈希模式如何新开页签并携带参数打开新页面" class="headerlink" title="URL 哈希模式如何新开页签并携带参数打开新页面"></a>URL 哈希模式如何新开页签并携带参数打开新页面</h3><pre><code>let &#123;href&#125; = this.$router.resolve(&#123;
+    this.location =  b.origin + b.pathname + b.hash + b.search;</code></pre><h3 id="URL-哈希模式如何新开页签并携带参数打开新的页面"><a href="#URL-哈希模式如何新开页签并携带参数打开新的页面" class="headerlink" title="URL 哈希模式如何新开页签并携带参数打开新的页面"></a>URL 哈希模式如何新开页签并携带参数打开新的页面</h3><pre><code>let &#123;href&#125; = this.$router.resolve(&#123;
   path:&#39;/xxx&#39;,
   param:xxx
 &#125;)
