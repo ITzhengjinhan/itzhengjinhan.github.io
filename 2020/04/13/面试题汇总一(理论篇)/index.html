@@ -1,0 +1,1612 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="前端常见的问题（理论篇）, IT默小涵的个人博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>前端常见的问题（理论篇） | IT默小涵的个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">IT默小涵的个人博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">IT默小涵的个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ITzhengjinhan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ITzhengjinhan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">前端常见的问题（理论篇）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                <span class="chip bg-color">面试题</span>
+                            </a>
+                        
+                            <a href="/tags/css/">
+                                <span class="chip bg-color">css</span>
+                            </a>
+                        
+                            <a href="/tags/js/">
+                                <span class="chip bg-color">js</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
+                                面试题
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-13
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="从一个-url-地址到最终页面渲染完成，发生了什么"><a href="#从一个-url-地址到最终页面渲染完成，发生了什么" class="headerlink" title="从一个 url 地址到最终页面渲染完成，发生了什么"></a>从一个 url 地址到最终页面渲染完成，发生了什么</h3><p>总结了六步：</p>
+<ol>
+<li>DNS 解析:将域名解析为 IP 地址</li>
+<li>TCP 请求连接，即三次握手</li>
+<li>浏览器发送 http 请求</li>
+<li>服务器响应请求</li>
+<li>渲染页面（主要分为 ① 创建 DOM 树、CSSOM 树，② 创建渲染树，③ 计算页面布局，④ 填充颜色，渲染完成）</li>
+<li>TCP 断开连接，即四次挥手</li>
+</ol>
+<h3 id="get-与-post-请求的区别"><a href="#get-与-post-请求的区别" class="headerlink" title="get 与 post 请求的区别"></a>get 与 post 请求的区别</h3><ol>
+<li>get 一般获取数据，post 一般提交数据</li>
+<li>get 的参数放在 url 上，post 放在 body 中</li>
+<li>对于 get 请求，浏览器会把 http header 和 data 一并发送过去，服务器响应 200 返回数据<br>而对于 post，浏览器先发 header，服务器响应 100，浏览器再发送 data，服务器响应 200 返回数据<br>进行说明 post 安全性比 get 高</li>
+</ol>
+<h3 id="TCP-和-UDP-的区别"><a href="#TCP-和-UDP-的区别" class="headerlink" title="TCP 和 UDP 的区别"></a>TCP 和 UDP 的区别</h3><ol>
+<li>TCP 是面向连接的，UDP 是无连接的</li>
+<li>TCP 是可靠性传输，UDP 是不可靠的</li>
+<li>应用场景：TCP：文件传输，UDP:qq 聊天、在线视频</li>
+</ol>
+<h3 id="HTML5-有哪些更新"><a href="#HTML5-有哪些更新" class="headerlink" title="HTML5 有哪些更新"></a>HTML5 有哪些更新</h3><ol>
+<li><p>语义化标签<br>header：定义文档的页眉（头部）；<br>nav：定义导航链接的部分；<br>footer：定义文档或节的页脚（底部）；<br>article：定义文章内容；<br>section：定义文档中的节（section、区段）；<br>aside：定义其所处内容之外的内容（侧边）；</p>
+</li>
+<li><p>媒体标签<br>audio：音频<br>video 视频</p>
+</li>
+<li><p>DOM 查询操作<br>document.querySelector()<br>document.querySelectorAll()</p>
+</li>
+<li><p>Web 存储<br>localStorage - 没有时间限制的数据存储<br>sessionStorage - 针对一个 session 的数据存储</p>
+</li>
+</ol>
+<h3 id="对盒模型的理解"><a href="#对盒模型的理解" class="headerlink" title="对盒模型的理解"></a>对盒模型的理解</h3><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4544d45b5a0c47a58c0c33a7d8fbac09~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp"/>
+
+<img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4040de9fef1a49f4ae0ae66039edcfe0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp"/>
+
+<p>标准盒模型的 width 和 height 属性的范围只包含了 content</p>
+<p>IE 盒/怪异盒模型的 width 和 height 属性的范围包含了 border、padding 和 content</p>
+<p>可以通过修改元素的 box-sizing 属性来改变元素的盒模型：</p>
+<p>box-sizing: content-box 表示标准盒模型（默认值）</p>
+<p>box-sizing: border-box 表示 IE 盒模型（怪异盒模型）</p>
+<h3 id="CSS-选择器以及优先级"><a href="#CSS-选择器以及优先级" class="headerlink" title="CSS 选择器以及优先级"></a>CSS 选择器以及优先级</h3><pre><code>常见选择器：标签选择器、类/伪类选择器、id选择器 、 行内选择器
+优先级： !important &gt; 行内选择器 &gt; id  &gt; 类/伪类选择器 &gt; 标签选择器
+
+其他组合选择器
+div,p    选择所有&lt;div&gt;元素和&lt;p&gt;元素
+div p    选择&lt;div&gt;元素内的所有&lt;p&gt;元素
+div&gt;p    选择所有父级是 &lt;div&gt; 元素的 &lt;p&gt; 元素
+div+p    选择所有紧接着&lt;div&gt;元素之后的&lt;p&gt;元素（只有一个）
+div~p    选择div元素同级的每一个p元素
+div:hover p    选择鼠标悬浮在上面时选择其子级p标签
+div:hover~p    选择鼠标悬浮在上面时选择其同级p标签
+div:before    在&lt;div&gt;元素之前插入content内容
+div:after    在&lt;div&gt;元素之后插入content内容</code></pre><h3 id="列举盒子居中的方法"><a href="#列举盒子居中的方法" class="headerlink" title="列举盒子居中的方法"></a>列举盒子居中的方法</h3><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49f1f4318c834949bbd63ee0b70baafe~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp?"/>
+
+<h3 id="重绘和重排的区别"><a href="#重绘和重排的区别" class="headerlink" title="重绘和重排的区别"></a>重绘和重排的区别</h3><p>重绘：对 dom 的样式进行修改，则只需重绘颜色即可<br>重排：对 dom 的位置、大小进行修改，浏览器会重新计算几何属性</p>
+<h3 id="css-哪些属性可以继承"><a href="#css-哪些属性可以继承" class="headerlink" title="css 哪些属性可以继承"></a>css 哪些属性可以继承</h3><ol>
+<li>字体属性 font-*</li>
+<li>文本的一些属性 text-align，color，line-height</li>
+<li>元素的可见性 visibility</li>
+</ol>
+<h3 id="清除浮动的方法"><a href="#清除浮动的方法" class="headerlink" title="清除浮动的方法"></a>清除浮动的方法</h3><ol>
+<li>在浮动元素后使用一个空属性（clear:both）</li>
+<li>给浮动元素父级添加 overflow 属性（overflow：hidden 或 overflow：auto）</li>
+<li>给浮动元素父级添加伪元素:after{clear:both}</li>
+</ol>
+<h3 id="display-的-block、inline-和-inline-block-的区别"><a href="#display-的-block、inline-和-inline-block-的区别" class="headerlink" title="display 的 block、inline 和 inline-block 的区别"></a>display 的 block、inline 和 inline-block 的区别</h3><ol>
+<li>block： 会独占一行，多个元素会另起一行，可以设置 width、height、margin 和 padding 属性；</li>
+<li>inline： 元素不会独占一行，设置 width、height 属性无效。但可以设置水平方向的 margin 和 padding 属性，不能设置垂直方向的 padding 和 margin；</li>
+<li>inline-block： 可以设置 width、height、margin 和 padding 属性，同时元素不会独占一行。</li>
+</ol>
+<h3 id="position-相关属性-css-定位"><a href="#position-相关属性-css-定位" class="headerlink" title="position 相关属性/css 定位"></a>position 相关属性/css 定位</h3><p>默认值：static</p>
+<ol>
+<li>fixed（固定定位）：相对浏览器窗口固定定位，不随滑轮滚动，脱离文档流</li>
+<li>relative（相对定位）：相对原来位置定位，未脱离文档流</li>
+<li>absolute（绝对定位）：相对于除 static 定位以外的最近的父元素来定位，脱离文档流，通常使用“子绝父相对”的方式定位，使得子元素相对父元素定位</li>
+</ol>
+<h3 id="li-与-li-之间有看不见的空白间隔是什么原因引起的？如何解决？"><a href="#li-与-li-之间有看不见的空白间隔是什么原因引起的？如何解决？" class="headerlink" title="li 与 li 之间有看不见的空白间隔是什么原因引起的？如何解决？"></a>li 与 li 之间有看不见的空白间隔是什么原因引起的？如何解决？</h3><p>原因：浏览器默认会把 display 属性为 inline 或者 inline-block 元素间的空白字符（空格换行 tab）渲染成一个空格。也就是我们上面 li 元素换行产生的换行符，而它会变成一个空格，当然空格就占用一个字符的宽度</p>
+<p>解决方案：</p>
+<ol>
+<li>为 li 设置 float:left</li>
+<li>将所有 li 写在同一行</li>
+<li>将 ul 内的字符尺寸直接设为 0，即 font-size:0</li>
+<li>给 ul 设置 letter-space:-5px,并且给 li 的 letter-space 设置为 normal</li>
+</ol>
+<h3 id="BFC-的含义与运用"><a href="#BFC-的含义与运用" class="headerlink" title="BFC 的含义与运用"></a>BFC 的含义与运用</h3><p>BFC：Block Formatting Context，解释为块级格式化上下文，即建立一个隔离的独立容器，容器里面的子元素不会影响外面的元素</p>
+<p>一个 HTML 元素形成 BFC，则满足下列的任意条件即可：</p>
+<ol>
+<li>float 的值不是 none。（float:left 或者 float:right）</li>
+<li>position 的值不是 static 或者 relative。（position:absolute 或者 position:fixed）</li>
+<li>display 的值是 inline-block、table-cell、flex、table-caption 或者 inline-flex</li>
+<li>overflow 的值不是 visible（overflow:hidden、overflow:scroll）</li>
+<li>父元素与正常文件流的子元素（非浮动子元素）自动形成一个 BFC</li>
+</ol>
+<p>BFC 的运用：</p>
+<ol>
+<li>解决 margin 的重叠问题：由于 BFC 是一个独立的区域，内部的元素和外部的元素互不影响，将两个元素变为两个 BFC，就解决了 margin 重叠的问题。</li>
+<li>解决高度塌陷的问题：在对子元素设置浮动后，父元素会发生高度塌陷，也就是父元素的高度变为 0。解决这个问题，只需要把父元素变成一个 BFC。常用的办法是给父元素设置 overflow:hidden。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1410038">可参考博客</a></p>
+<h3 id="用纯-CSS-创建一个三角形的原理是什么？"><a href="#用纯-CSS-创建一个三角形的原理是什么？" class="headerlink" title="用纯 CSS 创建一个三角形的原理是什么？"></a>用纯 CSS 创建一个三角形的原理是什么？</h3><pre><code>把上、右、左三条边隐藏掉（颜色设为 transparent），需要展示的显示即可
+#demo &#123;
+  width: 0;
+  height: 0;
+  border-width: 20px;
+  border-style: solid;
+  border-color: transparent transparent red transparent;
+&#125;</code></pre><h3 id="延迟加载-js-有哪些方式"><a href="#延迟加载-js-有哪些方式" class="headerlink" title="延迟加载 js 有哪些方式"></a>延迟加载 js 有哪些方式</h3><p>有 async、defer 两种</p>
+<pre><code>&lt;script async type=&quot;text/javascript&quot; src=&quot;async_script.js&quot;&gt;&lt;/script&gt;
+&lt;script defer type=&quot;text/javascript&quot; src=&quot;defer_script.js&quot;&gt;&lt;/script&gt;</code></pre><p>区别：</p>
+<p>async：和 html 解析同步，不按顺序执行 js 脚本</p>
+<p>defer：等 html 全部解析完成，才会执行 js 代码，顺序执行 js 脚本</p>
+<h3 id="js-中值类型和引用类型的区别"><a href="#js-中值类型和引用类型的区别" class="headerlink" title="js 中值类型和引用类型的区别"></a>js 中值类型和引用类型的区别</h3><p>JavaScript 中的变量类型有哪些？</p>
+<p>（1）值类型（基本类型）：字符串（string）、数值（number）、布尔值（boolean）、undefined、null 、symbol 、bigInt</p>
+<p>（2）引用类型：对象（Object）、数组（Array）、函数（Function）</p>
+<pre><code>// 值类型：number、string、boolean、undefined、null
+var a = 100
+var b = a
+a = 200
+console.log(b) // 100 保存与复制的是值本身
+
+// 引用类型：对象、数组、函数
+// 可以扩展属性
+var a = &#123;age:20&#125;
+var b = a
+b.age = 21
+console.log(a.age) // 21</code></pre><img src="https://s1.ax1x.com/2020/09/20/w73JwF.png" style="width:600px;height:300px"/>
+
+<h3 id="let、const、var-的区别"><a href="#let、const、var-的区别" class="headerlink" title="let、const、var 的区别"></a>let、const、var 的区别</h3><table>
+<thead>
+<tr>
+<th>区别</th>
+<th>var</th>
+<th>let</th>
+<th>const</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否有块级作用域</td>
+<td>×</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>是否存在变量提升</td>
+<td>✔️</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>能否重复声明变量</td>
+<td>✔️</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>是否存在暂时性死区</td>
+<td>×</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>是否必须设置初始值</td>
+<td>×</td>
+<td>×</td>
+<td>✔️</td>
+</tr>
+</tbody></table>
+<h3 id="js-数组，字符串主要有哪些方法"><a href="#js-数组，字符串主要有哪些方法" class="headerlink" title="js 数组，字符串主要有哪些方法"></a>js 数组，字符串主要有哪些方法</h3><p>这里可以参考我之前写的其他博客:</p>
+<p><a href="https://itzhengjinhan.github.io/2020/04/20/JS%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95/">js 中常用数组的方法</a></p>
+<p><a href="https://itzhengjinhan.github.io/2020/04/21/JS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B9%E6%B3%95/">js 中常用字符串的方法</a></p>
+<h3 id="js-数据类型检测方法？"><a href="#js-数据类型检测方法？" class="headerlink" title="js 数据类型检测方法？"></a>js 数据类型检测方法？</h3><p>typeof() : 可检测值类型，但无法检测引用类型<br>instanceof() : 可检测引用类型，但无法检测值类型<br>Object.prototype.toString.call() : 都可检测</p>
+<h3 id="js-中-this-的指向问题，以及-call-apply-bind-的区别？-如何手写实现-call、apply、bind"><a href="#js-中-this-的指向问题，以及-call-apply-bind-的区别？-如何手写实现-call、apply、bind" class="headerlink" title="js 中 this 的指向问题，以及 call/apply/bind 的区别？ 如何手写实现 call、apply、bind"></a>js 中 this 的指向问题，以及 call/apply/bind 的区别？ 如何手写实现 call、apply、bind</h3><p>1.以函数的形式调用，this 指向 window。如 fun(),相当于 window.fun(); 2.以方法的形式调用，this 指向调用方法的那个对象；如 stu.fun(),this 指向 stu; 3.以构造函数的形式调用，this 是新创建的那个对象；</p>
+<p>call 和 apply 改变 this 指向，第一个参数都是指向的对象，第二个参数就不一样了，apply 需要数组做参数，call 需要全部展开逐个放进去，<br>然后对比下 bind，与 call 类似，但其返回的是一个函数且不会立即执行，需要主动调用才会执行。</p>
+<pre><code>var name=&quot;小王&quot;,age=17;
+var obj=&#123;
+    name:&quot;小张&quot;,
+    objAge:this.age,
+    fun:function()&#123;
+    console.log(this.name+&quot;年龄&quot;+this.age);
+    &#125;
+&#125;
+obj.objAge;  // 17,this指向obj
+obj.fun()  // 小张年龄 undefined
+
+var name=&quot;盲僧&quot;;
+function show()&#123;
+console.log(this.name)
+&#125;
+shows()  // 盲僧,this指向window
+
+---------------------------------------
+var name=&quot;小王&quot;,age=17;
+var obj=&#123;
+    name:&quot;小张&quot;,
+    objAge:this.age,
+    fun:function()&#123;
+    console.log(this.name+&quot;年龄&quot;+this.age);
+    &#125;
+&#125;
+var db=&#123;
+name=&quot;德玛&quot;;
+age:99
+&#125;
+obj.fun.call(db)；　　　　// 德玛年龄99
+obj.fun.apply(db);　　　 // 德玛年龄99
+obj.fun.bind(db)();　　　// 德玛年龄99，bind 返回的是一个新的函数，你必须调用它才会被执行。
+
+-----------------------------------------
+var name=&quot;小王&quot;,age=17;
+var obj=&#123;
+    name:&quot;小张&quot;,
+    objAge:this.age,
+    fun:function(a,b)&#123;
+    console.log(this.name+&quot;年龄&quot;+this.age+&quot;来自&quot;+a+&quot;去往&quot;+b);
+    &#125;
+&#125;
+var db=&#123;
+name=&quot;德玛&quot;;
+age:99
+&#125;
+obj.fun.call(db,&#39;成都&#39;,&#39;上海&#39;)；　　　　 // 德玛年龄99来自成都去往上海
+obj.fun.apply(db,[&#39;成都&#39;,&#39;上海&#39;]);      // 德玛年龄99来自成都去往上海
+obj.fun.bind(db,&#39;成都&#39;,&#39;上海&#39;)();       // 德玛年龄99来自成都去往上海
+obj.fun.bind(db,[&#39;成都&#39;,&#39;上海&#39;])();　　 // 德玛年龄99来自成都, 上海去往 undefined</code></pre><p>手写 call、apply、bind</p>
+<pre><code>Function.prototype._call = function(context, ...args) &#123;
+
+    // 如果context不传,this就默认绑定到window
+    const ctx = context || window;
+
+    // 这里this指调用函数
+    ctx.fn = this;
+    // console.log(this)
+
+    // 立即执行方法
+    const res = ctx.fn(...args);
+    delete ctx.fn;  // 为何要delete？ 不删则绑定的ctx对象会添加一个fn方法进来可能产生副作用
+    return res;  // 这里为何要return出去结果呢？ _call相当于包装器，ctx.fn函数得到的结果也要return出去
+&#125;
+
+Function.prototype._apply = function(context, args) &#123;
+
+    // 如果context不传,this就默认绑定到window
+    const ctx = context || window;
+
+    // 这里this指调用函数
+    ctx.fn = this;
+    // console.log(this)
+
+    // 这里参数为数组
+    const res = ctx.fn(...args);
+    delete ctx.fn;
+    return res;
+&#125;
+
+Function.prototype._bind = function(context, ...args) &#123;
+
+    // 如果context不传,this就默认绑定到window
+    const ctx = context || window;
+
+    ctx.fn = this;
+    // console.log(this)
+
+    return function(...subArgs) &#123;
+        const res = ctx.fn(...args.concat(subArgs))
+        delete ctx.fn;
+        return res;
+
+    &#125;
+&#125;</code></pre><h3 id="箭头函数与普通函数的区别"><a href="#箭头函数与普通函数的区别" class="headerlink" title="箭头函数与普通函数的区别"></a>箭头函数与普通函数的区别</h3><ol>
+<li>箭头函数比普通函数更加简洁</li>
+<li>箭头函数没有自己的 arguments</li>
+<li>箭头函数继承来的 this 指向永远不会改变</li>
+<li>call()、apply()、bind()等方法不能改变箭头函数中 this 的指向</li>
+<li>箭头函数不能用作 Generator 函数，不能使用 yeild 关键字</li>
+</ol>
+<h3 id="js-闭包的理解"><a href="#js-闭包的理解" class="headerlink" title="js 闭包的理解"></a>js 闭包的理解</h3><ol>
+<li>闭包的定义：闭包是指有权访问其他函数作用域中的变量的函数</li>
+<li>产生条件：①.函数嵌套 ②.内部函数调用外部函数</li>
+<li>功能: 可以从外部读取函数内部的变量，延长局部变量的生命周期，防止被垃圾回收机制回收。</li>
+<li>闭包的缺点：容易造成内存泄漏</li>
+</ol>
+<pre><code>// 从外部读取函数内部的变量
+function f1()&#123;
+        var n = 123;
+        function f2()&#123;    //f2是一个闭包
+            consple.log(n)
+        &#125;
+        return f2;
+    &#125;
+f1();// 获取到函数内部的局部</code></pre><pre><code>// 防止被垃圾回收机制回收
+function f1()&#123;
+    var n=2;
+    function f2()&#123;
+        var q=0;
+        console.log(&#39;n=&#39;,++n);
+        console.log(&#39;q=&#39;,++q);
+    &#125;
+    return f2;
+&#125;
+var f=f1();
+f(); // 3 1
+f(); // 4 1</code></pre><h3 id="什么情况会导致内存泄漏"><a href="#什么情况会导致内存泄漏" class="headerlink" title="什么情况会导致内存泄漏"></a>什么情况会导致内存泄漏</h3><p>闭包、未清空的定时器、意外的全局变量</p>
+<h3 id="原型与原型链的理解"><a href="#原型与原型链的理解" class="headerlink" title="原型与原型链的理解"></a>原型与原型链的理解</h3><p>1.原型：<br>在 JavaScript 中，原型也是一个对象，原型的作用，则是实现对象的继承。<br>在 js 的所有函数对象中，都存在一个属性 prototype，该属性对应当前对象的原型。<br>而所有的 JavaScript 对象，都存在一个<em>proto</em>属性，<em>proto</em>属性指向实例对象的构造函数的原型，理解起来就如下：</p>
+<pre><code>var p = new Person();
+console.log(p._proto_=== Person.prototype)//true
+p是实例对象，Person是p的构造函数，可以看出来p的_proto_属性指向构造函数Person的原型。</code></pre><p>2.原型链:在查找一个对象的属性时，会依次从实例本身、构造函数原型、原型的原型上去找，知道找到为止，如果到了原型链顶端，还没找到，则返回 undefined。</p>
+<p>3.constructor:constructor 是构造函数创建的实例的属性，该属性的作用是指向创建当前对象的构造函数。<br>例如，son.constructor == parent;//true<br><img src="https://s1.ax1x.com/2020/09/21/wqU7md.png" style="width:600px;height:200px"/></p>
+<h3 id="js-如何实现继承"><a href="#js-如何实现继承" class="headerlink" title="js 如何实现继承?"></a>js 如何实现继承?</h3><ul>
+<li>原型继承（prototype）优点：写法简单，容易理解。缺点：无法向父类构造方法传参</li>
+</ul>
+<pre><code>var Parent = function(name)&#123;
+ this.name = name;
+&#125;
+Parent.prototype.getName = function()&#123;
+ return this.name;
+&#125;
+
+var Child = function()&#123;&#125;
+
+Child.prototype = new Parent();// 无法传参
+
+son.name=&#39;lisi&#39;;
+console.log(son.getName()); // lisi，son继承了parent的原型中的函数属性getName。
+</code></pre><ul>
+<li>借用构造函数继承（在子类构造函数调用父类构造函数）优点：解决原型继承无法向父类构造方法传参。缺点：不好继承父类函数</li>
+</ul>
+<pre><code>function Parent(name)&#123;
+ this.name = name;
+ console.log(name);
+&#125;
+
+function Child(name)&#123;
+ Parent.call(this,name);
+&#125;
+
+var  child1= new Child(&#39;张三&#39;)</code></pre><ul>
+<li><p>组合式继承（原型继承+构造函数继承）优点：解决原型继承和构造函数继承造成的影响。缺点：代码乱，可读性差</p>
+</li>
+<li><p>class 继承（extends,子类的构造函数 必须调用 super）完美解决上述继承存在的不足，缺点：部分浏览器不支持 class 关键字</p>
+</li>
+</ul>
+<pre><code>class Animal&#123;
+   constructor(kind)&#123;
+      this.kind = kind;
+   &#125;
+   getKind()&#123;
+      return this.kind;
+   &#125;
+&#125;
+
+// 继承Animal
+class Cat extends Animal&#123;
+   constructor(name)&#123;
+      super(&#39;cat&#39;);
+      this.name=name;
+   &#125;
+   getCatName&#123;
+      return this.name;
+   &#125;
+&#125;
+
+// var cat1 = new Cat(&#39;梨花&#39;);
+cat1.getCatName(); // 梨花
+cat1.getKind(); // cat</code></pre><h3 id="new-操作符具体做了什么"><a href="#new-操作符具体做了什么" class="headerlink" title="new 操作符具体做了什么"></a>new 操作符具体做了什么</h3><ol>
+<li>先创建一个空的对象</li>
+<li>把空对象和构造函数通过原型链链接</li>
+<li>把构造函数的 this 绑定新的空对象上</li>
+<li>根据构造函数返回的类型判断，如果是值类型，则返回结果，如果是引用类型，则返回当前引用类型</li>
+</ol>
+<pre><code>function _new(fun,...args)&#123;
+1. 先创建一个空的对象
+ let newObj=&#123;&#125;;
+2. 把空对象和构造函数通过原型链链接
+newObj.__proto__ = fun.prototype;
+3. 把构造函数的this绑定新的空对象上
+const result = fun.apply(newObj,args);
+4. 根据构造函数返回的类型判断，如果是值类型，则返回结果，如果是引用类型，则返回当前引用类型
+return result instanceOf object? result : newObj
+&#125;</code></pre><h3 id="什么是事件委托"><a href="#什么是事件委托" class="headerlink" title="什么是事件委托"></a>什么是事件委托</h3><p>又称事件代理，原理是利用事件冒泡的机制，把子元素的事件绑定到父元素上，如果子元素阻止了冒泡，那么委托也就不成立<br>事件阻止冒泡： event.stopPropagation();<br>优势:提高性能，减少事件的绑定</p>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p>跨域大家都知道，不同地址，不同端口，不同级别，不同协议都会构成跨域。例如：about.haorooms.com 和<a target="_blank" rel="noopener" href="http://www.haorooms.com都会构成跨域。总结起来只要协议、域名、端口有任何一个不同，都被当作是不同的域。">www.haorooms.com都会构成跨域。总结起来只要协议、域名、端口有任何一个不同，都被当作是不同的域。</a><br>解决方法：CORS、jsonp、nginx 反向代理、webSocket</p>
+<h3 id="Cookie、sessionStorage、localStorage、indexedDB-的区别"><a href="#Cookie、sessionStorage、localStorage、indexedDB-的区别" class="headerlink" title="Cookie、sessionStorage、localStorage、indexedDB 的区别"></a>Cookie、sessionStorage、localStorage、indexedDB 的区别</h3><p>共同点：都是保存在浏览器端的容器</p>
+<ol>
+<li>cookie 只有 4KB 大小，而 sessionStorage 和 localStorage 有 5MB 大小</li>
+<li>cookie 常用来保存用户的登录状态，例如将用户 id 存储于一个 cookie 内。其只在设置的 cookie 过期时间之前一直有效<br>sessionStorage 仅在当前的浏览器窗口关闭前有效，localStorage 永久有效，除非用户手动清除缓存等。</li>
+<li>indexedDB 以键值对存储，可以快速读取，适用 web 场景</li>
+</ol>
+<h3 id="如何实现一个深拷贝"><a href="#如何实现一个深拷贝" class="headerlink" title="如何实现一个深拷贝"></a>如何实现一个深拷贝</h3><ol>
+<li>扩展运算符（这个方法只能实现第一层，当有多层时还是浅拷贝）</li>
+<li>JSON.parse(JSON.stringify())(该方法并不会拷贝内部函数和空值)</li>
+<li>利用递归函数实现</li>
+</ol>
+<pre><code>// 扩展运算符
+let obj=&#123;
+    name:&#39;zhangsan&#39;
+&#125;
+let obj1 = &#123;...obj&#125;
+obj.name=&quot;lisi&quot;;
+console.log(obj1.name);//zhangsan
+缺点：这个方法只能实现第一层，当有多层时还是浅拷贝
+
+// 利用递归函数实现
+function copy(obj) &#123;
+    // 创建一个空对象用来拷贝之后的内容
+    let newObj = &#123;&#125;
+    //判断数据是否为 复杂数据类型
+    if (typeof obj === &#39;object&#39;) &#123;
+        // 是 就将该数据进行 遍历
+        for (let k in obj) &#123;
+            // 当 obj[k] 的值依然为 复杂数据类型时 重新调用该函数
+            // 将obj[k] 当实参 进行调用 直至 obj[k] 的值不在为 复杂数据类型
+            newObj[k] = copy(obj[k])
+        &#125;
+    &#125; else &#123;
+        newObj = obj
+    &#125;
+    // 将 copy 的对象返回出去(不写 return 会得到 undefined)
+    return newObj
+&#125;</code></pre><h3 id="浏览器的缓存你了解过吗"><a href="#浏览器的缓存你了解过吗" class="headerlink" title="浏览器的缓存你了解过吗"></a>浏览器的缓存你了解过吗</h3><p>主要分为强缓存和协商缓存（弱缓存）<br>强缓存：不发起请求，直接使用缓存里的内容，浏览器把 JS,CSS,image 等放在内存中，下次用户访问直接从内存里取，提高性能<br>协商缓存： 需要向后端发起请求，通过判断来决定是否使用协商缓存，如果请求内容没有变化则返回 304，浏览器就用缓存里的内容<br>参考链接<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9c95db596df5">缓存</a></p>
+<h3 id="前端优化问题"><a href="#前端优化问题" class="headerlink" title="前端优化问题"></a>前端优化问题</h3><ol>
+<li>降低请求量（减少 HTTP 请求，代码简化、按需加载等）</li>
+<li>加载优化（图片懒加载，骨架屏，loading 提示等）</li>
+<li>打包优化（cdn 加速，服务器 Gzip 压缩）</li>
+</ol>
+<p><img src="https://pic.imgdb.cn/item/65ec9c139f345e8d03dd0d97.jpg" alt=""></p>
+<h3 id="说下事件循环"><a href="#说下事件循环" class="headerlink" title="说下事件循环"></a>说下事件循环</h3><p>主线程先执行同步任务，然后才去执行任务队列里的异步任务，先执行微队列后执行宏队列；全部执行完之后等待主线程的调用，调用完之后再去任务队列中查看是否有异步任务，这样一个循环就是事件循环</p>
+<h3 id="setTimeout-和-setInterval-最小执行时间"><a href="#setTimeout-和-setInterval-最小执行时间" class="headerlink" title="setTimeout 和 setInterval 最小执行时间"></a>setTimeout 和 setInterval 最小执行时间</h3><p>setTimeout 4ms<br>setInterval 10ms</p>
+<h3 id="token-的登陆流程"><a href="#token-的登陆流程" class="headerlink" title="token 的登陆流程"></a>token 的登陆流程</h3><ol>
+<li>客户端登入后，服务器收到请求并校验账户密码</li>
+<li>验证成功后返回 token</li>
+<li>客户端接收 token 后，将其保存在 cookie 中</li>
+<li>客户端每次请求资源/接口时，都要携带这个 token</li>
+<li>服务器收到请求，验证 token 后返回 data 或者 403 等权限失效</li>
+</ol>
+<h3 id="经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用-hack-的技巧-？"><a href="#经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用-hack-的技巧-？" class="headerlink" title="经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用 hack 的技巧 ？"></a>经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用 hack 的技巧 ？</h3><ol>
+<li>浏览器默认的 margin 和 padding 不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。</li>
+<li>居中问题,div 里的内容,IE 默认为居中,而在 Firefox 默认左对齐<br>解决方法:设置 margin:0 auto;</li>
+<li>块级元素中含有图片时,有点的浏览器会出现图片下有空隙<br>解决方法:设置图片的浮动属性 float:left;</li>
+<li>透明性 IE 用 filter:Alpha(Opacity=60)，而其他主流浏览器用 opacity:0.6;</li>
+</ol>
+<p>通用 hack 解决方案：条件注释只有在 IE 浏览器下才能执行，这个代码在非 IE 浏览下被当做注释视而不见</p>
+<p>例如 IE6 能识别下划线”<em>“和星号” * “，IE7 能识别星号” * “，但不能识别下划线”</em>“，IE6~IE10 都认识”\9”，但 firefox 前述三个都不能认识。</p>
+<h3 id="解决过哪些移动端问题"><a href="#解决过哪些移动端问题" class="headerlink" title="解决过哪些移动端问题"></a>解决过哪些移动端问题</h3><ol>
+<li>当设置样式 overflow:scroll 时，ios 上的滑动会卡顿：-webkit-overflow-scrolling:touch;</li>
+<li>移动端文体小于 12px 时异常显示：先把整体放大一倍，然后再用 transform 的 scale 进行缩小;</li>
+<li>ios 下 input 按钮设置了 disabled 属性为 true,显示异常：input[type=button]{opcity:1};</li>
+<li>ios 下取消 input 输入框再输入英文首字母默认大写：input 标签设置 aotocapitalize=’off’ autocorrect=’off’</li>
+<li>禁用安卓和 ios 选中文字：-webkit-user-select:none;</li>
+<li>禁止 ios 弹出各种窗口：-webkit-touch-callout:none;</li>
+<li>在安卓环境下 placeholder 文字设置行高偏上：input 有 placeholder 属性时候不设置行高；</li>
+</ol>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zhengjinhan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://itzhengjinhan.github.io/2020/04/13/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%80(%E7%90%86%E8%AE%BA%E7%AF%87)/">http://itzhengjinhan.github.io/2020/04/13/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%80(%E7%90%86%E8%AE%BA%E7%AF%87)/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zhengjinhan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                    <span class="chip bg-color">面试题</span>
+                                </a>
+                            
+                                <a href="/tags/css/">
+                                    <span class="chip bg-color">css</span>
+                                </a>
+                            
+                                <a href="/tags/js/">
+                                    <span class="chip bg-color">js</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/04/18/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB%E4%BA%8C(%E8%BF%90%E7%94%A8%E7%AF%87)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/44.jpg" class="responsive-img" alt="前端常见的问题（实践篇）">
+                        
+                        <span class="card-title">前端常见的问题（实践篇）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
+                                    面试题
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="chip bg-color">面试题</span>
+                    </a>
+                    
+                    <a href="/tags/css/">
+                        <span class="chip bg-color">css</span>
+                    </a>
+                    
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/12/Less%E4%B8%8EScss/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/35.jpg" class="responsive-img" alt="Less、Scss介绍以及转为css的方法">
+                        
+                        <span class="card-title">Less、Scss介绍以及转为css的方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/css/" class="post-category">
+                                    css
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/less/">
+                        <span class="chip bg-color">less</span>
+                    </a>
+                    
+                    <a href="/tags/scss/">
+                        <span class="chip bg-color">scss</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zhengjinhan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ITzhengjinhan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1035420153@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1035420153" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1035420153" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1814 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="前端Vue框架面试常见的问题, IT默小涵的个人博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>前端Vue框架面试常见的问题 | IT默小涵的个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">IT默小涵的个人博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">IT默小涵的个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ITzhengjinhan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ITzhengjinhan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">前端Vue框架面试常见的问题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                <span class="chip bg-color">面试题</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-category">
+                                面试题
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-05
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="vue-有哪些特性？和-react-的比较？"><a href="#vue-有哪些特性？和-react-的比较？" class="headerlink" title="vue 有哪些特性？和 react 的比较？"></a>vue 有哪些特性？和 react 的比较？</h3><ol>
+<li>轻量级框架：只关注视图层，是一个构建数据的视图集合，大小只有几十 kb</li>
+<li>简单易学：国人开发，中文文档，不存在语言障碍 ，易于理解和学习</li>
+<li>双向数据绑定（保留了 angular 的特点）:在数据操作方面更为简单</li>
+<li>组件化（保留了 react 的优点）:实现了 html 的封装和重用，在构建单页面应用方面有着独特的优势</li>
+<li>视图，数据，结构分离(MVVM 模型)：使数据的更改更为简单，不需要进行逻辑代码的修改，只需要操作数据就能完成相关操作</li>
+<li>虚拟 DOM：dom 操作是非常耗费性能的， 不再使用原生的 dom 操作节点，极大解放 dom 操作，但具体操作的还是 dom 不过是换了另一种方式；运行速度更快:相比较与 react 而言，同样是操作虚拟 dom，就性能而言，vue 存在很大的优势。</li>
+</ol>
+<h3 id="MVC-和-MVVM-区别"><a href="#MVC-和-MVVM-区别" class="headerlink" title="MVC 和 MVVM 区别"></a>MVC 和 MVVM 区别</h3><p>MVC 全名是 Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范<br>MVC 的思想：一句话描述就是在 Controller 里面把 Model 的数据赋值给 View。<br>MVVM：ViewModel 层：做了两件事达到了数据的双向绑定 一是将【模型】转化成【视图】，即将后端传递的数据转化成所看到的页面。实现的方式是：数据绑定。二是将【视图】转化成【模型】，即将所看到的页面转化成后端的数据。实现的方式是：DOM 事件监听。<br>MVVM 与 MVC 最大的区别就是：它实现了 View 和 Model 的自动同步，也就是当 Model 的属性改变时，我们不用再自己手动操作 Dom 元素，来改变 View 的显示，而是改变属性后该属性对应 View 层显示会自动改变（对应 Vue 数据驱动的思想）</p>
+<h3 id="vue-的双向数据绑定原理是什么？-vue-响应式原理"><a href="#vue-的双向数据绑定原理是什么？-vue-响应式原理" class="headerlink" title="vue 的双向数据绑定原理是什么？/vue 响应式原理?"></a>vue 的双向数据绑定原理是什么？/vue 响应式原理?</h3><p>通过数据劫持和发布订阅者模式来实现，同时利用 Object.defineProperty()劫持各个属性的 setter 和 getter,数据发生改变时，触发对应的监听回调渲染视图</p>
+<p>扩展：vue3 中使用 proxy 代理响应化的数据</p>
+<h3 id="为什么-data-是一个函数"><a href="#为什么-data-是一个函数" class="headerlink" title="为什么 data 是一个函数"></a>为什么 data 是一个函数</h3><p>组件中的 data 写成一个函数，数据以函数返回值形式定义，这样每复用一次组件，就会返回一份新的 data，类似于给每个组件实例创建一个私有的数据空间，让各个组件实例维护各自的数据。而单纯的写成对象形式，就使得所有组件实例共用了一份 data，就会造成一个变了全都会变的结果</p>
+<h3 id="Vue-的生命周期"><a href="#Vue-的生命周期" class="headerlink" title="Vue 的生命周期"></a>Vue 的生命周期</h3><p><b>beforeCreate（创建前）</b> 在数据观测和初始化事件还未开始</p>
+<p><b>created（创建后）</b> 完成数据观测，属性和方法的运算，初始化事件，$el 属性还没有显示出来</p>
+<p><b>beforeMount（载入前）</b> 在挂载开始之前被调用，相关的 render 函数首次被调用。实例已完成以下的配置：编译模板，把 data 里面的数据和模板生成 html。注意此时还没有挂载 html 到页面上。</p>
+<p><b>mounted（载入后）</b> 在 el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用。实例已完成以下的配置：用上面编译好的 html 内容替换 el 属性指向的 DOM 对象。完成模板中的 html 渲染到 html 页面中。此过程中进行 ajax 交互。</p>
+<p><b>beforeUpdate（更新前）</b> 在数据更新之前调用，发生在虚拟 DOM 重新渲染和打补丁之前。可以在该钩子中进一步地更改状态，不会触发附加的重渲染过程。</p>
+<p><b>updated（更新后）</b> 在由于数据更改导致的虚拟 DOM 重新渲染和打补丁之后调用。调用时，组件 DOM 已经更新，所以可以执行依赖于 DOM 的操作。然而在大多数情况下，应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用。</p>
+<p><b>beforeDestroy（销毁前）</b> 在实例销毁之前调用。实例仍然完全可用。</p>
+<p><b>destroyed（销毁后）</b> 在实例销毁之后调用。调用后，所有的事件监听器会被移除，所有的子实例也会被销毁。该钩子在服务器端渲染期间不被调用。</p>
+<p>扩展：vue3 中 beforeDestroy 和 destroyed 更改为 beforeunmount 和 unmounted</p>
+<h3 id="为什么不在-beforeCreate-中请求数据？在-created-和-mounted-请求数据时，有什么区别？"><a href="#为什么不在-beforeCreate-中请求数据？在-created-和-mounted-请求数据时，有什么区别？" class="headerlink" title="为什么不在 beforeCreate 中请求数据？在 created 和 mounted 请求数据时，有什么区别？"></a>为什么不在 beforeCreate 中请求数据？在 created 和 mounted 请求数据时，有什么区别？</h3><p>因为如果请求放在 methods 封装好了，在 beforeCreate 调用时是拿不到这个方法的；<br>区别：<br>如果请求的接口数据对 dom 有影响，那么使用 created，否则会出现闪屏现象；<br>如果请求的接口数据对 dom 无影响，那么使用 mounted;</p>
+<h3 id="Vue-的父组件和子组件生命周期钩子函数执行顺序？"><a href="#Vue-的父组件和子组件生命周期钩子函数执行顺序？" class="headerlink" title="Vue 的父组件和子组件生命周期钩子函数执行顺序？"></a>Vue 的父组件和子组件生命周期钩子函数执行顺序？</h3><p>Vue 的父组件和子组件生命周期钩子函数执行顺序可以归类为以下 4 部分：</p>
+<p>加载渲染过程：<br>父 beforeCreate -&gt; 父 created -&gt; 父 beforeMount -&gt; 子 beforeCreate -&gt; 子 created -&gt; 子 beforeMount -&gt; 子 mounted -&gt; 父 mounted</p>
+<p>子组件更新过程：<br>父 beforeUpdate -&gt; 子 beforeUpdate -&gt; 子 updated -&gt; 父 updated</p>
+<p>父组件更新过程：<br>父 beforeUpdate -&gt; 父 updated</p>
+<p>销毁过程：<br>父 beforeDestroy -&gt; 子 beforeDestroy -&gt; 子 destroyed -&gt; 父 destroyed</p>
+<h3 id="在-created-中如何获取-dom"><a href="#在-created-中如何获取-dom" class="headerlink" title="在 created 中如何获取 dom?"></a>在 created 中如何获取 dom?</h3><ol>
+<li>只要写异步代码,如 setTimeout，</li>
+<li>使用 vue 内置的 this.$nextTick</li>
+</ol>
+<h3 id="Vue-组件间的参数传递"><a href="#Vue-组件间的参数传递" class="headerlink" title="Vue 组件间的参数传递"></a>Vue 组件间的参数传递</h3><p><b>1.父组件与子组件传值</b><p>
+
+<p>
+①父组件传给子组件,子组件通过props方法接受数据;
+②子组件通过$parent获取父组件数据;和①的区别在于,①不能修改父组件传的值，②可以
+</p>
+
+<p>子组件传给父组件：$emit方法传递参数</p>
+
+<p><b>2.非父子组件间的数据传递，兄弟组件传值</b></p>
+
+<p>eventBus，就是创建一个事件中心，相当于中转站，可以用它来传递事件和接收事件。项目比较小时，用这个比较合适。（不少人推荐直接用VUEX）</p>
+
+<p><b>3.隔代组件通信传值</b><p>
+
+<p>provide / inject :祖先组件中通过 provide 来提供变量，然后在子孙组件中通过 inject 来注入变量。provide / inject API 主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。</p>
+
+<h3 id="怎样理解-Vue-的单向数据流"><a href="#怎样理解-Vue-的单向数据流" class="headerlink" title="怎样理解 Vue 的单向数据流"></a>怎样理解 Vue 的单向数据流</h3><p>数据总是从父组件传到子组件，子组件没有权利修改父组件传过来的数据，只能请求父组件对原始数据进行修改。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。<br>如果实在要改变父组件的 prop 值 可以再 data 里面定义一个变量 并用 prop 的值初始化它 之后用 $emit 通知父组件去修改</p>
+<h3 id="vue-有哪些修饰符"><a href="#vue-有哪些修饰符" class="headerlink" title="vue 有哪些修饰符?"></a>vue 有哪些修饰符?</h3><ol>
+<li><p>事件修饰符</p>
+<ul>
+<li>.stop 阻止冒泡</li>
+<li>.prevent 阻止默认行为</li>
+<li>.capture 优先处理冒泡事件</li>
+<li>.once 只触发一次</li>
+<li>.passive 立即触发默认行为</li>
+</ul>
+</li>
+<li><p>表单修饰符</p>
+<ul>
+<li>.lazy 等输入完失去焦点</li>
+<li>.trim 删除内容前后空格</li>
+<li>.number 输入是数字或转为数字</li>
+</ul>
+</li>
+<li><p>按键修饰符</p>
+<ul>
+<li>.keyup 按键抬起</li>
+<li>.keydown 按键按下</li>
+<li>.ctrl ctrl 键</li>
+<li>.alt</li>
+</ul>
+</li>
+</ol>
+<h3 id="v-if-和-v-for-同时使用在同一个标签上的表现？"><a href="#v-if-和-v-for-同时使用在同一个标签上的表现？" class="headerlink" title="v-if 和 v-for 同时使用在同一个标签上的表现？"></a>v-if 和 v-for 同时使用在同一个标签上的表现？</h3><p>当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级，这意味着 v-if 将分别重复运行于每个 v-for 循环中。<br>所以，不推荐 v-if 和 v-for 同时使用。如果 v-if 和 v-for 一起用的话，vue 中的的会自动提示开发者将 v-if 应该放到外层去</p>
+<p>扩展：vue3 中 v-if 具有比 v-for 更高的优先级</p>
+<h3 id="methods-和-computed、computed-和-watch-有什么区别"><a href="#methods-和-computed、computed-和-watch-有什么区别" class="headerlink" title="methods 和 computed、computed 和 watch 有什么区别"></a>methods 和 computed、computed 和 watch 有什么区别</h3><p>methods 是所有方法的集合<br>computed 是计算属性，watch 是监听属性，监听 data 数据变化</p>
+<ol>
+<li>computed 具有缓存性，依赖的属性变化时才会重新计算；watch 无缓存性，页面重新渲染时值不变化也会执行</li>
+<li>computed 不支持异步；watch 支持异步</li>
+<li>computed 函数有 return；watch 则没有</li>
+<li>当多个属性影响一个属性的时候就需要用到 computed,最典型的例子：购物车商品结算的时候；当一条数据影响多条数据的时候就需要用 watch,经典例子：搜索数据</li>
+</ol>
+<h3 id="watch-深度监听用过吗"><a href="#watch-深度监听用过吗" class="headerlink" title="watch 深度监听用过吗?"></a>watch 深度监听用过吗?</h3><p>vue 中的 watch 对象是默认不监听对象内部值得变化的，配置了 deep:true 是可以监听对象内部的值变化</p>
+<p>加上 immediate: true，组件初始化的时候，侦听器会立马（immediate）触发 handler 方法</p>
+<pre><code>data()&#123;
+    return &#123;
+        str:&#39;123&#39;,
+        obj:&#123;a:1&#125;
+    &#125;
+&#125;
+// 普通监听
+watch:&#123;
+    str(newVal, oldVal)&#123;
+        console.log(newVal, oldVal);
+    &#125;,
+&#125;
+// 深度监听
+watch:&#123;
+    obj:&#123;
+        handle(newVal,oldVal)&#123;
+            conlose.log(newVal,oldVal)
+        &#125;,
+        immediate:true,
+        deep:true
+    &#125;
+&#125;</code></pre><h3 id="vue-遇到过数据未更新问题，怎么解决的"><a href="#vue-遇到过数据未更新问题，怎么解决的" class="headerlink" title="vue 遇到过数据未更新问题，怎么解决的?"></a>vue 遇到过数据未更新问题，怎么解决的?</h3><p>因为 vue2 中存在问题：</p>
+<ol>
+<li>新增属性、删除属性, 界面不会更新。</li>
+<li>直接通过下标修改数组, 界面不会自动更新</li>
+</ol>
+<p>解决方案：新增$set和$delete</p>
+<pre><code>data()&#123;
+    return&#123;
+        person:&#123;
+            name:&quot;张三&quot;，
+            age:18
+        &#125;,
+        arr:[&quot;学习&quot;,&quot;吃饭&quot;],
+    &#125;
+&#125;,
+methods:&#123;
+    //添加性别为女的属性
+    set()&#123;
+        this.$set(this.person,&quot;sex&quot;,&quot;女&quot;)
+        //如果修改数组
+        this.$set(this.arr,0,&quot;逛街&quot;)
+        //或者
+        this.arr.splice(0,1,&quot;逛街&quot;)
+    &#125;
+    delete()&#123;
+        this.$delete(this.person,&quot;name&quot;)
+    &#125;
+&#125;</code></pre><h3 id="keep-alive-的作用是什么-生命周期有什么变化"><a href="#keep-alive-的作用是什么-生命周期有什么变化" class="headerlink" title="keep-alive 的作用是什么?生命周期有什么变化"></a>keep-alive 的作用是什么?生命周期有什么变化</h3><p>keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。</p>
+<p>如果当前组件加入 keep-alive,第二次进入同一页面时，只有 activated,因此页面不会重新渲染</p>
+<pre><code>&lt;keep-alive&gt;
+    &lt;A&gt;&lt;/A&gt;
+&lt;/keep-alive&gt;</code></pre><h3 id="nextTick-是什么？"><a href="#nextTick-是什么？" class="headerlink" title="$nextTick 是什么？"></a>$nextTick 是什么？</h3><p>因为 Vue 的异步更新队列，$nextTick 可以用来获取下一次更新的 dom 对象</p>
+<pre><code>&lt;div id=app&gt;
+  &lt;div id=&quot;div&quot; v-if=&quot;showDiv&quot;&gt;我是显示文本&lt;/div&gt;
+  &lt;button @click=&quot;showAndGetText&quot;&gt;获取内容&lt;/button &gt;
+&lt;/div&gt;
+&lt;script&gt;
+var app = new Vue(&#123;
+  el: &#39;#app&#39;,
+  data () &#123;
+    return &#123;
+      showDiv : false
+    &#125;,
+    methods: &#123;
+      showAndGetText () &#123;
+        this.showDiv  = true
+        let text = document.getElementById(&#39;div&#39;).innerHTML
+        console.log(text)
+      &#125;
+    &#125;
+  &#125;
+&#125;)
+&lt;/script&gt;</code></pre><p>这段代码并不难理解，但是控制台回抛出一个 innerHTML of null 的错误，因为此时页面并未完成渲染，它并没有获取到 div 元素，<br>此时需要$nextTick 帮忙了：</p>
+<pre><code>    this.$nextTick(function () &#123;
+        let text = document.getElementById(&#39;div&#39;).innerHTML
+        console.log(text)
+    &#125;)</code></pre><h3 id="vue-如何封装组件"><a href="#vue-如何封装组件" class="headerlink" title="vue 如何封装组件"></a>vue 如何封装组件</h3><p>使用 Vue.extend 方法创建一个组件，然后使用 Vue.component 方法全局注册组件或者使用 components:{}注册局部组件。</p>
+<p>但是我们一般用脚手架开发项目，每个 .vue 单文件就是一个组件。在另一组件 import 导入，并在 components 中注册即可</p>
+<p>子组件需要数据，可以在 props 中接受定义。而子组件修改好数据后，想把数据传递给父组件。可以采用 emit 方法</p>
+<p>原则：</p>
+<ul>
+<li>尽量组件原子化，一个组件做一件事</li>
+<li>参数类型明确，出入参规范化</li>
+<li>定义插槽，便于扩展</li>
+</ul>
+<h3 id="vue-初始化页面闪动问题如何解决"><a href="#vue-初始化页面闪动问题如何解决" class="headerlink" title="vue 初始化页面闪动问题如何解决"></a>vue 初始化页面闪动问题如何解决</h3><p>出现该问题主要因为在 vue 代码尚未被解析之前，尚不能控制页面中的 DOM 的显示，所以会看见模板字符串等代码,闪动后出现解析后的值。<br>解决方案，使用 v-cloak</p>
+<pre><code>    [v-cloak]&#123;display:none;&#125;
+    &lt;div v-cloak&gt;&#123;&#123;message&#125;&#125;&lt;/div&gt;</code></pre><h3 id="vue-性能优化怎么做？vue-首屏白屏如何解决？"><a href="#vue-性能优化怎么做？vue-首屏白屏如何解决？" class="headerlink" title="vue 性能优化怎么做？vue 首屏白屏如何解决？"></a>vue 性能优化怎么做？vue 首屏白屏如何解决？</h3><ol>
+<li><p>编码优化</p>
+<ul>
+<li>使用路由懒加载：首屏进入时只加载首屏相关路由，其他路由实现懒加载，即打开该路由再去加载</li>
+<li>非首屏的组件使用异步组件</li>
+<li>减少 http 请求</li>
+<li>v-for 时给父级绑定事件，即使用事件代理(事件委托)</li>
+<li>使用 keep-alive 缓存组件</li>
+</ul>
+</li>
+<li><p>加载优化</p>
+<ul>
+<li>图片懒加载</li>
+<li>骨架屏</li>
+<li>loading 提示</li>
+</ul>
+</li>
+<li><p>打包优化</p>
+<ul>
+<li>cdn 加速</li>
+<li>服务器 Gzip 压缩</li>
+</ul>
+</li>
+<li><p>seo 优化</p>
+<ul>
+<li>服务器渲染 ssr，配合 redis 缓存最好</li>
+</ul>
+</li>
+</ol>
+<h3 id="vue-loader-是什么？使用它的用途有哪些？"><a href="#vue-loader-是什么？使用它的用途有哪些？" class="headerlink" title="vue-loader 是什么？使用它的用途有哪些？"></a>vue-loader 是什么？使用它的用途有哪些？</h3><p>vue 文件的一个加载器，将 template/js/style 转换成 js 模块。<br>用途：js 可以写 es6、style 样式可以 scss 或 less、template 可以加 jade 等</p>
+<h3 id="vuex-是什么？使用场景？"><a href="#vuex-是什么？使用场景？" class="headerlink" title="vuex 是什么？使用场景？"></a>vuex 是什么？使用场景？</h3><p>常用于数据状态共享，使用场景：用户个人信息、购物车模块、订单模块</p>
+<p><b>state</b></p>
+<p>Vuex 使用单一状态树,即每个应用将仅仅包含一个 store 实例，存放的数据状态，不可以直接修改里面的数据。</p>
+<p><b>mutations</b></p>
+<p>mutations 定义的方法动态修改 Vuex 的 store 中的状态或数据。</p>
+<p><b>getters</b></p>
+<p>类似 vue 的计算属性，主要用来过滤一些数据。</p>
+<p><b>action</b></p>
+<p>actions 可以理解为通过将 mutations 里面处里数据的方法变成可异步的处理数据的方法，简单的说就是异步操作数据。view 层通过 store.dispath 来分发 action。</p>
+<pre><code>const store = new Vuex.Store(&#123; //store实例
+      state: &#123;
+         count: 0
+             &#125;,
+      mutations: &#123;
+         increment (state) &#123;
+          state.count++
+         &#125;
+          &#125;,
+      actions: &#123;
+         increment (context) &#123;
+         context.commit(&#39;increment&#39;)
+   &#125;
+ &#125;
+&#125;)</code></pre><p><b>modules</b></p>
+<p>项目特别复杂的时候，可以让每一个模块拥有自己的 state、mutation、action、getters,使得结构非常清晰，方便管理。</p>
+<pre><code>const moduleA = &#123;
+  state: &#123; ... &#125;,
+  mutations: &#123; ... &#125;,
+  actions: &#123; ... &#125;,
+  getters: &#123; ... &#125;
+ &#125;
+const moduleB = &#123;
+  state: &#123; ... &#125;,
+  mutations: &#123; ... &#125;,
+  actions: &#123; ... &#125;
+ &#125;
+
+const store = new Vuex.Store(&#123;
+  modules: &#123;
+    a: moduleA,
+    b: moduleB
+&#125;)</code></pre><h3 id="Redux-和-Vuex-有什么区别？"><a href="#Redux-和-Vuex-有什么区别？" class="headerlink" title="Redux 和 Vuex 有什么区别？"></a>Redux 和 Vuex 有什么区别？</h3><ol>
+<li><p>Vuex 改进了 Redux 中的 Action 和 Reducer 函数，以 mutations 变化函数取代 Reducer，无需 switch，只需在对应的 mutation 函数里改变 state 值即可</p>
+</li>
+<li><p>vuex 的流向：</p>
+</li>
+</ol>
+<p>view——&gt;commit——&gt;mutations——&gt;state 变化——&gt;view 变化（同步操作）</p>
+<p>view——&gt;dispatch——&gt;actions——&gt;mutations——&gt;state 变化——&gt;view 变化（异步操作）</p>
+<p>redux 的流向：view——&gt;actions——&gt;reducer——&gt;state 变化——&gt;view 变化（同步异步一样）</p>
+<h3 id="route和-router-的区别"><a href="#route和-router-的区别" class="headerlink" title="$route和$router 的区别"></a>$route和$router 的区别</h3><p>$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。而$router 是“路由实例”对象包括了路由的跳转方法，整个路由的属性和方法。</p>
+<h3 id="vue-路由的-hash-模式和-history-模式有什么区别"><a href="#vue-路由的-hash-模式和-history-模式有什么区别" class="headerlink" title="vue 路由的 hash 模式和 history 模式有什么区别"></a>vue 路由的 hash 模式和 history 模式有什么区别</h3><ol>
+<li>hash 的路径地址会加#号，history 则没有</li>
+<li>进行回车刷新操作，hash 路由会加载到地址栏对应的页面，而 history 路由一般就 404 报错了，需要和后端配合</li>
+<li>项目打包前端自测问题，hash 可以看到内容，history 则看不到</li>
+</ol>
+<p>总结来说，hash 模式在 URL 中使用#符号，不会向服务器发送请求，适用于简单的前端路由；而 history 模式不使用#符号，需要服务器端的支持，适用于更加真实的 URL 路径和更好的用户体验。</p>
+<h3 id="vue-router-导航守卫是什么？"><a href="#vue-router-导航守卫是什么？" class="headerlink" title="vue-router 导航守卫是什么？"></a>vue-router 导航守卫是什么？</h3><p>也称为 vue-router 的钩子函数；</p>
+<p>导航守卫的种类有:全局守卫、路由守卫、组件守卫</p>
+<p>当用户访问系统会被导航守卫拦截，登陆成功后才能访问</p>
+<h3 id="vue-router-的钩子函数"><a href="#vue-router-的钩子函数" class="headerlink" title="vue-router 的钩子函数"></a>vue-router 的钩子函数</h3><p>全局的路由钩子函数：beforeEach，afterEach，应用场景：进行一些页面跳转前的处理，例如跳转到的页面需要进行登录才可以访问时，就会做登录的跳转<br>单个路由内的钩子函数：beforeEnter，这些守卫与全局前置守卫 beforeEach 的方法参数是一样的<br>组件内的路由钩子函数：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave， 应用场景：① 清除组件中的定时器；② 当页面有未关闭的窗口，或未保存的内容时，阻止页面跳转</p>
+<pre><code>// 注册全局前置守卫
+router.beforeEach((to, from, next) =&gt; &#123;
+  // 在这里进行权限验证或其他操作
+  if (to.meta.requiresAuth &amp;&amp; !isAuthenticated()) &#123;
+    // 如果需要验证权限且用户未登录，则重定向到登录页面
+    next(&#39;/login&#39;);
+  &#125; else &#123;
+    // 否则继续导航
+    next();
+  &#125;
+&#125;);
+
+// 定义路由独享守卫
+const router = new VueRouter(&#123;
+  routes: [
+    &#123;
+      path: &#39;/admin&#39;,
+      component: AdminComponent,
+      beforeEnter: (to, from, next) =&gt; &#123;
+        // 在这里进行特定路由的验证或其他操作
+        if (isAdmin()) &#123;
+          // 如果是管理员，则继续导航
+          next();
+        &#125; else &#123;
+          // 否则重定向到其他页面
+          next(&#39;/home&#39;);
+        &#125;
+      &#125;,
+    &#125;,
+  ],
+&#125;);
+
+// 在组件内注册导航守卫
+export default &#123;
+  beforeRouteEnter(to, from, next) &#123;
+    // 在组件进入之前进行操作
+    // 例如获取数据等
+    next();
+  &#125;,
+  beforeRouteUpdate(to, from, next) &#123;
+    // 在组件复用时进行操作
+    // 例如更新数据等
+    next();
+  &#125;,
+  beforeRouteLeave(to, from, next) &#123;
+    // 在组件离开之前进行操作
+    // 例如保存数据等
+    next();
+  &#125;,
+&#125;;</code></pre><h3 id="路由拦截是怎么实现的"><a href="#路由拦截是怎么实现的" class="headerlink" title="路由拦截是怎么实现的"></a>路由拦截是怎么实现的</h3><ol>
+<li>在路由配置中添加一个 meta 对象，添加一个字段判断路由是否需要拦截</li>
+</ol>
+<pre><code>&#123;
+    name:&#39;index&#39;,
+    path:&#39;/index&#39;,
+    component:Index.
+    meta:&#123;
+        requireAuth:true
+    &#125;
+&#125;</code></pre><ol start="2">
+<li>在 main.js 内对路由钩子函数 beforeEach 进行验证</li>
+</ol>
+<pre><code>router.beforeEach((to, from, next) =&gt; &#123;
+  if (to.matched.some(record =&gt; record.meta.requireAuth))&#123; // 判断该路由是否需要登录权限
+    if (sessionStorage.getItem(&quot;token&quot;)) &#123; // 判断当前的token是否存在
+      next();
+    &#125;
+    else &#123;
+      next(&#123;
+      path: &#39;/index&#39;,
+      query: &#123;redirect: to.fullPath&#125; // 将跳转的路由path作为参数，登录成功后跳转到该路由
+    &#125;)
+    &#125;
+  &#125;
+  else &#123;
+    next();
+  &#125;
+&#125;);</code></pre><h3 id="vue-项目权限管理如何做？"><a href="#vue-项目权限管理如何做？" class="headerlink" title="vue 项目权限管理如何做？"></a>vue 项目权限管理如何做？</h3><p>权限管理一般需求是页面权限和按钮权限的管理</p>
+<p>具体实现可分为前端和后端两种方案：</p>
+<p>前端方案把所有路由信息在前端配置后，通过路由守卫要求用户登录，通过角色过滤路由表，也就是在 meta 中添加 roles 字段，根据该字段显示对应的路由页面，通过 router.addRoutes(xxx)方式添加路由</p>
+<p>后端方案把所有路由信息存在数据库中，根据角色权限查询路由并返回前端，前端直接展示</p>
+<p>按钮权限的控制通常会实现一个指令，如 v-permission,判断当前角色和按钮是否存在交集，有则保留，无则移除按钮</p>
+<h3 id="vue-单页面和传统的多页面区别？"><a href="#vue-单页面和传统的多页面区别？" class="headerlink" title="vue 单页面和传统的多页面区别？"></a>vue 单页面和传统的多页面区别？</h3><p>单页面应用（SPA）：通俗一点说就是指只有一个主页面的应用，浏览器一开始要加载所有必须的 html, js, css。所有的页面内容都包含在这个所谓的主页面中。然后在交互的时候由路由程序动态载入，单页面的页面跳转，仅刷新局部资源。多应用于 pc 端。</p>
+<p>多页面（MPA）：指有多个独立页面的 web 应用，且进入每个页面都必须重复加载相关资源（js、css 等）。</p>
+<p>区别：</p>
+<table>
+<thead>
+<tr>
+<th>SPA</th>
+<th>MPA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刷新方式：相关组件的切换，只做局部刷新或更改</td>
+<td>整页刷新</td>
+</tr>
+<tr>
+<td>数据传递问题：一个页面中组件的数据传递，有多种方法，还能实时更新</td>
+<td>传递数据不方便，一般用 url、cookie、本地存储</td>
+</tr>
+<tr>
+<td>搜索引擎优化（SEO）：需要单独方案，实现比较困难</td>
+<td>实现方法容易，直接在页面上加关键字</td>
+</tr>
+</tbody></table>
+<h3 id="vue-自定义指令以及对应的钩子函数"><a href="#vue-自定义指令以及对应的钩子函数" class="headerlink" title="vue 自定义指令以及对应的钩子函数"></a>vue 自定义指令以及对应的钩子函数</h3><p>自定义指令主要完成一些可复用低层级 DOM 操作</p>
+<p>使用自定义指令一般分为定义、注册和使用：</p>
+<p>注册自定义指令，可以使用 Vue.directive()全局注册，也可以使用{directives:{xxx}}局部调用</p>
+<p>使用时在注册名称前加 v-即可，常用的有 v-copy(可复制)，v-debounce(防抖)</p>
+<p>钩子函数：</p>
+<ul>
+<li>bind</li>
+<li>inserted</li>
+<li>update</li>
+<li>componentUpdated</li>
+<li>unbind</li>
+</ul>
+<h3 id="class-动态绑定值拼接字符串"><a href="#class-动态绑定值拼接字符串" class="headerlink" title="class 动态绑定值拼接字符串"></a>class 动态绑定值拼接字符串</h3><pre><code>:class=&quot;`字符串$&#123;index&#125;`&quot;
+//不仅如此，style或者ref、自定义属性等绑定变量拼接字符串皆可。</code></pre><h3 id="vue-路由怎么传参"><a href="#vue-路由怎么传参" class="headerlink" title="vue 路由怎么传参?"></a>vue 路由怎么传参?</h3><ol>
+<li>params 传参(url 不会带上参数，刷新就没有了)</li>
+</ol>
+<p>传参：this.$router.push({name:’index’,params:{id:item.id}})<br>接收：this.$route.params.id;</p>
+<ol start="2">
+<li>query 传参(url 会带上参数,可以解决页面刷新参数丢失问题)</li>
+</ol>
+<p>传参：this.$router.push({name:’index’,query:{id:item.id}})<br>接收：this.$route.query.id</p>
+<ol start="3">
+<li>路由属性传参(url 会带上参数,同时路由配置也要加上参数名)</li>
+</ol>
+<p>传参：this.$router.push({name:’/index/${item.id}’})，需要在路由配置{path:’/index/:id’}<br>接收：this.$route.params.id;</p>
+<h3 id="Vue-Router-的懒加载如何实现"><a href="#Vue-Router-的懒加载如何实现" class="headerlink" title="Vue-Router 的懒加载如何实现"></a>Vue-Router 的懒加载如何实现</h3><p>方案一(常用)：使用箭头函数+import 动态加载</p>
+<pre><code>const List = () =&gt; import(&#39;@/components/list.vue&#39;)
+const router = new VueRouter(&#123;
+  routes: [
+    &#123; path: &#39;/list&#39;, component: List &#125;
+  ]
+&#125;)</code></pre><p>方案二：使用箭头函数+require 动态加载</p>
+<pre><code>const router = new Router(&#123;
+  routes: [
+   &#123;
+     path: &#39;/list&#39;,
+     component: resolve =&gt; require([&#39;@/components/list&#39;], resolve)
+   &#125;
+  ]
+&#125;)</code></pre><h3 id="vue-怎么强制刷新"><a href="#vue-怎么强制刷新" class="headerlink" title="vue 怎么强制刷新"></a>vue 怎么强制刷新</h3><ol>
+<li>location.reload()</li>
+<li>this.$router.go(0)</li>
+<li>provide 和 inject</li>
+</ol>
+<p>可参考：<a href="https://itzhengjinhan.github.io/2020/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%88%B7%E6%96%B0%E4%BD%86%E4%B8%8D%E5%BC%BA%E5%88%B6%E5%88%B7%E6%96%B0/">vue 怎么强制刷新</a></p>
+<h3 id="assets-和-static-的区别"><a href="#assets-和-static-的区别" class="headerlink" title="assets 和 static 的区别"></a>assets 和 static 的区别</h3><p>相同点： assets 和 static 两个都是存放静态资源文件。项目中所需要的资源文件图片，字体图标，样式文件等都可以放在这两个文件下</p>
+<p>不相同点：assets 中存放的静态资源文件在项目打包时，也就是运行 npm run build 时会将 assets 中放置的静态资源文件进行打包上传，所谓打包简单点可以理解为压缩体积，代码格式化。而压缩后的静态资源文件最终也都会放置在 static 文件中跟着 index.html 一同上传至服务器。static 中放置的静态资源文件就不会要走打包压缩格式化等流程，而是直接进入打包好的目录，直接上传至服务器。因为避免了压缩直接进行上传，在打包时会提高一定的效率，但是 static 中的资源文件由于没有进行压缩等操作，所以文件的体积也就相对于 assets 中打包后的文件提交较大点。在服务器中就会占据更大的空间。</p>
+<h3 id="什么是-Mixin"><a href="#什么是-Mixin" class="headerlink" title="什么是 Mixin"></a>什么是 Mixin</h3><p>本质其实就是一个 js 对象，将组件的公共逻辑（如数据、方法、生命周期钩子等）提取出来，哪个组件需要用到时，直接将提取的这部分混入到组件内部即可。这样既可以减少代码冗余度，也可以让后期维护起来更加容易</p>
+<p>同时也有“命名冲突”，“不好追溯源，排查问题稍显麻烦”等缺点</p>
+<p>代码理解如下：</p>
+<pre><code>/ 定义一个Mixin
+const myMixin = &#123;
+  data() &#123;
+    return &#123;
+      message: &#39;Hello, Mixin!&#39;,
+    &#125;;
+  &#125;,
+  methods: &#123;
+    greet() &#123;
+      console.log(this.message);
+    &#125;,
+  &#125;,
+&#125;;
+
+// 使用Mixin混入到组件中
+export default &#123;
+  mixins: [myMixin],
+  created() &#123;
+    this.greet(); // 调用Mixin中的方法
+  &#125;,
+&#125;;</code></pre><h3 id="vue3-0-用过吗"><a href="#vue3-0-用过吗" class="headerlink" title="vue3.0 用过吗"></a>vue3.0 用过吗</h3><ol>
+<li>响应式原理的改变 Vue3.x 使用 Proxy 取代 Vue2.x 版本的 Object.defineProperty,从而实时监听数组，对象变化，缺点，ie 兼容性问题</li>
+<li>组件选项声明方式 Vue3.x 使用 Composition API 替换 vue 2.x 的 option API</li>
+<li>Fragment 支持多个根节点</li>
+<li>新增了两个组件：Teleport（传送门），Suspense（异步组件）</li>
+<li>支持 Tree-Shaking，会在打包时去除一些无用代码</li>
+</ol>
+<h3 id="vue-如何获取-dom-对象的信息"><a href="#vue-如何获取-dom-对象的信息" class="headerlink" title="vue 如何获取 dom 对象的信息"></a>vue 如何获取 dom 对象的信息</h3><p>方法一：ref 方法</p>
+<ol>
+<li>首先有一个元素</li>
+</ol>
+<pre><code>&lt;div class=&quot;parent&quot;&gt;
+    &lt;div class=&quot;son&quot; ref=&quot;btn&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre><ol start="2">
+<li><p>通过 this.$refs获取son的dom<br>this.$refs.btn.$el.style.position = ‘fixed’</p>
+</li>
+<li><p>获取 son 的父元素<br>this.$refs.btn.$el.parentNode.style.position = ‘fixed’</p>
+</li>
+<li><p>获取 dom 的属性<br>this.$refs.btn.$el.getBoundingClientRect()<br>更多文档参考：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect">https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect</a></p>
+</li>
+</ol>
+<p>方法二：</p>
+<pre><code>&lt;button @click = “clickfun($event)”&gt;点击&lt;/button&gt;
+methods: &#123;
+clickfun(e) &#123;
+// e.target 是你当前点击的元素
+// e.currentTarget 是你绑定事件的元素
+    #获得点击元素的前一个元素
+    e.currentTarget.previousElementSibling.innerHTML
+    #获得点击元素的第一个子元素
+    e.currentTarget.firstElementChild
+    # 获得点击元素的下一个元素
+    e.currentTarget.nextElementSibling
+    # 获得点击元素中id为string的元素
+    e.currentTarget.getElementById(&quot;string&quot;)
+    # 获得点击元素的string属性
+    e.currentTarget.getAttributeNode(&#39;string&#39;)
+    # 获得点击元素的父级元素
+    e.currentTarget.parentElement
+    # 获得点击元素的前一个元素的第一个子元素的HTML值
+    e.currentTarget.previousElementSibling.firstElementChild.innerHTML
+    &#125;
+        &#125;,</code></pre><h3 id="axios-怎么做封装"><a href="#axios-怎么做封装" class="headerlink" title="axios 怎么做封装"></a>axios 怎么做封装</h3><ol>
+<li>创建实例</li>
+<li>封装请求和响应的拦截器</li>
+<li>封装接口</li>
+</ol>
+<pre><code>// axios.js
+import axios from &#39;axios&#39;
+
+// 创建实例
+const api = axios.create(&#123;
+    // 请求地址的公共部分
+    baseURL:&quot;&quot;,
+    // 请求的超出时间
+    timeout:3000
+&#125;)
+
+// 封装请求响应的拦截器
+api.interceptors.request.use(config=&gt;&#123;
+    return config;
+&#125;,error=&gt;&#123;
+    Promise.reject(error)
+&#125;)
+
+api.interceptors.response.use(res=&gt;&#123;
+    return Promise.resolve(error)
+&#125;,error=&gt;&#123;
+    Promise.reject(error)
+&#125;)
+
+export default api;
+
+// request.js
+import api from &#39;axios.js&#39;
+export const login = (params) =&gt; api(&#123;
+    url:&#39;&#39;,
+    method:&#39;get&#39;,
+    params:params
+&#125;)</code></pre><h3 id="elementUI-是怎么做表单校验？"><a href="#elementUI-是怎么做表单校验？" class="headerlink" title="elementUI 是怎么做表单校验？"></a>elementUI 是怎么做表单校验？</h3><ol>
+<li>在表单中添加 rules 属性，然后在 data 里写校验规则</li>
+</ol>
+<pre><code>&lt;el-form class=&quot;apply-form first-form&quot; :model=&quot;formData&quot; :rules=&quot;rule&quot; ref=&quot;form&quot;&gt;
+    &lt;el-form-item label=&quot;姓名&quot; prop=&quot;visitorName&quot;&gt;
+        &lt;el-input v-model=&quot;formData.visitorName&quot; placeholder=&quot;请输入姓名&quot; clearable&gt;&lt;/el-input&gt;
+    &lt;/el-form-item&gt;
+    &lt;el-form-item label=&quot;身份证号&quot; prop=&quot;cardCode&quot;&gt;
+       &lt;el-input v-model=&quot;formData.cardCode&quot; :maxlength=&quot;18&quot; placeholder=&quot;请输入身份证号&quot; clearable&gt;&lt;/el-input&gt;
+    &lt;/el-form-item&gt;
+&lt;/el-form&gt;
+&lt;script&gt;
+  export default &#123;
+    data() &#123;
+       return &#123;
+           formData: &#123;
+               visitorName: &#39;&#39;,
+               cardType: 1,
+               cardCode: &#39;&#39;
+           &#125;,
+           rule: &#123;
+                // 对于需要校验的prop添加对应条件
+               visitorName: [
+                   &#123; required: true, message: &#39;请输入姓名&#39;, trigger: &#39;blur&#39; &#125;,
+                   &#123; min: 2, max: 10, message: &#39;长度在 2 到 10 个字符&#39;, trigger: &#39;blur&#39; &#125;,
+                   &#123;
+                            required: true,
+                            pattern: /^[\u4e00-\u9fa5_a-zA-Z0-9.·-]+$/,
+                            message: &#39;姓名不支持特殊字符&#39;,
+                            trigger: &#39;blur&#39;
+                   &#125;
+              ],
+              cardCode: [
+                  &#123; required: true, message: &#39;请输入身份证号&#39;, trigger: &#39;blur&#39; &#125;,
+                  &#123; min: 15, max: 18, message: &#39;请如实填写18位号码，以供学校保卫科核对&#39;, trigger: &#39;blur&#39; &#125;,
+                  &#123;
+                       required: true,
+                       pattern: /(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/,
+                       message: &#39;请输入正确的身份证号码&#39;,
+                       trigger: &#39;blur&#39;
+                  &#125;
+              ]
+          &#125;
+       &#125;
+    &#125;
+ &#125;
+&lt;/script&gt;
+</code></pre><ol start="2">
+<li>内部添加规则</li>
+</ol>
+<pre><code>&lt;el-form-item label=&quot;电话号码&quot; :prop=&quot;phoneNum&quot; :rules=&quot;[&#123; required: true, message: &#39;请输入电话号码&#39;, trigger: &#39;blur&#39; &#125;, &#123; required: true, pattern: /^((13|14|15|16|17|18)[0-9]&#123;1&#125;\d&#123;8&#125;)|((166|199|198)[0-9]&#123;1&#125;\d&#123;7&#125;)$/, message: &#39;请输入正确的电话号码&#39;, trigger: &#39;blur&#39; &#125;]&quot;&gt;
+    &lt;el-input v-model=&quot;v.phoneNum&quot; :maxlength=&quot;11&quot; placeholder clearable&gt;&lt;/el-input&gt;
+&lt;/el-form-item&gt;
+</code></pre><ol start="3">
+<li>自定义校验</li>
+</ol>
+<pre><code>&lt;el-form :model=&quot;ruleForm&quot; status-icon :rules=&quot;rules&quot; ref=&quot;ruleForm&quot; label-width=&quot;100px&quot; class=&quot;demo-ruleForm&quot;&gt;
+  &lt;el-form-item label=&quot;密码&quot; prop=&quot;pass&quot;&gt;
+    &lt;el-input type=&quot;password&quot; v-model=&quot;ruleForm.pass&quot; autocomplete=&quot;off&quot;&gt;&lt;/el-input&gt;
+  &lt;/el-form-item&gt;
+  &lt;el-form-item label=&quot;确认密码&quot; prop=&quot;checkPass&quot;&gt;
+    &lt;el-input type=&quot;password&quot; v-model=&quot;ruleForm.checkPass&quot; autocomplete=&quot;off&quot;&gt;&lt;/el-input&gt;
+  &lt;/el-form-item&gt;
+  &lt;el-form-item label=&quot;年龄&quot; prop=&quot;age&quot;&gt;
+    &lt;el-input v-model.number=&quot;ruleForm.age&quot;&gt;&lt;/el-input&gt;
+  &lt;/el-form-item&gt;
+  &lt;el-form-item&gt;
+    &lt;el-button type=&quot;primary&quot; @click=&quot;submitForm(&#39;ruleForm&#39;)&quot;&gt;提交&lt;/el-button&gt;
+    &lt;el-button @click=&quot;resetForm(&#39;ruleForm&#39;)&quot;&gt;重置&lt;/el-button&gt;
+  &lt;/el-form-item&gt;
+&lt;/el-form&gt;
+&lt;script&gt;
+  export default &#123;
+    data() &#123;
+      var checkAge = (rule, value, callback) =&gt; &#123;
+        if (!value) &#123;
+          return callback(new Error(&#39;年龄不能为空&#39;));
+        &#125;
+        setTimeout(() =&gt; &#123;
+          if (!Number.isInteger(value)) &#123;
+            callback(new Error(&#39;请输入数字值&#39;));
+          &#125; else &#123;
+            if (value &lt; 18) &#123;
+              callback(new Error(&#39;必须年满18岁&#39;));
+            &#125; else &#123;
+              callback();
+            &#125;
+          &#125;
+        &#125;, 1000);
+      &#125;;
+      var validatePass = (rule, value, callback) =&gt; &#123;
+        if (value === &#39;&#39;) &#123;
+          callback(new Error(&#39;请输入密码&#39;));
+        &#125; else &#123;
+          if (this.ruleForm.checkPass !== &#39;&#39;) &#123;
+            this.$refs.ruleForm.validateField(&#39;checkPass&#39;);
+          &#125;
+          callback();
+        &#125;
+      &#125;;
+      var validatePass2 = (rule, value, callback) =&gt; &#123;
+        if (value === &#39;&#39;) &#123;
+          callback(new Error(&#39;请再次输入密码&#39;));
+        &#125; else if (value !== this.ruleForm.pass) &#123;
+          callback(new Error(&#39;两次输入密码不一致!&#39;));
+        &#125; else &#123;
+          callback();
+        &#125;
+      &#125;;
+      return &#123;
+        ruleForm: &#123;
+          pass: &#39;&#39;,
+          checkPass: &#39;&#39;,
+          age: &#39;&#39;
+        &#125;,
+        rules: &#123;
+          pass: [
+            &#123; validator: validatePass, trigger: &#39;blur&#39; &#125;
+          ],
+          checkPass: [
+            &#123; validator: validatePass2, trigger: &#39;blur&#39; &#125;
+          ],
+          age: [
+            &#123; validator: checkAge, trigger: &#39;blur&#39; &#125;
+          ]
+        &#125;
+      &#125;;
+    &#125;,
+    methods: &#123;
+      submitForm(formName) &#123;
+        this.$refs[formName].validate((valid) =&gt; &#123;
+          if (valid) &#123;
+            alert(&#39;submit!&#39;);
+          &#125; else &#123;
+            console.log(&#39;error submit!!&#39;);
+            return false;
+          &#125;
+        &#125;);
+      &#125;,
+      resetForm(formName) &#123;
+        this.$refs[formName].resetFields();
+      &#125;
+    &#125;
+  &#125;
+&lt;/script&gt;</code></pre><p>更多面试题可参考</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6984210440276410399#heading-21">https://juejin.cn/post/6984210440276410399#heading-21</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zhengjinhan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://itzhengjinhan.github.io/2020/10/05/%E5%89%8D%E7%AB%AFVue%E6%A1%86%E6%9E%B6%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98/">http://itzhengjinhan.github.io/2020/10/05/%E5%89%8D%E7%AB%AFVue%E6%A1%86%E6%9E%B6%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zhengjinhan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                                    <span class="chip bg-color">面试题</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/18/vue%E4%B8%AD%20v-bind=%E2%80%9C$props%E2%80%9C%E5%92%8Cv-bind=%E2%80%9C$attrs%E2%80%9C%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="vue中 v-bind=“$props“和v-bind=“$attrs“的理解和使用方式">
+                        
+                        <span class="card-title">vue中 v-bind=“$props“和v-bind=“$attrs“的理解和使用方式</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/30/vue%E7%BB%84%E4%BB%B6%E9%80%9A%E8%AE%AF%E6%80%BB%E7%BB%93/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="vue的组件通信方式有哪些">
+                        
+                        <span class="card-title">vue的组件通信方式有哪些</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">
+                        <span class="chip bg-color">组件通信</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zhengjinhan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ITzhengjinhan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1035420153@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1035420153" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1035420153" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

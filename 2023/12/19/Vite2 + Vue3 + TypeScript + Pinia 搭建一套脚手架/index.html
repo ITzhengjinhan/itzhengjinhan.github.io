@@ -1,0 +1,1655 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程, IT默小涵的个人博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程 | IT默小涵的个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">IT默小涵的个人博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">IT默小涵的个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ITzhengjinhan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ITzhengjinhan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Vite2 + Vue3 + TypeScript + Pinia + VueUse 搭建一套脚手架过程</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/vue3/">
+                                <span class="chip bg-color">vue3</span>
+                            </a>
+                        
+                            <a href="/tags/Vite/">
+                                <span class="chip bg-color">Vite</span>
+                            </a>
+                        
+                            <a href="/tags/Pinia/">
+                                <span class="chip bg-color">Pinia</span>
+                            </a>
+                        
+                            <a href="/tags/VueUse/">
+                                <span class="chip bg-color">VueUse</span>
+                            </a>
+                        
+                            <a href="/tags/ts/">
+                                <span class="chip bg-color">ts</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/vue/" class="post-category">
+                                vue
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-12-19
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1、搭建前准备"><a href="#1、搭建前准备" class="headerlink" title="1、搭建前准备"></a>1、搭建前准备</h2><ul>
+<li>Vscode: 前端人必备写码神器</li>
+<li>Nodejs&amp;npm：配置本地开发环境，安装 Node 后会发现 npm 也会一起安装下来，注意 Vite 兼容性需要 Node.js 版本 &gt;= 12.0.0。</li>
+<li>Vue.js devtools：浏览器调试插件</li>
+<li>Vue Language Features (Volar)：Vscode 开发 vue3 必备插件，提供语法高亮提示，非常好用</li>
+<li>Vue 3 Snippets：vue3 快捷输入</li>
+</ul>
+<h2 id="2、使用-vite-快速创建脚手架"><a href="#2、使用-vite-快速创建脚手架" class="headerlink" title="2、使用 vite 快速创建脚手架"></a>2、使用 vite 快速创建脚手架</h2><pre><code># npm 6.x
+npm init @vitejs/app vite_vue3_ts --template
+
+# npm 7+, 需要额外的双横线：
+npm init @vitejs/app vite_vue3_ts -- --template
+
+# yarn
+yarn create @vitejs/app vite_vue3_ts --template
+</code></pre><p>第一步：这里采用 yarn 来安装</p>
+<p><img src="https://pic.imgdb.cn/item/652e344ac458853aeff5dee4.webp" alt=""></p>
+<p>第二步: 选择 vue 回车 =&gt; vue-ts 回车</p>
+<p><img src="https://pic.imgdb.cn/item/652e35d2c458853aeff9dbb4.webp" alt=""></p>
+<p><img src="https://pic.imgdb.cn/item/652e35eec458853aeffa25c2.webp" alt=""></p>
+<p>第三步: 根据上图提示,安装依赖,启动项目</p>
+<pre><code># 进入项目文件夹
+cd vite_vue3_ts
+# 安装依赖
+yarn
+# 启动
+yarn dev
+</code></pre><p>搭建成功：</p>
+<p><img src="https://pic.imgdb.cn/item/652e3604c458853aeffa60b1.webp" alt=""></p>
+<h2 id="3、约束代码风格"><a href="#3、约束代码风格" class="headerlink" title="3、约束代码风格"></a>3、约束代码风格</h2><h3 id="3-1-Eslint-支持"><a href="#3-1-Eslint-支持" class="headerlink" title="3.1 Eslint 支持"></a>3.1 Eslint 支持</h3><pre><code># eslint 安装
+yarn add eslint --dev
+# eslint 插件安装
+yarn add eslint-plugin-vue --dev
+
+yarn add @typescript-eslint/eslint-plugin --dev
+
+yarn add eslint-plugin-prettier --dev
+
+# typescript parser
+yarn add @typescript-eslint/parser --dev
+</code></pre><p>如果 eslint 安装报错,可以尝试运行以下命令:</p>
+<pre><code>yarn config set ignore-engines true
+</code></pre><p>运行成功后再次执行 eslint 安装命令</p>
+<h3 id="3-2-项目下新建-eslintrc-js"><a href="#3-2-项目下新建-eslintrc-js" class="headerlink" title="3.2 项目下新建 .eslintrc.js"></a>3.2 项目下新建 .eslintrc.js</h3><pre><code>module.exports = &#123;
+  root: true,
+  env: &#123;
+    browser: true,
+    node: true,
+    es2021: true,
+  &#125;,
+  parser: &#39;vue-eslint-parser&#39;,
+  extends: [
+    &#39;eslint:recommended&#39;,
+    &#39;plugin:vue/vue3-recommended&#39;,
+    &#39;plugin:@typescript-eslint/recommended&#39;,
+    &#39;plugin:prettier/recommended&#39;,
+    // eslint-config-prettier 的缩写
+    &#39;prettier&#39;,
+  ],
+  parserOptions: &#123;
+    ecmaVersion: 12,
+    parser: &#39;@typescript-eslint/parser&#39;,
+    sourceType: &#39;module&#39;,
+    ecmaFeatures: &#123;
+      jsx: true,
+    &#125;,
+  &#125;,
+  // eslint-plugin-vue @typescript-eslint/eslint-plugin eslint-plugin-prettier的缩写
+  plugins: [&#39;vue&#39;, &#39;@typescript-eslint&#39;, &#39;prettier&#39;],
+  rules: &#123;
+    &#39;@typescript-eslint/ban-ts-ignore&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-unused-vars&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/explicit-function-return-type&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-explicit-any&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-var-requires&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-empty-function&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-use-before-define&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/ban-ts-comment&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/ban-types&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/no-non-null-assertion&#39;: &#39;off&#39;,
+    &#39;@typescript-eslint/explicit-module-boundary-types&#39;: &#39;off&#39;,
+    &#39;no-var&#39;: &#39;error&#39;,
+    &#39;prettier/prettier&#39;: &#39;error&#39;,
+    // 禁止出现console
+    &#39;no-console&#39;: &#39;warn&#39;,
+    // 禁用debugger
+    &#39;no-debugger&#39;: &#39;warn&#39;,
+    // 禁止出现重复的 case 标签
+    &#39;no-duplicate-case&#39;: &#39;warn&#39;,
+    // 禁止出现空语句块
+    &#39;no-empty&#39;: &#39;warn&#39;,
+    // 禁止不必要的括号
+    &#39;no-extra-parens&#39;: &#39;off&#39;,
+    // 禁止对 function 声明重新赋值
+    &#39;no-func-assign&#39;: &#39;warn&#39;,
+    // 禁止在 return、throw、continue 和 break 语句之后出现不可达代码
+    &#39;no-unreachable&#39;: &#39;warn&#39;,
+    // 强制所有控制语句使用一致的括号风格
+    curly: &#39;warn&#39;,
+    // 要求 switch 语句中有 default 分支
+    &#39;default-case&#39;: &#39;warn&#39;,
+    // 强制尽可能地使用点号
+    &#39;dot-notation&#39;: &#39;warn&#39;,
+    // 要求使用 === 和 !==
+    eqeqeq: &#39;warn&#39;,
+    // 禁止 if 语句中 return 语句之后有 else 块
+    &#39;no-else-return&#39;: &#39;warn&#39;,
+    // 禁止出现空函数
+    &#39;no-empty-function&#39;: &#39;warn&#39;,
+    // 禁用不必要的嵌套块
+    &#39;no-lone-blocks&#39;: &#39;warn&#39;,
+    // 禁止使用多个空格
+    &#39;no-multi-spaces&#39;: &#39;warn&#39;,
+    // 禁止多次声明同一变量
+    &#39;no-redeclare&#39;: &#39;warn&#39;,
+    // 禁止在 return 语句中使用赋值语句
+    &#39;no-return-assign&#39;: &#39;warn&#39;,
+    // 禁用不必要的 return await
+    &#39;no-return-await&#39;: &#39;warn&#39;,
+    // 禁止自我赋值
+    &#39;no-self-assign&#39;: &#39;warn&#39;,
+    // 禁止自身比较
+    &#39;no-self-compare&#39;: &#39;warn&#39;,
+    // 禁止不必要的 catch 子句
+    &#39;no-useless-catch&#39;: &#39;warn&#39;,
+    // 禁止多余的 return 语句
+    &#39;no-useless-return&#39;: &#39;warn&#39;,
+    // 禁止变量声明与外层作用域的变量同名
+    &#39;no-shadow&#39;: &#39;off&#39;,
+    // 允许delete变量
+    &#39;no-delete-var&#39;: &#39;off&#39;,
+    // 强制数组方括号中使用一致的空格
+    &#39;array-bracket-spacing&#39;: &#39;warn&#39;,
+    // 强制在代码块中使用一致的大括号风格
+    &#39;brace-style&#39;: &#39;warn&#39;,
+    // 强制使用骆驼拼写法命名约定
+    camelcase: &#39;warn&#39;,
+    // 强制使用一致的缩进
+    indent: &#39;off&#39;,
+    // 强制在 JSX 属性中一致地使用双引号或单引号
+    // &#39;jsx-quotes&#39;: &#39;warn&#39;,
+    // 强制可嵌套的块的最大深度4
+    &#39;max-depth&#39;: &#39;warn&#39;,
+    // 强制最大行数 300
+    // &quot;max-lines&quot;: [&quot;warn&quot;, &#123; &quot;max&quot;: 1200 &#125;],
+    // 强制函数最大代码行数 50
+    // &#39;max-lines-per-function&#39;: [&#39;warn&#39;, &#123; max: 70 &#125;],
+    // 强制函数块最多允许的的语句数量20
+    &#39;max-statements&#39;: [&#39;warn&#39;, 100],
+    // 强制回调函数最大嵌套深度
+    &#39;max-nested-callbacks&#39;: [&#39;warn&#39;, 3],
+    // 强制函数定义中最多允许的参数数量
+    &#39;max-params&#39;: [&#39;warn&#39;, 3],
+    // 强制每一行中所允许的最大语句数量
+    &#39;max-statements-per-line&#39;: [&#39;warn&#39;, &#123; max: 1 &#125;],
+    // 要求方法链中每个调用都有一个换行符
+    &#39;newline-per-chained-call&#39;: [&#39;warn&#39;, &#123; ignoreChainWithDepth: 3 &#125;],
+    // 禁止 if 作为唯一的语句出现在 else 语句中
+    &#39;no-lonely-if&#39;: &#39;warn&#39;,
+    // 禁止空格和 tab 的混合缩进
+    &#39;no-mixed-spaces-and-tabs&#39;: &#39;warn&#39;,
+    // 禁止出现多行空行
+    &#39;no-multiple-empty-lines&#39;: &#39;warn&#39;,
+    // 禁止出现;
+    semi: [&#39;warn&#39;, &#39;never&#39;],
+    // 强制在块之前使用一致的空格
+    &#39;space-before-blocks&#39;: &#39;warn&#39;,
+    // 强制在 function的左括号之前使用一致的空格
+    // &#39;space-before-function-paren&#39;: [&#39;warn&#39;, &#39;never&#39;],
+    // 强制在圆括号内使用一致的空格
+    &#39;space-in-parens&#39;: &#39;warn&#39;,
+    // 要求操作符周围有空格
+    &#39;space-infix-ops&#39;: &#39;warn&#39;,
+    // 强制在一元操作符前后使用一致的空格
+    &#39;space-unary-ops&#39;: &#39;warn&#39;,
+    // 强制在注释中 // 或 /* 使用一致的空格
+    // &quot;spaced-comment&quot;: &quot;warn&quot;,
+    // 强制在 switch 的冒号左右有空格
+    &#39;switch-colon-spacing&#39;: &#39;warn&#39;,
+    // 强制箭头函数的箭头前后使用一致的空格
+    &#39;arrow-spacing&#39;: &#39;warn&#39;,
+    &#39;no-var&#39;: &#39;warn&#39;,
+    &#39;prefer-const&#39;: &#39;warn&#39;,
+    &#39;prefer-rest-params&#39;: &#39;warn&#39;,
+    &#39;no-useless-escape&#39;: &#39;warn&#39;,
+    &#39;no-irregular-whitespace&#39;: &#39;warn&#39;,
+    &#39;no-prototype-builtins&#39;: &#39;warn&#39;,
+    &#39;no-fallthrough&#39;: &#39;warn&#39;,
+    &#39;no-extra-boolean-cast&#39;: &#39;warn&#39;,
+    &#39;no-case-declarations&#39;: &#39;warn&#39;,
+    &#39;no-async-promise-executor&#39;: &#39;warn&#39;,
+  &#125;,
+  globals: &#123;
+    defineProps: &#39;readonly&#39;,
+    defineEmits: &#39;readonly&#39;,
+    defineExpose: &#39;readonly&#39;,
+    withDefaults: &#39;readonly&#39;,
+  &#125;,
+&#125;</code></pre><h3 id="3-3-项目下新建-eslintignore"><a href="#3-3-项目下新建-eslintignore" class="headerlink" title="3.3 项目下新建 .eslintignore"></a>3.3 项目下新建 .eslintignore</h3><pre><code># eslint 忽略检查 (根据项目需要自行添加)
+node_modules
+dist
+</code></pre><h3 id="3-4-prettier-支持"><a href="#3-4-prettier-支持" class="headerlink" title="3.4 prettier 支持"></a>3.4 prettier 支持</h3><pre><code># 安装 prettier
+yarn add prettier --dev</code></pre><p>解决 eslint 和 prettier 冲突</p>
+<p>解决 ESLint 中的样式规范和 prettier 中样式规范的冲突，以 prettier 的样式规范为准，使 ESLint 中的样式规范自动失效</p>
+<pre><code># 安装插件 eslint-config-prettier
+yarn add eslint-config-prettier --dev</code></pre><h3 id="3-5-项目下新建-prettier-js"><a href="#3-5-项目下新建-prettier-js" class="headerlink" title="3.5 项目下新建 .prettier.js"></a>3.5 项目下新建 .prettier.js</h3><pre><code>module.exports = &#123;
+  tabWidth: 2,
+  jsxSingleQuote: true,
+  jsxBracketSameLine: true,
+  printWidth: 100,
+  singleQuote: true,
+  semi: false,
+  overrides: [
+    &#123;
+      files: &#39;*.json&#39;,
+      options: &#123;
+        printWidth: 200,
+      &#125;,
+    &#125;,
+  ],
+  arrowParens: &#39;always&#39;,
+&#125;</code></pre><h3 id="3-6-项目下新建-prettierignore"><a href="#3-6-项目下新建-prettierignore" class="headerlink" title="3.6 项目下新建 .prettierignore"></a>3.6 项目下新建 .prettierignore</h3><pre><code># 忽略格式化文件 (根据项目需要自行添加)
+node_modules
+dist</code></pre><h3 id="3-7-package-json-配置"><a href="#3-7-package-json-配置" class="headerlink" title="3.7 package.json 配置"></a>3.7 package.json 配置</h3><pre><code>&#123;
+  &quot;script&quot;: &#123;
+    &quot;lint&quot;: &quot;eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx&quot;,
+    &quot;prettier&quot;: &quot;prettier --write .&quot;
+  &#125;
+&#125;
+</code></pre><p>上面配置完成后,可以运行以下命令测试下代码检查个格式化效果</p>
+<pre><code># eslint 检查
+yarn lint
+# prettier 自动格式化
+yarn prettier
+</code></pre><h3 id="3-8-配置文件引用别名-alias"><a href="#3-8-配置文件引用别名-alias" class="headerlink" title="3.8 配置文件引用别名 alias"></a>3.8 配置文件引用别名 alias</h3><p>直接修改 vite.config.ts 文件配置:</p>
+<pre><code>import &#123; defineConfig &#125; from &#39;vite&#39;
+import vue from &#39;@vitejs/plugin-vue&#39;
+import path from &#39;path&#39;
+
+// https://vitejs.dev/config/
+export default defineConfig(&#123;
+  plugins: [vue()],
+  resolve: &#123;
+    alias: &#123;
+      &#39;@&#39;: path.resolve(__dirname, &#39;src&#39;),
+    &#125;,
+  &#125;,
+&#125;)
+</code></pre><p>修改 tsconfig.json</p>
+<pre><code>&#123;
+  &quot;compilerOptions&quot;: &#123;
+    &quot;target&quot;: &quot;esnext&quot;,
+    &quot;module&quot;: &quot;esnext&quot;,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;strict&quot;: true,
+    &quot;jsx&quot;: &quot;preserve&quot;,
+    &quot;sourceMap&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;lib&quot;: [&quot;esnext&quot;, &quot;dom&quot;],
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: &#123;
+      &quot;@/*&quot;:[&quot;src/*&quot;]
+    &#125;
+  &#125;,
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.d.ts&quot;, &quot;src/**/*.tsx&quot;, &quot;src/**/*.vue&quot;]
+&#125;</code></pre><h2 id="4、路由"><a href="#4、路由" class="headerlink" title="4、路由"></a>4、路由</h2><pre><code># 安装路由
+yarn add vue-router@4</code></pre><p>在 src 文件下新增 router 文件夹 =&gt; router.ts 文件,内容如下:</p>
+<pre><code>import &#123; createRouter, createWebHistory, RouteRecordRaw &#125; from &#39;vue-router&#39;
+
+const routes: RouteRecordRaw[] = [
+  &#123;
+    path: &#39;/&#39;,
+    name: &#39;Login&#39;,
+    component: () =&gt; import(&#39;@/pages/login/Login.vue&#39;), // 注意这里要带上 文件后缀.vue
+  &#125;,
+]
+
+const router = createRouter(&#123;
+  history: createWebHistory(),
+  routes,
+&#125;)
+
+export default router
+</code></pre><p>修改入口文件 main.ts :</p>
+<pre><code>import &#123; createApp &#125; from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+import router from &#39;./router/index&#39;
+
+const app = createApp(App)
+
+app.use(router)
+
+app.mount(&#39;#app&#39;)
+</code></pre><h2 id="5、统一请求封装"><a href="#5、统一请求封装" class="headerlink" title="5、统一请求封装"></a>5、统一请求封装</h2><pre><code># 安装 axios
+yarn add axios
+# 安装 nprogress 用于请求 loading
+# 也可以根据项目需求自定义其它 loading
+yarn add nprogress
+# 类型声明，或者添加一个包含 `declare module &#39;nprogress&#39;
+yarn add @types/nprogress --dev</code></pre><p>新增 service 文件夹，service 下新增 http.ts 文件以及 api 文件夹:</p>
+<p><img src="https://pic.imgdb.cn/item/652e361fc458853aeffaac48.webp" alt=""></p>
+<p>http.ts : 用于 axios 封装</p>
+<pre><code>//http.ts
+import axios, &#123; AxiosRequestConfig &#125; from &#39;axios&#39;
+import NProgress from &#39;nprogress&#39;
+
+// 设置请求头和请求路径
+axios.defaults.baseURL = &#39;/api&#39;
+axios.defaults.timeout = 10000
+axios.defaults.headers.post[&#39;Content-Type&#39;] = &#39;application/json;charset=UTF-8&#39;
+axios.interceptors.request.use(
+  (config): AxiosRequestConfig&lt;any&gt; =&gt; &#123;
+    const token = window.sessionStorage.getItem(&#39;token&#39;)
+    if (token) &#123;
+      //@ts-ignore
+      config.headers.token = token
+    &#125;
+    return config
+  &#125;,
+  (error) =&gt; &#123;
+    return error
+  &#125;
+)
+// 响应拦截
+axios.interceptors.response.use((res) =&gt; &#123;
+  if (res.data.code === 111) &#123;
+    sessionStorage.setItem(&#39;token&#39;, &#39;&#39;)
+    // token过期操作
+  &#125;
+  return res
+&#125;)
+
+interface ResType&lt;T&gt; &#123;
+  code: number
+  data?: T
+  msg: string
+  err?: string
+&#125;
+interface Http &#123;
+  get&lt;T&gt;(url: string, params?: unknown): Promise&lt;ResType&lt;T&gt;&gt;
+  post&lt;T&gt;(url: string, params?: unknown): Promise&lt;ResType&lt;T&gt;&gt;
+  upload&lt;T&gt;(url: string, params: unknown): Promise&lt;ResType&lt;T&gt;&gt;
+  download(url: string): void
+&#125;
+
+const http: Http = &#123;
+  get(url, params) &#123;
+    return new Promise((resolve, reject) =&gt; &#123;
+      NProgress.start()
+      axios
+        .get(url, &#123; params &#125;)
+        .then((res) =&gt; &#123;
+          NProgress.done()
+          resolve(res.data)
+        &#125;)
+        .catch((err) =&gt; &#123;
+          NProgress.done()
+          reject(err.data)
+        &#125;)
+    &#125;)
+  &#125;,
+  post(url, params) &#123;
+    return new Promise((resolve, reject) =&gt; &#123;
+      NProgress.start()
+      axios
+        .post(url, JSON.stringify(params))
+        .then((res) =&gt; &#123;
+          NProgress.done()
+          resolve(res.data)
+        &#125;)
+        .catch((err) =&gt; &#123;
+          NProgress.done()
+          reject(err.data)
+        &#125;)
+    &#125;)
+  &#125;,
+  upload(url, file) &#123;
+    return new Promise((resolve, reject) =&gt; &#123;
+      NProgress.start()
+      axios
+        .post(url, file, &#123;
+          headers: &#123; &#39;Content-Type&#39;: &#39;multipart/form-data&#39; &#125;,
+        &#125;)
+        .then((res) =&gt; &#123;
+          NProgress.done()
+          resolve(res.data)
+        &#125;)
+        .catch((err) =&gt; &#123;
+          NProgress.done()
+          reject(err.data)
+        &#125;)
+    &#125;)
+  &#125;,
+  download(url) &#123;
+    const iframe = document.createElement(&#39;iframe&#39;)
+    iframe.style.display = &#39;none&#39;
+    iframe.src = url
+    iframe.onload = function () &#123;
+      document.body.removeChild(iframe)
+    &#125;
+    document.body.appendChild(iframe)
+  &#125;,
+&#125;
+export default http</code></pre><p>api : 项目中接口做统一管理，按照模块来划分</p>
+<p>在 api 文件下新增 login 文件夹,用于存放登录模块的请求接口,login 文件夹下分别新增 login.ts 和 types.ts :</p>
+<p>login.ts:</p>
+<pre><code>import http from &#39;@/service/http&#39;
+import * as T from &#39;./types&#39;
+
+const loginApi: T.ILoginApi = &#123;
+    login(params)&#123;
+        return http.post(&#39;/login&#39;, params)
+    &#125;
+
+&#125;
+export default loginApi
+</code></pre><p>types.ts:</p>
+<pre><code>export interface ILoginParams &#123;
+    userName: string
+    passWord: string | number
+&#125;
+export interface ILoginApi &#123;
+    login: (params: ILoginParams)=&gt; Promise&lt;any&gt;
+&#125;
+</code></pre><h2 id="6、状态管理-pinia"><a href="#6、状态管理-pinia" class="headerlink" title="6、状态管理 pinia"></a>6、状态管理 pinia</h2><p>可参考我之前的博客<br><a href="https://itzhengjinhan.github.io/2022/01/15/pinia%E4%BB%8B%E7%BB%8D/">pinia 使用</a></p>
+<h3 id="6-1-安装并引用"><a href="#6-1-安装并引用" class="headerlink" title="6.1 安装并引用"></a>6.1 安装并引用</h3><pre><code># 安装
+yarn add pinia@next</code></pre><p>main.ts 中增加</p>
+<pre><code># 引入
+import &#123; createPinia &#125; from &quot;pinia&quot;
+# 创建根存储库并将其传递给应用程序
+app.use(createPinia())
+</code></pre><h3 id="6-2-在-src-文件夹下新增-store-文件夹-接在在-store-中新增-main-ts"><a href="#6-2-在-src-文件夹下新增-store-文件夹-接在在-store-中新增-main-ts" class="headerlink" title="6.2 在 src 文件夹下新增 store 文件夹,接在在 store 中新增 main.ts"></a>6.2 在 src 文件夹下新增 store 文件夹,接在在 store 中新增 main.ts</h3><p>创建 store, main.ts :</p>
+<pre><code>import &#123; defineStore &#125; from &#39;pinia&#39;
+
+export const useMainStore = defineStore(&#123;
+  id: &#39;main&#39;,
+  state: () =&gt;(&#123;
+    name: &#39;超级管理员&#39;
+  &#125;)
+&#125;)
+</code></pre><h3 id="6-3-组建中获取-store"><a href="#6-3-组建中获取-store" class="headerlink" title="6.3 组建中获取 store :"></a>6.3 组建中获取 store :</h3><pre><code>&lt;template&gt;
+  &lt;div&gt;&#123;&#123;mainStore.name&#125;&#125;&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import &#123; useMainStore &#125; from &quot;@/store/mian&quot;
+
+const mainStore = useMainStore()
+
+&lt;/script&gt;
+</code></pre><h3 id="6-4-getters-用法介绍"><a href="#6-4-getters-用法介绍" class="headerlink" title="6.4 getters 用法介绍"></a>6.4 getters 用法介绍</h3><pre><code>import &#123; defineStore &#125; from &#39;pinia&#39;
+
+export const useMainStore = defineStore(&#123;
+  id: &#39;main&#39;,
+  state: () =&gt; (&#123;
+    name: &#39;超级管理员&#39;,
+  &#125;),
+  // getters
+  getters: &#123;
+    nameLength: (state) =&gt; state.name.length,
+  &#125;
+&#125;)
+</code></pre><h3 id="6-5-组件中使用"><a href="#6-5-组件中使用" class="headerlink" title="6.5 组件中使用"></a>6.5 组件中使用</h3><pre><code>&lt;template&gt;
+  &lt;div&gt;用户名:&#123;&#123; mainStore.name &#125;&#125;&lt;br /&gt;长度:&#123;&#123; mainStore.nameLength &#125;&#125;&lt;/div&gt;
+  &lt;hr/&gt;
+  &lt;button @click=&quot;updateName&quot;&gt;修改store中的name&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script setup lang=&quot;ts&quot;&gt;
+import &#123; useMainStore &#125; from &#39;@/store/mian&#39;
+
+const mainStore = useMainStore()
+
+const updateName = ()=&gt;&#123;
+  // $patch 修改 store 中的数据
+  mainStore.$patch(&#123;
+    name: &#39;名称被修改了,nameLength也随之改变了&#39;
+  &#125;)
+&#125;
+&lt;/script&gt;
+</code></pre><p><img src="https://pic.imgdb.cn/item/652e3638c458853aeffaebdf.webp" alt=""></p>
+<h2 id="7、VueUse"><a href="#7、VueUse" class="headerlink" title="7、VueUse"></a>7、VueUse</h2><p>可以参考：<br><a href="https://itzhengjinhan.github.io/2022/01/28/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/">VueUse 的使用</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zhengjinhan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://itzhengjinhan.github.io/2023/12/19/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/">http://itzhengjinhan.github.io/2023/12/19/Vite2%20+%20Vue3%20+%20TypeScript%20+%20Pinia%20%E6%90%AD%E5%BB%BA%E4%B8%80%E5%A5%97%E8%84%9A%E6%89%8B%E6%9E%B6/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zhengjinhan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/vue3/">
+                                    <span class="chip bg-color">vue3</span>
+                                </a>
+                            
+                                <a href="/tags/Vite/">
+                                    <span class="chip bg-color">Vite</span>
+                                </a>
+                            
+                                <a href="/tags/Pinia/">
+                                    <span class="chip bg-color">Pinia</span>
+                                </a>
+                            
+                                <a href="/tags/VueUse/">
+                                    <span class="chip bg-color">VueUse</span>
+                                </a>
+                            
+                                <a href="/tags/ts/">
+                                    <span class="chip bg-color">ts</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/08/25/%E5%9F%BA%E4%BA%8Eantd%20vue%E5%85%A8%E9%87%8F%E6%A0%91%E7%BB%84%E4%BB%B6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="基于antd vue全量上万条数据的树组件优化方案">
+                        
+                        <span class="card-title">基于antd vue全量上万条数据的树组件优化方案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/11/12/VueUse%20vue%E7%89%88%E7%9A%84hooks%E5%BA%93/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="VueUse：vue的hooks库">
+                        
+                        <span class="card-title">VueUse：vue的hooks库</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-11-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="/tags/vueUse/">
+                        <span class="chip bg-color">vueUse</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zhengjinhan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ITzhengjinhan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1035420153@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1035420153" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1035420153" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

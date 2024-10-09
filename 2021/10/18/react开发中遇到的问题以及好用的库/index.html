@@ -1,0 +1,1854 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="总结个人在react开发遇到的问题以及一些好用的库, IT默小涵的个人博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>总结个人在react开发遇到的问题以及一些好用的库 | IT默小涵的个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">IT默小涵的个人博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">IT默小涵的个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ITzhengjinhan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ITzhengjinhan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/46.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">总结个人在react开发遇到的问题以及一些好用的库</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/react/">
+                                <span class="chip bg-color">react</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/">
+                                <span class="chip bg-color">好用的库</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/react/" class="post-category">
+                                react
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>故不积跬步，无以至千里；不积小流，无以成江海。</p>
+<h2 id="一、遇到的问题"><a href="#一、遇到的问题" class="headerlink" title="一、遇到的问题"></a>一、遇到的问题</h2><h3 id="1-antd-中的-Table-组件-key-值报错-Warning-Each-child-in-a-list-should-have-a-unique-“key”-prop"><a href="#1-antd-中的-Table-组件-key-值报错-Warning-Each-child-in-a-list-should-have-a-unique-“key”-prop" class="headerlink" title="1.antd 中的 Table 组件 key 值报错:Warning: Each child in a list should have a unique “key” prop."></a>1.antd 中的 Table 组件 key 值报错:Warning: Each child in a list should have a unique “key” prop.</h3><p>一般是由于对 Antd 的 table 不熟悉造成的，混淆了 Column 中的 key 和 Table 中的 rowKey，实际上是需要设置 Table 中的 rowKey</p>
+<pre><code>const myColumns: any = [
+    &#123;
+      title: &#39;ID&#39;,
+      dataIndex: &#39;id&#39;,
+      key: &#39;id&#39;, //一开始我以为是这里的key,实际上并不是
+    &#125;,
+    &#123;
+      title: &#39;姓名&#39;,
+      dataIndex: &#39;name&#39;,
+      key: &#39;name&#39;,
+    &#125;,
+  ];
+
+const dataSource:any[] = []
+
+&lt;Table dataSource=&#123;dataSource&#125; columns=&#123;myColumns&#125;     rowKey=&#123;record =&gt; record.id&#125;/&gt;;</code></pre><h3 id="2-使用-formily-antd-的-From-和-FormItem-组件收集数据，value-不要写在每个-FormItem-中，会导致表单组件不受控，也就是当-value-改变时，组件的值还是旧的"><a href="#2-使用-formily-antd-的-From-和-FormItem-组件收集数据，value-不要写在每个-FormItem-中，会导致表单组件不受控，也就是当-value-改变时，组件的值还是旧的" class="headerlink" title="2.使用 formily/antd 的 From 和 FormItem 组件收集数据，value 不要写在每个 FormItem 中，会导致表单组件不受控，也就是当 value 改变时，组件的值还是旧的"></a>2.使用 formily/antd 的 From 和 FormItem 组件收集数据，value 不要写在每个 FormItem 中，会导致表单组件不受控，也就是当 value 改变时，组件的值还是旧的</h3><p>解决方案：在 Form 里绑定 value 就可以了</p>
+<pre><code>import React from &#39;react&#39;;
+import &#123; Form, FormItem, createFormActions &#125; from &#39;@formily/antd&#39;;
+
+const formActions = createFormActions();
+export const EditForm =(props)=&gt;&#123;
+
+const createSubmitHandler = (value, onSubmit) =&gt; &#123;
+  return async (values) =&gt; &#123;
+    if (onSubmit != null) &#123;
+      onSubmit(values);
+    &#125;
+  &#125;;
+&#125;;
+const submitHandler = createSubmitHandler(value, onSubmit);
+return (
+    &lt;Form &#123;...layout&#125; value=&#123;value&#125; actions=&#123;formActions&#125; onSubmit=&#123;submitHandler&#125; preserve&gt;
+        &lt;FormItem
+            name=&quot;code&quot;
+            label=&quot;编码&quot;
+            rules=&#123;[
+                &#123; required: true, message: &#39;请输入编码&#39; &#125;,
+                &#123; max: 32, message: &#39;请不要输入超过32个字符&#39; &#125;,
+            ]&#125;
+            placeholder=&quot;请输入&quot;
+            component=&#123;Input&#125;
+            value=&#123;value.code&#125;//不推荐这么写
+        /&gt;
+        &lt;FormItem
+            name=&quot;name&quot;
+            label=&quot;名称&quot;
+            rules=&#123;[
+                &#123; required: true, message: &#39;请输入名称&#39; &#125;,
+                &#123; max: 128, message: &#39;请不要输入超过128个字符&#39; &#125;,
+            ]&#125;
+            placeholder=&quot;请输入&quot;
+            component=&#123;Input&#125;
+            value=&#123;value.name&#125;//不推荐这么写
+        /&gt;
+    &lt;/Form&gt;
+)</code></pre><h3 id="3-formily-antd-的-FormItem-如何添加自定义校验"><a href="#3-formily-antd-的-FormItem-如何添加自定义校验" class="headerlink" title="3.formily/antd 的 FormItem 如何添加自定义校验"></a>3.formily/antd 的 FormItem 如何添加自定义校验</h3><p>解决方案：</p>
+<pre><code>&lt;FormItem
+    rules=&#123;[
+    &#123;
+        required: true,
+        message: &#39;请选择通知对象&#39;,
+        validator: async (item: any) =&gt; &#123;
+        if (isEmpty(item.targetKeys)) &#123;
+            return &#39;请选择通知对象&#39;;
+        &#125;
+            return false;
+        &#125;,
+    &#125;,
+    ]&#125;
+    name=&#123;&#39;noticeObj&#39;&#125;
+    label=&quot;通知对象&quot;
+    component=&#123;CustomerTransfer&#125;
+/&gt;</code></pre><h3 id="4-使用-formily-的-Form-表单，改变一个控件值的同时，另一个控件联动变化"><a href="#4-使用-formily-的-Form-表单，改变一个控件值的同时，另一个控件联动变化" class="headerlink" title="4.使用 formily 的 Form 表单，改变一个控件值的同时，另一个控件联动变化"></a>4.使用 formily 的 Form 表单，改变一个控件值的同时，另一个控件联动变化</h3><p>之前使用数据联动方式来实现，遇到多个联动会出比较混乱</p>
+<pre><code>import &#123; Form, FormItem &#125; from &#39;@formily/antd&#39;
+const [value1,setValue1]= useState(0);
+const [value2,setValue2]= useState(0);
+useEffect(()=&gt;&#123;
+    setValue2(value1)
+&#125;,[value1])
+
+&lt;Form onSubmit=&#123;submit&#125; &#123;...res&#125;&gt;
+    &lt;formItem name=&quot;name1&quot; component=&#123;Input&#125; value=&#123;value1&#125; onChange=&#123;setValue1&#125;/&gt;
+    &lt;formItem name=&quot;name2&quot; component=&#123;Input&#125; value=&#123;value2&#125; onChange=&#123;setValue2&#125;/&gt;
+    ...
+&lt;/Form&gt;</code></pre><p>解决方案:引入 effects，及表单的生命周期</p>
+<pre><code>import &#123; createFormActions, Form, FormEffectHooks, FormItem &#125; from &#39;@formily/antd&#39;;
+const &#123; setFieldState &#125; = createFormActions();
+const tag=useRef();
+const change=()=&gt;&#123;
+    FormEffectHooks.onFieldValueChange$(&#39;name1&#39;).subscribe((&#123;value&#125;)=&gt;&#123;
+        setFieldState(&#39;name2&#39;,(state)=&gt;&#123;
+            state.value=value;
+        &#125;)
+    &#125;)
+&#125;
+&lt;Form onSubmit=&#123;submit&#125; &#123;...res&#125; effects=&#123;()=&gt;&#123;change&#125;&#125;&gt;
+    &lt;formItem name=&quot;name1&quot; component=&#123;Input&#125; value=&#123;value1&#125; onChange=&#123;setValue1&#125;/&gt;
+    &lt;formItem name=&quot;name2&quot; component=&#123;Input&#125; value=&#123;value2&#125; onChange=&#123;setValue2&#125;/&gt;
+    ...
+&lt;/Form&gt;</code></pre><p>使用上述方法中出现的一种窘境，就是初始化加载数据时会把 value2 变成 value1，而需求是手动编辑 value1 才能联动 value2,此时需要在表单初始化前做拦截，初始化完后再 onFieldValueChange 里联动</p>
+<pre><code>const change=()=&gt;&#123;
+    FormEffectHooks.onFieldInit$(&#39;name1&#39;).subscribe((&#123; value &#125;) =&gt; &#123;
+      tag.current = false;
+    &#125;);
+
+    FormEffectHooks.onFieldValueChange$(&#39;name1&#39;).subscribe((&#123;res&#125;)=&gt;&#123;
+        if(tag.current)&#123;
+            setFieldState(&#39;name2&#39;,(state)=&gt;&#123;
+                state.value=res;
+            &#125;)
+        &#125;
+        tag.current=true;
+    &#125;)
+&#125;</code></pre><p>参考文档：<br><a target="_blank" rel="noopener" href='http://www.zhongweipeng.cn/2020/10/23/formily%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/'>http://www.zhongweipeng.cn/2020/10/23/formily%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</a><br><a target="_blank" rel="noopener" href='https://formilyjs.org/#/0yTeT0/aAIRIjiou6'>https://formilyjs.org/#/0yTeT0/aAIRIjiou6</a></p>
+<h3 id="5-antd-的-EditableProTable-可编辑表格验证调用方法"><a href="#5-antd-的-EditableProTable-可编辑表格验证调用方法" class="headerlink" title="5.antd 的 EditableProTable 可编辑表格验证调用方法"></a>5.antd 的 EditableProTable 可编辑表格验证调用方法</h3><p>EditableProTable 提供了 editable 属性,可以设置 form</p>
+<pre><code>import React, &#123; useState, useEffect &#125; from &#39;react&#39;
+import &#123; Row, Col, Button, Form, message &#125; from &#39;antd&#39;
+import &#123; EditableProTable &#125; from &#39;@ant-design/pro-table&#39;
+
+const EditZTTable: React.FC = () =&gt; &#123;
+  const [editableKeys, setEditableRowKeys] = useState&lt;React.Key[]&gt;([])
+  const [dataSource, setDataSource] = useState&lt;projectRiskProps[]&gt;([])
+  const [editForm] = Form.useForm()
+
+  // 提交方法
+  const onSave = async () =&gt; &#123;
+    await editForm.validateFields() // 调用表单验证
+  &#125;
+
+  return (
+    &lt;&gt;
+      &lt;EditableProTable
+        columns=&#123;columns&#125;
+        rowKey=&quot;id&quot;
+        value=&#123;dataSource&#125;
+        recordCreatorProps=&#123;&#123;
+          newRecordType: 'dataSource',
+          record: () => (&#123;
+            id: Date.now(),
+          &#125;),
+        &#125;&#125;
+        editable=&#123;&#123;
+          type: 'multiple',
+          form: editForm,
+          editableKeys,
+          actionRender: (row, config, defaultDoms) => &#123;
+            return [defaultDoms.delete]
+          &#125;,
+          onValuesChange: (record, recordList) => &#123;
+            setDataSource(recordList)
+          &#125;,
+          onChange: (editableKeyss, editableRows: projectRiskProps[]) => &#123;
+            setEditableRowKeys(editableKeyss)
+            setDataSource(editableRows)
+          &#125;,
+        &#125;&#125;
+      /&gt;
+      &lt;Row&gt;
+        &lt;Col span=&#123;24&#125; style=&#123;&#123; textAlign: 'right' &#125;&#125;&gt;
+          &lt;Button style=&#123;&#123; margin: '15px 8px 0' &#125;&#125; onClick=&#123;onCancel&#125;&gt;取消&lt;/Button&gt;
+          &lt;Button type=&quot;primary&quot; onClick=&#123;onSave&#125;&gt;保存&lt;/Button&gt;
+        &lt;/Col&gt;
+      &lt;/Row&gt;
+    &lt;/&gt;
+  )
+&#125;
+export default EditZTTable</code></pre><h3 id="6-formily-antd-的-InternalFieldList-自增型组件与-FormItem-的使用"><a href="#6-formily-antd-的-InternalFieldList-自增型组件与-FormItem-的使用" class="headerlink" title="6.formily/antd 的 InternalFieldList 自增型组件与 FormItem 的使用"></a>6.formily/antd 的 InternalFieldList 自增型组件与 FormItem 的使用</h3><pre><code>import &#123; Form, FormItem, InternalFieldList as FieldList &#125; from &#39;@formily/antd&#39;;
+
+&lt;Form
+    &#123;...layoutTextMax&#125;
+    value=&#123;value&#125;
+    actions=&#123;formActions&#125;
+    onSubmit=&#123;submitHandler&#125;
+    preserve
+&gt;
+&lt;FieldList value=&#123;[&#123;&#125;]&#125; name=&quot;list&quot;&gt;
+    &#123;(&#123; state, mutators &#125;) =&gt; &#123;
+        return state.value.map((_: any, index: number) =&gt; &#123;
+        return (
+            &lt;div className=&#123;styles.alarmRulesCondContent&#125;&gt;
+            &lt;FormItem
+                className=&#123;styles.items&#125;
+                name=&#123;`$&#123;list&#125;.$&#123;index&#125;.metricsKey`&#125;
+                rules=&#123;[&#123; required: true, message: &#39;请选择所属对象类型的指标&#39; &#125;]&#125;
+                placeholder=&quot;请选择所属对象类型的指标&quot;
+                component=&#123;Select&#125;
+                options=&#123;metricsValueTypeOption&#125;
+            /&gt;
+            &lt;FormItem
+                className=&#123;styles.items&#125;
+                name=&#123;`$&#123;list&#125;.$&#123;index&#125;.detectCycleType`&#125;
+                rules=&#123;[&#123; required: true, message: &#39;请选择探测周期类型&#39; &#125;]&#125;
+                placeholder=&quot;请选择探测周期类型&quot;
+                component=&#123;Select&#125;
+                options=&#123;ALARM_DETECT_CYCLE_OPTIONS&#125;
+            /&gt;
+            &lt;div className=&#123;styles.btn&#125;&gt;
+                &#123;index === 0 ? (
+                    &lt;Space size=&#123;8&#125;&gt;
+                        &lt;a onClick=&#123;() =&gt; &#123;
+                            mutators.push();
+                        &#125;&#125;&gt;
+                        添加
+                        &lt;/a&gt;
+                        &lt;a onClick=&#123;() =&gt; &#123;
+                            mutators.remove(index);
+                        &#125;&#125;&gt;移除&lt;/a&gt;
+                    &lt;/Space&gt;
+                    ) : (
+                    &lt;a onClick=&#123;() =&gt; &#123;
+                        mutators.remove(index);
+                    &#125;&#125;&gt;移除&lt;/a&gt;
+                )&#125;
+            &lt;/div&gt;
+            );
+        &#125;);
+    &#125;&#125;</code></pre><h3 id="7-antd-的-input-框输入内容时去除空格"><a href="#7-antd-的-input-框输入内容时去除空格" class="headerlink" title="7.antd 的 input 框输入内容时去除空格"></a>7.antd 的 input 框输入内容时去除空格</h3><p>解决方法：之前都用 value 和 onChange 修改 Input，后来发现表单有 getValueFromEvent 属性</p>
+<pre><code>const getValueFromEvent=(e)=&gt;&#123;
+      return e.target.value.replace(/(^\s*)|(\s*$)/g, &#39;&#39;);
+&#125;
+&lt;Form.Item name=&quot;account&quot; label=&quot;账号&quot; getValueFromEvent=&#123;getValueFromEvent&#125;&gt;
+    &lt;Input/&gt;
+&lt;/Form.Item&gt;</code></pre><h3 id="8-antd-ProTable-中-rowSelection-配置的-onSelectNone-属性无效，且单纯使用-onChange-无法实现表格跨页多选"><a href="#8-antd-ProTable-中-rowSelection-配置的-onSelectNone-属性无效，且单纯使用-onChange-无法实现表格跨页多选" class="headerlink" title="8.antd-ProTable 中 rowSelection 配置的 onSelectNone 属性无效，且单纯使用 onChange 无法实现表格跨页多选"></a>8.antd-ProTable 中 rowSelection 配置的 onSelectNone 属性无效，且单纯使用 onChange 无法实现表格跨页多选</h3><p>原因：当仅使用 onChange 实现时，其两个参数都是监听当前页面数据的变化，切换分页则返回分页下的数据，导致原始选择的数据丢失；onSelectNone 在高版本存在失效，故“取消选择”无法触发；<br>解决方法：加入 onSelect 和 onSelectAll</p>
+<p><img src="https://pic.imgdb.cn/item/65ec93ce9f345e8d03afb222.jpg" alt=""></p>
+<pre><code>import &#123; useState &#125; from &#39;react&#39;;
+import ProTable from &#39;@ant-design/pro-table&#39;;
+import &#123; mockData , mockColumns &#125; from &#39;./mock&#39;;
+const Demo = props =&gt;&#123;
+    const [selectedRows,setSelectedRows] = useState([]);
+    let isKeepChoosed = false;
+    const onSelect = (record, selected) =&gt; &#123;
+        let newData: any = [];
+          if (selected) &#123;
+            newData = Array.from(new Set([...selectedRows, record[rowKey]]));
+            isKeepChoosed = true;
+          &#125; else &#123;
+            newData = selectedRows.filter((item: any) =&gt; item !== record[rowKey]);
+            if (newData.length !== 0) &#123;
+              isKeepChoosed = true;
+            &#125;
+          &#125;
+          setSelectedRows(newData);
+    &#125;
+    const onSelectAll  = (selected, selectedRows, changeRows) =&gt; &#123;
+        const ids = changeRows.map((item: any) =&gt; item[rowKey]);
+          let newData: any = [];
+          if (selected) &#123;
+            newData = Array.from(new Set([...selectedRows, ...ids]));
+            isKeepChoosed = true;
+          &#125; else &#123;
+            newData = selectedRows.filter((item: any) =&gt; !ids.includes(item));
+            if (newData.length !== 0) &#123;
+              isKeepChoosed = true;
+            &#125;
+          &#125;
+          setSelectedRows(newData);
+    &#125;
+    const onChange = (selectedRowKeys, selectedRows) =&gt; &#123;
+        if (data.length === 0) &#123;
+            if (isKeepChoosed) &#123;
+              isKeepChoosed = false;
+            &#125; else &#123;
+              setSelectedRows([]);
+            &#125;
+          &#125;
+    &#125;
+    return (
+      &lt;ProTable
+        dataSource=&#123; mockData &#125;
+        columns=&#123; mockColumns &#125;
+        rowKey=&quot;id&quot;
+        rowSelection=&#123;&#123;
+          selectedRowKeys: selectedRows,
+          onSelect,
+          onSelectMultiple: onMulSelect,
+          onSelectAll: onMulSelect,
+          onChange,
+        &#125;&#125;
+        tableAlertRender=&#123;() =&gt; &#123;
+          return `已选择 $&#123;selectedRows.length&#125; 项`;
+        &#125;&#125;
+        tableAlertOptionRender=&#123;() =&gt; &#123;
+          return false;
+        &#125;&#125;
+      /&gt;
+  );
+&#125;</code></pre><p><img src="https://pic.imgdb.cn/item/65ec93f19f345e8d03b082bb.png" alt=""></p>
+<h3 id="9-react-渲染-html-模板字符串的方法"><a href="#9-react-渲染-html-模板字符串的方法" class="headerlink" title="9.react 渲染 html 模板字符串的方法"></a>9.react 渲染 html 模板字符串的方法</h3><pre><code>import React from &quot;react&quot;;
+class Component1 extends React.Component &#123;
+  constructor(props) &#123;
+    super(props);
+    this.state = &#123;
+      htmlContent: &quot;&lt;h1&gt;我是html元素&lt;/h1&gt;&quot;,
+    &#125;;
+  &#125;
+  render() &#123;
+    return (
+      &lt;div&gt;
+        &lt;div&gt;&#123;this.state.htmlContent&#125;&lt;/div&gt;
+        &lt;div dangerouslySetInnerHTML=&#123;&#123; __html: this.state.htmlContent &#125;&#125;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    );
+  &#125;
+&#125;
+
+function App() &#123;
+  return (
+    &lt;div&gt;
+      &lt;Component1 /&gt;
+    &lt;/div&gt;
+  );
+&#125;
+export default App;</code></pre><h3 id="10-less-中使用-global-前序修改-antd-的原始组件样式"><a href="#10-less-中使用-global-前序修改-antd-的原始组件样式" class="headerlink" title="10.less 中使用 global 前序修改 antd 的原始组件样式"></a>10.less 中使用 global 前序修改 antd 的原始组件样式</h3><p>遇到这个问题是因为我想要修改 antd 中的 tooltips 组件的样式：也就是想要修改 tooltips 下的字的宽度。<br>如果直接在 tooltips 组件上使用 style 是不会生效的。因为这个 tooltips 组件把文字包了两层。<br>所以我们需要对 tooltips 组件设置类名，然后使用 css 选择器去获取对应的文字 dom 节点<br>注意，如果不使用:global{}不能正常使用选择器，修改 antd 组件样式。<br><img src="https://pic.imgdb.cn/item/65ec940f9f345e8d03b13051.png" alt=""></p>
+<h3 id="11-react-src-里面引入图片的几种方式-es6-不支持在-img-标签内直接写图片的路径"><a href="#11-react-src-里面引入图片的几种方式-es6-不支持在-img-标签内直接写图片的路径" class="headerlink" title="11.react src 里面引入图片的几种方式 es6 不支持在 img 标签内直接写图片的路径"></a>11.react src 里面引入图片的几种方式 es6 不支持在 img 标签内直接写图片的路径</h3><p>解决方法</p>
+<pre><code>1.import法
+import imgUrl from &#39;./../images/photos.png&#39;
+&lt;img src = &#123;imgUrl&#125;&gt;
+
+2.require法
+&lt;img src=&#123;require(&#39;./../images/photos.png&#39;)&#125;</code></pre><h3 id="12-引入-less-样式的方法"><a href="#12-引入-less-样式的方法" class="headerlink" title="12.引入 less 样式的方法"></a>12.引入 less 样式的方法</h3><p>解决方法:</p>
+<pre><code>import styles from &#39;./index.less&#39;
+&lt;div className=&#123;styles.headContainer&#125;&gt;&lt;/div&gt;</code></pre><h3 id="13-ReactSVG-引入-svg-文件可通过修改-path-中的-fill-属性更改图标颜色"><a href="#13-ReactSVG-引入-svg-文件可通过修改-path-中的-fill-属性更改图标颜色" class="headerlink" title="13.ReactSVG 引入 svg 文件可通过修改 path 中的 fill 属性更改图标颜色"></a>13.ReactSVG 引入 svg 文件可通过修改 path 中的 fill 属性更改图标颜色</h3><pre><code>&lt;ReactSVG
+    className=&#123;styles.logo&#125;
+    src=&#123;require(&#39;@/assets/menu/test.svg&#39;)&#125;
+&gt;
+
+less:
+.logo:hover&#123;
+    path&#123;
+        fill:#eee;
+    &#125;
+&#125;</code></pre><h3 id="14-react-codemirror2-代码高亮组件的-options-属性赋值两次以上，会出现样式丢失-bug"><a href="#14-react-codemirror2-代码高亮组件的-options-属性赋值两次以上，会出现样式丢失-bug" class="headerlink" title="14.react-codemirror2 代码高亮组件的 options 属性赋值两次以上，会出现样式丢失 bug"></a>14.react-codemirror2 代码高亮组件的 options 属性赋值两次以上，会出现样式丢失 bug</h3><p>开发中，排除了样式引入和 lineNumbers 属性导致的原因。<br>后发现使用 antd 的步骤条，因每步都会渲染该组件，当渲染超 2 次以上，就出现样式丢失的问题。</p>
+<p><img src="https://pic.imgdb.cn/item/65ec94249f345e8d03b1aec4.png" alt=""></p>
+<p>当我把该组件放第一步，只渲染一次时，发现没什么问题，因此就想到是多次渲染导致。<br>所以我在步骤组件渲染时做个判断，若处于高亮组件页面步数，再渲染 options 配置，避免多次渲染即可。</p>
+<pre><code>import React,&#123;useState,useEffect&#125; from &#39;react&#39;
+import &#123;UnControlled   as CodeMirror&#125; from &#39;react-codemirror2&#39;
+import &#39;codemirror/mode/cmake/cmake&#39;;
+import &#39;codemirror/mode/xml/xml&#39;;
+import &#39;codemirror/mode/javascript/javascript&#39;;
+import &#39;codemirror/mode/clike/clike&#39;;
+import &#123;UnControlled as CodeMirror&#125; from &#39;react-codemirror2&#39;
+const [options,setOptions] = useState();
+const [steps,setSteps] =  useState&lt;number&gt;();
+
+useEffect(()=&gt;&#123;
+if(steps === 3)&#123;
+setOptions(&#123;
+    mode: &#39;xml&#39;,
+    theme: &#39;material&#39;,
+    lineNumbers: true
+  &#125;)
+&#125;
+&#125;,[])
+&lt;CodeMirror
+  value=&#39;&lt;h1&gt;I ♥ react-codemirror2&lt;/h1&gt;&#39;
+  options=&#123;options&#125;
+  onChange=&#123;(editor, data, value) =&gt; &#123;
+  &#125;&#125;
+/&gt;</code></pre><p><img src="https://pic.imgdb.cn/item/65ec943b9f345e8d03b23673.png" alt=""></p>
+<h3 id="15-解决-ReactHooks-中使用-loadsh-的防抖不生效"><a href="#15-解决-ReactHooks-中使用-loadsh-的防抖不生效" class="headerlink" title="15.解决 ReactHooks 中使用 loadsh 的防抖不生效"></a>15.解决 ReactHooks 中使用 loadsh 的防抖不生效</h3><p>// 防抖打印，希望输入的时候，延迟 0.5s 后打印值，发现这样使用防抖不生效</p>
+<pre><code>import &#123;Input&#125; from &#39;antd&#39;;
+import lodash from &#39;lodash&#39;;
+// lodash下的防抖函数
+const debounce = lodash.debounce;
+
+const getSuggestion = debounce((val:string) =&gt; &#123;
+    console.log(val);
+  &#125;, 500);
+
+// antd的一个简单搜索文本框
+const &#123; Search &#125; = Input;
+&lt;Search  onChange=&#123;event =&gt; getSuggestion(event.target.value)&#125;/&gt;</code></pre><p>因为每次 onChange 的事件，相当于重新创建了个 debounce 防抖函数。因此我 onChange 事件触发 10 次，就会有 10 个防抖函数并执行。</p>
+<p>解决方案：利用 useCallback、useRef 或者 ahooks 里的 useDebounceFn</p>
+<pre><code>import &#123;Input&#125; from &#39;antd&#39;;
+import lodash from &#39;lodash&#39;;
+// lodash下的防抖函数
+const debounce = lodash.debounce;
+
+  const getSuggestion = useRef(
+    debounce(
+      ()=&gt;console.log(&quot;执行防抖，0.5秒后在请求接口&quot;),
+      500,
+    ),
+  ).current;</code></pre><pre><code>  const getSuggestion = useCallback(
+    debounce(
+      ()=&gt;console.log(&quot;执行防抖，0.5秒后在请求接口&quot;),
+      500,
+    ),[]
+  );</code></pre><h3 id="16-使用-antd-的-select-组件时-placeholder-不生效-不起作用的解决办法"><a href="#16-使用-antd-的-select-组件时-placeholder-不生效-不起作用的解决办法" class="headerlink" title="16.使用 antd 的 select 组件时 placeholder 不生效/不起作用的解决办法"></a>16.使用 antd 的 select 组件时 placeholder 不生效/不起作用的解决办法</h3><p>当 select 的 value 绑定一个 state 默认值时，如果默认值是’’或 null 时，placeholder 不生效<br>解决方案：默认值设为 undefined</p>
+<h3 id="17-遇到同组件需要用到多次时，不妨给组件设置不同-key，视为不同组件"><a href="#17-遇到同组件需要用到多次时，不妨给组件设置不同-key，视为不同组件" class="headerlink" title="17.遇到同组件需要用到多次时，不妨给组件设置不同 key，视为不同组件"></a>17.遇到同组件需要用到多次时，不妨给组件设置不同 key，视为不同组件</h3><p>react 利用 key 来识别组件，它是一种身份标识标识，就像我们的身份证用来辨识一个人一样。<br>每个 key 对应一个组件，相同的 key react 认为是同一个组件，这样后续相同的 key 对应组件都不会被创建</p>
+<h3 id="18-bizcharts-的-WordCloudChart-onWordCloudClick-点击”词云“事件失效"><a href="#18-bizcharts-的-WordCloudChart-onWordCloudClick-点击”词云“事件失效" class="headerlink" title="18.bizcharts 的 WordCloudChart onWordCloudClick 点击”词云“事件失效"></a>18.bizcharts 的 WordCloudChart onWordCloudClick 点击”词云“事件失效</h3><p>添加配置属性</p>
+<pre><code> selected=&#123;1&#125; // 只有当值&gt;=0的时候，词云click事件才会响应</code></pre><h3 id="19-umi-项目引用组件出现-webpack-报错"><a href="#19-umi-项目引用组件出现-webpack-报错" class="headerlink" title="19.umi 项目引用组件出现 webpack 报错"></a>19.umi 项目引用组件出现 webpack 报错</h3><p>如：<br>Did you mean ‘customParseFormat.js’?<br>(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype,<br>a ‘<em>.mjs’ file, or a ‘</em>.js’ file where the package.json contains ‘“type”: “module”‘)</p>
+<p>umi 项目可通过配置修改 webpack 的 module.rules 下增加如下规则</p>
+<pre><code>chainWebpack(config) &#123;
+    config.module
+      .rule(&quot;mjs-rule&quot;)
+      .test(/\.m?js/)
+      .resolve.set(&#39;fullySpecified&#39;, false)
+  &#125;</code></pre><h2 id="二、好用的库"><a href="#二、好用的库" class="headerlink" title="二、好用的库"></a>二、好用的库</h2><h3 id="1-umi-框架的使用"><a href="#1-umi-框架的使用" class="headerlink" title="1.umi 框架的使用"></a>1.umi 框架的使用</h3><ol>
+<li>安装 Umi</li>
+</ol>
+<pre><code>npm install -g umi</code></pre><ol start="2">
+<li>常用 api</li>
+</ol>
+<p>2.1 Link 链接组件，例如：</p>
+<pre><code>import &#123; Link &#125; from &#39;umi&#39;;
+
+export default () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &#123;/* 点击跳转到指定 /about 路由 */&#125;
+      &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+
+      &#123;/* 点击跳转到指定 /courses 路由，
+          附带 query &#123; sort: &#39;name&#39; &#125;
+      */&#125;
+      &lt;Link to=&quot;/courses?sort=name&quot;&gt;Courses&lt;/Link&gt;
+
+      &#123;/* 点击跳转到指定 /list 路由，
+          附带 query: &#123; sort: &#39;name&#39; &#125;
+          附带 hash: &#39;the-hash&#39;
+          附带 state: &#123; fromDashboard: true &#125;
+      */&#125;
+      &lt;Link
+        to=&#123;&#123;
+          pathname: '/list',
+          search: '?sort=name',
+          hash: '#the-hash',
+          state: &#123; fromDashboard: true &#125;,
+        &#125;&#125;
+      &gt;
+        List
+      &lt;/Link&gt;
+    &lt;/div&gt;
+  );
+&#125;;</code></pre><p>2.2 NavLink<br>特殊版本的 <Link /> 。当指定路由（to=指定路由）命中时，可以附着特定样式。</p>
+<pre><code>import &#123; NavLink &#125; from &#39;umi&#39;;
+
+export default () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &#123;/* 和 Link 等价 */&#125;
+      &lt;NavLink to=&quot;/about&quot;&gt;About&lt;/NavLink&gt;
+
+      &#123;/* 当前路由为 /faq 时，附着 class selected */&#125;
+      &lt;NavLink to=&quot;/faq&quot; activeClassName=&quot;selected&quot;&gt;
+        FAQs
+      &lt;/NavLink&gt;
+
+      &#123;/* 当前路由为 /faq 时，附着 style */&#125;
+      &lt;NavLink
+        to=&quot;/faq&quot;
+        activeStyle=&#123;&#123;
+          fontWeight: 'bold',
+          color: 'red',
+        &#125;&#125;
+      &gt;
+        FAQs
+      &lt;/NavLink&gt;
+     &lt;/div&gt;
+  );
+&#125;;</code></pre><p>2.3 withRouter<br>高阶组件，可以通过 withRouter 获取到 history、location、match 对象</p>
+<pre><code>import &#123; withRouter &#125; from &#39;umi&#39;;
+
+export default withRouter((&#123; history, location, match &#125;) =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;ul&gt;
+        &lt;li&gt;history: &#123;history.action&#125;&lt;/li&gt;
+        &lt;li&gt;location: &#123;location.pathname&#125;&lt;/li&gt;
+        &lt;li&gt;match: &#123;`$&#123;match.isExact&#125;`&#125;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+&#125;);</code></pre><p>2.4 history,可用于获取当前路由信息，</p>
+<pre><code>import &#123; history &#125; from &#39;umi&#39;;
+
+// history 栈里的实体个数
+console.log(history.length);
+
+// 当前 history 跳转的 action，有 PUSH、REPLACE 和 POP 三种类型
+console.log(history.action);
+
+// location 对象，包含 pathname、search 和 hash
+console.log(history.location.pathname);
+console.log(history.location.search);
+console.log(history.location.hash);
+
+可用于路由跳转，
+import &#123; history &#125; from &#39;umi&#39;;
+
+// 跳转到指定路由
+history.push(&#39;/list&#39;);
+
+// 带参数跳转到指定路由
+history.push(&#39;/list?a=b&#39;);
+history.push(&#123;
+  pathname: &#39;/list&#39;,
+  query: &#123;
+    a: &#39;b&#39;,
+  &#125;,
+&#125;);
+
+// 跳转到上一个路由
+history.goBack();</code></pre><p><a target="_blank" rel="noopener" href='https://umijs.org/zh-CN/api'>官方 API 文档</a></p>
+<h3 id="2-classnames-库"><a href="#2-classnames-库" class="headerlink" title="2.classnames 库"></a>2.classnames 库</h3><p>在 react 开发中，我们有的时候需要使用 js 来动态判断是否为组件添加 class（类名），这里我们使用到了 classnames</p>
+<ol>
+<li>安装</li>
+</ol>
+<pre><code>npm install classnames --save</code></pre><ol start="2">
+<li>引入</li>
+</ol>
+<pre><code>import classnames  from ‘classnames’;</code></pre><ol start="3">
+<li>使用示例</li>
+</ol>
+<pre><code>&lt;Button className=&#123;classnames(&#123;
+    //这里可以根据各属性动态添加，如果属性值为true则为其添加该类名，如果值为false，则不添加。这样达到了动态添加class的目的
+      base: true,
+      inProgress: this.props.store.submissionInProgress,
+      error: this.props.store.errorOccurred,
+      disabled: this.props.form.valid,
+    &#125;)&#125;&gt;
+&lt;Button/&gt;</code></pre><h3 id="3-lodash-库"><a href="#3-lodash-库" class="headerlink" title="3.lodash 库"></a>3.lodash 库</h3><p>lodash 是一套现代 JS 实用程序库，提供 JS 数组、对象及其他数据结构的多种实用的方法</p>
+<ol>
+<li>安装 lodash</li>
+</ol>
+<pre><code>npm i --save lodash</code></pre><ol start="2">
+<li>引入 lodash</li>
+</ol>
+<pre><code>import _ from &quot;lodash&quot;</code></pre><ol start="3">
+<li>使用</li>
+</ol>
+<pre><code>&lt;Input style=&#123;&#123; marginBottom: 16 &#125;&#125; maxLength=&#123;25&#125; onChange=&#123;userChange&#125; /&gt;
+const userChange = (e: any) =&gt; &#123;
+callAjax(e.target.value)
+&#125;
+const getMember = (value: any) =&gt; &#123;
+fetchMember(value); // 最终的获取ajax数据的方法
+&#125;
+//防抖函数
+const callAjax = _.debounce(getMember, 300)</code></pre><ol start="4">
+<li>文档<br><a target="_blank" rel="noopener" href='https://www.lodashjs.com/'>https://www.lodashjs.com/</a></li>
+</ol>
+<h3 id="4-qs"><a href="#4-qs" class="headerlink" title="4.qs"></a>4.qs</h3><p>qs 处理 URL 查询字符串，支持内嵌对象和数组，简单说就是将对象和 URL 地址的参数互相转换</p>
+<ol>
+<li>安装</li>
+</ol>
+<pre><code>yarn add qs</code></pre><ol start="2">
+<li>使用</li>
+</ol>
+<pre><code>import &#123; parse , stringify &#125; from &#39;qs&#39;;
+//用途一：将浏览器上URL地址参数转换为对象(字符串转对象)
+const urlParams = parse(window.location.href.split(&quot;?&quot;)[1]);
+//用途二：将对象参数传递到后端接口--Get请求上(对象转字符串)
+const params = &#123;
+    name:&quot;zhangsan&quot;,
+    age:18,
+&#125;;
+const apiUrl = `/api/user?$&#123;stringify(params)&#125;`;</code></pre><h3 id="5-numeral"><a href="#5-numeral" class="headerlink" title="5.numeral"></a>5.numeral</h3><p>numeral 是一个专门用来格式化数字的 NPM 库</p>
+<ol>
+<li>安装</li>
+</ol>
+<pre><code>yarn add numeral</code></pre><ol start="2">
+<li>使用</li>
+</ol>
+<pre><code>import numeral from &#39;numeral&#39;
+//解析数字
+numeral(&quot;10,000.12&quot;);//10000.12
+numeral(&quot;$10,000.00&quot;);//10000
+numeral(&quot;3.14TB&quot;);//314000000000
+//格式化
+numeral(10000.23)format(&quot;0,0&quot;);//10,000</code></pre><ol start="3">
+<li>官方文档<br><a target="_blank" rel="noopener" href="http://numeraljs.com/">http://numeraljs.com/</a></li>
+</ol>
+<h3 id="6-animate-css"><a href="#6-animate-css" class="headerlink" title="6.animate.css"></a>6.animate.css</h3><p>Animate.css 是一个有趣的，跨浏览器的 css3 动画库，内置了很多典型的 css3 动画，兼容性好使用方便。</p>
+<ol>
+<li>安装</li>
+</ol>
+<pre><code>yarn add animate.css
+yarn add react-addons-css-transition-group
+或者：
+cnpm i animate.css
+cnpm i react-addons-css-transition-group</code></pre><ol start="2">
+<li>导入模块</li>
+</ol>
+<pre><code>import &quot;animate.css&quot;;
+import ReactCSSTransitionGroup from &quot;react-addons-css-transition-group&quot;;</code></pre><ol start="3">
+<li>使用</li>
+</ol>
+<pre><code> &lt;ReactCSSTransitionGroup
+          transitionEnter=&#123;true&#125;
+          transitionLeave=&#123;true&#125;
+          transitionEnterTimeout=&#123;2500&#125;
+          transitionLeaveTimeout=&#123;1500&#125;
+          transitionName=&quot;animated&quot;
+  &gt;
+         //这里一定要加上key
+         //className是animate.css中的类名，显示不同动画
+          &lt;div key=&quot;amache&quot; className=&quot;animated fadeInLeftBig&quot; &gt;
+               &lt;img src=&quot;/assets/img/history/157.png&quot; alt=&quot;&quot; /&gt;
+          &lt;/div&gt;
+ &lt;/ReactCSSTransitionGroup&gt;</code></pre><ol start="4">
+<li>官方文档<br><a target="_blank" rel="noopener" href="https://animate.style/">https://animate.style/</a></li>
+</ol>
+<h3 id="7-ahooks"><a href="#7-ahooks" class="headerlink" title="7. ahooks"></a>7. ahooks</h3><p>ahooks 一套高质量可靠的 React Hooks 库</p>
+<pre><code>//引入
+npm install --save ahooks
+或 yarn add ahooks
+
+//使用
+import &#123; useRequest &#125; from &#39;ahooks&#39;</code></pre><h3 id="8-react-codemirror2"><a href="#8-react-codemirror2" class="headerlink" title="8.react-codemirror2"></a>8.react-codemirror2</h3><p>codemirror2 是使用 JavaScript 为浏览器实现的多功能文本编辑器。<br>具体使用流程参考：<a target="_blank" rel="noopener" href='https://www.cnblogs.com/tu-0718/p/13129860.html'>博客：点击跳转</a></p>
+<h3 id="9-react-syntax-highlighter"><a href="#9-react-syntax-highlighter" class="headerlink" title="9.react-syntax-highlighter"></a>9.react-syntax-highlighter</h3><p>高亮显示文本组件</p>
+<pre><code>安装：
+// npm：npm install react-syntax-highlighter --save
+// yarn：yarn add react-syntax-highlighter
+
+使用：
+import React from &#39;react&#39;;
+import &#123; PrismLight as SyntaxHighlighter &#125; from &#39;react-syntax-highlighter&#39;;
+import &#123; shadesOfPurple &#125; from &#39;react-syntax-highlighter/dist/esm/styles/prism&#39;;
+
+export interface SqlCodeProps &#123;
+  value?: string;
+&#125;
+
+export const SqlCode = (props: SqlCodeProps) =&gt; &#123;
+  const &#123; value &#125; = props;
+
+  return (
+    &lt;SyntaxHighlighter
+      style=&#123;shadesOfPurple&#125;
+      showLineNumbers=&#123;false&#125;
+      startingLineNumber=&#123;0&#125;
+      language=&quot;sql&quot;
+    &gt;
+      &#123;value&#125;
+    &lt;/SyntaxHighlighter&gt;
+  );
+&#125;;</code></pre><h3 id="10-he"><a href="#10-he" class="headerlink" title="10.he"></a>10.he</h3><p>一款好用的 HTML 实体编码和解码工具</p>
+<pre><code>import he from &#39;he&#39;;</code></pre><pre><code>const decodeStr = he.decode(&quot;&amp;lt;div&amp;gt;Hello&amp;lt;/div&amp;gt;&quot;);
+cosole.log(decodeStr); //&lt;div&gt;Hello&lt;/div&gt;
+
+const encodeStr = he.encode(&quot;&lt;div&gt;Hello&lt;/div&gt;&quot;);
+console.log(encodeStr); //&amp;lt;div&amp;gt;Hello&amp;lt;/div&amp;gt;</code></pre><h3 id="11-xe-utils-工具方法库"><a href="#11-xe-utils-工具方法库" class="headerlink" title="11.xe-utils 工具方法库"></a>11.xe-utils 工具方法库</h3><pre><code>npm install xe-utils</code></pre><pre><code>import XEUtils from &quot;xe-utils&quot;;
+// 1.findTree:通过id获取id所在的item项
+var tree1 = [
+  &#123; id: 1 &#125;,
+  &#123;
+    id: 2,
+    children: [
+      &#123; id: 20, name:&#39;zhangsan&#39; &#125;
+    ]
+  &#125;,
+  &#123;
+    id: 3,
+    children: [
+      &#123; id: 30 &#125;
+    ]
+  &#125;
+]
+XEUtils.findTree(tree1, item =&gt; item.id === 20) // &#123; item: &#123;id: 20, name:&#39;zhangsan&#39;&#125;, ... &#125;
+
+// 2.mapTree (obj, iterate[, options, context]) 从树结构中指定方法后的返回值组成的新数组,可用来替换key
+var tree1 = [
+  &#123; id: 1 &#125;,
+  &#123;
+    id: 2,
+    children: [&#123; id: 20 &#125;]
+  &#125;,
+  &#123;
+    id: 3,
+    children: [&#123; id: 30 &#125;]
+  &#125;
+];
+console.log(
+  XEUtils.mapTree(
+    tree1,
+    item =&gt; &#123;
+      return &#123;
+        key: item.id
+      &#125;;
+    &#125;,
+    &#123; mapChildren: &quot;list&quot; &#125;
+  )
+);
+
+// [
+//   &#123; key: 2 &#125;,
+//   &#123;
+//     key: 4,
+//     list: [
+//       &#123; key: 40 &#125;
+//     ]
+//   &#125;,
+//   &#123;
+//     key: 6,
+//     list: [
+//       &#123; key: 60 &#125;
+//     ]
+//   &#125;
+// ]</code></pre>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zhengjinhan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://itzhengjinhan.github.io/2021/10/18/react%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/">http://itzhengjinhan.github.io/2021/10/18/react%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zhengjinhan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/react/">
+                                    <span class="chip bg-color">react</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%A5%BD%E7%94%A8%E7%9A%84%E5%BA%93/">
+                                    <span class="chip bg-color">好用的库</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/25/antd%E7%9A%84%E5%8E%9F%E7%94%9FForm%E8%A1%A8%E5%8D%95%E6%93%8D%E4%BD%9C%E5%92%8Cformily%20antd%E7%9A%84Form%20%E8%A1%A8%E5%8D%95%E6%93%8D%E4%BD%9C%E5%AF%B9%E6%AF%94/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="antd 的 原生Form 表单操作和 formily/antd 的 Form 表单操作对比">
+                        
+                        <span class="card-title">antd 的 原生Form 表单操作和 formily/antd 的 Form 表单操作对比</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/react/" class="post-category">
+                                    react
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/react/">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                    <a href="/tags/antd/">
+                        <span class="chip bg-color">antd</span>
+                    </a>
+                    
+                    <a href="/tags/formily/">
+                        <span class="chip bg-color">formily</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/26/moment%E5%B7%A5%E5%85%B7/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="moment常用时间总结">
+                        
+                        <span class="card-title">moment常用时间总结</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/js/" class="post-category">
+                                    js
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/moment/">
+                        <span class="chip bg-color">moment</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zhengjinhan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ITzhengjinhan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1035420153@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1035420153" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1035420153" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

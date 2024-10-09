@@ -1,0 +1,1559 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="umi相关知识总结, IT默小涵的个人博客">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>umi相关知识总结 | IT默小涵的个人博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">IT默小涵的个人博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">IT默小涵的个人博客</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/ITzhengjinhan" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/ITzhengjinhan" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">umi相关知识总结</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/react/">
+                                <span class="chip bg-color">react</span>
+                            </a>
+                        
+                            <a href="/tags/umi/">
+                                <span class="chip bg-color">umi</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/react/" class="post-category">
+                                react
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-20
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1-umi-介绍"><a href="#1-umi-介绍" class="headerlink" title="1.umi 介绍"></a>1.umi 介绍</h2><h3 id="官方介绍："><a href="#官方介绍：" class="headerlink" title="官方介绍："></a>官方介绍：</h3><p>Umi，中文可发音为乌米，是可扩展的企业级前端应用框架。Umi 以路由为基础的，同时支持配置式路由和约定式路由，保证路由的功能完备，并以此进行功能扩展。然后配以生命周期完善的插件体系，覆盖从源码到构建产物的每个生命周期，支持各种功能扩展和业务需求。</p>
+<h3 id="它主要具备以下功能："><a href="#它主要具备以下功能：" class="headerlink" title="它主要具备以下功能："></a>它主要具备以下功能：</h3><ul>
+<li>🎉  可扩展，Umi 实现了完整的生命周期，并使其插件化，Umi 内部功能也全由插件完成。此外还支持插件和插件集，以满足功能和垂直域的分层需求。</li>
+<li>📦  开箱即用，Umi 内置了路由、构建、部署、测试等，仅需一个依赖即可上手开发。并且还提供针对 React 的集成插件集，内涵丰富的功能，可满足日常 80% 的开发需求。</li>
+<li>🐠  企业级，经蚂蚁内部 3000+ 项目以及阿里、优酷、网易、飞猪、口碑等公司项目的验证，值得信赖。</li>
+<li>🚀  大量自研，包含微前端、组件打包、文档工具、请求库、hooks 库、数据流等，满足日常项目的周边需求。</li>
+<li>🌴  完备路由，同时支持配置式路由和约定式路由，同时保持功能的完备性，比如动态路由、嵌套路由、权限路由等等。</li>
+<li>🚄  面向未来，在满足需求的同时，我们也不会停止对新技术的探索。比如 dll 提速、modern mode、webpack@5、自动化 external、bundler less 等等。</li>
+</ul>
+<h3 id="实用项目条件："><a href="#实用项目条件：" class="headerlink" title="实用项目条件："></a>实用项目条件：</h3><ul>
+<li>需要支持 IE 8 以上版本的浏览器</li>
+<li>需要支持 React 16.8.0 以上的 React</li>
+<li>需要跑在 Node 10 以上的环境中</li>
+</ul>
+<h3 id="对比传统-react-app-脚手架"><a href="#对比传统-react-app-脚手架" class="headerlink" title="对比传统 react-app 脚手架"></a>对比传统 react-app 脚手架</h3><p>create-react-app 是基于 webpack 的打包层方案，包含 build、dev、lint 等，他在打包层把体验做到了极致，但是不包含路由，不是框架，也不支持配置。所以，如果大家想基于他修改部分配置，或者希望在打包层之外也做技术收敛时，就会遇到困难。</p>
+<h2 id="2-umi3-项目初始化"><a href="#2-umi3-项目初始化" class="headerlink" title="2.umi3 项目初始化"></a>2.umi3 项目初始化</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>首先得有 node，并确保 node 版本是 10.13 或以上。</p>
+<p>推荐使用 yarn 管理 npm 依赖</p>
+<p>本项目使用的版本为 node v14.17.5 yarn 1.22.15</p>
+<h3 id="脚手架"><a href="#脚手架" class="headerlink" title="脚手架"></a>脚手架</h3><ul>
+<li><p>桌面新建 umi3 文件夹, 用 vscode 打开, 打开 vscode 终端,</p>
+</li>
+<li><p>执行 yarn create @umijs/umi-app 创建项目</p>
+</li>
+<li><p>安装依赖 yarn</p>
+</li>
+<li><p>启动项目 yarn start</p>
+</li>
+</ul>
+<h3 id="配置-prettier-eslint-stylelint"><a href="#配置-prettier-eslint-stylelint" class="headerlink" title="配置 prettier,eslint, stylelint"></a>配置 prettier,eslint, stylelint</h3><p>umi 维护了一个 prettier，eslint，stylelint 的配置文件合集 umi-fabric</p>
+<pre><code>yarn add @umijs/fabric -D</code></pre><p>根目录新建下面三个文件,删除.prettierrc 文件</p>
+<pre><code>.eslintrc.js、.prettierrc.js、.stylelintrc.js</code></pre><p>对应配置如下</p>
+<pre><code>//.eslintrc.js 配置
+
+module.exports = &#123;
+  extends: [require.resolve(&#39;@umijs/fabric/dist/eslint&#39;)],
+
+  // in antd-design-pro
+  globals: &#123;
+    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: true,
+    page: true,
+  &#125;,
+
+  rules: &#123;
+    // your rules
+    &#39;prefer-const&#39;: 0,
+  &#125;,
+&#125;;
+
+
+//.prettierrc.js 配置
+
+const fabric = require(&#39;@umijs/fabric&#39;)
+
+module.exports = &#123;
+  ...fabric.prettier,
+  semi: false,
+&#125;
+
+
+//.stylelintrc.js 配置
+
+const fabric = require(&#39;@umijs/fabric&#39;)
+
+module.exports = &#123;
+  ...fabric.stylelint,
+&#125;
+</code></pre><p>根目录新建 eslint 忽略文件 .eslintignore</p>
+<p>在 package.json 里面的 lint-staged 新增 “eslint –fix”</p>
+<p><img src="https://pic.imgdb.cn/item/652e8ea4c458853aefe77ef7.webp" alt=""></p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p><img src="https://pic.imgdb.cn/item/652e8f4cc458853aefe98a00.webp" alt=""></p>
+<p>修改 src/paegs 文件夹下的 index.tsx 文件,新增一个 a 变量,有 eslint 错误提示,说明 eslint 生效了</p>
+<p>然后再单独提交 index.tsx 这一个文件,会提示有错误,无法提交，说明 pre-commmit 钩子生效</p>
+<p><img src="https://pic.imgdb.cn/item/652e8f58c458853aefe9add4.webp" alt=""></p>
+<h3 id="保存时自动格式化代码"><a href="#保存时自动格式化代码" class="headerlink" title="保存时自动格式化代码"></a>保存时自动格式化代码</h3><p>在 vscode 设置 文本编辑器的格式化里面 勾选 Format on Save</p>
+<p><img src="https://pic.imgdb.cn/item/652e8f74c458853aefea0556.webp" alt=""></p>
+<h3 id="配置-css-初始化代码"><a href="#配置-css-初始化代码" class="headerlink" title="配置 css 初始化代码"></a>配置 css 初始化代码</h3><pre><code>body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select,
+figure,
+figcaption &#123;
+  margin: 0;
+  padding: 0;
+&#125;
+
+li &#123;
+  list-style-type: none;
+&#125;
+a &#123;
+  text-decoration: none;
+&#125;
+
+a:hover &#123;
+  text-decoration: underline;
+&#125;
+img &#123;
+  border: none;
+&#125;
+input &#123;
+  outline: none;
+&#125;</code></pre><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>Umi 在  .umirc.ts  或  config/config.ts  中配置项目和插件，支持 es6。<br>如果项目的配置不复杂，推荐在  .umirc.ts  中写配置； 如果项目的配置比较复杂，可以将配置写在  config/config.ts  中，并把配置的一部分拆分出去，比如路由配置可以拆分成单独的  routes.ts<br>推荐两种配置方式二选一，.umirc.ts  优先级更高。<br>我们采用 config 的方式,删除.umirc.ts,根目录新建 config 文件夹,<br>在里面新建 config.ts</p>
+<p>默认内容如下</p>
+<pre><code>import &#123; defineConfig &#125; from &#39;umi&#39;;
+
+export default defineConfig(&#123;
+  nodeModulesTransform: &#123;
+    type: &#39;none&#39;,
+  &#125;,
+  routes: [
+    &#123; path: &#39;/&#39;, component: &#39;@/pages/index&#39; &#125;,
+  ],
+  fastRefresh: &#123;&#125;,
+&#125;);
+</code></pre><h3 id="多环境多配置文件"><a href="#多环境多配置文件" class="headerlink" title="多环境多配置文件"></a>多环境多配置文件</h3><p>可以通过环境变量 UMI_ENV 区分不同环境来指定配置。</p>
+<p>为了兼容性,可借助三方工具 cross-env 来设置环境变量</p>
+<pre><code>yarn add cross-env --dev</code></pre><p>在 package.json 中的 script 中</p>
+<pre><code>&quot;start&quot;: &quot;cross-env UMI_ENV=dev umi dev&quot;,
+    &quot;start:test&quot;: &quot;cross-env UMI_ENV=test umi dev&quot;,
+    &quot;start:prd&quot;: &quot;cross-env UMI_ENV=prd umi dev&quot;,
+    &quot;build&quot;: &quot;cross-env UMI_ENV=dev umi build&quot;,
+    &quot;build:test&quot;: &quot;cross-env UMI_ENV=test umi build&quot;,
+    &quot;build:prd&quot;: &quot;cross-env UMI_ENV=prd umi build&quot;,
+</code></pre><p>然后再 config 文件夹下 新建<br>config.dev.ts，config.test.ts，config.prd.ts</p>
+<pre><code>config.dev.ts：代表开发环境配置文件
+
+import &#123; defineConfig &#125; from &#39;umi&#39;;
+export default defineConfig(&#123;
+  define: &#123;
+    CurrentEnvironment: &#39;dev&#39;,
+  &#125;,
+&#125;);
+
+config.test.ts：代表测试环境
+
+import &#123; defineConfig &#125; from &#39;umi&#39;;
+export default defineConfig(&#123;
+  define: &#123;
+    CurrentEnvironment: &#39;test&#39;,
+  &#125;,
+&#125;);
+
+config.prd.ts：代表生产环境
+
+import &#123; defineConfig &#125; from &#39;umi&#39;;
+export default defineConfig(&#123;
+  define: &#123;
+    CurrentEnvironment: &#39;prd&#39;,
+  &#125;,
+&#125;);
+</code></pre><p>到根目录的 typings.d.ts 添加当前的环境</p>
+<pre><code>// 声明当前的环境
+declare const CurrentEnvironment: &#39;dev&#39; | &#39;test&#39; | &#39;prd&#39;;
+</code></pre><h3 id="请求的封装"><a href="#请求的封装" class="headerlink" title="请求的封装"></a>请求的封装</h3><p>src 文件夹下新建 request 文件夹 新建 request.ts</p>
+<pre><code>/**
+ * 网络请求工具 封装umi-request
+ * 更详细的 api 文档: https://github.com/umijs/umi-request
+ */
+
+import &#123; extend &#125; from &#39;umi-request&#39;;
+import type &#123; RequestOptionsInit &#125; from &#39;umi-request&#39;;
+import &#123; notification &#125; from &#39;antd&#39;;
+
+// codeMessage仅供参考 具体根据和后端协商,在详细定义.
+const codeMessage = &#123;
+  200: &#39;服务器成功返回请求的数据。&#39;,
+  400: &#39;发出的请求有错误，服务器没有进行新建或修改数据的操作。&#39;,
+  500: &#39;服务器发生错误，请检查服务器。&#39;,
+&#125;;
+type mapCode = 200 | 400 | 500;
+
+/**
+ * 错误异常处理程序
+ */
+const errorHandler = (error: &#123; response: Response &#125;): Response =&gt; &#123;
+  const &#123; response &#125; = error;
+  if (response &amp;&amp; response.status) &#123;
+    let errorText = codeMessage[response.status as mapCode] || response.statusText;
+    const &#123; status, url &#125; = response;
+    response
+      ?.clone()
+      ?.json()
+      ?.then((res) =&gt; &#123;
+        // 后端返回错误信息,就用后端传回的
+        errorText = res.msg ? res.msg : errorText;
+        notification.error(&#123;
+          message: `请求错误 $&#123;status&#125;: $&#123;url&#125;`,
+          description: errorText,
+        &#125;);
+      &#125;);
+  &#125; else if (!response) &#123;
+    notification.error(&#123;
+      description: &#39;您的网络发生异常，无法连接服务器&#39;,
+      message: &#39;网络异常&#39;,
+    &#125;);
+  &#125;
+  return response;
+&#125;;
+
+/**
+ * 配置request请求时的默认参数
+ */
+const request = extend(&#123;
+  errorHandler, // 默认错误处理
+  credentials: &#39;include&#39;, // 默认请求是否带上cookie
+&#125;);
+
+// 根据不同的开发环境,配置请求前缀
+interface ApiPrefix &#123;
+  dev: string;
+  test: string;
+  prd: string;
+&#125;
+const apiPreFix: ApiPrefix = &#123;
+  dev: &#39;http://120.55.193.14:3030/&#39;,
+  test: &#39;http://120.55.193.14:3030/&#39;,
+  prd: &#39;http://120.55.193.14:3030/&#39;,
+&#125;;
+// request拦截器, 携带token,以及根据环境,配置不同的请求前缀
+request.interceptors.request.use((url: string, options: RequestOptionsInit) =&gt; &#123;
+  // 不携带token的请求数组
+  let notCarryTokenArr: string[] = [];
+  if (notCarryTokenArr.includes(url)) &#123;
+    return &#123;
+      url: `$&#123;apiPreFix[CurrentEnvironment]&#125;$&#123;url&#125;`,
+      options,
+    &#125;;
+  &#125;
+  // 给每个请求带上token
+  let token = localStorage.getItem(&#39;tokens&#39;) || &#39;&#39;;
+  let headers = &#123;
+    Authorization: `Bearer $&#123;token&#125;`,
+  &#125;;
+  return &#123;
+    url: `$&#123;apiPreFix[CurrentEnvironment]&#125;$&#123;url&#125;`,
+    options: &#123; ...options, interceptors: true, headers &#125;,
+  &#125;;
+&#125;);
+
+/**
+ * @url 请求的url
+ * @parameter 上传的参数
+ */
+
+// 封装的get,post.put,delete请求
+const get = async (url: string, parameter?: Record&lt;string, unknown&gt;): Promise&lt;any&gt; =&gt; &#123;
+  try &#123;
+    const res = await request(url, &#123; method: &#39;get&#39;, params: parameter &#125;);
+    return res;
+  &#125; catch (error) &#123;
+    console.error(error);
+  &#125;
+&#125;;
+const deletes = async (url: string, parameter?: Record&lt;string, unknown&gt;): Promise&lt;any&gt; =&gt; &#123;
+  try &#123;
+    const res = await request(url, &#123; method: &#39;delete&#39;, params: parameter &#125;);
+    return res;
+  &#125; catch (error) &#123;
+    console.error(error);
+  &#125;
+&#125;;
+const post = async (url: string, parameter?: Record&lt;string, unknown&gt;): Promise&lt;any&gt; =&gt; &#123;
+  try &#123;
+    const res = await request(url, &#123; method: &#39;post&#39;, data: parameter &#125;);
+    return res;
+  &#125; catch (error) &#123;
+    console.error(error);
+  &#125;
+&#125;;
+const put = async (url: string, parameter?: Record&lt;string, unknown&gt;): Promise&lt;any&gt; =&gt; &#123;
+  try &#123;
+    const res = await request(url, &#123; method: &#39;put&#39;, data: parameter &#125;);
+    return res;
+  &#125; catch (error) &#123;
+    console.error(error);
+  &#125;
+&#125;;
+
+export default &#123;
+  get,
+  post,
+  put,
+  deletes,
+&#125;;
+</code></pre><h2 id="3-umi-中使用-dva"><a href="#3-umi-中使用-dva" class="headerlink" title="3.umi 中使用 dva"></a>3.umi 中使用 dva</h2><p>Dva 是啥，我们可以把它理解为 Redux + Redux-Saga + React-Router</p>
+<h3 id="包含以下功能："><a href="#包含以下功能：" class="headerlink" title="包含以下功能："></a>包含以下功能：</h3><ul>
+<li>内置 dva，默认版本是  ^2.6.0-beta.20，如果项目中有依赖，会优先使用项目中依赖的版本。</li>
+<li>约定式的 model 组织方式，不用手动注册 model</li>
+<li>文件名即 namespace，model 内如果没有声明 namespace，会以文件名作为 namespace</li>
+<li>内置 dva-loading，直接 connect loading  字段使用即可</li>
+<li>支持 immer，通过配置  immer  开启</li>
+</ul>
+<h3 id="约定式的-model-组织方式"><a href="#约定式的-model-组织方式" class="headerlink" title="约定式的 model 组织方式:"></a>约定式的 model 组织方式:</h3><p>符合以下规则的文件会被认为是 model 文件:</p>
+<ul>
+<li>src/models 下的文件</li>
+<li>src/pages 下，子目录中 models 目录下的文件</li>
+<li>src/pages 下，所有 model.ts 文件(不区分任何字母大小写)</li>
+</ul>
+<h3 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h3><p>比如在 src 下新建 models 文件夹,里面新建 test.ts</p>
+<pre><code>import type &#123; Effect, Reducer, Subscription &#125; from &#39;umi&#39;; // 映入umi 定义好的ts类型
+import axios from &#39;../request/request&#39;; // 引入封装好的网络请求
+
+// state 接口
+export interface TextModelState &#123;
+  name?: string;
+  testData?: string;
+&#125;
+
+// test model接口
+export interface TextModelType &#123;
+  namespace: &#39;testModel&#39;;
+  state: TextModelState;
+  effects: &#123;
+    query: Effect;
+  &#125;;
+  reducers: &#123;
+    save: Reducer&lt;TextModelState&gt;;
+    msg: Reducer&lt;TextModelState&gt;;
+  &#125;;
+  subscriptions?: &#123; setup: Subscription &#125;;
+&#125;
+
+const IndexModel: TextModelType = &#123;
+  namespace: &#39;testModel&#39;,// 命名空间，不同models命名空间要保证唯一
+  state: &#123; // 初始化数据
+    name: &#39;初始名字&#39;,
+    testData: &#39;初始testData&#39;,
+  &#125;,
+  effects: &#123;
+    //需要请求异步接口，一般要在effects中编写请求的方法
+    *query(action, &#123; call, put &#125;) &#123;
+      const getDataTeszhongt = async () =&gt; &#123;
+        const data = await axios.get(&#39;test&#39;);
+        return data;
+      &#125;;
+      let testData = yield call(getDataTest);
+      yield put(&#123;
+        type: &#39;msg&#39;,// 触发reducers中的方法
+        data: &#123; testData: testData?.msg &#125;,
+      &#125;);
+    &#125;,
+  &#125;,
+
+  reducers: &#123;
+    // 监听对应的触发方法
+    save(state) &#123;
+      return &#123;
+        ...state,//先展开，后覆盖
+        name: &#39;jimmy&#39;,
+      &#125;;
+    &#125;,
+    msg(state, action) &#123;
+      return &#123;
+        ...state,//先展开，后覆盖
+        testData: action?.data?.testData,
+        testData2: action?.data?.testData2,
+      &#125;;
+    &#125;,
+  &#125;,
+&#125;;
+export default IndexModel;</code></pre><p>在 src/pages 下的 index.tsx 中使用</p>
+<pre><code>import &#123; useDispatch, useSelector &#125; from &#39;umi&#39;
+const IndexPage: React.FC = () =&gt; &#123;
+
+  const &#123; name, testData &#125; = useSelector((store: any) =&gt; &#123;
+    console.log(&#39;store&#39;, store)
+    return store?.testModel
+  &#125;)
+
+   const dispatch = useDispatch();
+  // 改变名字
+  const changeName = () =&gt; &#123;
+    dispatch(&#123; type: &#39;testModel/save&#39; &#125;);//这里的type:模块名+对应的方法
+  &#125;
+  // 发送请求
+  const sendRequest = () =&gt; &#123;
+    dispatch(&#123; type: &#39;testModel/query&#39; &#125;);//这里的type:模块名+对应的方法
+  &#125;
+  return (
+    &lt;div&gt;
+      &lt;div&gt;我的名字:&#123;name&#125;&lt;/div&gt;
+      &lt;div&gt;testData的值:&#123;testData&#125;&lt;/div&gt;
+      &lt;button onClick=&#123;changeName&#125;&gt;点击改变name&lt;/button&gt;
+      &lt;button onClick=&#123;sendRequest&#125;&gt;发送请求&lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+export default IndexPage</code></pre><h3 id="mfsu"><a href="#mfsu" class="headerlink" title="mfsu"></a>mfsu</h3><p>启用 mfsu 后，热启动得到 <strong>10 倍</strong> 提升；热更新提升 <strong>50%</strong> 以上！</p>
+<p>在 config/config.ts 中添加 mfsu:{}</p>
+<p>本文参考博客：</p>
+<p>掘金：胡了个大斌–<br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6947599812447436830#heading-5">umi+Dva 学习总结</a></p>
+<p>掘金：Jimmy_fx–<br><a href="umi3教程">umi3 教程</a></p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zhengjinhan</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://itzhengjinhan.github.io/2022/03/20/umi/">http://itzhengjinhan.github.io/2022/03/20/umi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zhengjinhan</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/react/">
+                                    <span class="chip bg-color">react</span>
+                                </a>
+                            
+                                <a href="/tags/umi/">
+                                    <span class="chip bg-color">umi</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/04/17/%E7%B1%BB%E4%BC%BCAntDesignUI%E7%BB%84%E4%BB%B6%E5%BA%93%E6%96%87%E6%A1%A3%E7%9A%84%E7%BC%96%E5%86%99/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/38.jpg" class="responsive-img" alt="类似 AntDesignUI组件库文档是如何编写生成的？">
+                        
+                        <span class="card-title">类似 AntDesignUI组件库文档是如何编写生成的？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/react/" class="post-category">
+                                    react
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/react/">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                    <a href="/tags/dumi/">
+                        <span class="chip bg-color">dumi</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/10/ahooks%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="总结一些 ahooks 库中实用方法">
+                        
+                        <span class="card-title">总结一些 ahooks 库中实用方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/react/" class="post-category">
+                                    react
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/react/">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                    <a href="/tags/ahooks/">
+                        <span class="chip bg-color">ahooks</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">zhengjinhan</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/ITzhengjinhan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1035420153@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1035420153" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1035420153" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
