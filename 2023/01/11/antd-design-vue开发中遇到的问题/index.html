@@ -479,9 +479,9 @@
   v-model=&quot;form.names&quot;
   :getPopupContainer=&quot;triggerNode =&gt; triggerNode.parentNode&quot;
 &lt;/a-tree-select&gt;
-</code></pre><h3 id="在-treeSelect-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true"><a href="#在-treeSelect-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true" class="headerlink" title="在 treeSelect 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]"></a>在 treeSelect 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]</h3><p>此时会把 value 类型从  string  变为  {value: string, label: VNode, halfChecked(treeCheckStrictly 时有效): string[] }  的格式</p>
+</code></pre><h3 id="在-a-tree-select-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true"><a href="#在-a-tree-select-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true" class="headerlink" title="在 a-tree-select 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]"></a>在 a-tree-select 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]</h3><p>此时会把 value 类型从  string  变为  {value: string, label: VNode, halfChecked(treeCheckStrictly 时有效): string[] }  的格式</p>
 <p>即 value: ‘b2043682ffd2413fac7481304cd7042d’——&gt;{ label: “2 号检修班组”, value: “b2043682ffd2413fac7481304cd7042d” }</p>
-<h3 id="日期选择框-datePicker-设置可选范围在今天或之前"><a href="#日期选择框-datePicker-设置可选范围在今天或之前" class="headerlink" title="日期选择框 datePicker 设置可选范围在今天或之前"></a>日期选择框 datePicker 设置可选范围在今天或之前</h3><pre><code>&lt;a-date-picker :disabled-date=&quot;beforeToday xxxx&gt;
+<h3 id="日期选择框-a-date-picker-设置可选范围在今天或之前"><a href="#日期选择框-a-date-picker-设置可选范围在今天或之前" class="headerlink" title="日期选择框 a-date-picker 设置可选范围在今天或之前"></a>日期选择框 a-date-picker 设置可选范围在今天或之前</h3><pre><code>&lt;a-date-picker :disabled-date=&quot;beforeToday xxxx&gt;
 
 在methods中
 beforeToday(current)&#123;
@@ -503,8 +503,8 @@ beforeToday(current)&#123;
     onTreeNodeSelect(selectedKeys, e) &#123;
       //触发复选框的勾选事件
       e.node.$el.childNodes[1].click()
-    &#125;,</code></pre><h3 id="antd-设置-Tree-组件-autoExpandedParent-无效"><a href="#antd-设置-Tree-组件-autoExpandedParent-无效" class="headerlink" title="antd-设置 Tree 组件 autoExpandedParent 无效"></a>antd-设置 Tree 组件 autoExpandedParent 无效</h3><p>当 treeNode 属性为 disabled，autoExpandedParent 无效，解决方案是通过 expandedKeys 手动设置需要展开的 key</p>
-<h3 id="Anchor-常见的问题"><a href="#Anchor-常见的问题" class="headerlink" title="Anchor 常见的问题"></a>Anchor 常见的问题</h3><p>锚点浏览器会报错；</p>
+    &#125;,</code></pre><h3 id="a-tree-组件-autoExpandedParent-无效"><a href="#a-tree-组件-autoExpandedParent-无效" class="headerlink" title="a-tree 组件 autoExpandedParent 无效"></a>a-tree 组件 autoExpandedParent 无效</h3><p>当 treeNode 属性为 disabled，autoExpandedParent 无效，解决方案是通过 expandedKeys 手动设置需要展开的 key</p>
+<h3 id="a-anchor-常见的问题"><a href="#a-anchor-常见的问题" class="headerlink" title="a-anchor 常见的问题"></a>a-anchor 常见的问题</h3><p>锚点浏览器会报错；</p>
 <p>路由会被更改，影响哈希模式的页面路由；</p>
 <p>affix 属性不生效，没有随着页面滚动高亮变化</p>
 <pre><code>/** #号后面不能为纯数字，否则无法正常定位，浏览器报错*/
@@ -522,9 +522,27 @@ getContainer() &#123;
 handleClickAnchor(e, link) &#123;
   // 阻止点击的默认事件修改路由
   e.preventDefault();
-&#125;</code></pre><h3 id="如何覆盖-修改-antd-vue-样式"><a href="#如何覆盖-修改-antd-vue-样式" class="headerlink" title="如何覆盖/修改 antd-vue 样式"></a>如何覆盖/修改 antd-vue 样式</h3><pre><code>/deep/.antd input&#123;
+&#125;</code></pre><h3 id="如何覆盖-修改-antd-vue-UI-组件样式"><a href="#如何覆盖-修改-antd-vue-UI-组件样式" class="headerlink" title="如何覆盖/修改 antd-vue UI 组件样式"></a>如何覆盖/修改 antd-vue UI 组件样式</h3><pre><code>/deep/.antd input&#123;
   font-size:12px;
-&#125;</code></pre><h3 id="URL-哈希模式下参数拼接在-前面问题"><a href="#URL-哈希模式下参数拼接在-前面问题" class="headerlink" title="URL 哈希模式下参数拼接在#前面问题"></a>URL 哈希模式下参数拼接在#前面问题</h3><pre><code>方法一：
+&#125;</code></pre><h3 id="modal-与-form-同时使用时，destroyOnClose-属性无效问题"><a href="#modal-与-form-同时使用时，destroyOnClose-属性无效问题" class="headerlink" title="modal 与 form 同时使用时，destroyOnClose 属性无效问题"></a>modal 与 form 同时使用时，destroyOnClose 属性无效问题</h3><p>关闭 modal 并不会清除表单的数据，即使配置了 destroyOnClose 也无效</p>
+<pre><code>方案一：在关闭modal事件中添加form.resetFields();
+
+方案二：在Form中设置preserve属性为false,然后在modal中设置destroyOnClose属性为true</code></pre><h3 id="a-form-设置必填校验后，给-a-form-model-item-里面的控件设置数据，却还是显示必填校验"><a href="#a-form-设置必填校验后，给-a-form-model-item-里面的控件设置数据，却还是显示必填校验" class="headerlink" title="a-form 设置必填校验后，给 a-form-model-item 里面的控件设置数据，却还是显示必填校验"></a>a-form 设置必填校验后，给 a-form-model-item 里面的控件设置数据，却还是显示必填校验</h3><p>具体现象如图所示：</p>
+<img src="https://pic.imgdb.cn/item/670e7b2ad29ded1a8c589252.png" alt="1.png">
+
+<p>查看代码：</p>
+<img src="https://pic.imgdb.cn/item/670e7b3fd29ded1a8c58a9f2.png" alt="2.png">
+
+<p>官网解释：</p>
+<img src="https://pic.imgdb.cn/item/670e7b57d29ded1a8c58c2da.png" alt="4.png">
+
+<p>解决方案：</p>
+<img src="https://pic.imgdb.cn/item/670e7b4cd29ded1a8c58b74d.png" alt="3.png">
+
+<p>效果：</p>
+<img src="https://pic.imgdb.cn/item/670e7b64d29ded1a8c58d14f.png" alt="5.png">
+
+<h3 id="URL-哈希模式下参数拼接在-前面问题"><a href="#URL-哈希模式下参数拼接在-前面问题" class="headerlink" title="URL 哈希模式下参数拼接在#前面问题"></a>URL 哈希模式下参数拼接在#前面问题</h3><pre><code>方法一：
     let url = &quot;http://127.0.0.1:5555/test.html/?type=woman#/&quot;;
     let b = new URL(url).searchParams.get(&#39;type&#39;);
 
@@ -536,10 +554,7 @@ handleClickAnchor(e, link) &#123;
   param:xxx
 &#125;)
 
-window.open(href,&#39;_blank&#39;)</code></pre><h3 id="modal-与-form-同时使用时，destroyOnClose-属性无效问题"><a href="#modal-与-form-同时使用时，destroyOnClose-属性无效问题" class="headerlink" title="modal 与 form 同时使用时，destroyOnClose 属性无效问题"></a>modal 与 form 同时使用时，destroyOnClose 属性无效问题</h3><p>关闭 modal 并不会清除表单的数据，即使配置了 destroyOnClose 也无效</p>
-<pre><code>方案一：在关闭modal事件中添加form.resetFields();
-
-方案二：在Form中设置preserve属性为false,然后在modal中设置destroyOnClose属性为true</code></pre><h3 id="检测元素外部-或内部-的单击"><a href="#检测元素外部-或内部-的单击" class="headerlink" title="检测元素外部(或内部)的单击"></a>检测元素外部(或内部)的单击</h3><pre><code>let el= document.querySelector(&#39;#target&#39;)
+window.open(href,&#39;_blank&#39;)</code></pre><h3 id="检测元素外部-或内部-的单击"><a href="#检测元素外部-或内部-的单击" class="headerlink" title="检测元素外部(或内部)的单击"></a>检测元素外部(或内部)的单击</h3><pre><code>let el= document.querySelector(&#39;#target&#39;)
 window.addEventListener(&#39;mousedown&#39;, e =&gt; &#123;
   // 获取被点击的元素
   const clickedEl = e.target;
