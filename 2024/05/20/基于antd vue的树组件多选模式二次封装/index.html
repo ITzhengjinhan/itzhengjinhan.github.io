@@ -493,150 +493,149 @@
         order: 1,
     &#125;,</code></pre><p>通过 listToTree 转为树形数据（可参考文末源码的工具方法：listToTree）</p>
 <p>此时可通过@check=“handleCheckNode”回调中获取选中的数据，核心代码如下注释所示</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">handleCheckNode</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> checked<span class="token punctuation">:</span> checkedKeys <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> checked<span class="token punctuation">,</span> node <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// pathNodes：包含根级->当前节点的扁平化数据集合，更方便收集或操作相关树形数据，没有的话可用本文listToTree转换数据</span>
-    <span class="token keyword">const</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    dataRef<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> pathNodes<span class="token punctuation">,</span> children<span class="token punctuation">,</span> id<span class="token punctuation">:</span> nodeId <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+<pre><code>handleCheckNode(&#123; checked: checkedKeys &#125;, &#123; checked, node &#125;) &#123;
+    // pathNodes：包含根级-&gt;当前节点的扁平化数据集合，更方便收集或操作相关树形数据，没有的话可用本文listToTree转换数据
+    const &#123;
+    dataRef: &#123; pathNodes, children, id: nodeId &#125;,
+    &#125; = node;
 
-    <span class="token keyword">const</span> allChildrenNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> curCheckedKeys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">getAllChildrenNodes</span><span class="token punctuation">(</span>children<span class="token punctuation">,</span> allChildrenNodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 获取选中节点的子孙节点(扁平)</span>
-    <span class="token keyword">const</span> getAllChildrenNodes <span class="token operator">=</span> <span class="token punctuation">(</span>nodes<span class="token punctuation">,</span> allChildrenNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token punctuation">(</span>nodes <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">const</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> children <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">=</span> n<span class="token punctuation">;</span>
-            <span class="token keyword">const</span> newNode <span class="token operator">=</span> <span class="token function">cloneDeep</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">delete</span> newNode<span class="token punctuation">.</span>children<span class="token punctuation">;</span>
-            allChildrenNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token operator">?</span><span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-                <span class="token function">getAllChildrenNodes</span><span class="token punctuation">(</span>children<span class="token punctuation">,</span> allChildrenNodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>checked<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 选中当前节点，向下勾选当前节点底下所有子节点,同时将父级以及根基路径pathNodes拼接到数组里</span>
-    curCheckedKeys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-        <span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>pathNodes<span class="token punctuation">,</span> allChildrenNodes<span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> p<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    curCheckedKeys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>checkedKeys<span class="token punctuation">,</span> curCheckedKeys<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 将当前节点添加为取消的节点</span>
-        allChildrenNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 从选中的数据里过滤掉当前取消的节点</span>
-        curCheckedKeys <span class="token operator">=</span> checkedKeys<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token keyword">return</span> <span class="token operator">!</span>allChildrenNodes<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a<span class="token punctuation">.</span>id <span class="token operator">===</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 递归检查并取消勾选“底下没有勾选子节点的父节点”</span>
-        curCheckedKeys <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">uncheckParentIfNoChildrenChecked</span><span class="token punctuation">(</span>
-            nodeId<span class="token punctuation">,</span>
+    const allChildrenNodes = [];
+    let curCheckedKeys = [];
+    getAllChildrenNodes(children, allChildrenNodes);
+    // 获取选中节点的子孙节点(扁平)
+    const getAllChildrenNodes = (nodes, allChildrenNodes = []) =&gt; &#123;
+        (nodes || []).forEach((n) =&gt; &#123;
+            const &#123; children &#125; = n;
+            const newNode = cloneDeep(n);
+            delete newNode.children;
+            allChildrenNodes.push(newNode);
+            if (children?.length &gt; 0) &#123;
+                getAllChildrenNodes(children, allChildrenNodes);
+            &#125;
+        &#125;);
+    &#125;;
+    if (checked) &#123;
+    // 选中当前节点，向下勾选当前节点底下所有子节点,同时将父级以及根基路径pathNodes拼接到数组里
+    curCheckedKeys = []
+        .concat(pathNodes, allChildrenNodes)
+        .map((p) =&gt; p.id);
+    curCheckedKeys = [].concat(checkedKeys, curCheckedKeys);
+    &#125; else &#123;
+        // 将当前节点添加为取消的节点
+        allChildrenNodes.push(node);
+        // 从选中的数据里过滤掉当前取消的节点
+        curCheckedKeys = checkedKeys.filter((key) =&gt; &#123;
+            return !allChildrenNodes.some((a) =&gt; a.id === key);
+        &#125;);
+        // 递归检查并取消勾选“底下没有勾选子节点的父节点”
+        curCheckedKeys = this.uncheckParentIfNoChildrenChecked(
+            nodeId,
             curCheckedKeys
-        <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 可能出现重复数据，做个去重</span>
-    curCheckedKeys <span class="token operator">=</span> <span class="token function">uniq</span><span class="token punctuation">(</span>curCheckedKeys<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 回传checkedData数据</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>checkedData <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> checked<span class="token punctuation">:</span> curCheckedKeys<span class="token punctuation">,</span> halfChecked<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> checkedNodes <span class="token operator">=</span> curCheckedKeys<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>pre<span class="token punctuation">,</span> cur<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>treeList<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ct<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> ct<span class="token punctuation">.</span>id <span class="token operator">===</span> cur<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            pre<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 收集数据</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$emit</span><span class="token punctuation">(</span><span class="token string">"check"</span><span class="token punctuation">,</span> checkedNodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
-<span class="token function">uncheckParentIfNoChildrenChecked</span><span class="token punctuation">(</span>nodeId<span class="token punctuation">,</span> checkedKeys<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> parentKey <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getParentKey</span><span class="token punctuation">(</span>nodeId<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>treeData<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>parentKey<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> parentChildren <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>treeList<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>
-        <span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> item<span class="token punctuation">.</span>parentId <span class="token operator">===</span> parentKey
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 判断父节点下是否有已选中的其他子节点</span>
-    <span class="token keyword">const</span> hasOtherCheckedChildren <span class="token operator">=</span> parentChildren<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
-        checkedKeys<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hasOtherCheckedChildren<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 若没有，则过滤掉父级</span>
-            checkedKeys <span class="token operator">=</span> checkedKeys<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> key <span class="token operator">!==</span> parentKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 递归检查父级的父级</span>
-            checkedKeys <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">uncheckParentIfNoChildrenChecked</span><span class="token punctuation">(</span>
-            parentKey<span class="token punctuation">,</span>
+        );
+    &#125;
+    // 可能出现重复数据，做个去重
+    curCheckedKeys = uniq(curCheckedKeys);
+    // 回传checkedData数据
+    this.checkedData = &#123; checked: curCheckedKeys, halfChecked: [] &#125;;
+    const checkedNodes = curCheckedKeys.reduce((pre, cur) =&gt; &#123;
+        const node = this.treeList.find((ct) =&gt; ct.id === cur);
+        if (node) &#123;
+            pre.push(node);
+        &#125;
+        return pre;
+    &#125;, []);
+    // 收集数据
+    this.$emit(&quot;check&quot;, checkedNodes);
+&#125;,
+uncheckParentIfNoChildrenChecked(nodeId, checkedKeys) &#123;
+    const parentKey = this.getParentKey(nodeId, this.treeData);
+    if (parentKey) &#123;
+    const parentChildren = this.treeList.filter(
+        (item) =&gt; item.parentId === parentKey
+    );
+    // 判断父节点下是否有已选中的其他子节点
+    const hasOtherCheckedChildren = parentChildren.some((child) =&gt;
+        checkedKeys.includes(child.id)
+    );
+        if (!hasOtherCheckedChildren) &#123;
+            // 若没有，则过滤掉父级
+            checkedKeys = checkedKeys.filter((key) =&gt; key !== parentKey);
+            // 递归检查父级的父级
+            checkedKeys = this.uncheckParentIfNoChildrenChecked(
+            parentKey,
             checkedKeys
-            <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> checkedKeys<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span></code></pre>
-<h3 id="完整源码"><a href="#完整源码" class="headerlink" title="完整源码"></a>完整源码</h3><p>tree 组件</p>
-<pre class=" language-vue"><code class="language-vue"><template>
-  <div class="admin-tree-container">
-    <a-spin :spinning="loading">
-      <div class="top">
-        <a-input-search
-          placeholder="请输入关键词搜索"
-          style="width: 100%"
-          @change="onChange"
-        />
-      </div>
-      <div class="bottom">
-        <a-tree
-          v-if="treeData.length > 0"
+            );
+        &#125;
+    &#125;
+    return checkedKeys;
+&#125;,</code></pre><h3 id="完整源码"><a href="#完整源码" class="headerlink" title="完整源码"></a>完整源码</h3><p>tree 组件</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;admin-tree-container&quot;&gt;
+    &lt;a-spin :spinning=&quot;loading&quot;&gt;
+      &lt;div class=&quot;top&quot;&gt;
+        &lt;a-input-search
+          placeholder=&quot;请输入关键词搜索&quot;
+          style=&quot;width: 100%&quot;
+          @change=&quot;onChange&quot;
+        /&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;bottom&quot;&gt;
+        &lt;a-tree
+          v-if=&quot;treeData.length &gt; 0&quot;
           blockNode
           showDirectory
-          :check-strictly="true"
-          :checkable="true"
-          :auto-expand-parent="autoExpandParent"
-          :expandedKeys.sync="expandedKeys"
-          :tree-data="treeData"
-          v-model="checkedData"
-          @expand="handleExpand"
-          @check="
-            (&#123; checked: checkedKeys &#125;, &#123; checked, node &#125;) =>
+          :check-strictly=&quot;true&quot;
+          :checkable=&quot;true&quot;
+          :auto-expand-parent=&quot;autoExpandParent&quot;
+          :expandedKeys.sync=&quot;expandedKeys&quot;
+          :tree-data=&quot;treeData&quot;
+          v-model=&quot;checkedData&quot;
+          @expand=&quot;handleExpand&quot;
+          @check=&quot;
+            (&#123; checked: checkedKeys &#125;, &#123; checked, node &#125;) =&gt;
               handleCheckNode(&#123; checked: checkedKeys &#125;, &#123; checked, node &#125;)
-          "
-        >
-          <template #title="node">
-            <div
-              :id="`title-$&#123;node.key&#125;`"
-              class="node-content"
-              :title="node.title"
-            >
-              <span class="title">
-                <span v-if="node.title.indexOf(keywords) > -1">
+          &quot;
+        &gt;
+          &lt;template #title=&quot;node&quot;&gt;
+            &lt;div
+              :id=&quot;`title-$&#123;node.key&#125;`&quot;
+              class=&quot;node-content&quot;
+              :title=&quot;node.title&quot;
+            &gt;
+              &lt;span class=&quot;title&quot;&gt;
+                &lt;span v-if=&quot;node.title.indexOf(keywords) &gt; -1&quot;&gt;
                   &#123;&#123; node.title.substr(0, node.title.indexOf(keywords)) &#125;&#125;
-                  <span style="color: #0070d2">&#123;&#123; keywords &#125;&#125;</span>
+                  &lt;span style=&quot;color: #0070d2&quot;&gt;&#123;&#123; keywords &#125;&#125;&lt;/span&gt;
                   &#123;&#123;
                     node.title.substr(
                       node.title.indexOf(keywords) + keywords.length
                     )
                   &#125;&#125;
-                </span>
-                <span v-else>&#123;&#123; node.title &#125;&#125; </span>
-              </span>
-            </div>
-          </template>
-        </a-tree>
-        <a-empty v-else />
-      </div>
-    </a-spin>
-  </div>
-</template>
-<script>
-import uniq from "lodash/uniq";
-import cloneDeep from "lodash/cloneDeep";
-import &#123; listToTree &#125; from "@/utils/treeUtils.js";
+                &lt;/span&gt;
+                &lt;span v-else&gt;&#123;&#123; node.title &#125;&#125; &lt;/span&gt;
+              &lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/template&gt;
+        &lt;/a-tree&gt;
+        &lt;a-empty v-else /&gt;
+      &lt;/div&gt;
+    &lt;/a-spin&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import uniq from &quot;lodash/uniq&quot;;
+import cloneDeep from &quot;lodash/cloneDeep&quot;;
+import &#123; listToTree &#125; from &quot;@/utils/treeUtils.js&quot;;
 
 export default &#123;
   props: &#123;&#125;,
-  name: "Tree",
+  name: &quot;Tree&quot;,
   data() &#123;
     return &#123;
       loading: false,
       keywords: undefined,
       autoExpandParent: true,
-      rootId: "0",
+      rootId: &quot;0&quot;,
       treeList: [],
       treeData: [],
       expandedKeys: [],
@@ -653,60 +652,60 @@ export default &#123;
       try &#123;
         this.loading = true;
         const items = [
-          &#123; id: "0", name: "业务视角", desc: "描述0", order: 0 &#125;,
-          &#123; id: "1", name: "福建省烟草公司", desc: "描述1", order: 1 &#125;,
-          &#123; id: "2", name: "系统视角", desc: "描述2", order: 2 &#125;,
-          &#123; id: "3", name: "数据视角", desc: "描述3", order: 3 &#125;,
+          &#123; id: &quot;0&quot;, name: &quot;业务视角&quot;, desc: &quot;描述0&quot;, order: 0 &#125;,
+          &#123; id: &quot;1&quot;, name: &quot;福建省烟草公司&quot;, desc: &quot;描述1&quot;, order: 1 &#125;,
+          &#123; id: &quot;2&quot;, name: &quot;系统视角&quot;, desc: &quot;描述2&quot;, order: 2 &#125;,
+          &#123; id: &quot;3&quot;, name: &quot;数据视角&quot;, desc: &quot;描述3&quot;, order: 3 &#125;,
           &#123;
-            id: "0-1",
-            parentId: "0",
-            name: "决策与管控",
-            desc: "描述0-1",
+            id: &quot;0-1&quot;,
+            parentId: &quot;0&quot;,
+            name: &quot;决策与管控&quot;,
+            desc: &quot;描述0-1&quot;,
             order: 1,
           &#125;,
           &#123;
-            id: "0-2",
-            parentId: "0",
-            name: "农业管理",
-            desc: "描述0-2",
+            id: &quot;0-2&quot;,
+            parentId: &quot;0&quot;,
+            name: &quot;农业管理&quot;,
+            desc: &quot;描述0-2&quot;,
             order: 2,
           &#125;,
           &#123;
-            id: "0-1-0",
-            parentId: "0-1",
-            name: "战略规划",
-            desc: "描述0-1-0",
+            id: &quot;0-1-0&quot;,
+            parentId: &quot;0-1&quot;,
+            name: &quot;战略规划&quot;,
+            desc: &quot;描述0-1-0&quot;,
             order: 0,
           &#125;,
           &#123;
-            id: "0-1-0-0",
-            parentId: "0-1-0",
-            name: "高质量发展",
-            desc: "描述0-1-0-0",
+            id: &quot;0-1-0-0&quot;,
+            parentId: &quot;0-1-0&quot;,
+            name: &quot;高质量发展&quot;,
+            desc: &quot;描述0-1-0-0&quot;,
             order: 0,
           &#125;,
           &#123;
-            id: "0-1-0-1",
-            parentId: "0-1-0",
-            name: "战略目标管理",
-            desc: "描述0-1-0-1",
+            id: &quot;0-1-0-1&quot;,
+            parentId: &quot;0-1-0&quot;,
+            name: &quot;战略目标管理&quot;,
+            desc: &quot;描述0-1-0-1&quot;,
             order: 1,
           &#125;,
           &#123;
-            id: "0-1-0-2",
-            parentId: "0-1-0",
-            name: "行业规划",
-            desc: "描述0-1-0-2",
+            id: &quot;0-1-0-2&quot;,
+            parentId: &quot;0-1-0&quot;,
+            name: &quot;行业规划&quot;,
+            desc: &quot;描述0-1-0-2&quot;,
             order: 2,
           &#125;,
           &#123;
-            id: "0-1-0-3",
-            parentId: "0-1-0",
-            name: "行业责任",
-            desc: "描述0-1-0-3",
+            id: &quot;0-1-0-3&quot;,
+            parentId: &quot;0-1-0&quot;,
+            name: &quot;行业责任&quot;,
+            desc: &quot;描述0-1-0-3&quot;,
             order: 3,
           &#125;,
-        ].map((item) => &#123;
+        ].map((item) =&gt; &#123;
           return &#123;
             ...item,
             key: item.id,
@@ -714,18 +713,18 @@ export default &#123;
           &#125;;
         &#125;);
         this.treeList = items;
-        this.treeData = cloneDeep(listToTree(items, "id", "parentId"));
-        this.$emit("loaded");
+        this.treeData = cloneDeep(listToTree(items, &quot;id&quot;, &quot;parentId&quot;));
+        this.$emit(&quot;loaded&quot;);
       &#125; finally &#123;
         this.loading = false;
       &#125;
     &#125;,
     getParentKey(id, tree) &#123;
       let parentKey;
-      for (let i = 0; i < tree.length; i++) &#123;
+      for (let i = 0; i &lt; tree.length; i++) &#123;
         const node = tree[i];
         if (node.children) &#123;
-          if (node.children.some((item) => item.id === id)) &#123;
+          if (node.children.some((item) =&gt; item.id === id)) &#123;
             parentKey = node.id;
           &#125; else if (this.getParentKey(id, node.children)) &#123;
             parentKey = this.getParentKey(id, node.children);
@@ -741,13 +740,13 @@ export default &#123;
         return;
       &#125;
       const expandedKeys = this.treeList
-        .map((item) => &#123;
-          if (item.title.indexOf(value) > -1) &#123;
+        .map((item) =&gt; &#123;
+          if (item.title.indexOf(value) &gt; -1) &#123;
             return this.getParentKey(item.id, this.treeData);
           &#125;
           return null;
         &#125;)
-        .filter((item, i, self) => item && self.indexOf(item) === i);
+        .filter((item, i, self) =&gt; item &amp;&amp; self.indexOf(item) === i);
       Object.assign(this, &#123;
         expandedKeys,
         keywords: value,
@@ -763,13 +762,13 @@ export default &#123;
         dataRef: &#123; pathNodes, children, id: nodeId &#125;,
       &#125; = node;
       // 获取选中节点的子孙节点(扁平)
-      const getAllChildrenNodes = (nodes, allChildrenNodes = []) => &#123;
-        (nodes || []).forEach((n) => &#123;
+      const getAllChildrenNodes = (nodes, allChildrenNodes = []) =&gt; &#123;
+        (nodes || []).forEach((n) =&gt; &#123;
           const &#123; children &#125; = n;
           const newNode = cloneDeep(n);
           delete newNode.children;
           allChildrenNodes.push(newNode);
-          if (children?.length > 0) &#123;
+          if (children?.length &gt; 0) &#123;
             getAllChildrenNodes(children, allChildrenNodes);
           &#125;
         &#125;);
@@ -780,13 +779,13 @@ export default &#123;
       if (checked) &#123;
         curCheckedKeys = []
           .concat(pathNodes, allChildrenNodes)
-          .map((p) => p.id);
+          .map((p) =&gt; p.id);
         curCheckedKeys = [].concat(checkedKeys, curCheckedKeys);
       &#125; else &#123;
         // 添加当前取消的节点
         allChildrenNodes.push(node);
-        curCheckedKeys = checkedKeys.filter((key) => &#123;
-          return !allChildrenNodes.some((a) => a.id === key);
+        curCheckedKeys = checkedKeys.filter((key) =&gt; &#123;
+          return !allChildrenNodes.some((a) =&gt; a.id === key);
         &#125;);
         // 递归检查并取消勾选父级节点
         curCheckedKeys = this.uncheckParentIfNoChildrenChecked(
@@ -796,26 +795,26 @@ export default &#123;
       &#125;
       curCheckedKeys = uniq(curCheckedKeys);
       this.checkedData = &#123; checked: curCheckedKeys, halfChecked: [] &#125;;
-      const checkedNodes = curCheckedKeys.reduce((pre, cur) => &#123;
-        const node = this.treeList.find((ct) => ct.id === cur);
+      const checkedNodes = curCheckedKeys.reduce((pre, cur) =&gt; &#123;
+        const node = this.treeList.find((ct) =&gt; ct.id === cur);
         if (node) &#123;
           pre.push(node);
         &#125;
         return pre;
       &#125;, []);
-      this.$emit("check", checkedNodes);
+      this.$emit(&quot;check&quot;, checkedNodes);
     &#125;,
     uncheckParentIfNoChildrenChecked(nodeId, checkedKeys) &#123;
       const parentKey = this.getParentKey(nodeId, this.treeData);
       if (parentKey) &#123;
         const parentChildren = this.treeList.filter(
-          (item) => item.parentId === parentKey
+          (item) =&gt; item.parentId === parentKey
         );
-        const hasOtherCheckedChildren = parentChildren.some((child) =>
+        const hasOtherCheckedChildren = parentChildren.some((child) =&gt;
           checkedKeys.includes(child.id)
         );
         if (!hasOtherCheckedChildren) &#123;
-          checkedKeys = checkedKeys.filter((key) => key !== parentKey);
+          checkedKeys = checkedKeys.filter((key) =&gt; key !== parentKey);
           // 递归检查父级的父级
           checkedKeys = this.uncheckParentIfNoChildrenChecked(
             parentKey,
@@ -827,8 +826,8 @@ export default &#123;
     &#125;,
   &#125;,
 &#125;;
-</script>
-<style lang="less" scoped>
+&lt;/script&gt;
+&lt;style lang=&quot;less&quot; scoped&gt;
 .admin-tree-container &#123;
   height: 100%;
   display: flex;
@@ -869,41 +868,39 @@ export default &#123;
     &#125;
   &#125;
 &#125;
-</style></code></pre>
-<p>treeUtil.js</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">const</span> listToTree <span class="token operator">=</span> <span class="token punctuation">(</span>list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> keyName <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> pKeyName <span class="token operator">=</span> <span class="token string">"pid"</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token keyword">const</span> newList <span class="token operator">=</span> <span class="token function">uniqBy</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> keyName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 寻树</span>
-  <span class="token keyword">const</span> trees <span class="token operator">=</span>
-    newList<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span> <span class="token operator">!</span>newList<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> t<span class="token punctuation">[</span>keyName<span class="token punctuation">]</span> <span class="token operator">===</span> l<span class="token punctuation">[</span>pKeyName<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 寻子节点</span>
-  <span class="token keyword">const</span> setChildren <span class="token operator">=</span> <span class="token punctuation">(</span>pNode<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> pathNodes <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token operator">=</span> pNode<span class="token punctuation">;</span>
-    <span class="token keyword">const</span> children <span class="token operator">=</span>
-      newList<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>l<span class="token punctuation">[</span>pKeyName<span class="token punctuation">]</span> <span class="token operator">===</span> pNode<span class="token punctuation">[</span>keyName<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-          l<span class="token punctuation">.</span>pathNodes <span class="token operator">=</span> pathNodes<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token operator">...</span>l <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> l<span class="token punctuation">[</span>pKeyName<span class="token punctuation">]</span> <span class="token operator">===</span> pNode<span class="token punctuation">[</span>keyName<span class="token punctuation">]</span><span class="token punctuation">;</span>
-      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token operator">?</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      pNode<span class="token punctuation">.</span>children <span class="token operator">=</span> children<span class="token punctuation">;</span>
-      children<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">setChildren</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      pNode<span class="token punctuation">.</span>isLeaf <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 组装树</span>
-  trees<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    node<span class="token punctuation">.</span>pathNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> <span class="token operator">...</span>node <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    node<span class="token punctuation">.</span>isRoot <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token function">setChildren</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> trees<span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
-
+&lt;/style&gt;</code></pre><p>treeUtil.js</p>
+<pre><code>export const listToTree = (list = [], keyName = &quot;id&quot;, pKeyName = &quot;pid&quot;) =&gt; &#123;
+  const newList = uniqBy(list, keyName);
+  // 寻树
+  const trees =
+    newList.filter((l) =&gt; &#123;
+      return !newList.some((t) =&gt; t[keyName] === l[pKeyName]);
+    &#125;) || [];
+  // 寻子节点
+  const setChildren = (pNode) =&gt; &#123;
+    const &#123; pathNodes &#125; = pNode;
+    const children =
+      newList.filter((l) =&gt; &#123;
+        if (l[pKeyName] === pNode[keyName]) &#123;
+          l.pathNodes = pathNodes.concat(&#123; ...l &#125;);
+        &#125;
+        return l[pKeyName] === pNode[keyName];
+      &#125;) || [];
+    if (children?.length) &#123;
+      pNode.children = children;
+      children.forEach((node) =&gt; setChildren(node));
+    &#125; else &#123;
+      pNode.isLeaf = true;
+    &#125;
+  &#125;;
+  // 组装树
+  trees.forEach((node) =&gt; &#123;
+    node.pathNodes = [&#123; ...node &#125;];
+    node.isRoot = true;
+    setChildren(node);
+  &#125;);
+  return trees;
+&#125;;</code></pre>
             </div>
             <hr/>
 
