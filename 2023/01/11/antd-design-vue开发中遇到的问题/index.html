@@ -504,6 +504,7 @@ beforeToday(current)&#123;
       //触发复选框的勾选事件
       e.node.$el.childNodes[1].click()
     &#125;,</code></pre><h3 id="a-tree-组件-autoExpandedParent-无效"><a href="#a-tree-组件-autoExpandedParent-无效" class="headerlink" title="a-tree 组件 autoExpandedParent 无效"></a>a-tree 组件 autoExpandedParent 无效</h3><p>当 treeNode 属性为 disabled，autoExpandedParent 无效，解决方案是通过 expandedKeys 手动设置需要展开的 key</p>
+<h3 id="a-tree-组件-expandedKeys-设置-key-后未展开问题"><a href="#a-tree-组件-expandedKeys-设置-key-后未展开问题" class="headerlink" title="a-tree 组件 expandedKeys 设置 key 后未展开问题"></a>a-tree 组件 expandedKeys 设置 key 后未展开问题</h3><p>检查 treeData 数据是否有携带 key，或者 replaceFields 中 key 是否绑定到其他属性上</p>
 <h3 id="a-anchor-常见的问题"><a href="#a-anchor-常见的问题" class="headerlink" title="a-anchor 常见的问题"></a>a-anchor 常见的问题</h3><p>锚点浏览器会报错；</p>
 <p>路由会被更改，影响哈希模式的页面路由；</p>
 <p>affix 属性不生效，没有随着页面滚动高亮变化</p>
