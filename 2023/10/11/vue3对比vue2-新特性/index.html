@@ -533,7 +533,17 @@ export default &#123;
 </ul>
 </li>
 </ul>
-<h3 id="3、创建响应式数据-ref-与-reactive"><a href="#3、创建响应式数据-ref-与-reactive" class="headerlink" title="3、创建响应式数据 ref 与 reactive"></a>3、创建响应式数据 ref 与 reactive</h3><h4 id="ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"><a href="#ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据" class="headerlink" title="ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"></a>ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据</h4><pre><code>&lt;template&gt;
+<ol start="3">
+<li>语法糖</li>
+</ol>
+<pre><code>&lt;script setup name=&quot;xxx&quot;&gt;
+// 这里定义数据就不用return出去了
+const num = 123;
+
+function modifyPersonAttr() &#123;
+  console.log(111)
+&#125;
+&lt;/script&gt;</code></pre><h3 id="3、创建响应式数据-ref-与-reactive"><a href="#3、创建响应式数据-ref-与-reactive" class="headerlink" title="3、创建响应式数据 ref 与 reactive"></a>3、创建响应式数据 ref 与 reactive</h3><h4 id="ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"><a href="#ref-函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据" class="headerlink" title="ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据"></a>ref 函数接一个参数返回一个响应式的数据，通常是定义基本类型数据，但也可以是引用类型数据</h4><pre><code>&lt;template&gt;
   &lt;div&gt;
       &#123;&#123;num&#125;&#125;
       &#123;&#123;obj.a&#125;&#125;
@@ -644,77 +654,132 @@ export default &#123;
       &#125;
     &#125;)
   &#125;
-&#125;</code></pre><h3 id="7、watch-和-watchEffect"><a href="#7、watch-和-watchEffect" class="headerlink" title="7、watch 和 watchEffect"></a>7、watch 和 watchEffect</h3><p>watch 监听单个值（ref）</p>
-<pre><code>//watch
-import &#123; ref, watch &#125; from &#39;vue&#39;;
-export default &#123;
-    setup()&#123;
-      const refCount = ref&lt;number&gt;(1)
-      watch(refCount, (newVal:number, oldVal:number):void=&gt;&#123;
-        console.log(&#39;new值&#39;, newVal)  // 2
-        console.log(&#39;old值&#39;, oldVal)  // 1
-        console.log(&#39;-------------&#39;)
-      &#125;)
-      setTimeout(()=&gt;&#123;
-        refCount.value++
-      &#125;, 2000)
-    &#125;
-&#125;
-</code></pre><p>watch 监听多个值 (ref)</p>
-<pre><code>import &#123; ref, watch &#125; from &#39;vue&#39;;
-export default &#123;
-  setup()&#123;
-    const refCount = ref&lt;number&gt;(1)
-    const refCountTwo = ref&lt;number&gt;(100)
-    watch([refCount, refCountTwo], (newVal:number, oldVal:number):void=&gt;&#123;
-      console.log(&#39;new值&#39;, newVal)  //[2, 101]
-      console.log(&#39;old值&#39;, oldVal)  //[1, 100]
-      console.log(&#39;-------------&#39;)
-    &#125;)
+&#125;</code></pre><h3 id="7、watch-和-watchEffect-的用法"><a href="#7、watch-和-watchEffect-的用法" class="headerlink" title="7、watch 和 watchEffect 的用法"></a>7、watch 和 watchEffect 的用法</h3><p>watch 监听（ref）</p>
+<pre><code>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;
 
-    setTimeout(()=&gt;&#123;
-      refCount.value++
-      refCountTwo.value++
-    &#125;, 2000)
+import &#123; ref, watch, computed &#125; from &quot;vue&quot;;
+interface Person &#123;
+  age: number;
+  name: string;
+&#125;
+const refCount = ref&lt;number&gt;(1);
+const refCountTwo = ref&lt;number&gt;(100);
+const person = ref&lt;Person&gt;(&#123;
+  age: 25,
+  name: &quot;John&quot;,
+&#125;);
+const list = ref&lt;Array&lt;Person&gt;&gt;([
+  &#123;
+    age: 25,
+    name: &quot;zhang&quot;,
+  &#125;,
+  &#123;
+    age: 25,
+    name: &quot;li&quot;,
+  &#125;,
+]);
+
+// 监听多个值
+watch([refCount, refCountTwo], (newVal: number, oldVal: number): void =&gt; &#123;
+  console.log(&quot;new值&quot;, newVal); //[2, 101]
+  console.log(&quot;old值&quot;, oldVal); //[1, 100]
+  console.log(&quot;-------------&quot;);
+&#125;);
+
+// 监听 person对象的变化
+watch(person, (newValue, oldValue) =&gt; &#123;
+  console.log(&quot;New:&quot;, newValue);
+  console.log(&quot;Old:&quot;, oldValue);
+&#125;);
+
+// 监听 person对象中属性的变化
+watch(
+  () =&gt; person.value.age,
+  (newAge, oldAge) =&gt; &#123;
+    console.log(&quot;New age:&quot;, newAge);
+    console.log(&quot;Old age:&quot;, oldAge);
   &#125;
+);
+
+// 注意：监听数组的变化时，通常需要使用computed
+// 通过 computed 创建一个计算属性 listComputed，并在 watch 中监听这个计算属性的变化。
+// 这样可以确保每次数组发生变化时，watch 都能正确捕获到 oldValue 和 newValue。
+const listComputed = computed(() =&gt; list.value.slice());
+
+// 监听 list 的变化
+watch(
+  listComputed,
+  (newValue, oldValue) =&gt; &#123;
+    console.log(&quot;New:&quot;, newValue);
+    console.log(&quot;Old:&quot;, oldValue);
+  &#125;,
+  &#123; deep: true &#125;
+);
+function test() &#123;
+  refCount.value++;
+  refCountTwo.value++;
 &#125;
-</code></pre><p>watch 深度监听 (reactive)</p>
-<pre><code>import &#123; reactive, watch &#125; from &#39;vue&#39;;
-export default &#123;
-  setup()&#123;
-      const person = reactive(&#123;
-        name: &quot;gxb&quot;,
-        age: 18,
-        salary:&#123;
-          base:2000,
-          as:500
-        &#125;
-      &#125;);
-
-      // 监听属性中的某个值，watch的第一个参数必须是一个函数，返回需要监听的变量，且要开启深度监视
-
-      watch(() =&gt; person.age, (newVal: number, oldVal: number): void =&gt; &#123;
-        console.log(&#39;new值&#39;, newVal)
-        console.log(&#39;old值&#39;, oldVal)
-        console.log(&#39;-------------&#39;)
-      &#125;,&#123;deep:true&#125;)
-
-       watch(() =&gt; person.salary, (newVal: number, oldVal: number): void =&gt; &#123;
-        console.log(&#39;new值&#39;, newVal)
-        console.log(&#39;old值&#39;, oldVal)
-        console.log(&#39;-------------&#39;)
-      &#125;,&#123;deep:true&#125;)
-
-      setTimeout(()=&gt;&#123;
-        person.age++;
-        person.salary.as++;
-      &#125;,1000)
-  &#125;
+function modifyPerson() &#123;
+  person.value = &#123; age: 1, name: &quot;1&quot; &#125;;
 &#125;
+function modifyPersonAttr() &#123;
+  person.value.age += 1;
+&#125;
+function modifyList() &#123;
+  list.value.push(&#123; age: 25, name: &quot;wang&quot; &#125;);
+&#125;
+function modifyListFirst() &#123;
+  list.value[0].age += 1;
+&#125;
+&lt;/script&gt;</code></pre><p>watch 监听 (reactive)</p>
+<pre><code>&lt;script lang=&quot;ts&quot; setup name=&quot;Person&quot;&gt;
+import &#123; reactive, watch, computed &#125; from &quot;vue&quot;;
+
+// 数据
+let person = reactive(&#123;
+  name: &quot;张三&quot;,
+  age: 18,
+  car: &#123;
+    c1: &quot;奔驰&quot;,
+    c2: &quot;宝马&quot;,
+  &#125;,
+&#125;);
+// 方法
+function changeName() &#123;
+  person.name += &quot;~&quot;;
+&#125;
+function changeAge() &#123;
+  person.age += 1;
+&#125;
+function changeC1() &#123;
+  person.car.c1 = &quot;奥迪&quot;;
+&#125;
+function changeC2() &#123;
+  person.car.c2 = &quot;大众&quot;;
+&#125;
+function changeCar() &#123;
+  person.car = &#123; c1: &quot;雅迪&quot;, c2: &quot;爱玛&quot; &#125;;
+&#125;
+
+// 创建一个计算属性来表示 car 的状态
+const carState = computed(() =&gt; (&#123;
+  c1: person.car.c1,
+  c2: person.car.c2,
+&#125;));
+
+// 监听person.car 的变化
+watch(
+  carState,
+  (newValue, oldValue) =&gt; &#123;
+    console.log(&quot;person.car变化了&quot;, newValue, oldValue);
+  &#125;,
+  &#123; deep: true &#125;
+);
+&lt;/script&gt;
 </code></pre><p>watchEffect：这个直接监听了所有值变化,里面用到的变量发生变化则触发</p>
-<pre><code>//改变person.age后就执行
+<pre><code>//改变person.car后就执行
 watchEffect(()=&gt;&#123;
-      console.log(&#39;age变化了&#39;, person.age)
+  console.log(&#39;car变化了&#39;, person.car)
 &#125;)
 </code></pre><h3 id="8、自定义-hook-函数"><a href="#8、自定义-hook-函数" class="headerlink" title="8、自定义 hook 函数"></a>8、自定义 hook 函数</h3><p>本质是一个函数，把 setup 函数中使用的 composition API 进行了封装。</p>
 <p>类似于 vue2 中的 mixin</p>
