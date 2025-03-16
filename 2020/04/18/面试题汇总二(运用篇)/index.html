@@ -1106,7 +1106,25 @@ return days + &quot; 天 &quot; + hours + &quot; 小时 &quot; + minutes + &quot
     ...(condition&amp;&amp;&#123;age:12&#125;),
 &#125;
 
-const arr=[&#39;111&#39;,...(condition?[222]:[])]</code></pre><h3 id="CSS-初始化样式"><a href="#CSS-初始化样式" class="headerlink" title="CSS 初始化样式"></a>CSS 初始化样式</h3><pre><code>1. 最耗资源的，最简单的
+const arr=[&#39;111&#39;,...(condition?[222]:[])]</code></pre><h3 id="40、接口竞态处理"><a href="#40、接口竞态处理" class="headerlink" title="40、接口竞态处理"></a>40、接口竞态处理</h3><p>场景：搜索时，输入 a 和 ab，同时请求两个相同接口，a 接口的数据比 ab 接口响应慢，导致输入 ab 的时候，数据会显示 a 的数据</p>
+<p>方案：若前请求未完成，则取消当前请求</p>
+<pre><code>中断请求：let controller;
+
+async function fetchData(params) &#123;
+  controller?.abort(); // 取消前序请求
+  controller = new AbortController();
+
+  try &#123;
+    const response = await fetch(&#39;/api&#39;, &#123;
+      signal: controller.signal,
+      body: JSON.stringify(params)
+    &#125;);
+    // 处理响应
+  &#125; catch (err) &#123;
+    if (err.name === &#39;AbortError&#39;) return;
+    // 处理其他错误
+  &#125;
+&#125;</code></pre><h3 id="CSS-初始化样式"><a href="#CSS-初始化样式" class="headerlink" title="CSS 初始化样式"></a>CSS 初始化样式</h3><pre><code>1. 最耗资源的，最简单的
 * &#123; padding: 0; margin: 0; border: 0; &#125;</code></pre><pre><code>2. 选择性初始化举例（综合）
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,legend,button
 form,fieldset,input,textarea,p,blockquote,th,td &#123;
