@@ -473,33 +473,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>github 访问超级慢，网上找了几种方法并测试可行性进行总结</p>
-<h3 id="1-Github-加速下载"><a href="#1-Github-加速下载" class="headerlink" title="1. Github 加速下载"></a>1. Github 加速下载</h3><p>只需要复制当前 GitHub 地址粘贴到输入框中就可以代理加速下载！</p>
-<p>地址：<a target="_blank" rel="noopener" href="http://toolwa.com/github/">http://toolwa.com/github/</a></p>
-<h3 id="2-通过修改-HOSTS-文件进行加速"><a href="#2-通过修改-HOSTS-文件进行加速" class="headerlink" title="2.通过修改 HOSTS 文件进行加速"></a>2.通过修改 HOSTS 文件进行加速</h3><p>第一步：获取 github 的 global.ssl.fastly 地址</p>
-<p>访问：<a target="_blank" rel="noopener" href="http://github.global.ssl.fastly.net.ipaddress.com/#ipinfo">http://github.global.ssl.fastly.net.ipaddress.com/#ipinfo</a> 获取 cdn 和 ip 域名：</p>
-<img src="https://pic2.zhimg.com/80/v2-475bd97ad6a0729905d9a6d9ee90c695_1440w.webp">
-
-<p>得到：199.232.69.194 <a target="_blank" rel="noopener" href="https://github.global.ssl.fastly.net">https://github.global.ssl.fastly.net</a></p>
-<p>第二步：获取<a target="_blank" rel="noopener" href="http://github.com地址">http://github.com地址</a></p>
-<p>访问：<a target="_blank" rel="noopener" href="https://github.com.ipaddress.com/#ipinfo">https://github.com.ipaddress.com/#ipinfo</a> 获取 cdn 和 ip：</p>
-<img src ="https://pic2.zhimg.com/80/v2-a8eab0580493190cc8f739c89bda7d6d_1440w.webp">
-
-<p>得到：140.82.114.4 <a target="_blank" rel="noopener" href="http://github.com">http://github.com</a></p>
-<p>第三步：修改 host 文件映射上面查找到的 IP</p>
-<p>windows 系统：</p>
-<p>1、修改 C:\Windows\System32\drivers\etc\hosts 文件的权限，指定可写入：右击-&gt;hosts-&gt;属性-&gt;安全-&gt;编辑-&gt;点击 Users-&gt;在 Users 的权限“写入”后面打勾。如下：</p>
-<img src="https://pic4.zhimg.com/80/v2-25714ed4265193ca3dc09bccb74b1d17_1440w.webp">
-
-<p>然后点击确定。</p>
-<p>2、右击-&gt;hosts-&gt;打开方式-&gt;选定记事本（或者你喜欢的编辑器）-&gt;在末尾处添加以下内容：</p>
-<pre><code>199.232.69.194 github.global.ssl.fastly.net
-
-140.82.114.4 github.com</code></pre><h3 id="3-GitHub-镜像访问"><a href="#3-GitHub-镜像访问" class="headerlink" title="3.GitHub 镜像访问"></a>3.GitHub 镜像访问</h3><p>这里提供两个最常用的镜像地址：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com.cnpmjs.org">https://github.com.cnpmjs.org</a></p>
-<p><a target="_blank" rel="noopener" href="https://hub.fastgit.org">https://hub.fastgit.org</a></p>
-<p>也就是说上面的镜像就是一个克隆版的 GitHub，你可以访问上面的镜像网站，网站的内容跟 GitHub 是完整同步的镜像，然后在这个网站里面进行下载克隆等操作。</p>
-
+                <p>GitHub 是一个面向开源及私有软件项目的托管平台，因为只支持 Git 作为唯一的版本库格式进行托管，在天朝 Github 默认被限速了，作为一名开发者来说 GitHub 网站是必不可少的，少了它工作将无法进行，我们可以通过修改 hosts 文件来提速，不仅可以提升下载速度，还可以显示出个人头像等图标</p>
+<h3 id="手动访问-https-www-ipaddress-com-网址，然后依次获取以下网址所对应的-IP-地址。"><a href="#手动访问-https-www-ipaddress-com-网址，然后依次获取以下网址所对应的-IP-地址。" class="headerlink" title="手动访问 https://www.ipaddress.com/ 网址，然后依次获取以下网址所对应的 IP 地址。"></a>手动访问 <a target="_blank" rel="noopener" href="https://www.ipaddress.com/">https://www.ipaddress.com/</a> 网址，然后依次获取以下网址所对应的 IP 地址。</h3><p>github.com<br>github.global.ssl.fastly.net<br>codeload.github.com<br>assets-cdn.github.com<br>api.github.com<br><a target="_blank" rel="noopener" href="http://www.google-analytics.com">www.google-analytics.com</a><br>live.github.com<br>codeload.github.com</p>
+<p>这是我获取的 IP 地址，一般只需要找 github.com 的地址就可以提速了。修改系统本地 C:\Windows\System32\drivers\etc\hosts hosts 文件添加上面的查询记录到文件里。</p>
+<pre><code>140.82.112.3 github.com
+140.82.112.9 codeload.github.com
+140.82.114.5 api.github.com
+140.82.112.25 live.github.com
+140.82.112.9 codeload.github.com
+151.101.1.194 github.global.ssl.fastly.net
+151.101.65.194 github.global.ssl.fastly.net
+151.101.129.194 github.global.ssl.fastly.net
+151.101.193.194 github.global.ssl.fastly.net
+185.199.108.153 assets-cdn.github.com
+185.199.110.153 assets-cdn.github.com
+185.199.111.153 assets-cdn.github.com
+185.199.109.153 assets-cdn.github.com
+142.250.11.100 www.google-analytics.com
+142.250.11.101 www.google-analytics.com
+142.250.11.102 www.google-analytics.com
+142.250.11.113 www.google-analytics.com
+142.250.11.138 www.google-analytics.com
+142.250.11.139 www.google-analytics.com</code></pre>
             </div>
             <hr/>
 
