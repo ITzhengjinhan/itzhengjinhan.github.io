@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Ant Design Vue的问题以及开发中遇到的问题, IT默小涵的个人博客">
+    <meta name="keywords" content="基于vue+antd图片上传，支持预览, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Ant Design Vue的问题以及开发中遇到的问题 | IT默小涵的个人博客</title>
+    <title>基于vue+antd图片上传，支持预览 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/29.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/32.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Ant Design Vue的问题以及开发中遇到的问题</h1>
+                    <h1 class="description center-align post-title">基于vue+antd图片上传，支持预览</h1>
                 </div>
             </div>
         </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-01-11
+                    2023-03-30
                 </div>
                 
 
@@ -473,161 +473,617 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="使用-Ant-Design-Vue-的-a-tree-select-组件出现滚动时，下拉框会跟着页面滚动"><a href="#使用-Ant-Design-Vue-的-a-tree-select-组件出现滚动时，下拉框会跟着页面滚动" class="headerlink" title="使用 Ant Design Vue 的 a-tree-select 组件出现滚动时，下拉框会跟着页面滚动"></a>使用 Ant Design Vue 的 a-tree-select 组件出现滚动时，下拉框会跟着页面滚动</h3><p>官网解释：默认渲染到 body 上，如果遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位</p>
-<pre><code>&lt;a-tree-select
-  show-search
-  v-model=&quot;form.names&quot;
-  :getPopupContainer=&quot;triggerNode =&gt; triggerNode.parentNode&quot;
-&lt;/a-tree-select&gt;
-</code></pre><h3 id="在-a-tree-select-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true"><a href="#在-a-tree-select-中使用了-treeCheckStrictly-true-会使得-labelInValue-强制为-true" class="headerlink" title="在 a-tree-select 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]"></a>在 a-tree-select 中使用了 treeCheckStrictly=true 会使得 labelInValue 强制为 [true]</h3><p>此时会把 value 类型从  string  变为  {value: string, label: VNode, halfChecked(treeCheckStrictly 时有效): string[] }  的格式</p>
-<p>即 value: ‘b2043682ffd2413fac7481304cd7042d’——&gt;{ label: “2 号检修班组”, value: “b2043682ffd2413fac7481304cd7042d” }</p>
-<h3 id="日期选择框-a-date-picker-设置可选范围在今天或之前"><a href="#日期选择框-a-date-picker-设置可选范围在今天或之前" class="headerlink" title="日期选择框 a-date-picker 设置可选范围在今天或之前"></a>日期选择框 a-date-picker 设置可选范围在今天或之前</h3><pre><code>&lt;a-date-picker :disabled-date=&quot;beforeToday xxxx&gt;
+                <p>背景：现存的上传组件不能预览图片，放大缩小等操作</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="https://pic1.imgdb.cn/item/67e8f7a90ba3d5a1d7e6b2c9.gif" alt=""></p>
+<h3 id="上传组件"><a href="#上传组件" class="headerlink" title="上传组件"></a>上传组件</h3><pre><code>&lt;template&gt;
+  &lt;div class=&quot;upload-container&quot; style=&quot;margin-top: 4px&quot;&gt;
+    &lt;span v-for=&quot;(f, index) in fileList&quot; :key=&quot;f.uid&quot; class=&quot;img-content&quot;&gt;
+      &lt;a-spin :spinning=&quot;f.loading&quot;&gt;
+        &lt;img alt=&quot;&quot; :src=&quot;f.url&quot; @error=&quot;onImageError(index)&quot; /&gt;
+        &lt;span class=&quot;delete&quot;&gt;
+          &lt;span v-if=&quot;canEdit&quot; class=&quot;common&quot; @click.stop=&quot;deleteImg(f.uid)&quot;&gt; 删除 &lt;/span&gt;
+          &lt;span v-if=&quot;canEdit&quot; style=&quot;color: black; margin: 0 3px&quot;&gt;|&lt;/span&gt;
+          &lt;span class=&quot;common&quot; @click.stop=&quot;previewImg(index)&quot;&gt;预览&lt;/span&gt;
+        &lt;/span&gt;
+      &lt;/a-spin&gt;
+    &lt;/span&gt;
+    &lt;a-upload
+      v-if=&quot;canEdit &amp;&amp; ((maxCount &gt; 0 &amp;&amp; fileList.length &lt; maxCount) || !maxCount)&quot;
+      :multiple=&quot;multiple&quot;
+      :list-type=&quot;listType&quot;
+      :show-upload-list=&quot;false&quot;
+      :name=&quot;name&quot;
+      :data=&quot;extraInfo&quot;
+      :before-upload=&quot;beforeUpload&quot;
+    &gt;
+      &lt;slot&gt;
+        &lt;div v-if=&quot;(maxCount &gt; 0 &amp;&amp; fileList.length &lt; maxCount) || !maxCount&quot;&gt;
+          &lt;a-icon type=&quot;plus&quot; /&gt;
+          &lt;div class=&quot;ant-upload-text&quot;&gt;点击上传&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/slot&gt;
+    &lt;/a-upload&gt;
+    &lt;picture-preview v-if=&quot;ppVisible&quot; v-model=&quot;ppVisible&quot; :imgs=&quot;fileList&quot; :show-index=&quot;showIndex&quot; /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-在methods中
-beforeToday(current)&#123;
-  return current&gt;moment()
-&#125;</code></pre><h3 id="a-tree-如何在多选模式下，实现行点击勾选"><a href="#a-tree-如何在多选模式下，实现行点击勾选" class="headerlink" title="a-tree 如何在多选模式下，实现行点击勾选"></a>a-tree 如何在多选模式下，实现行点击勾选</h3><p>由于在 check 勾选时需要添加父节点 id 以及各种操作，这些都是需要通过 check 事件获取参数而 select 事件拿不到，因此想到直接操作 dom 元素的点击事件解决</p>
-<pre><code>    &lt;a-tree
-    :disabled=&quot;!isEdit&quot;
-    checkable
-    @check=&quot;onCheck&quot;
-    :checkedKeys=&quot;checkedKeys&quot;
-    :treeData=&quot;treeData&quot;
-    @expand=&quot;onExpand&quot;
-    @select=&quot;onTreeNodeSelect&quot;
-    :selectedKeys=&quot;selectedKeys&quot;
-    :expandedKeys=&quot;expandedKeysss&quot;
-    :checkStrictly=&quot;checkStrictly&quot;&gt;
-  &lt;/a-tree&gt;
-
-    onTreeNodeSelect(selectedKeys, e) &#123;
-      //触发复选框的勾选事件
-      e.node.$el.childNodes[1].click()
-    &#125;,</code></pre><h3 id="a-tree-组件-autoExpandedParent-无效"><a href="#a-tree-组件-autoExpandedParent-无效" class="headerlink" title="a-tree 组件 autoExpandedParent 无效"></a>a-tree 组件 autoExpandedParent 无效</h3><p>当 treeNode 属性为 disabled，autoExpandedParent 无效，解决方案是通过 expandedKeys 手动设置需要展开的 key</p>
-<h3 id="a-tree-组件-expandedKeys-设置-key-后未展开问题"><a href="#a-tree-组件-expandedKeys-设置-key-后未展开问题" class="headerlink" title="a-tree 组件 expandedKeys 设置 key 后未展开问题"></a>a-tree 组件 expandedKeys 设置 key 后未展开问题</h3><p>检查 treeData 数据是否有携带 key，或者 replaceFields 中 key 是否绑定到其他属性上</p>
-<h3 id="a-anchor-常见的问题"><a href="#a-anchor-常见的问题" class="headerlink" title="a-anchor 常见的问题"></a>a-anchor 常见的问题</h3><p>锚点浏览器会报错；</p>
-<p>路由会被更改，影响哈希模式的页面路由；</p>
-<p>affix 属性不生效，没有随着页面滚动高亮变化</p>
-<pre><code>/** #号后面不能为纯数字，否则无法正常定位，浏览器报错*/
-&lt;a-anchor :affix=&quot;true&quot; :target-offset=&quot;16&quot; :get-container=&quot;getContainer&quot; @click=&quot;handleClickAnchor&quot;&gt;
-  &lt;a-anchor-link v-for=&quot;(item, $index) in steps&quot; :key=&quot;$index&quot; :href=&quot;&#39;#&#39; + item.id&quot; :title=&quot;item.title&quot; /&gt;
-&lt;/a-anchor&gt;
-
-/** Anchor 锚点指定滚动的容器 */
-getContainer() &#123;
-  // 给组件指定渲染的容器，解决锚点不会随页面滚动而移动的问题
-  return document.querySelector(&#39;.form-wrapper&#39;);
-&#125;
-
-/** Anchor 锚点形式点击锚点 */
-handleClickAnchor(e, link) &#123;
-  // 阻止点击的默认事件修改路由
-  e.preventDefault();
-&#125;</code></pre><h3 id="如何覆盖-修改-antd-vue-UI-组件样式"><a href="#如何覆盖-修改-antd-vue-UI-组件样式" class="headerlink" title="如何覆盖/修改 antd-vue UI 组件样式"></a>如何覆盖/修改 antd-vue UI 组件样式</h3><p>使用 vue 的样式穿透</p>
-<pre><code>方法一 /deep/ 仅支持vue2，可以穿透antd-vue UI组件
-/deep/.antd input&#123;
-  font-size:12px;
-&#125;
-
-方法二 ::v-deep 仅支持vue2，是/deep/的升级版，兼容移动端的UI
-.parent::v-deep .child &#123;
-  /* 样式规则 */
-&#125;
-
-方法三  :deep() 支持Vue3，但在Vue2中不可使用
-.parent :deep(.child) &#123;
-  /* 样式规则 */
-&#125;
-</code></pre><h3 id="modal-与-form-同时使用时，destroyOnClose-属性无效问题"><a href="#modal-与-form-同时使用时，destroyOnClose-属性无效问题" class="headerlink" title="modal 与 form 同时使用时，destroyOnClose 属性无效问题"></a>modal 与 form 同时使用时，destroyOnClose 属性无效问题</h3><p>关闭 modal 并不会清除表单的数据，即使配置了 destroyOnClose 也无效</p>
-<pre><code>方案一：在关闭modal事件中添加form.resetFields();
-
-方案二：在Form中设置preserve属性为false,然后在modal中设置destroyOnClose属性为true</code></pre><h3 id="a-form-设置必填校验后，给-a-form-model-item-里面的控件设置数据，却还是显示必填校验"><a href="#a-form-设置必填校验后，给-a-form-model-item-里面的控件设置数据，却还是显示必填校验" class="headerlink" title="a-form 设置必填校验后，给 a-form-model-item 里面的控件设置数据，却还是显示必填校验"></a>a-form 设置必填校验后，给 a-form-model-item 里面的控件设置数据，却还是显示必填校验</h3><p>具体现象如图所示：</p>
-<img src="https://pic.imgdb.cn/item/670e7b2ad29ded1a8c589252.png" alt="1.png">
-
-<p>查看代码：</p>
-<img src="https://pic.imgdb.cn/item/670e7b3fd29ded1a8c58a9f2.png" alt="2.png">
-
-<p>官网解释：</p>
-<img src="https://pic.imgdb.cn/item/670e7b57d29ded1a8c58c2da.png" alt="4.png">
-
-<p>解决方案：</p>
-<img src="https://pic.imgdb.cn/item/670e7b4cd29ded1a8c58b74d.png" alt="3.png">
-
-<p>效果：</p>
-<img src="https://pic.imgdb.cn/item/670e7b64d29ded1a8c58d14f.png" alt="5.png">
-
-<h3 id="URL-哈希模式下参数拼接在-前面问题"><a href="#URL-哈希模式下参数拼接在-前面问题" class="headerlink" title="URL 哈希模式下参数拼接在#前面问题"></a>URL 哈希模式下参数拼接在#前面问题</h3><pre><code>方法一：
-    let url = &quot;http://127.0.0.1:5555/test.html/?type=woman#/&quot;;
-    let b = new URL(url).searchParams.get(&#39;type&#39;);
-
-方法二：
-    let url = &quot;http://127.0.0.1:5555/test.html/?type=woman#/&quot;;
-    let b = new URL(url);
-    this.location =  b.origin + b.pathname + b.hash + b.search;</code></pre><h3 id="URL-哈希模式如何新开页签并携带参数打开新的页面"><a href="#URL-哈希模式如何新开页签并携带参数打开新的页面" class="headerlink" title="URL 哈希模式如何新开页签并携带参数打开新的页面"></a>URL 哈希模式如何新开页签并携带参数打开新的页面</h3><pre><code>let &#123;href&#125; = this.$router.resolve(&#123;
-  path:&#39;/xxx&#39;,
-  param:xxx
-&#125;)
-
-window.open(href,&#39;_blank&#39;)</code></pre><h3 id="检测元素外部-或内部-的单击"><a href="#检测元素外部-或内部-的单击" class="headerlink" title="检测元素外部(或内部)的单击"></a>检测元素外部(或内部)的单击</h3><pre><code>let el= document.querySelector(&#39;#target&#39;)
-window.addEventListener(&#39;mousedown&#39;, e =&gt; &#123;
-  // 获取被点击的元素
-  const clickedEl = e.target;
-
-  if (el.contains(clickedEl)) &#123;
-   //在 &quot;el &quot;里面点击了
-  &#125; else &#123;
-   //在 &quot;el &quot;外点击了
-  &#125;
-&#125;);</code></pre><h3 id="iframe-框架内页面控制父框架页面跳转到某地址"><a href="#iframe-框架内页面控制父框架页面跳转到某地址" class="headerlink" title="iframe 框架内页面控制父框架页面跳转到某地址"></a>iframe 框架内页面控制父框架页面跳转到某地址</h3><pre><code>const &#123; href &#125; = this.$router.resolve(&#123; path: &quot;/index&quot;, query: &#123; key: key &#125; &#125;);
-// iframe 控制父页面跳转
-window.parent.window.location.href = href</code></pre><h3 id="读取-Excel-数据"><a href="#读取-Excel-数据" class="headerlink" title="读取 Excel 数据"></a>读取 Excel 数据</h3><pre><code>/**
- * 读取Excel数据
- * @param &#123;*&#125; file 文件对象
- * @param &#123;*&#125; fieldMapping 字段映射
+&lt;script&gt;
+import remove from &#39;lodash/remove&#39;;
+import PicturePreview from &#39;./PicturePreview&#39;;
+/**
+ * 图片上传
+ *
+ * 描述：支持图片上传和预览
  */
-export const readExcelData = async (file, fieldMapping) =&gt; &#123;
-  return new Promise((resolve, reject) =&gt; &#123;
-    function mapFields(data) &#123;
-      return data.map((row) =&gt; &#123;
-        const newRow = &#123;&#125;;
-        for (const key in row) &#123;
-          if (Object.prototype.hasOwnProperty.call(fieldMapping, key)) &#123;
-            newRow[fieldMapping[key]] = row[key];
-          &#125;
-        &#125;
-        return newRow;
-      &#125;);
-    &#125;
-    const reader = new FileReader();
-    reader.onload = (e) =&gt; &#123;
-      const data = e.target.result;
-      const workbook = XLSX.read(data, &#123; type: &#39;binary&#39; &#125;);
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const json = XLSX.utils.sheet_to_json(sheet);
-      if (fieldMapping) &#123;
-        const mappedData = mapFields(json);
-        resolve(mappedData);
-      &#125; else &#123;
-        resolve(json);
+export default &#123;
+  name: &#39;UploadImgs&#39;,
+  components: &#123;
+    PicturePreview,
+  &#125;
+  model: &#123;
+    prop: &#39;val&#39;,
+    event: &#39;valChange&#39;,
+  &#125;,
+  props: &#123;
+    // true: 编辑; false: 非编辑（场景：直接设置组件为编辑模式，此时operateType优先级较低）
+    isEdit: &#123;
+      type: Boolean,
+      default: false,
+    &#125;,
+    val: &#123;
+      type: Array,
+      default: () =&gt; [],
+    &#125;,
+    /**
+     * 附加信息
+     */
+    extraInfo: &#123;
+      type: Object,
+      default: () =&gt; &#123;&#125;,
+    &#125;,
+    // 多格式逗号隔开
+    accept: &#123;
+      type: Array,
+      default: () =&gt; [&#39;jpg&#39;, &#39;jpeg&#39;, &#39;gif&#39;, &#39;png&#39;],
+    &#125;,
+    listType: &#123;
+      type: String,
+      default: &#39;picture-card&#39;,
+      validator: (value) =&gt; &#123;
+        return [&#39;text&#39;, &#39;picture&#39;, &#39;picture-card&#39;].includes(value);
+      &#125;,
+    &#125;,
+    name: &#123;
+      type: String,
+      default: &#39;file&#39;,
+    &#125;,
+    multiple: &#123;
+      type: Boolean,
+      default: false,
+    &#125;,
+    // 上传最大文件数
+    maxCount: &#123;
+      type: Number,
+    &#125;,
+    // 文件最大限制 unit: MB
+    maxSize: &#123;
+      type: Number,
+      default: 5,
+    &#125;,
+  &#125;,
+  data() &#123;
+    return &#123;
+      fileList: [],
+      ppVisible: false,
+      showIndex: 0,
+    &#125;;
+  &#125;,
+  computed: &#123;
+    canEdit() &#123;
+      return this.isEdit;
+    &#125;,
+  &#125;,
+  watch: &#123;
+    val: &#123;
+      handler(val) &#123;
+        this.fileList = (val || []).map((v) =&gt; (&#123; ...v, loading: false &#125;));
+      &#125;,
+      immediate: true,
+    &#125;,
+  &#125;,
+  methods: &#123;
+    // 自定义上传
+    beforeUpload(file) &#123;
+      const fileInfo = &#123;
+        uid: file.uid,
+        name: file.name,
+        type: file.type,
+        percent: 0,
+        loading: true,
+        size: file.size,
+        url: &#39;&#39;,
+      &#125;;
+      const &#123; size, name, type &#125; = file;
+      const fileType = file.name.substring(file.name.lastIndexOf(&#39;.&#39;) + 1);
+      if (this.accept.length &gt; 0 &amp;&amp; !this.accept.includes(fileType)) &#123;
+        this.$message.error(`图片只支持：$&#123;this.accept.join(&#39;，&#39;)&#125;格式`);
+        return false;
       &#125;
-    &#125;;
-    reader.onerror = (error) =&gt; &#123;
-      reject(error);
-    &#125;;
-    reader.readAsArrayBuffer(file);
-  &#125;);
-&#125;;</code></pre><h3 id="父子组件通信数据污染问题以及解决方案"><a href="#父子组件通信数据污染问题以及解决方案" class="headerlink" title="父子组件通信数据污染问题以及解决方案"></a>父子组件通信数据污染问题以及解决方案</h3><pre><code>props的类型为基本数据类型时，子组件不能改变父组件的值；
+      // 最大上传数量有值的情况
+      if (!!this.maxCount) &#123;
+        if (this.fileList.length &gt;= this.maxCount) &#123;
+          this.$message.warning(`最多上传$&#123;this.maxCount&#125;张图片`);
+          return false;
+        &#125;
+      &#125;
+      if (size &gt; this.maxSize * 1024 * 1024) &#123;
+        this.$message.warning(`$&#123;name&#125;文件大小不能超过$&#123;this.maxSize&#125;MB，请重新上传`);
+        return false;
+      &#125;
+      // 图片本地预览地址
+      if (file.type.indexOf(&#39;image&#39;) &gt; -1) &#123;
+        fileInfo.url = window.URL.createObjectURL(file);
+      &#125;
+      this.fileList = [...this.fileList, fileInfo];
+      this.uploadFile(file);
+      return false;
+    &#125;,
+    // 普通上传
+    uploadFile(file) &#123;
+      const fileIndex = this.fileList.findIndex((f) =&gt; f.uid === file.uid);
+      if (fileIndex &gt;= 0) &#123;
+        this.fileList[fileIndex].loading = false;
+      &#125;
+      this.$emit(&#39;valChange&#39;, this.fileList);
+      this.$emit(&#39;change&#39;, this.fileList);
+      const formData = new FormData();
+      formData.append(this.name, file, file.name);
+      // 上传图片
+      this.$apis.fileCommon
+        .uploadFile(&#123;
+          formData,
+        &#125;)
+        .then((res) =&gt; &#123;
+          const fileIndex = this.fileList.findIndex((f) =&gt; f.uid === file.uid);
+          if (fileIndex &gt;= 0) &#123;
+            this.fileList[fileIndex].url = res.downloadUrl;
+            this.fileList[fileIndex].loading = false;
+          &#125;
+          this.$emit(&#39;valChange&#39;, this.fileList);
+          this.$emit(&#39;change&#39;, this.fileList);
+        &#125;)
+        .catch((e) =&gt; &#123;
+          console.log(e);
+          const removeFile = remove(this.fileList, (f) =&gt; f.uid === file.uid);
+          const msg = e.message ? `$&#123;e.message&#125; $&#123;removeFile[0].name&#125;` : &#39;系统异常&#39;;
+          this.$message.error(msg);
+          this.fileList = [...this.fileList];
+        &#125;);
+    &#125;,
+    // 移除文件
+    deleteImg(uid) &#123;
+      const fileIndex = this.fileList.findIndex((item) =&gt; item.uid === uid);
+      if (fileIndex &gt;= 0) &#123;
+        this.fileList.splice(fileIndex, 1);
+      &#125;
+      this.$emit(&#39;valChange&#39;, this.fileList);
+      this.$emit(&#39;change&#39;, this.fileList);
+    &#125;,
+    previewImg(index) &#123;
+      this.showIndex = index;
+      this.ppVisible = true;
+    &#125;,
+    onImageError(index) &#123;
+      const errorFile = this.fileList.splice(index, 1);
+      throw new Error(`fileList[$&#123;index&#125;]: $&#123;errorFile[0].url&#125; failed to load.`);
+    &#125;,
+  &#125;,
+&#125;;
+&lt;/script&gt;
 
-props的类型为引用数据类型时，子组件可以改变父组件的值，为不影响数据污染，可深拷贝数据</code></pre><h3 id="生产环境去除-console-log"><a href="#生产环境去除-console-log" class="headerlink" title="生产环境去除 console.log"></a>生产环境去除 console.log</h3><p>vue.config.js 中配置</p>
-<pre><code>configureWebpack: (config) =&gt; &#123;
-  if (process.env.NODE_ENV === &quot;production&quot;) &#123;
-    config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
-    config.optimization.minimizer[0].options.terserOptions.compress.pure_funcs = [
-      &quot;console.log&quot;,
-    ];
+&lt;style lang=&quot;less&quot; scoped&gt;
+.upload-container &#123;
+  .img-content &#123;
+    position: relative;
+    float: left;
+    padding: 4px;
+    border: 1px solid #9b9ea1;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+
+    .delete &#123;
+      position: absolute;
+      cursor: pointer;
+      user-select: none;
+      bottom: 0;
+      right: 0;
+      border-top: 1px solid #747070;
+      border-left: 1px solid #747070;
+      line-height: 20px;
+      padding: 0 5px;
+      border-top-left-radius: 4px;
+      background-color: rgba(229, 229, 229, 0.5);
+      font-size: 12px;
+      color: #0e0e0e;
+      opacity: 0;
+      transition: all 0.3s;
+
+      &amp;:hover &#123;
+        border-top: 1px solid #0070d2;
+        border-left: 1px solid #0070d2;
+      &#125;
+
+      .common &#123;
+        transition: color 0.3s;
+
+        &amp;:hover &#123;
+          color: #0070d2;
+        &#125;
+      &#125;
+    &#125;
+
+    &amp;:hover &#123;
+      box-shadow: 2px 3px 7px #888888;
+      .delete &#123;
+        opacity: 1;
+      &#125;
+    &#125;
+
+    img &#123;
+      width: 160px;
+      height: 130px;
+    &#125;
+  &#125;
+
+  /deep/.ant-upload-picture-card-wrapper &#123;
+    width: auto;
+    .ant-upload.ant-upload-select-picture-card &#123;
+      width: 170px;
+      height: 140px;
+      margin: 0 !important;
+    &#125;
   &#125;
 &#125;
+&lt;/style&gt;
+</code></pre><h3 id="预览组件"><a href="#预览组件" class="headerlink" title="预览组件"></a>预览组件</h3><pre><code>&lt;template&gt;
+  &lt;a-modal
+    destroyOnClose
+    width=&quot;100%&quot;
+    height=&quot;100%&quot;
+    :body-style=&quot;&#123; padding: 0 &#125;&quot;
+    :title=&quot;null&quot;
+    :closable=&quot;false&quot;
+    :visible=&quot;visible&quot;
+    :footer=&quot;null&quot;
+  &gt;
+    &lt;div class=&quot;preview-container&quot;&gt;
+      &lt;!-- 主图操作区域 --&gt;
+      &lt;div class=&quot;main-content&quot;&gt;
+        &lt;div class=&quot;img-operate-section&quot;&gt;
+          &lt;img
+            id=&quot;dragTransparentImg&quot;
+            style=&quot;position: absolute; opacity: 0&quot;
+            :src=&quot;require(&#39;@/assets/logo.png&#39;)&quot;
+          /&gt;
+          &lt;div class=&quot;close-btn&quot; @click.stop=&quot;_close(false)&quot;&gt;
+            &lt;span&gt;x&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;tool-section&quot;&gt;
+            &lt;a-icon
+              type=&quot;zoom-in&quot;
+              class=&quot;common&quot;
+              title=&quot;放大&quot;
+              @click=&quot;_enlarge&quot;
+            /&gt;
+            &lt;a-icon
+              type=&quot;zoom-out&quot;
+              class=&quot;common narrow&quot;
+              title=&quot;缩小&quot;
+              @click=&quot;_narrow&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;arrow-common left&quot;&gt;
+            &lt;a-icon
+              v-show=&quot;!preArrowDisabled&quot;
+              type=&quot;left-circle&quot;
+              @click.stop=&quot;_arrowClick(&#39;pre&#39;)&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;arrow-common right&quot;&gt;
+            &lt;a-icon
+              v-show=&quot;!nextArrowDisabled&quot;
+              type=&quot;right-circle&quot;
+              @click.stop=&quot;_arrowClick(&#39;next&#39;)&quot;
+            /&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;img-display&quot;&gt;
+            &lt;img
+              class=&quot;img_1&quot;
+              :draggable=&quot;true&quot;
+              :key=&quot;_img.uid&quot;
+              :id=&quot;_img.uid&quot;
+              alt=&quot;&quot;
+              :src=&quot;_img.url&quot;
+              @dragstart.stop=&quot;_imgDragStart&quot;
+              @dragover.stop=&quot;_imgDragOver&quot;
+            /&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- 缩略图列表 --&gt;
+      &lt;div class=&quot;thumbnail-list&quot;&gt;
+        &lt;ul class=&quot;ul-img-list&quot;&gt;
+          &lt;li
+            :class=&quot;i === index ? &#39;seled-li&#39; : null&quot;
+            v-for=&quot;(img, i) in imgs&quot;
+            :key=&quot;i&quot;
+          &gt;
+            &lt;img
+              alt=&quot;&quot;
+              class=&quot;img_2&quot;
+              :src=&quot;img.url&quot;
+              @click.stop=&quot;_seledImg(i)&quot;
+            /&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/a-modal&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  name: &quot;PicturePreview&quot;,
+  model: &#123;
+    prop: &quot;visible&quot;,
+    event: &quot;visibleChange&quot;,
+  &#125;,
+  props: &#123;
+    visible: &#123;
+      type: Boolean,
+      default: false,
+    &#125;,
+    imgs: &#123;
+      type: Array,
+      default: () =&gt; [],
+    &#125;,
+    showIndex: &#123;
+      type: Number,
+      default: 0,
+    &#125;,
+  &#125;,
+  data() &#123;
+    return &#123;
+      index: 0,
+      preArrowDisabled: false,
+      nextArrowDisabled: false,
+      imgX: 0,
+      imgY: 0,
+      mouseX: 0,
+      mouseY: 0,
+      dragTransparentImg: undefined,
+    &#125;;
+  &#125;,
+  computed: &#123;
+    _img() &#123;
+      return this.imgs.length ? this.imgs[this.index] : &#123;&#125;;
+    &#125;,
+  &#125;,
+  mounted() &#123;
+    this.init();
+  &#125;,
+  methods: &#123;
+    init() &#123;
+      this.index = this.showIndex;
+      const imgsLength = this.imgs.length;
+      this.nextArrowDisabled = this.index === imgsLength - 1;
+      this.preArrowDisabled = this.index === 0;
+      this.$nextTick(() =&gt; &#123;
+        this.dragTransparentImg = document.getElementById(&quot;dragTransparentImg&quot;);
+      &#125;);
+    &#125;,
+    _imgDragStart(e) &#123;
+      e.dataTransfer.effectAllowed = &quot;move&quot;;
+      e.dataTransfer.setDragImage(this.dragTransparentImg, 0, 0);
+      const &#123; currentTarget, clientX, clientY &#125; = e;
+      this.imgX = currentTarget.offsetLeft;
+      this.imgY = currentTarget.offsetTop;
+      this.mouseX = clientX;
+      this.mouseY = clientY;
+    &#125;,
+    _imgDragOver(e) &#123;
+      e.preventDefault();
+      const &#123; target, clientX, clientY &#125; = e;
+      target.style.top = this.imgY - (this.mouseY - clientY) + &quot;px&quot;;
+      target.style.left = this.imgX - (this.mouseX - clientX) + &quot;px&quot;;
+    &#125;,
+    _enlarge() &#123;
+      const curImgDom = document.getElementById(this._img.uid);
+      if (curImgDom) curImgDom.width += 80;
+    &#125;,
+    _narrow() &#123;
+      const curImgDom = document.getElementById(this._img.uid);
+      if (curImgDom &amp;&amp; curImgDom.width &gt; 0) curImgDom.width -= 80;
+    &#125;,
+    _arrowClick(type) &#123;
+      if (type === &quot;next&quot;) &#123;
+        if (this.nextArrowDisabled) return;
+        this.index++;
+        this.preArrowDisabled = false;
+        this.nextArrowDisabled = this.index === this.imgs.length - 1;
+      &#125; else &#123;
+        if (this.preArrowDisabled) return;
+        this.index--;
+        this.nextArrowDisabled = false;
+        this.preArrowDisabled = this.index === 0;
+      &#125;
+    &#125;,
+    _seledImg(index) &#123;
+      this.index = index;
+      this.nextArrowDisabled = index === this.imgs.length - 1;
+      this.preArrowDisabled = index === 0;
+    &#125;,
+    _close() &#123;
+      this.$emit(&quot;visibleChange&quot;, false);
+    &#125;,
+  &#125;,
+&#125;;
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.preview-container &#123;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+&#125;
+
+.main-content &#123;
+  flex: 1;
+  min-height: 0;
+&#125;
+
+.img-operate-section &#123;
+  user-select: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .close-btn &#123;
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    top: -10px;
+    font-size: 34px;
+    padding: 0 13px;
+    color: white;
+    cursor: pointer;
+    background: rgba(84, 83, 83, 0.6);
+    border-bottom-left-radius: 5px;
+    transition: 0.3s;
+    font-weight: 500;
+  &#125;
+
+  .tool-section &#123;
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 12px;
+    background: rgba(52, 52, 52);
+    border-radius: 8px;
+    display: flex;
+    gap: 15px;
+
+    .common &#123;
+      color: #939191;
+      font-size: 20px;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &amp;:hover &#123;
+        color: white;
+      &#125;
+    &#125;
+  &#125;
+
+  .arrow-common &#123;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: #939191;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 888;
+
+    &amp;:hover &#123;
+      color: white;
+    &#125;
+
+    &amp;.left &#123;
+      left: 20px;
+    &#125;
+
+    &amp;.right &#123;
+      right: 20px;
+    &#125;
+  &#125;
+
+  .img-display &#123;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .img_1 &#123;
+      position: absolute;
+      transition: width 0.2s, filter 0.2s;
+
+      &amp;:hover &#123;
+        cursor: grab;
+        filter: brightness(0.88);
+      &#125;
+
+      &amp;:active &#123;
+        cursor: grabbing;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+.thumbnail-list &#123;
+  height: 125px;
+  background: rgba(84, 83, 83, 0.2);
+  box-shadow: 0 7px 5px 12px rgba(52, 52, 52, 0.5);
+  overflow-x: auto;
+
+  .ul-img-list &#123;
+    display: flex;
+    gap: 12px;
+    height: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    list-style: none;
+
+    li &#123;
+      flex-shrink: 0;
+      width: 185px;
+      height: 100%;
+      border: 1px solid #f5f2f2;
+      background: rgba(217, 215, 219, 0.9);
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+
+      &amp;.seled-li &#123;
+        box-shadow: 0 0 5px 6px rgba(68, 67, 67, 0.9);
+      &#125;
+
+      .img_2 &#123;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+/deep/.ant-modal &#123;
+  top: 0;
+  .ant-modal-content &#123;
+    background: rgba(52, 52, 52, 0.6);
+    .ant-modal-body &#123;
+      border-radius: 0 !important;
+    &#125;
+  &#125;
+&#125;
+&lt;/style&gt;
 </code></pre>
             </div>
             <hr/>
@@ -653,7 +1109,7 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/01/11/Ant%20Design%20Vue%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">http://itzhengjinhan.github.io/2023/01/11/Ant%20Design%20Vue%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/03/30/%E5%9F%BA%E4%BA%8Evue+antd%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E4%B8%8E%E9%A2%84%E8%A7%88%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2023/03/30/%E5%9F%BA%E4%BA%8Evue+antd%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E4%B8%8E%E9%A2%84%E8%A7%88%E7%BB%84%E4%BB%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -864,13 +1320,13 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/01/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E6%A0%BC%E7%BB%84%E4%BB%B6/">
+                <a href="/2023/04/06/vue%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82-%E4%BC%A0%E9%80%92%E7%BB%84%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="vue移动端自定义表格组件">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="vue组件传参-传递的参数类型以组件或者jsx的形式">
                         
-                        <span class="card-title">vue移动端自定义表格组件</span>
+                        <span class="card-title">vue组件传参-传递的参数类型以组件或者jsx的形式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -881,7 +1337,7 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-01-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-06
                         </span>
                         <span class="publish-author">
                             
@@ -902,10 +1358,6 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                         <span class="chip bg-color">vue</span>
                     </a>
                     
-                    <a href="/tags/table/">
-                        <span class="chip bg-color">table</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -917,13 +1369,13 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/27/threejs%E5%AE%9E%E7%8E%B0%E5%89%8D%E6%99%AFVR/">
+                <a href="/2023/03/25/vue%E5%AE%9E%E7%8E%B0%E5%BC%B9%E5%B9%95/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="Three.js实现全景VR">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vue实现弹幕">
                         
-                        <span class="card-title">Three.js实现全景VR</span>
+                        <span class="card-title">vue实现弹幕</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -934,14 +1386,14 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/js/" class="post-category">
-                                    js
+                            <a href="/categories/vue/" class="post-category">
+                                    vue
                                 </a>
                             
                             
@@ -951,8 +1403,8 @@ props的类型为引用数据类型时，子组件可以改变父组件的值，
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/three/">
-                        <span class="chip bg-color">three</span>
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
                     </a>
                     
                 </div>
