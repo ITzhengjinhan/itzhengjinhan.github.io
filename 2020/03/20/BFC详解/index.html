@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="前端常用的居中对齐方式, IT默小涵的个人博客">
+    <meta name="keywords" content="BFC详解, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>前端常用的居中对齐方式 | IT默小涵的个人博客</title>
+    <title>BFC详解 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/30.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/39.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">前端常用的居中对齐方式</h1>
+                    <h1 class="description center-align post-title">BFC详解</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/css%E5%B1%85%E4%B8%AD/">
-                                <span class="chip bg-color">css居中</span>
+                            <a href="/tags/csss/">
+                                <span class="chip bg-color">csss</span>
                             </a>
                         
                     </div>
@@ -457,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-18
+                    2020-03-20
                 </div>
                 
 
@@ -473,248 +473,119 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、水平居中的方法"><a href="#一、水平居中的方法" class="headerlink" title="一、水平居中的方法"></a>一、水平居中的方法</h2><h3 id="1-行内或类行内元素（比如文本和链接）"><a href="#1-行内或类行内元素（比如文本和链接）" class="headerlink" title="1.行内或类行内元素（比如文本和链接）"></a>1.行内或类行内元素（比如文本和链接）</h3><p>在块级父容器中让行内元素居中，只需使用 text-align: center;<br>这种方法可以让 inline/inline-block/inline-table/inline/flex 等类型的元素实现居中。</p>
+                <h3 id="BFC-概念"><a href="#BFC-概念" class="headerlink" title="BFC 概念"></a>BFC 概念</h3><p>BFC（块级格式化上下文）是一个独立的渲染区域，可以视为元素的一种特性。在这个区域内的元素与外部其他元素互不干扰。BFC 内的元素按块级格式化规则进行排列，其中包括该上下文中的子元素，但不包括新创建的 BFC 子元素。</p>
+<pre><code>&lt;div class=&quot;box1&quot;&gt;
+    &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;box3&quot;&gt;
+      &lt;div class=&quot;box4&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;box5&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre><p>如 box1,box3 是 BFC 容器，box1 这个区域只包含 box2，box3（注意：不会包含 box4，box5），而新的 box3 区域包含 box4，box5</p>
+<h3 id="如何触发-BFC"><a href="#如何触发-BFC" class="headerlink" title="如何触发 BFC"></a>如何触发 BFC</h3><pre><code>浮动元素：float 除了none其他值
+display：inline-block ， flex ，（表格单元）table-cells，（表格标题）table-captions），
+grid，inline-grid等
+块级元素 overflow： 除visable 其他值（hidden，auto，scroll）
+绝对定位 position :absolute 或 fixed
+根元素 html</code></pre><h3 id="BFC-布局规则"><a href="#BFC-布局规则" class="headerlink" title="BFC 布局规则"></a>BFC 布局规则</h3><pre><code>1，内部Box会在垂直方向，一个接一个放置
+2，Box垂直方向是margin决定。属于同一个BFC的两个相邻margin会发生重叠。
+3，每个元素margin box 左边，与包含块border box 左边相接触（对左到右的格式化，否则相反）。存在浮动也是一样
+4，BFC是页面上一个独立容器，容器里面子元素不会影响外面元素。反之也是
+5，BFC计算高度时，浮动元素也进行计算
+6，BFC区域不会与float box重叠</code></pre><h3 id="BFC-应用场景"><a href="#BFC-应用场景" class="headerlink" title="BFC 应用场景"></a>BFC 应用场景</h3><h4 id="1-根据-BFC-布局规则中第-1-条和第-2-条解决-margin-重叠问题"><a href="#1-根据-BFC-布局规则中第-1-条和第-2-条解决-margin-重叠问题" class="headerlink" title="1.根据 BFC 布局规则中第 1 条和第 2 条解决 margin 重叠问题"></a>1.根据 BFC 布局规则中第 1 条和第 2 条解决 margin 重叠问题</h4><p>内部 Box 会在垂直方向，一个接一个放置<br>Box 垂直方向是 margin 决定。属于同一个 BFC 的两个相邻 margin 会发生重叠。</p>
 <pre><code>&lt;style&gt;
-  header, nav &#123;
-  text-align: center;
-  background: white;
-  margin: 20px 0;
-  padding: 10px;
-&#125;
-
-nav a &#123;
-  text-decoration: none;
-  background: #333;
-  border-radius: 5px;
-  color: white;
-  padding: 3px 8px;
-&#125;
+    .box&#123;
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+    &#125;
+    .box1 &#123;
+        background-color: lightcoral;
+        margin-bottom: 50px;
+    &#125;
+    .box2 &#123;
+        background-color: green;
+        margin-top: 25px;
+    &#125;
 &lt;/style&gt;
-&lt;header&gt;
-  This text is centered.
-&lt;/header&gt;
-
-&lt;nav role=&#39;navigation&#39;&gt;
-  &lt;a href=&quot;#0&quot;&gt;One&lt;/a&gt;
-  &lt;a href=&quot;#0&quot;&gt;Two&lt;/a&gt;
-  &lt;a href=&quot;#0&quot;&gt;Three&lt;/a&gt;
-  &lt;a href=&quot;#0&quot;&gt;Four&lt;/a&gt;
-&lt;/nav&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY2iz8.png" style="width:600px;height:100px"/></p>
-<h3 id="2-块级元素"><a href="#2-块级元素" class="headerlink" title="2.块级元素"></a>2.块级元素</h3><p>让块级元素居中的方法就是设置 margin-left 和 margin-right 为 auto（前提是已经为元素设置了适当的 width 宽度，<br>否则块级元素的宽度会被拉伸为父级容器的宽度）。常见用法如下所示：</p>
+&lt;body&gt;
+   &lt;div class=&quot;box box1&quot;&gt;Box1&lt;/div&gt;
+   &lt;div&gt;
+     &lt;div class=&quot;box box2&quot; &gt;Box2&lt;/div&gt;
+   &lt;/div&gt;
+&lt;/body&gt;</code></pre><p><img src="https://pic1.imgdb.cn/item/67f6174288c538a9b5c76100.png" alt=""></p>
+<p>这里使用 margin-top=25px 和 margin-bottom=50px 模拟外边距。从图片看，显示两个盒子之间只有 50px 的距离（边距坍塌时取最大的那个 margin），不是想要的两个 margin 之和。外边距发生重叠，这时候我们要找 BFC 来处理</p>
+<pre><code>&lt;body&gt;
+   &lt;div class=&quot;box box1&quot;&gt;Box1&lt;/div&gt;
+   &lt;div style=&quot;overflow: hidden;&quot;&gt;
+     &lt;div class=&quot;box box2&quot; &gt;Box2&lt;/div&gt;
+   &lt;/div&gt;
+&lt;/body&gt;</code></pre><p><img src="https://pic1.imgdb.cn/item/67f6189a88c538a9b5c7620e.png" alt=""></p>
+<h4 id="2-浮动元素高度塌陷"><a href="#2-浮动元素高度塌陷" class="headerlink" title="2.浮动元素高度塌陷"></a>2.浮动元素高度塌陷</h4><p>当父元素只包含浮动元素，这导致父元素高度坍塌为 0。</p>
 <pre><code>&lt;style&gt;
-  main &#123;
-  background: white;
-&#125;
-
-.center &#123;
-  margin: 0 auto;
-  width: 200px;
-  background: black;
-  padding: 20px;
-  color: white;
-&#125;
+  .container &#123;
+    border: 2px solid #000;
+    padding: 1px;
+  &#125;
+  .float-left &#123;
+    float: left;
+    width: 150px;
+    background-color: lightblue;
+    margin: 10px;
+  &#125;
+  .margin-box &#123;
+    width: 200px;
+    height: 100px;
+    background-color: lightgreen;
+    margin: 20px 0 10px 100px; /*左边有外边距*/
+  &#125;
 &lt;/style&gt;
-
-&lt;main&gt;
-  &lt;div class=&quot;center&quot;&gt;
-    I&#39;m a block level element and am centered.
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;float-left&quot;&gt;这是一个左浮动的元素&lt;/div&gt;
   &lt;/div&gt;
-&lt;/main&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY2eds.png" style="width:600px;height:100px"/></p>
-<h3 id="3-多个块级元素"><a href="#3-多个块级元素" class="headerlink" title="3.多个块级元素"></a>3.多个块级元素</h3><p>如果要让多个块级元素在同一水平线上居中，那么可以修改它们的 display 值。这里有两个示例，其中一个使用了 inline-block 的显示方式，<br>另一个使用了 flexbox 的显示方式：</p>
-<pre><code>&lt;style&gt;
-main &#123;
-  background: white;
-&#125;
+  &lt;div class=&quot;margin-box&quot;&gt;这是有左侧外边距的盒子是有左侧外边距的盒子&lt;/div&gt;
+&lt;/body&gt;</code></pre><p><img src="https://pic1.imgdb.cn/item/67f619de88c538a9b5c762f3.png" alt=""></p>
+<p>所以要解决这个问题我们也可以使用 BFC，因为 BFC 计算高度时，浮动元素也进行计算</p>
+<pre><code>// 修改style里面的container
+.container &#123;
+    border: 2px solid #000;
+    padding: 1px;
+    overflow: hidden; /*增加，触发bfc*/
+  &#125;</code></pre><p><img src="https://pic1.imgdb.cn/item/67f61b2188c538a9b5c763a5.png" alt=""></p>
+<h4 id="3-浮动重叠问题"><a href="#3-浮动重叠问题" class="headerlink" title="3.浮动重叠问题"></a>3.浮动重叠问题</h4><pre><code>&lt;style&gt;
+  .container &#123;
+    border: 2px solid black;
+    padding: 10px;
+  &#125;
 
-main div &#123;
-  background: black;
-  color: white;
-  padding: 15px;
-  max-width: 125px;
-  margin: 5px;
-&#125;
+  .float-box &#123;
+      float: left;
+      width: 150px;
+      height: 100px;
+      background-color: lightblue;
+      margin: 10px;
+  &#125;
 
-.inline-block-center &#123;
-  text-align: center;//盒子居中
-&#125;
-.inline-block-center div &#123;
-  display: inline-block;
-  text-align: center;//字体居中
-&#125;
-//方法二
-.flex-center &#123;
-  display: flex;
-  justify-content: center;
-&#125;
+  .bfc-box &#123;
+      width: 300px;
+      height: 100px;
+      background-color: lightgreen;
+  &#125;
 &lt;/style&gt;
-&lt;main class=&quot;inline-block-center&quot;&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row.
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;float-box&quot;&gt;这是一个左浮动的盒子&lt;/div&gt;
+    &lt;div class=&quot;bfc-box&quot;&gt;这是一个创建了 BFC 的盒子&lt;/div&gt;
   &lt;/div&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row. I have more content in me than my siblings do.
-  &lt;/div&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row.
-  &lt;/div&gt;
-&lt;/main&gt;
-
-&lt;main class=&quot;flex-center&quot;&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row.
-  &lt;/div&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row. I have more content in me than my siblings do.
-  &lt;/div&gt;
-  &lt;div&gt;
-    I&#39;m an element that is block-like with my siblings and we&#39;re centered in a row.
-  &lt;/div&gt;
-&lt;/main&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY2KJ0.png" style="width:600px;height:100px"/></p>
-<h3 id="图示汇总"><a href="#图示汇总" class="headerlink" title="图示汇总"></a>图示汇总</h3><p><img src="https://pic.imgdb.cn/item/65ec9d3e9f345e8d03e2793b.webp" alt=""></p>
-<h2 id="二、垂直居中的方法"><a href="#二、垂直居中的方法" class="headerlink" title="二、垂直居中的方法"></a>二、垂直居中的方法</h2><h3 id="1-可以让-line-height-和-height-相等，从而实现垂直居中"><a href="#1-可以让-line-height-和-height-相等，从而实现垂直居中" class="headerlink" title="1. 可以让 line-height 和 height 相等，从而实现垂直居中"></a>1. 可以让 line-height 和 height 相等，从而实现垂直居中</h3><pre><code>&lt;style&gt;
-  main &#123;
-  background: white;
-&#125;
-
-main div &#123;
-  background: black;
-  color: white;
-  height: 100px;
-  line-height: 100px;
-  padding: 20px;
-  width: 50%;
-&#125;
-&lt;/style&gt;
-&lt;main&gt;
-  &lt;div&gt;
-    I&#39;m a centered line.
-  &lt;/div&gt;
-&lt;/main&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY2QzT.png" style="width:600px;height:100px"/></p>
-<h3 id="2-多行文本"><a href="#2-多行文本" class="headerlink" title="2.多行文本"></a>2.多行文本</h3><p>方法一：对于多行文本，可以通过 CSS 为文本设置一个类似 table-cell 的父级容器，然后使用 vertical-align 属性实现垂直居中<br>方法二：使用 padding 值</p>
-<pre><code>&lt;style&gt;
-
-.center-table &#123;
-  display: table;
-  height: 250px;
-  background: white;
-  width: 240px;
-&#125;
-.center-table p &#123;
-  display: table-cell;
-  background: black;
-  color: white;
-  border: 10px solid white;
-  vertical-align: middle;
-  text-align:center;
-&#125;
-
-//方法二
-.center-table &#123;
-  height: 550px;
-  background: white;
-  width: 240px;
-
-&#125;
-.center-table p &#123;
-  padding:30px;
-  background: black;
-  color: white;
-  text-align:center;
-&#125;
-&lt;/style&gt;
-
-&lt;div class=&quot;center-table&quot;&gt;
-  &lt;p&gt;I&#39;m vertically centered multiple lines of text in a CSS-created table layout.&lt;/p&gt;
-&lt;/div&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY28L4.png" style="width:600px;height:100px"/></p>
-<h3 id="3-块级元素"><a href="#3-块级元素" class="headerlink" title="3.块级元素"></a>3.块级元素</h3><p>如果我们知道元素的高度，可以这样来实现垂直居中：</p>
-<pre><code>.parent &#123;
-position: relative;
-&#125;
-.child &#123;
-position: absolute;
-top: 50%; height: 100px;
-margin-top: -50px;
-&#125;</code></pre><p>如果我们不知道元素的高度，那么就需要先将元素定位到容器的中心位置，然后使用 transform 的 translate 属性，将元素的中心和父容器的中心重合，<br>从而实现垂直居中：</p>
-<pre><code>.parent &#123;
-position: relative;
-&#125;
-.child &#123;
-position: absolute;
-top: 50%;
-transform:translateY(-50%);
-&#125;</code></pre><h3 id="4-flexbox"><a href="#4-flexbox" class="headerlink" title="4.flexbox"></a>4.flexbox</h3><pre><code>.parent &#123;
-display: flex;
-flex-direction: column;
-justify-content: center;
-&#125;</code></pre><h3 id="图示汇总-1"><a href="#图示汇总-1" class="headerlink" title="图示汇总"></a>图示汇总</h3><p><img src="https://pic.imgdb.cn/item/65ec9d5a9f345e8d03e2f362.webp" alt=""></p>
-<h2 id="三、水平垂直居中方法"><a href="#三、水平垂直居中方法" class="headerlink" title="三、水平垂直居中方法"></a>三、水平垂直居中方法</h2><h3 id="1、宽高不固定元素"><a href="#1、宽高不固定元素" class="headerlink" title="1、宽高不固定元素"></a>1、宽高不固定元素</h3><p>设定父级容器为相对定位的容器，设定子元素绝对定位的位置<br>position: absolute; top: 50%; left: 50%，最后使用负向 margin 实现水平和垂直居中，<br>margin 的值为（自身宽高）的一半。</p>
-<pre><code>&lt;style&gt;
-  body &#123;
-  background: #f06d06;
-  font-size: 80%;
-  padding: 20px;
-&#125;
-
-main &#123;
-  position: relative;
-  background: white;
-  height: 200px;
-  width: 60%;
-  margin: 0 auto;
-
-&#125;
-main div &#123;
-  text-align:center;
-  background: black;
-  color: white;
-  width: 200px;
-  height: 100px;
-  margin: -50px 0 0 -100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-&#125;
-&lt;/style&gt;
-&lt;main&gt;
-  &lt;div&gt;
-     I&#39;m a block-level element a fixed height and width, centered vertically within my parent.
-  &lt;/div&gt;
-&lt;/main&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY20SK.png" style="width:600px;height:200px"/></p>
-<h3 id="2-flex"><a href="#2-flex" class="headerlink" title="2. flex"></a>2. flex</h3><pre><code>&lt;style&gt;
-body &#123;
-  background: #f06d06;
-  font-size: 80%;
-  padding: 20px;
-&#125;
-
-main &#123;
-  background: white;
-  height: 200px;
-  width: 60%;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  resize: both;
-  overflow: auto;
-&#125;
-
-main div &#123;
-  background: black;
-  color: white;
-  width: 50%;
-  padding: 20px;
-  resize: both;
-  overflow: auto;
-&#125;
-&lt;/style&gt;
-&lt;main&gt;
-  &lt;div&gt;
-     I&#39;m a block-level-ish element of an unknown width and height, centered vertically within my parent.
-  &lt;/div&gt;
-&lt;/main&gt;</code></pre><p>效果：<br><img src="https://s1.ax1x.com/2020/08/02/aY2yeH.png" style="width:600px;height:200px"/></p>
-<h3 id="图示汇总-2"><a href="#图示汇总-2" class="headerlink" title="图示汇总"></a>图示汇总</h3><p><img src="https://pic.imgdb.cn/item/65ec9d709f345e8d03e34dc3.webp" alt=""></p>
+&lt;/body&gt;
+</code></pre><p><img src="https://pic1.imgdb.cn/item/67f61c6f88c538a9b5c764c3.png" alt=""></p>
+<p>我们来使用这条规则——&gt; BFC 区域不会与 float box 重叠</p>
+<pre><code>.bfc-box &#123;
+    width: 300px;
+    height: 100px;
+    background-color: lightgreen;
+    overflow: auto;/* 创建 BFC */
+&#125;</code></pre><p><img src="https://pic1.imgdb.cn/item/67f61c0388c538a9b5c7645e.png" alt=""></p>
 
             </div>
             <hr/>
@@ -740,7 +611,7 @@ main div &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2020/03/18/%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%803---%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/">http://itzhengjinhan.github.io/2020/03/18/%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%803---%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/</a>
+                    <a href="http://itzhengjinhan.github.io/2020/03/20/BFC%E8%AF%A6%E8%A7%A3/">http://itzhengjinhan.github.io/2020/03/20/BFC%E8%AF%A6%E8%A7%A3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -778,8 +649,8 @@ main div &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/css%E5%B1%85%E4%B8%AD/">
-                                    <span class="chip bg-color">css居中</span>
+                                <a href="/tags/csss/">
+                                    <span class="chip bg-color">csss</span>
                                 </a>
                             
                         </div>
@@ -951,13 +822,13 @@ main div &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/20/BFC%E8%AF%A6%E8%A7%A3/">
+                <a href="/2020/03/20/flex%E5%B8%83%E5%B1%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/39.jpg" class="responsive-img" alt="BFC详解">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Flex布局(弹性布局)">
                         
-                        <span class="card-title">BFC详解</span>
+                        <span class="card-title">Flex布局(弹性布局)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -985,8 +856,8 @@ main div &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/csss/">
-                        <span class="chip bg-color">csss</span>
+                    <a href="/tags/flex%E5%B8%83%E5%B1%80/">
+                        <span class="chip bg-color">flex布局</span>
                     </a>
                     
                 </div>
@@ -1000,13 +871,13 @@ main div &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/17/%E5%B8%B8%E8%A7%81%E7%9A%84%E5%89%8D%E7%AB%AF%E5%B8%83%E5%B1%802%EF%BC%88web%E7%AF%87%EF%BC%89/">
+                <a href="/2020/03/18/%E5%89%8D%E7%AB%AF%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%83%E5%B1%803---%E5%B8%B8%E7%94%A8%E5%B1%85%E4%B8%AD%E6%96%B9%E5%BC%8F/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="前端常见的布局二（web篇）">
+                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="前端常用的居中对齐方式">
                         
-                        <span class="card-title">前端常见的布局二（web篇）</span>
+                        <span class="card-title">前端常用的居中对齐方式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1017,7 +888,7 @@ main div &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-18
                             </span>
                         <span class="publish-author">
                             
@@ -1034,8 +905,8 @@ main div &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
+                    <a href="/tags/css%E5%B1%85%E4%B8%AD/">
+                        <span class="chip bg-color">css居中</span>
                     </a>
                     
                 </div>

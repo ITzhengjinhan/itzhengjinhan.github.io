@@ -486,7 +486,45 @@
 在methods中
 beforeToday(current)&#123;
   return current&gt;moment()
-&#125;</code></pre><h3 id="a-tree-如何在多选模式下，实现行点击勾选"><a href="#a-tree-如何在多选模式下，实现行点击勾选" class="headerlink" title="a-tree 如何在多选模式下，实现行点击勾选"></a>a-tree 如何在多选模式下，实现行点击勾选</h3><p>由于在 check 勾选时需要添加父节点 id 以及各种操作，这些都是需要通过 check 事件获取参数而 select 事件拿不到，因此想到直接操作 dom 元素的点击事件解决</p>
+&#125;</code></pre><h3 id="日期选择框-a-range-picker-限制只能按-3-个月周期选择"><a href="#日期选择框-a-range-picker-限制只能按-3-个月周期选择" class="headerlink" title="日期选择框 a-range-picker 限制只能按 3 个月周期选择"></a>日期选择框 a-range-picker 限制只能按 3 个月周期选择</h3><pre><code>&lt;template&gt;
+  &lt;a-range-picker
+    v-model=&quot;operateDate&quot;
+    :allow-clear=&quot;true&quot;
+    :show-time=&quot;false&quot;
+    valueFormat=&quot;YYYY-MM-DD&quot;
+    @calendarChange=&quot;handlePanelChange&quot;
+    :disabled-date=&quot;disabledDate&quot;
+  /&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import moment from &#39;moment&#39;;
+export default &#123;
+  data() &#123;
+    return &#123;
+      operateDate: [], // 真实选择的时间
+      startValueTemp: [], // 开始时间的暂存
+    &#125;;
+  &#125;,
+  methods: &#123;
+    handlePanelChange(value) &#123;
+      if (value[1]) &#123;
+        // 若已选择了结束时间，清空开始时间的暂存
+        this.startValueTemp = [];
+      &#125; else &#123;
+        this.startValueTemp = value[0]; // 记录开始时间的暂存
+      &#125;
+    &#125;,
+    disabledDate(current) &#123;
+      // 以3个月周期跨度选择
+      if (!this.startValueTemp.length) return false; // 未选择开始时间不限制
+      const threeMonthsLater = moment(this.startValueTemp).add(3, &#39;month&#39;).endOf(&#39;day&#39;);
+      const threeMonthsBefore = moment(this.startValueTemp).subtract(3, &#39;month&#39;).startOf(&#39;day&#39;);
+      return current &amp;&amp; (current &gt; threeMonthsLater || current &lt; threeMonthsBefore);
+    &#125;,
+  &#125;,
+&#125;;
+&lt;/script&gt;</code></pre><h3 id="a-tree-如何在多选模式下，实现行点击勾选"><a href="#a-tree-如何在多选模式下，实现行点击勾选" class="headerlink" title="a-tree 如何在多选模式下，实现行点击勾选"></a>a-tree 如何在多选模式下，实现行点击勾选</h3><p>由于在 check 勾选时需要添加父节点 id 以及各种操作，这些都是需要通过 check 事件获取参数而 select 事件拿不到，因此想到直接操作 dom 元素的点击事件解决</p>
 <pre><code>    &lt;a-tree
     :disabled=&quot;!isEdit&quot;
     checkable
