@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="懒加载列表和虚拟列表的区别以及应用, IT默小涵的个人博客">
+    <meta name="keywords" content="使用 View Transitions API 来实现切换主题, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>懒加载列表和虚拟列表的区别以及应用 | IT默小涵的个人博客</title>
+    <title>使用 View Transitions API 来实现切换主题 | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/30.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">懒加载列表和虚拟列表的区别以及应用</h1>
+                    <h1 class="description center-align post-title">使用 View Transitions API 来实现切换主题</h1>
                 </div>
             </div>
         </div>
@@ -432,12 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
-                                <span class="chip bg-color">懒加载列表</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
-                                <span class="chip bg-color">虚拟列表</span>
+                            <a href="/tags/%E6%8D%A2%E8%82%A4%E5%8A%A8%E7%94%BB/">
+                                <span class="chip bg-color">换肤动画</span>
                             </a>
                         
                     </div>
@@ -448,12 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/" class="post-category">
-                                懒加载列表
-                            </a>
-                        
-                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/" class="post-category">
-                                虚拟列表
+                            <a href="/categories/%E6%8D%A2%E8%82%A4%E5%8A%A8%E7%94%BB/" class="post-category">
+                                换肤动画
                             </a>
                         
                     </div>
@@ -465,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-03-10
+                    2024-08-20
                 </div>
                 
 
@@ -481,266 +473,169 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>背景：如果列表数据量比较大，后端没有做分页，前端如何处理会更好</p>
-<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在页面初始加载时，只加载部分数据，当用户滚动到页面底部或执行其他特定操作时，再加载更多的数据，避免一次性加载大量数据导致页面加载时间过长。</p>
-<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>可以通过监听页面的 scroll 事件，判断滚动条是否接近页面底部。当接近底部时，发送请求获取更多数据，并将新数据添加到列表中。例如，可以使用 Intersection Observer API 来监听列表底部元素是否进入可视区域，当进入可视区域时触发加载更多数据的操作</p>
-<p>但是当可视区域的内容越来越多，渲染的 dom 越多就会导致页面滚动出现卡顿，此时就需要“虚拟列表”了</p>
-<h3 id="虚拟列表"><a href="#虚拟列表" class="headerlink" title="虚拟列表"></a>虚拟列表</h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>只渲染可见区域内的列表项，当用户滚动列表时，动态计算并渲染新进入可见区域的列表项，同时销毁离开可见区域的列表项，从而大大减少了需要同时渲染的元素数量，提高页面性能和响应速度。</p>
-<p><img src="https://pic1.imgdb.cn/item/680b4e3458cb8da5c8cb762f.png" alt=""></p>
-<h4 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h4><p>可以使用一些开源的虚拟列表库，如 react-virtualized（用于 React 项目）、vue-virtual-scroll-list（用于 Vue 项目）等。以 vue-virtual-scroll-list 为例，它提供了 List 等组件，通过设置 height、width、rowHeight 等属性来定义列表的尺寸和每一项的高度，然后传入数据和渲染函数来实现虚拟列表。</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>项目中数据量有时候过于庞大，使用 elementui 的 Select 组件时，会导致下拉框加载速度慢卡顿甚至于卡死，为解决这个问题，使用 vue-virtual-scroll-list 插件 ，模拟虚拟滚动。</p>
-<p>vue-virtual-scroll-list 是 vue 的一个虚拟滚动组件，通过不渲染可视区域以外的内容，显示虚拟的滚动条来提升页面性能</p>
-<p>效果如下：</p>
-<p><img src="https://pic1.imgdb.cn/item/680b26a158cb8da5c8cab3a3.webp" alt=""></p>
-<p>1.安装插件</p>
-<pre><code>npm install vue-virtual-scroll-list --save</code></pre><p>2.常用的参数</p>
-<table>
-<thead>
-<tr>
-<th>Prop</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>data-key</td>
-<td>String or Function</td>
-<td>从 data-sources 每个数据对象中获取唯一键。或每个函数都调用 data-source 并返回其唯一键。在中，其值必须唯一 data-sources，用于标识商品尺寸。</td>
-</tr>
-<tr>
-<td>data-sources</td>
-<td>Array[Object]</td>
-<td>列表数据，每一行都必须有一个唯一的 id(data-key)</td>
-</tr>
-<tr>
-<td>data-component</td>
-<td>Component</td>
-<td>每一行的子组件</td>
-</tr>
-<tr>
-<td>keeps</td>
-<td>Number</td>
-<td>默认 30 个，默认渲染的个数</td>
-</tr>
-<tr>
-<td>extra-props</td>
-<td>Object</td>
-<td>默认{} data-component 组件的额外 props 通过改属性传入,内部已有 source 和 index 两个</td>
-</tr>
-</tbody></table>
-<p>常用方法</p>
-<p>可以通过以下方式调用这些方法 ref:</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>reset()</td>
-<td>将所有状态重置为初始状态。</td>
-</tr>
-<tr>
-<td>scrollToIndex(index)</td>
-<td>手动设置滚动位置到指定索引。</td>
-</tr>
-</tbody></table>
-<p>上述是组件常用到的方法,其他参数及方法可查看</p>
-<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue-virtual-scroll-list">官网地址</a></p>
-<p>3.基础用法</p>
-<ul>
-<li>属性说明</li>
-</ul>
-<pre><code>data-key=“selectData.value” 就是绑定的唯一key值,可传入动态的
-
-data-sources=“selectArr” 下拉框的数组
-
-data-component=“itemComponent” 就是抽离中的el-option组件
-
-keeps=“20” 渲染的个数
-
-extra-props 值为对象，可以传入自定义属性进去</code></pre><p>4.完整代码</p>
-<p>Select.vue: 需要注意代码注释里的回显问题</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;el-select :value=&quot;defaultValue&quot; popper-class=&quot;virtualselect&quot; filterable :filter-method=&quot;filterMethod&quot; @visible-change=&quot;visibleChange&quot; v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot;&gt;
-            &lt;virtual-list ref=&quot;virtualList&quot; class=&quot;virtualselect-list&quot;
-                :data-key=&quot;selectData.value&quot;
-                :data-sources=&quot;selectArr&quot;
-                :data-component=&quot;itemComponent&quot;
-                :keeps=&quot;20&quot;
-                :extra-props=&quot;&#123;
-                    label: selectData.label,
-                    value: selectData.value,
-                    isRight: selectData.isRight
-                &#125;&quot;&gt;&lt;/virtual-list&gt;
-        &lt;/el-select&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-import virtualList from &#39;vue-virtual-scroll-list&#39;
-import ElOptionNode from &#39;./el-option-node&#39;
-export default &#123;
-    components:&#123;
-        &#39;virtual-list&#39;: virtualList
-    &#125;,
-    model: &#123;
-        prop: &#39;defaultValue&#39;,
-        event: &#39;change&#39;,
-    &#125;,
-    props: &#123;
-        selectData: &#123;
-            type: Object,
-            default () &#123;
-                return &#123;&#125;
+                <p>View Transitions API 提供了一种机制，可以在更新 DOM 内容的同时，轻松地创建不同 DOM 状态之间的动画过渡。同时还可以在单个步骤中更新 DOM 内容。这是官方对他的描述，详情请看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/View_Transitions_API">这里</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>当调用 document.startViewTransition()时，API 会根据当前页面的屏幕截图，创建一个动画效果，将当前页面过渡到新的 DOM 状态。</p>
+<p>这个 startViewTransition 函数会返回一个回调函数，我们需要在回调函数中更新我们的 Dom，从而产生一个动画。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>下方创建好了一个模板，其中包含一个按钮，点击按钮可以切换背景颜色，我们使用需要使用 View Transitions API 实现一个简单的圆形扩散动画效果。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            :root &#123;
+                --bg-color: #fff;
+                background-color: var(--bg-color);
             &#125;
-        &#125;,//父组件传的值
-        defaultValue: &#123;
-            type: String,
-            default: &#39;&#39;
-        &#125;// 绑定的默认值
-    &#125;,
-    mounted() &#123;
-        this.init();
-    &#125;,
-    watch: &#123;
-        &#39;selectData.data&#39;() &#123;
-            this.init();
+            :root.dark &#123;
+                --bg-color: #000;
+            &#125;
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;button id=&quot;btn&quot;&gt;切换&lt;/button&gt;
+    &lt;/body&gt;
+    &lt;script&gt;
+        btn.addEventListener(&#39;click&#39;, (e) =&gt; &#123;
+            document.documentElement.classList.toggle(&#39;dark&#39;)
+        &#125;)
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="创建一个过渡"><a href="#创建一个过渡" class="headerlink" title="创建一个过渡"></a>创建一个过渡</h3><p>首先，我们需要创建一个过渡，使用 document.startViewTransition()函数，这个函数接收一个回调函数，我们在回调函数中更新 DOM 状态，会产生一个动画效果。</p>
+<pre><code>btn.addEventListener(&#39;click&#39;, (e) =&gt; &#123;
+    document.startViewTransition(() =&gt; &#123;
+        document.documentElement.classList.toggle(&#39;dark&#39;)
+    &#125;)
+&#125;)</code></pre><p>这个时候会发现，页面动画产生了一个渐隐的效果，这是因为 document.startViewTransition()函数默认会创建的一个效果，如果我们想要变更的话就需要对他进行修改。</p>
+<h3 id="修改过渡状态"><a href="#修改过渡状态" class="headerlink" title="修改过渡状态"></a>修改过渡状态</h3><p>首先需要拿到 document.startViewTransition()产生的实例，这里使用 transition 来接收，过渡状态可以通过 transition.ready 属性来获取，它是一个 Promise 对象。</p>
+<pre><code>const transition = document.startViewTransition(() =&gt; &#123;
+    document.documentElement.classList.toggle(&#39;dark&#39;)
+&#125;)
+
+transition.ready.then(() =&gt; &#123;
+    // 实现过渡的过程
+&#125;)</code></pre><p>我们目标是要实现一个圆心扩散动画，这里可以用到 clipPath 来裁剪屏幕截图，设定中心点为鼠标位置，从 0 扩散到 100%，从而实现中心扩散的效果。</p>
+<pre><code>transition.ready.then(() =&gt; &#123;
+    // 实现过渡的过程 circle
+    document.documentElement.animate(
+        &#123;
+            clipPath: [
+                &#39;circle(0 at 50% 50%)&#39;,
+                &#39;circle(100% at 50% 50%)&#39;
+            ],
+        &#125;,
+        &#123;
+            duration: 800,
+            pseudoElement: &#39;::view-transition-new(root)&#39;
         &#125;
-    &#125;,
-    data() &#123;
-        return &#123;
-            itemComponent: ElOptionNode,
-            selectArr:[]
+    )
+&#125;)</code></pre><p>这时候会发现我们的动画效果并没有发生，原因是::view-transition-xxx 的伪类自带的默认动画覆盖了自定义的动画，我们需要在::view-transition-new(root)伪类中，添加 animation: none;来取消默认动画。</p>
+<pre><code>::view-transition-old(root),
+::view-transition-new(root) &#123;
+    animation: none;
+&#125;</code></pre><p>动画已经有了，这个时候来修改动画的圆心为鼠标点击位置，可以通过事件对象获取到。</p>
+<pre><code>const x = e.clientX
+const y = e.clientY
+
+transition.ready.then(() =&gt; &#123;
+    // 实现过渡的过程 circle
+    document.documentElement.animate(
+        &#123;
+            clipPath: [
+                `circle(0 at $&#123;x&#125;px $&#123;y&#125;px)`,
+                `circle(100% at $&#123;x&#125;px $&#123;y&#125;px)`,
+            ],
+        &#125;,
+        &#123;
+            duration: 800,
+            pseudoElement: &#39;::view-transition-new(root)&#39;,
         &#125;
-    &#125;,
-    methods: &#123;
-        init() &#123;
-            if(!this.defaultValue) &#123;
-                this.selectArr = this.selectData.data;
-            &#125;else &#123;
-                // 回显问题
-                // 由于只渲染20条数据,当默认数据处于20条之外,在回显的时候会显示异常
-                // 解决方法:遍历所有数据,将对应回显的那一条数据放在第一条即可
-                this.selectArr = JSON.parse(JSON.stringify(this.selectData.data));
-                let obj = &#123;&#125;;
-                for (let i = 0; i &lt; this.selectArr.length; i++) &#123;
-                    const element = this.selectArr[i];
-                    if(element[this.selectData.value].toLowerCase() === this.defaultValue.toLowerCase()) &#123;
-                        obj = element;
-                        this.selectArr.splice(i,1);
-                        break;
+    )
+&#125;)
+</code></pre><p>然而圆形的半径是固定的，我们想要实现一个圆形扩散的效果，就需要修改圆形的半径，这里可以根据勾股定理来计算。</p>
+<pre><code>const x = e.clientX
+const y = e.clientY
+// 从点击点到窗口最远边缘的距离，这个距离即为圆的半径，用于确定一个圆形裁剪路径 (clip path) 的最大尺寸，以便覆盖整个视窗。
+// 勾股定理：a² + b² = c²
+const radius = Math.sqrt(Math.max(x, (window.innerWidth - x)) ** 2 + Math.max(y, (window.innerHeight - y)) ** 2)
+
+transition.ready.then(() =&gt; &#123;
+    // 实现过渡的过程 circle
+    document.documentElement.animate(
+        &#123;
+            clipPath: [
+                `circle(0 at $&#123;x&#125;px $&#123;y&#125;px)`,
+                `circle($&#123;radius&#125; at $&#123;x&#125;px $&#123;y&#125;px)`,
+            ]
+        &#125;,
+        &#123;
+            duration: 800,
+            pseudoElement: &#39;::view-transition-new(root)&#39;,
+        &#125;
+    )
+&#125;)
+</code></pre><h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><p><img src="https://pic1.imgdb.cn/item/67e562bd0ba3d5a1d7e55f99.gif" alt=""></p>
+<h3 id="完整代码如下："><a href="#完整代码如下：" class="headerlink" title="完整代码如下："></a>完整代码如下：</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            :root &#123;
+                --bg-color: #fff;
+                background-color: var(--bg-color);
+            &#125;
+            :root.dark &#123;
+                --bg-color: #000;
+            &#125;
+            ::view-transition-old(root),
+            ::view-transition-new(root) &#123;
+                animation: none;
+            &#125;
+            #btn&#123;
+                position: absolute;
+                top: 90%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            &#125;
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;button id=&quot;btn&quot;&gt;切换&lt;/button&gt;
+    &lt;/body&gt;
+    &lt;script&gt;
+        btn.addEventListener(&#39;click&#39;, (e) =&gt; &#123;
+            const transition = document.startViewTransition(() =&gt; &#123;
+                document.documentElement.classList.toggle(&#39;dark&#39;)
+            &#125;)
+
+            const x = e.clientX
+            const y = e.clientY
+            // 从点击点到窗口最远边缘的距离，这个距离即为圆的半径，用于确定一个圆形裁剪路径 (clip path) 的最大尺寸，以便覆盖整个视窗。
+            // 勾股定理：a² + b² = c²
+            const radius = Math.sqrt(Math.max(x, (window.innerWidth - x)) ** 2 + Math.max(y, (window.innerHeight - y)) ** 2)
+
+            transition.ready.then(() =&gt; &#123;
+                // 实现过渡的过程 circle
+                document.documentElement.animate(
+                    &#123;
+                        clipPath: [
+                            `circle(0 at $&#123;x&#125;px $&#123;y&#125;px)`,
+                            `circle($&#123;radius&#125;px at $&#123;x&#125;px $&#123;y&#125;px)`,
+                        ]
+                    &#125;,
+                    &#123;
+                        duration: 800,
+                        pseudoElement: &#39;::view-transition-new(root)&#39;,
                     &#125;
-                &#125;
-                this.selectArr.unshift(obj);
-            &#125;
-        &#125;,
-        // 搜索
-        filterMethod(query) &#123;
-            if (query !== &#39;&#39;) &#123;
-                this.$refs.virtualList.scrollToIndex(0);//滚动到顶部
-                setTimeout(() =&gt; &#123;
-                    this.selectArr = this.selectData.data.filter(item =&gt; &#123;
-                        return this.selectData.isRight?
-                            (item[this.selectData.label].toLowerCase().indexOf(query.toLowerCase()) &gt; -1 || item[this.selectData.value].toLowerCase().indexOf(query.toLowerCase()) &gt; -1)
-                            :item[this.selectData.label].toLowerCase().indexOf(query.toLowerCase()) &gt; -1;
-                    &#125;);
-                &#125;,100)
-        &#125; else &#123;
-            this.init();
-        &#125;
-        &#125;,
-        visibleChange(bool) &#123;
-            if(!bool) &#123;
-                this.$refs.virtualList.reset();
-                this.init();
-            &#125;
-        &#125;
-    &#125;
-&#125;
-&lt;/script&gt;
-&lt;style lang=&quot;scss&quot; scoped&gt;
-    .virtualselect &#123;
-        // 设置最大高度
-        &amp;-list &#123;
-            max-height:245px;
-            overflow-y:auto;
-        &#125;
-        .el-scrollbar .el-scrollbar__bar.is-vertical &#123;
-            width: 0;
-        &#125;
-    &#125;
-
-&lt;/style&gt;</code></pre><p>el-option-node.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;el-option :key=&quot;label+value&quot; :label=&quot;source[label]&quot; :value=&quot;source[value]&quot;&gt;
-        &lt;span&gt;&#123;&#123;source[label]&#125;&#125;&lt;/span&gt;
-        &lt;span v-if=&quot;isRight&quot; style=&quot;float:right;color:#939393&quot;&gt;&#123;&#123;source[value]&#125;&#125;&lt;/span&gt;
-    &lt;/el-option&gt;
-&lt;/template&gt;
-&lt;script&gt;
-export default &#123;
-    name: &#39;item-component&#39;,
-    props: &#123;
-        index: &#123;
-            type: Number
-        &#125;,// 每一行的索引
-        source: &#123;
-            type: Object,
-            default () &#123;
-                return &#123;&#125;
-            &#125;
-        &#125;,// 每一行的内容
-        label: &#123;
-            type: String
-        &#125;,// 需要显示的名称
-        value: &#123;
-            type: String
-        &#125;,// 绑定的值
-        isRight: &#123;
-            type: Boolean,
-            default () &#123;
-                return false
-            &#125;
-        &#125;// 右侧是否显示绑定的值
-    &#125;
-&#125;
-&lt;/script&gt;</code></pre><p>parent.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;cw-select :selectData=&quot;selectData&quot; v-model=&quot;defaultValue&quot; placeholder=&quot;请选择下拉数据&quot; clearable @change=&quot;selectChange&quot;&gt;&lt;/cw-select&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-    import CwSelect from &#39;@/components/Select&#39;
-    export default &#123;
-        components: &#123;
-            CwSelect
-        &#125;,
-        data() &#123;
-            return &#123;
-                selectData: &#123;
-                    data:[],// 下拉框数据
-                    label: &#39;name&#39;,// 下拉框需要显示的名称
-                    value: &#39;code&#39;,// 下拉框绑定的值
-                    isRight: true,//右侧是否显示
-                &#125;,
-                defaultValue: &#39;China99&#39;, //下拉框选择的默认值
-            &#125;;
-        &#125;,
-        mounted() &#123;
-            this.selectData.data = []
-            for (let i = 0; i &lt; 10000; i++) &#123;
-                this.selectData.data.push(&#123;code:&#39;China&#39;+i,name:&#39;中国&#39;+i+&#39;&#39;&#125;)
-            &#125;
-        &#125;,
-        methods: &#123;
-            selectChange(val) &#123;
-                console.log(&#39;下拉框选择的值&#39;, val)
-            &#125;
-        &#125;
-    &#125;;
-&lt;/script&gt;</code></pre>
+                )
+            &#125;)
+        &#125;)
+    &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
             </div>
             <hr/>
 
@@ -765,7 +660,7 @@ export default &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/03/10/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/">http://itzhengjinhan.github.io/2023/03/10/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/</a>
+                    <a href="http://itzhengjinhan.github.io/2024/08/20/%E4%BD%BF%E7%94%A8%20View%20Transitions%20API%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98/">http://itzhengjinhan.github.io/2024/08/20/%E4%BD%BF%E7%94%A8%20View%20Transitions%20API%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -803,12 +698,8 @@ export default &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
-                                    <span class="chip bg-color">懒加载列表</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
-                                    <span class="chip bg-color">虚拟列表</span>
+                                <a href="/tags/%E6%8D%A2%E8%82%A4%E5%8A%A8%E7%94%BB/">
+                                    <span class="chip bg-color">换肤动画</span>
                                 </a>
                             
                         </div>
@@ -980,13 +871,13 @@ export default &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/03/25/vue%E5%AE%9E%E7%8E%B0%E5%BC%B9%E5%B9%95/">
+                <a href="/2024/08/25/%E5%9F%BA%E4%BA%8Eantd%20vue%E5%85%A8%E9%87%8F%E6%A0%91%E7%BB%84%E4%BB%B6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vue实现弹幕">
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="基于antd vue全量上万条数据的树组件优化方案">
                         
-                        <span class="card-title">vue实现弹幕</span>
+                        <span class="card-title">基于antd vue全量上万条数据的树组件优化方案</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -997,7 +888,7 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-25
                         </span>
                         <span class="publish-author">
                             
@@ -1029,13 +920,13 @@ export default &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/02/26/vue%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%80%91%E5%B8%83%E6%B5%81%E5%B8%83%E5%B1%80%E7%BB%84%E4%BB%B6/">
+                <a href="/2024/08/15/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="vue移动端瀑布流布局组件">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="懒加载列表和虚拟列表的区别以及应用">
                         
-                        <span class="card-title">vue移动端瀑布流布局组件</span>
+                        <span class="card-title">懒加载列表和虚拟列表的区别以及应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1046,14 +937,18 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue/" class="post-category">
-                                    vue
+                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/" class="post-category">
+                                    懒加载列表
+                                </a>
+                            
+                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/" class="post-category">
+                                    虚拟列表
                                 </a>
                             
                             
@@ -1063,8 +958,12 @@ export default &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
+                        <span class="chip bg-color">懒加载列表</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
+                        <span class="chip bg-color">虚拟列表</span>
                     </a>
                     
                 </div>
