@@ -575,7 +575,8 @@ module.exports = &#123;
       &#125;
     &#125;
   &#125;
-&#125;;</code></pre><h3 id="图片太大，占用太多内存"><a href="#图片太大，占用太多内存" class="headerlink" title="图片太大，占用太多内存"></a>图片太大，占用太多内存</h3><pre><code>方案一：由后端存储，前端通过链接访问
+&#125;;</code></pre><h3 id="部署-h5-后，访问-index-html-页面白屏报错-net-ERR-ABORTED-404"><a href="#部署-h5-后，访问-index-html-页面白屏报错-net-ERR-ABORTED-404" class="headerlink" title="部署 h5 后，访问 index.html 页面白屏报错 net::ERR_ABORTED 404"></a>部署 h5 后，访问 index.html 页面白屏报错 net::ERR_ABORTED 404</h3><p>解决方案：<br>配置文件 manifest.json 文件中 H5 配置里面，一开始配置的 base 为 “” ，就得需要在配置文件 manifest.json 文件中 Web 配置下，如果改为”./“，就可以解决白屏报错 404 这个问题</p>
+<h3 id="图片太大，占用太多内存"><a href="#图片太大，占用太多内存" class="headerlink" title="图片太大，占用太多内存"></a>图片太大，占用太多内存</h3><pre><code>方案一：由后端存储，前端通过链接访问
 
 方案二： 使用图片压缩工具
 
