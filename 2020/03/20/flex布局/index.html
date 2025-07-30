@@ -522,18 +522,38 @@ flex-start：交叉轴的起点对齐。
 flex-end：交叉轴的终点对齐。
 center：交叉轴的中点对齐。
 baseline: 项目的第一行文字的基线对齐。
-*/</code></pre><h4 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h4><p>align-content 属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用</p>
-<pre><code>.box &#123;
-  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
-&#125;
-/*
-stretch(默认值)：轴线占满整个交叉轴；
-flex-start：与交叉轴的起点对齐
-flex-end：与交叉轴的终点对齐
-center：与交叉轴的中点对齐；
-space-between：与交叉轴两端对齐，轴线之间的间隔平均分布；
-space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍；
-*/</code></pre><h3 id="三、项目的属性"><a href="#三、项目的属性" class="headerlink" title="三、项目的属性"></a>三、项目的属性</h3><h4 id="order"><a href="#order" class="headerlink" title="order"></a>order</h4><p>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为 0。</p>
+*/</code></pre><h4 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h4><p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。</p>
+<pre><code>.item &#123;
+  align-self: auto | flex-start | flex-end | center | baseline | stretch;
+&#125;</code></pre><h3 id="常见-align-xxx-属性区别"><a href="#常见-align-xxx-属性区别" class="headerlink" title="常见 align-xxx 属性区别"></a>常见 align-xxx 属性区别</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>作用对象</th>
+<th>适用场景</th>
+<th>依赖条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>align-items</td>
+<td>容器</td>
+<td>单行/多行均有效</td>
+<td>无</td>
+</tr>
+<tr>
+<td>align-self</td>
+<td>子项</td>
+<td>覆盖单个子项对齐</td>
+<td>无</td>
+</tr>
+<tr>
+<td>align-content</td>
+<td>容器</td>
+<td>仅多行布局有效</td>
+<td>必须启用 flex-wrap</td>
+</tr>
+</tbody></table>
+<h3 id="三、项目的属性"><a href="#三、项目的属性" class="headerlink" title="三、项目的属性"></a>三、项目的属性</h3><h4 id="order"><a href="#order" class="headerlink" title="order"></a>order</h4><p>order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为 0。</p>
 <pre><code>.item &#123;
   order: &lt;integer&gt;;
 &#125;</code></pre><h4 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h4><p>flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩余空间，也不放大。</p>
@@ -548,9 +568,8 @@ space-around：每根轴线两侧的间隔都相等。所以，轴线之间的�
   flex-basis: &lt;length&gt; | auto; /* default auto */
 &#125;</code></pre><p>它可以设为跟 width 或 height 属性一样的值（比如 350px），则项目将占据固定空间。</p>
 <h4 id="flex（放大，缩小，所占空间）"><a href="#flex（放大，缩小，所占空间）" class="headerlink" title="flex（放大，缩小，所占空间）"></a>flex（放大，缩小，所占空间）</h4><p>flex 属性是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto。后两个属性可选。<br>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值</p>
-<h4 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h4><p>align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。</p>
 <pre><code>.item &#123;
-  align-self: auto | flex-start | flex-end | center | baseline | stretch;
+  flex: 1 0 200px; /* 放大 不缩小 基准200px */
 &#125;</code></pre><h3 id="四、常见案例"><a href="#四、常见案例" class="headerlink" title="四、常见案例"></a>四、常见案例</h3><h4 id="实现最后一个元素右对齐，或者第一个元素左对齐"><a href="#实现最后一个元素右对齐，或者第一个元素左对齐" class="headerlink" title="实现最后一个元素右对齐，或者第一个元素左对齐"></a>实现最后一个元素右对齐，或者第一个元素左对齐</h4><pre><code>// 父盒子
 .box&#123;
      display:flex;
@@ -561,35 +580,8 @@ space-around：每根轴线两侧的间隔都相等。所以，轴线之间的�
 
 // 最后一个子元素，一直靠右显示
 // 给最后一个子元素添加：margin-left：auto；
-</code></pre><h4 id="使用-flexbox-时-多行子元素之间的左右间距如何控制？上下呢？"><a href="#使用-flexbox-时-多行子元素之间的左右间距如何控制？上下呢？" class="headerlink" title="使用 flexbox 时,多行子元素之间的左右间距如何控制？上下呢？"></a>使用 flexbox 时,多行子元素之间的左右间距如何控制？上下呢？</h4><p>左右间距可通过设置子元素长度 + justify-content:space-between;</p>
-<p>上下间距可通过设置父元素 margin-bottom:-50px 和子元素 margin-bottom:50px</p>
-<pre><code>html:
-    &lt;div class=&quot;flex flex-sm&quot;&gt;
-        &lt;div class=&quot;flex-item item1&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;flex-item item2&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;flex-item item3&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;flex-item item4&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-css:
-.wrap &#123;
-  border:1px solid #ccc;
-  padding: 20px;
-&#125;
-.flex&#123;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* 左右间距 */
-    margin-bottom: -50px;  /* 上下间距 */
-&#125;
-.flex-item&#123;
-    width: 250px; /* 左右间距 */
-    border:1px solid #f00;
-    margin-bottom: 50px;    /* 上下间距 */
-&#125;
-.item1&#123; height: 20px; &#125;
-.item2&#123; height:100px; &#125;
-.item3&#123; height: 40px; &#125;
-.item4&#123; height: 200px; &#125;</code></pre><h4 id="间隔均匀，最后一排左对齐排列"><a href="#间隔均匀，最后一排左对齐排列" class="headerlink" title="间隔均匀，最后一排左对齐排列"></a>间隔均匀，最后一排左对齐排列</h4><p>在使用 flex 布局时，发现要使其间隔相同，当处于最后一行时排列将会有误</p>
+</code></pre><h4 id="使用-flexbox-时-多行子元素之间的左右间距如何控制？上下呢？"><a href="#使用-flexbox-时-多行子元素之间的左右间距如何控制？上下呢？" class="headerlink" title="使用 flexbox 时,多行子元素之间的左右间距如何控制？上下呢？"></a>使用 flexbox 时,多行子元素之间的左右间距如何控制？上下呢？</h4><p>gap 属性可以用来设置 flex 布局元素之间的间距</p>
+<h4 id="间隔均匀，最后一排左对齐排列"><a href="#间隔均匀，最后一排左对齐排列" class="headerlink" title="间隔均匀，最后一排左对齐排列"></a>间隔均匀，最后一排左对齐排列</h4><p>在使用 flex 布局时，发现要使其间隔相同，当处于最后一行时排列将会有误</p>
 <p><img src="https://pic.imgdb.cn/item/6432897a0d2dde577755fbce.png" alt=""></p>
 <pre><code>// 解决方法：4个卡片为例
 
