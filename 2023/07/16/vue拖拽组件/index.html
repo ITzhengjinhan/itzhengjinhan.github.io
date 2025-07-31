@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="懒加载列表和虚拟列表的区别以及应用, IT默小涵的个人博客">
+    <meta name="keywords" content="vue拖拽组件：vuedraggable, IT默小涵的个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>懒加载列表和虚拟列表的区别以及应用 | IT默小涵的个人博客</title>
+    <title>vue拖拽组件：vuedraggable | IT默小涵的个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">懒加载列表和虚拟列表的区别以及应用</h1>
+                    <h1 class="description center-align post-title">vue拖拽组件：vuedraggable</h1>
                 </div>
             </div>
         </div>
@@ -432,12 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
-                                <span class="chip bg-color">懒加载列表</span>
-                            </a>
-                        
-                            <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
-                                <span class="chip bg-color">虚拟列表</span>
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
                             </a>
                         
                     </div>
@@ -448,12 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/" class="post-category">
-                                懒加载列表
-                            </a>
-                        
-                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/" class="post-category">
-                                虚拟列表
+                            <a href="/categories/vue/" class="post-category">
+                                vue
                             </a>
                         
                     </div>
@@ -465,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-08-15
+                    2023-07-16
                 </div>
                 
 
@@ -481,266 +473,133 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>背景：如果列表数据量比较大，后端没有做分页，前端如何处理会更好</p>
-<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在页面初始加载时，只加载部分数据，当用户滚动到页面底部或执行其他特定操作时，再加载更多的数据，避免一次性加载大量数据导致页面加载时间过长。</p>
-<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>可以通过监听页面的 scroll 事件，判断滚动条是否接近页面底部。当接近底部时，发送请求获取更多数据，并将新数据添加到列表中。例如，可以使用 Intersection Observer API 来监听列表底部元素是否进入可视区域，当进入可视区域时触发加载更多数据的操作</p>
-<p>但是当可视区域的内容越来越多，渲染的 dom 越多就会导致页面滚动出现卡顿，此时就需要“虚拟列表”了</p>
-<h3 id="虚拟列表"><a href="#虚拟列表" class="headerlink" title="虚拟列表"></a>虚拟列表</h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>只渲染可见区域内的列表项，当用户滚动列表时，动态计算并渲染新进入可见区域的列表项，同时销毁离开可见区域的列表项，从而大大减少了需要同时渲染的元素数量，提高页面性能和响应速度。</p>
-<p><img src="https://pic1.imgdb.cn/item/680b4e3458cb8da5c8cb762f.png" alt=""></p>
-<h4 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h4><p>可以使用一些开源的虚拟列表库，如 react-virtualized（用于 React 项目）、vue-virtual-scroll-list（用于 Vue 项目）等。以 vue-virtual-scroll-list 为例，它提供了 List 等组件，通过设置 height、width、rowHeight 等属性来定义列表的尺寸和每一项的高度，然后传入数据和渲染函数来实现虚拟列表。</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>项目中数据量有时候过于庞大，使用 elementui 的 Select 组件时，会导致下拉框加载速度慢卡顿甚至于卡死，为解决这个问题，使用 vue-virtual-scroll-list 插件 ，模拟虚拟滚动。</p>
-<p>vue-virtual-scroll-list 是 vue 的一个虚拟滚动组件，通过不渲染可视区域以外的内容，显示虚拟的滚动条来提升页面性能</p>
-<p>效果如下：</p>
-<p><img src="https://pic1.imgdb.cn/item/680b26a158cb8da5c8cab3a3.webp" alt=""></p>
-<p>1.安装插件</p>
-<pre><code>npm install vue-virtual-scroll-list --save</code></pre><p>2.常用的参数</p>
-<table>
-<thead>
-<tr>
-<th>Prop</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>data-key</td>
-<td>String or Function</td>
-<td>从 data-sources 每个数据对象中获取唯一键。或每个函数都调用 data-source 并返回其唯一键。在中，其值必须唯一 data-sources，用于标识商品尺寸。</td>
-</tr>
-<tr>
-<td>data-sources</td>
-<td>Array[Object]</td>
-<td>列表数据，每一行都必须有一个唯一的 id(data-key)</td>
-</tr>
-<tr>
-<td>data-component</td>
-<td>Component</td>
-<td>每一行的子组件</td>
-</tr>
-<tr>
-<td>keeps</td>
-<td>Number</td>
-<td>默认 30 个，默认渲染的个数</td>
-</tr>
-<tr>
-<td>extra-props</td>
-<td>Object</td>
-<td>默认{} data-component 组件的额外 props 通过改属性传入,内部已有 source 和 index 两个</td>
-</tr>
-</tbody></table>
-<p>常用方法</p>
-<p>可以通过以下方式调用这些方法 ref:</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>reset()</td>
-<td>将所有状态重置为初始状态。</td>
-</tr>
-<tr>
-<td>scrollToIndex(index)</td>
-<td>手动设置滚动位置到指定索引。</td>
-</tr>
-</tbody></table>
-<p>上述是组件常用到的方法,其他参数及方法可查看</p>
-<p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue-virtual-scroll-list">官网地址</a></p>
-<p>3.基础用法</p>
-<ul>
-<li>属性说明</li>
-</ul>
-<pre><code>data-key=“selectData.value” 就是绑定的唯一key值,可传入动态的
+                <p>VueDraggable 是一款基于 Sortable.js 拖拽插件，本文总结该组件常用的方法和案例 demo</p>
+<h3 id="安装-vuedraggable"><a href="#安装-vuedraggable" class="headerlink" title="安装 vuedraggable"></a>安装 vuedraggable</h3><pre><code># 使用 npm 安装
+npm install vuedraggable --save
 
-data-sources=“selectArr” 下拉框的数组
-
-data-component=“itemComponent” 就是抽离中的el-option组件
-
-keeps=“20” 渲染的个数
-
-extra-props 值为对象，可以传入自定义属性进去</code></pre><p>4.完整代码</p>
-<p>Select.vue: 需要注意代码注释里的回显问题</p>
-<pre><code>&lt;template&gt;
-    &lt;div&gt;
-        &lt;el-select :value=&quot;defaultValue&quot; popper-class=&quot;virtualselect&quot; filterable :filter-method=&quot;filterMethod&quot; @visible-change=&quot;visibleChange&quot; v-bind=&quot;$attrs&quot; v-on=&quot;$listeners&quot;&gt;
-            &lt;virtual-list ref=&quot;virtualList&quot; class=&quot;virtualselect-list&quot;
-                :data-key=&quot;selectData.value&quot;
-                :data-sources=&quot;selectArr&quot;
-                :data-component=&quot;itemComponent&quot;
-                :keeps=&quot;20&quot;
-                :extra-props=&quot;&#123;
-                    label: selectData.label,
-                    value: selectData.value,
-                    isRight: selectData.isRight
-                &#125;&quot;&gt;&lt;/virtual-list&gt;
-        &lt;/el-select&gt;
-    &lt;/div&gt;
+# 使用 yarn 安装
+yarn add vuedraggable</code></pre><h3 id="引入并使用"><a href="#引入并使用" class="headerlink" title="引入并使用"></a>引入并使用</h3><pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;draggable v-model=&quot;items&quot; :options=&quot;&#123; group: &#39;items&#39; &#125;&quot;&gt;
+      &lt;div v-for=&quot;(item, index) in items&quot; :key=&quot;index&quot;&gt;
+        &#123;&#123; item &#125;&#125;
+      &lt;/div&gt;
+    &lt;/draggable&gt;
+  &lt;/div&gt;
 &lt;/template&gt;
+
 &lt;script&gt;
-import virtualList from &#39;vue-virtual-scroll-list&#39;
-import ElOptionNode from &#39;./el-option-node&#39;
+import draggable from &#39;vuedraggable&#39;;
+
 export default &#123;
-    components:&#123;
-        &#39;virtual-list&#39;: virtualList
-    &#125;,
-    model: &#123;
-        prop: &#39;defaultValue&#39;,
-        event: &#39;change&#39;,
-    &#125;,
-    props: &#123;
-        selectData: &#123;
-            type: Object,
-            default () &#123;
-                return &#123;&#125;
-            &#125;
-        &#125;,//父组件传的值
-        defaultValue: &#123;
-            type: String,
-            default: &#39;&#39;
-        &#125;// 绑定的默认值
-    &#125;,
-    mounted() &#123;
-        this.init();
-    &#125;,
-    watch: &#123;
-        &#39;selectData.data&#39;() &#123;
-            this.init();
-        &#125;
-    &#125;,
-    data() &#123;
-        return &#123;
-            itemComponent: ElOptionNode,
-            selectArr:[]
-        &#125;
-    &#125;,
-    methods: &#123;
-        init() &#123;
-            if(!this.defaultValue) &#123;
-                this.selectArr = this.selectData.data;
-            &#125;else &#123;
-                // 回显问题
-                // 由于只渲染20条数据,当默认数据处于20条之外,在回显的时候会显示异常
-                // 解决方法:遍历所有数据,将对应回显的那一条数据放在第一条即可
-                this.selectArr = JSON.parse(JSON.stringify(this.selectData.data));
-                let obj = &#123;&#125;;
-                for (let i = 0; i &lt; this.selectArr.length; i++) &#123;
-                    const element = this.selectArr[i];
-                    if(element[this.selectData.value].toLowerCase() === this.defaultValue.toLowerCase()) &#123;
-                        obj = element;
-                        this.selectArr.splice(i,1);
-                        break;
-                    &#125;
-                &#125;
-                this.selectArr.unshift(obj);
-            &#125;
-        &#125;,
-        // 搜索
-        filterMethod(query) &#123;
-            if (query !== &#39;&#39;) &#123;
-                this.$refs.virtualList.scrollToIndex(0);//滚动到顶部
-                setTimeout(() =&gt; &#123;
-                    this.selectArr = this.selectData.data.filter(item =&gt; &#123;
-                        return this.selectData.isRight?
-                            (item[this.selectData.label].toLowerCase().indexOf(query.toLowerCase()) &gt; -1 || item[this.selectData.value].toLowerCase().indexOf(query.toLowerCase()) &gt; -1)
-                            :item[this.selectData.label].toLowerCase().indexOf(query.toLowerCase()) &gt; -1;
-                    &#125;);
-                &#125;,100)
-        &#125; else &#123;
-            this.init();
-        &#125;
-        &#125;,
-        visibleChange(bool) &#123;
-            if(!bool) &#123;
-                this.$refs.virtualList.reset();
-                this.init();
-            &#125;
-        &#125;
-    &#125;
-&#125;
-&lt;/script&gt;
-&lt;style lang=&quot;scss&quot; scoped&gt;
-    .virtualselect &#123;
-        // 设置最大高度
-        &amp;-list &#123;
-            max-height:245px;
-            overflow-y:auto;
-        &#125;
-        .el-scrollbar .el-scrollbar__bar.is-vertical &#123;
-            width: 0;
-        &#125;
-    &#125;
-
-&lt;/style&gt;</code></pre><p>el-option-node.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;el-option :key=&quot;label+value&quot; :label=&quot;source[label]&quot; :value=&quot;source[value]&quot;&gt;
-        &lt;span&gt;&#123;&#123;source[label]&#125;&#125;&lt;/span&gt;
-        &lt;span v-if=&quot;isRight&quot; style=&quot;float:right;color:#939393&quot;&gt;&#123;&#123;source[value]&#125;&#125;&lt;/span&gt;
-    &lt;/el-option&gt;
-&lt;/template&gt;
-&lt;script&gt;
-export default &#123;
-    name: &#39;item-component&#39;,
-    props: &#123;
-        index: &#123;
-            type: Number
-        &#125;,// 每一行的索引
-        source: &#123;
-            type: Object,
-            default () &#123;
-                return &#123;&#125;
-            &#125;
-        &#125;,// 每一行的内容
-        label: &#123;
-            type: String
-        &#125;,// 需要显示的名称
-        value: &#123;
-            type: String
-        &#125;,// 绑定的值
-        isRight: &#123;
-            type: Boolean,
-            default () &#123;
-                return false
-            &#125;
-        &#125;// 右侧是否显示绑定的值
-    &#125;
-&#125;
-&lt;/script&gt;</code></pre><p>parent.vue</p>
-<pre><code>&lt;template&gt;
-    &lt;cw-select :selectData=&quot;selectData&quot; v-model=&quot;defaultValue&quot; placeholder=&quot;请选择下拉数据&quot; clearable @change=&quot;selectChange&quot;&gt;&lt;/cw-select&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-    import CwSelect from &#39;@/components/Select&#39;
-    export default &#123;
-        components: &#123;
-            CwSelect
-        &#125;,
-        data() &#123;
-            return &#123;
-                selectData: &#123;
-                    data:[],// 下拉框数据
-                    label: &#39;name&#39;,// 下拉框需要显示的名称
-                    value: &#39;code&#39;,// 下拉框绑定的值
-                    isRight: true,//右侧是否显示
-                &#125;,
-                defaultValue: &#39;China99&#39;, //下拉框选择的默认值
-            &#125;;
-        &#125;,
-        mounted() &#123;
-            this.selectData.data = []
-            for (let i = 0; i &lt; 10000; i++) &#123;
-                this.selectData.data.push(&#123;code:&#39;China&#39;+i,name:&#39;中国&#39;+i+&#39;&#39;&#125;)
-            &#125;
-        &#125;,
-        methods: &#123;
-            selectChange(val) &#123;
-                console.log(&#39;下拉框选择的值&#39;, val)
-            &#125;
-        &#125;
+  components: &#123;
+    draggable
+  &#125;,
+  data() &#123;
+    return &#123;
+      items: [&#39;Item 1&#39;, &#39;Item 2&#39;, &#39;Item 3&#39;, &#39;Item 4&#39;]
     &#125;;
-&lt;/script&gt;</code></pre>
+  &#125;
+&#125;;
+&lt;/script&gt;
+</code></pre><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><h4 id="v-model-绑定"><a href="#v-model-绑定" class="headerlink" title="v-model 绑定"></a>v-model 绑定</h4><p>vuedraggable 的核心是通过 v-model 将数据绑定到 draggable 组件上。当我们拖拽列表项时，绑定的数组 items 会自动更新，因此无需手动处理数据的变化。</p>
+<h4 id="options-配置"><a href="#options-配置" class="headerlink" title="options 配置"></a>options 配置</h4><p>vuedraggable 提供了许多配置项和事件来定制拖拽行为。我们可以通过 options 属性传递给 Sortable.js 的配置，控制拖拽效果。</p>
+<p>常用的配置项包括：</p>
+<ul>
+<li>group：设置分组，支持跨列表拖拽。</li>
+<li>disabled：是否禁用拖拽功能。</li>
+<li>handle：指定拖拽的句柄，即只有拖拽该区域时才会触发拖拽行为。</li>
+<li>animation：设置拖拽动画效果，单位为毫秒。</li>
+</ul>
+<p>拖拽句柄只允许用户通过点击 drag-handle（即显示的“::”）来拖动列表项，而不是直接点击整个列表项。</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;draggable v-model=&quot;items&quot; :options=&quot;&#123; handle: &#39;.drag-handle&#39;, animation: 200 &#125;&quot;&gt;
+      &lt;div v-for=&quot;(item, index) in items&quot; :key=&quot;index&quot;&gt;
+        &lt;span class=&quot;drag-handle&quot;&gt;::&lt;/span&gt; &lt;!-- 拖拽句柄 --&gt;
+        &#123;&#123; item &#125;&#125;
+      &lt;/div&gt;
+    &lt;/draggable&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre><h4 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h4><p>uedraggable 提供了丰富的事件，可以在拖拽过程的不同阶段执行自定义操作。常用的事件包括：</p>
+<ul>
+<li>start：拖拽开始时触发。</li>
+<li>end：拖拽结束时触发。</li>
+<li>add：元素被添加到列表时触发。</li>
+<li>remove：元素从列表中移除时触发。</li>
+<li>update：元素位置改变时触发。</li>
+</ul>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><h4 id="跨列表拖拽"><a href="#跨列表拖拽" class="headerlink" title="跨列表拖拽"></a>跨列表拖拽</h4><p>主要通过配置 group 属性</p>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;draggable v-model=&quot;listA&quot; :options=&quot;&#123; group: &#39;shared&#39; &#125;&quot;&gt;
+      &lt;div v-for=&quot;(item, index) in listA&quot; :key=&quot;index&quot;&gt;
+        &#123;&#123; item &#125;&#125;
+      &lt;/div&gt;
+    &lt;/draggable&gt;
+
+    &lt;draggable v-model=&quot;listB&quot; :options=&quot;&#123; group: &#39;shared&#39; &#125;&quot;&gt;
+      &lt;div v-for=&quot;(item, index) in listB&quot; :key=&quot;index&quot;&gt;
+        &#123;&#123; item &#125;&#125;
+      &lt;/div&gt;
+    &lt;/draggable&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      listA: [&#39;A1&#39;, &#39;A2&#39;, &#39;A3&#39;],
+      listB: [&#39;B1&#39;, &#39;B2&#39;, &#39;B3&#39;]
+    &#125;;
+  &#125;
+&#125;;
+&lt;/script&gt;
+
+&lt;style&gt;
+.container &#123;
+  display: flex;
+  justify-content: space-around;
+&#125;
+&lt;/style&gt;
+</code></pre><p>在这个例子中，listA 和 listB 是两个不同的数组，但由于它们都设置了相同的 group: ‘shared’，所以可以在这两个列表之间拖拽元素。</p>
+<h4 id="禁用拖拽"><a href="#禁用拖拽" class="headerlink" title="禁用拖拽"></a>禁用拖拽</h4><p>vuedraggable 提供了 disabled 或者 draggable 属性来控制是否允许拖拽</p>
+<p>disabled 是所有元素都无法拖拽；draggable 是单个元素无法拖拽</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;button @click=&quot;toggleDrag&quot;&gt;&#123;&#123; dragEnabled ? '禁用拖拽' : '启用拖拽' &#125;&#125;&lt;/button&gt;
+    &lt;draggable v-model=&quot;items&quot; :options=&quot;&#123; disabled: !dragEnabled, draggable: &#39;.draggable&#39; &#125;&quot;&gt;
+      &lt;div v-for=&quot;(item, index) in items&quot; :key=&quot;index&quot; :draggable=&quot;!item.disableDrag&quot;&gt;
+        &#123;&#123; item.name &#125;&#125;
+      &lt;/div&gt;
+    &lt;/draggable&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      items: [
+      &#123; id: 1, name: &#39;Item 1&#39;, disableDrag: false &#125;,
+      &#123; id: 2, name: &#39;Item 2&#39;, disableDrag: false &#125;,
+      &#123; id: 3, name: &#39;Item 3&#39;, disableDrag: true &#125;,
+      &#123; id: 4, name: &#39;Item 4&#39;, disableDrag: false &#125;,
+    ],
+      dragEnabled: true
+    &#125;;
+  &#125;,
+  methods: &#123;
+    toggleDrag() &#123;
+      this.dragEnabled = !this.dragEnabled;
+    &#125;
+  &#125;
+&#125;;
+&lt;/script&gt;
+</code></pre><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p><a target="_blank" rel="noopener" href="https://www.itxst.com/vue-draggable/tutorial.html">vuedraggable 官方文档链接</a></p>
+
             </div>
             <hr/>
 
@@ -765,7 +624,7 @@ export default &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://itzhengjinhan.github.io/2023/08/15/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/">http://itzhengjinhan.github.io/2023/08/15/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/</a>
+                    <a href="http://itzhengjinhan.github.io/2023/07/16/vue%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6/">http://itzhengjinhan.github.io/2023/07/16/vue%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -803,12 +662,8 @@ export default &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
-                                    <span class="chip bg-color">懒加载列表</span>
-                                </a>
-                            
-                                <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
-                                    <span class="chip bg-color">虚拟列表</span>
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
                                 </a>
                             
                         </div>
@@ -980,13 +835,13 @@ export default &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/08/20/%E4%BD%BF%E7%94%A8%20View%20Transitions%20API%20%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98/">
+                <a href="/2023/08/15/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8%E5%92%8C%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="使用 View Transitions API 来实现切换主题">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="懒加载列表和虚拟列表的区别以及应用">
                         
-                        <span class="card-title">使用 View Transitions API 来实现切换主题</span>
+                        <span class="card-title">懒加载列表和虚拟列表的区别以及应用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -997,14 +852,18 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-20
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%8D%A2%E8%82%A4%E5%8A%A8%E7%94%BB/" class="post-category">
-                                    换肤动画
+                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/" class="post-category">
+                                    懒加载列表
+                                </a>
+                            
+                            <a href="/categories/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/" class="post-category">
+                                    虚拟列表
                                 </a>
                             
                             
@@ -1014,8 +873,12 @@ export default &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%8D%A2%E8%82%A4%E5%8A%A8%E7%94%BB/">
-                        <span class="chip bg-color">换肤动画</span>
+                    <a href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD%E5%88%97%E8%A1%A8/">
+                        <span class="chip bg-color">懒加载列表</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">
+                        <span class="chip bg-color">虚拟列表</span>
                     </a>
                     
                 </div>
@@ -1029,13 +892,13 @@ export default &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/07/16/vue%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6/">
+                <a href="/2023/07/11/%E5%9F%BA%E4%BA%8Evue%E7%9A%84%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%E4%BA%8C%E6%AC%A1%E5%B0%81%E8%A3%85/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="vue拖拽组件：vuedraggable">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="基于Vue的日历组件">
                         
-                        <span class="card-title">vue拖拽组件：vuedraggable</span>
+                        <span class="card-title">基于Vue的日历组件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1046,7 +909,7 @@ export default &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-11
                             </span>
                         <span class="publish-author">
                             
@@ -1065,6 +928,10 @@ export default &#123;
                     
                     <a href="/tags/vue/">
                         <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="/tags/Calendar/">
+                        <span class="chip bg-color">Calendar</span>
                     </a>
                     
                 </div>
